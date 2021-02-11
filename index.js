@@ -221,8 +221,8 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, help(prefix), text)
 					break
 					case 'menupremium':
-		      if (!isGroupAdmins) return reply(mess.only.admin)
-		      client.sendMessage(from, menupremium(prefix, sender), text, {quoted: mek})
+					if (!isGroup) return reply(mess.only.group)
+					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
 				  break
 					case 'menu':
 					if (!isGroup) return reply(mess.only.group)
@@ -764,7 +764,7 @@ case 'lofi':
                     const latensi = speed() - timestamp
                     nzwa.updatePresence(from, Presence.composing) 
 				    uptime = process.uptime()
-                    nzwa.sendMessage(from, `Rapidez: *${latensi.toFixed(4)} _Segundo_*\nDispositivo: *Black Shark 3*\nRAM: *8/128*\nData: *Smartphone*\nRede: *4G*\nStatus: *No Carregador*`, text, { quoted: mek})
+                    client.sendMessage(from, `Rapidez: *${latensi.toFixed(4)} _Segundo_*\nDispositivo: *Black Shark 3*\nRAM: *8/128*\nData: *Smartphone*\nRede: *4G*\nStatus: *No Carregador*`, text, { quoted: mek})
                     break
 					case 'wa.me':
 				  case 'wame':
