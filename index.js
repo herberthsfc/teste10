@@ -35,6 +35,7 @@ const { removeBackgroundFromImageFile } = require('remove.bg')
 const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./src/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
+const anlink = JSON.parse(fs.readFileSync('./src/antilink.json'))
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
             + 'FN:Herberth\n' 
@@ -139,7 +140,16 @@ client.on('group-participants-update', async (anu) => {
 	    	blocked.push(i.replace('c.us','s.whatsapp.net'))
 	    }
 	})
-
+    if (antilink && isGroup && isBotGroupAdmins){
+            if (args.match(/(https:\/\/chat.whatsapp.com)/gi)) {
+                const check = await mek.inviteInfo(aziz);
+                if (!check) {
+                    return
+                } else {
+                    reply('*[GROUP LINK DETECTOR!]*\nKamu mengirimkan link grup chat, maaf kamu segera di kick dari grup.').then(() => {
+                        client.groupRemove()
+	    }
+	})
 	client.on('message-new', async (mek) => {
 		try {
 			if (!mek.message) return
@@ -192,6 +202,7 @@ client.on('group-participants-update', async (anu) => {
 			const isNsfw = isGroup ? nsfw.includes(from) : false
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
+			const antilink = anlink.includes(sender)
 			const isPrem = premium.includes(sender)
 			const isUrl = (url) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
@@ -220,6 +231,24 @@ client.on('group-participants-update', async (anu) => {
 				case 'menjfdh':
 					client.sendMessage(from, help(prefix), text)
 					break
+					case 'antilink':
+					client.updatePresence(from, Presence.composing) 
+					if (!isGroup) return reply(mess.only.group)
+					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (args.length < 1) return reply('pilih on atau off!!')
+					if (args[0] == 'on') {
+						if (isSimi) return reply('Mode antilink sudah aktif')
+						anlink.push(from)
+						fs.writeFileSync('./src/antilink.json', JSON.stringify(anlink))
+						reply(`Sukses mengaktifkan mode antilink`)
+					} else if (args[0] == 'off') {
+						anlink.splice(from, 1)
+						fs.writeFileSync('./src/antilink.json', JSON.stringify(anlink))
+						reply('Sukes menonaktifkan mode antilink️')
+					} else {
+						reply('pilih on atau off kak?')
+					}
+					break 
 					case 'menupremium':
 		      if (!isGroupAdmins) return reply(mess.only.admin)
 		      client.sendMessage(from, menupremium(prefix, sender), text, {quoted: mek})
