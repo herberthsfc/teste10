@@ -758,6 +758,14 @@ case 'lofi':
 					})
 					await limitAdd(sender)
 					break
+					case 'ping':    
+			   	    if (!isGroup) return reply(mess.only.group)
+                    const timestamp = speed();
+                    const latensi = speed() - timestamp
+                    nzwa.updatePresence(from, Presence.composing) 
+				    uptime = process.uptime()
+                    nzwa.sendMessage(from, `Rapidez: *${latensi.toFixed(4)} _Segundo_*\nDispositivo: *Black Shark 3*\nRAM: *8/128*\nData: *Smartphone*\nRede: *4G*\nStatus: *No Carregador*`, text, { quoted: mek})
+                    break
 					case 'wa.me':
 				  case 'wame':
 				  if (!isGroup) return reply(mess.only.group)
