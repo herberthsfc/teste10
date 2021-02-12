@@ -35,6 +35,7 @@ const { removeBackgroundFromImageFile } = require('remove.bg')
 const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./src/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
+const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
             + 'FN:Herberth\n' 
@@ -191,6 +192,7 @@ client.on('group-participants-update', async (anu) => {
 			const isWelkom = isGroup ? welkom.includes(from) : false
 			const isNsfw = isGroup ? nsfw.includes(from) : false
 			const isSimi = isGroup ? samih.includes(from) : false
+			const isAntiLink = isGroup ? antilink.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
 			const isPrem = premium.includes(sender)
 			const isUrl = (url) => {
@@ -205,6 +207,22 @@ client.on('group-participants-update', async (anu) => {
 			const mentions = (teks, memberr, id) => {
 				(id == null || id == undefined || id == false) ? client.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
 			}
+			if (messagesLink.includes("://chat.whatsapp.com/")){
+		if (!isGroup) return
+		if (!isAntiLink) return
+		if (isGroupAdmins) return reply(`${pushname2} Adalah Admin Group Kamu Tidak Akan Di kick`)
+		frhan.updatePresence(from, Presence.composing)
+		var Kick = `${sender.split("@")[0]}@s.whatsapp.net`
+		setTimeout( () => {
+		reply('byee👋')
+		}, 1100)
+		setTimeout( () => {
+		frhan.groupRemove(from, [Kick]).catch((e) => {reply(`*ERROR:* ${e}`)}) 
+					}, 1000)
+		setTimeout( () => {
+		reply(`Link Group Terdeteksi maaf *${pushname2}* anda akan di kick`)
+		}, 0)
+		}
 
 			colors = ['red','white','black','blue','yellow','green']
 			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
@@ -219,6 +237,25 @@ client.on('group-participants-update', async (anu) => {
 				case 'helrygf': 
 				case 'menjfdh':
 					client.sendMessage(from, help(prefix), text)
+					break
+					case 'antilink':
+				if (!isGroup) return reply(mess.only.group)
+					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+					if (args.length < 1) return reply('ketik !antilink on untuk mengaktifkan')
+					if ((args[0]) === 'on') {
+						if (isAntiLink) return reply('anti link sudah on')
+						antilink.push(from)
+						fs.writeFileSync('./database/json/antilink.json', JSON.stringify(antilink))
+						reply(`\`\`\`✓Sukses mengaktifkan fitur anti link di group\`\`\` *${groupMetadata.subject}*`)
+					} else if ((args[0]) === 'off') {
+						if (!isAntiLink) return reply('anti link sudah off')
+						antilink.splice(from, 1)
+						fs.writeFileSync('./database/json/antilink.json', JSON.stringify(antilink))
+						reply(`\`\`\`✓Sukses menonaktifkan fitur anti link di group\`\`\` *${groupMetadata.subject}*`)
+					} else {
+						reply('on untuk mengaktifkan, off untuk menonaktifkan')
+					}
 					break
 					case 'menupremium':
 					if (!isGroup) return reply(mess.only.group)
@@ -762,7 +799,7 @@ case 'lofi':
 			   	    if (!isGroup) return reply(mess.only.group)
                     const timestamp = speed();
                     const latensi = speed() - timestamp
-                    nzwa.updatePresence(from, Presence.composing) 
+                    client.updatePresence(from, Presence.composing) 
 				    uptime = process.uptime()
                     client.sendMessage(from, `Rapidez: *${latensi.toFixed(4)} _Segundo_*\nDispositivo: *Black Shark 3*\nRAM: *8/128*\nData: *Smartphone*\nRede: *4G*\nStatus: *No Carregador*`, text, { quoted: mek})
                     break
