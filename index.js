@@ -255,14 +255,17 @@ client.on('group-participants-update', async (anu) => {
         if (messagesC.includes("://chat.whatsapp.com/")){
 		if (!isGroup) return
 		if (!isAntiLink) return
-		if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
+		if (isGroupAdmins) return reply(`${pushname2} Adalah Admin Group Kamu Tidak Akan Di kick`)
 		client.updatePresence(from, Presence.composing)
-		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
-		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-		reply(`Link Group Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+		var Kick = `${sender.split("@")[0]}@s.whatsapp.net`
 		setTimeout( () => {
-			client.updatePresence(from, Presence.composing)
-			reply("Tchau corno(a)👋")
+		reply('byee👋')
+		}, 1100)
+		setTimeout( () => {
+		client.groupRemove(from, [Kick]).catch((e) => {reply(`*ERROR:* ${e}`)}) 
+					}, 1000)
+		setTimeout( () => {
+		reply(`Link Group Terdeteksi maaf *${pushname2}* anda akan di kick`)
 		}, 0)
 	}
 

@@ -261,27 +261,8 @@ client.on('group-participants-update', async (anu) => {
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
 		reply(`Link Group Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
 		setTimeout( () => {
-			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
-		}, 5000)
-		setTimeout( () => {
 			client.updatePresence(from, Presence.composing)
-			reply("1detik")
-		}, 4000)
-		setTimeout( () => {
-			client.updatePresence(from, Presence.composing)
-			reply("2detik")
-		}, 3000)
-		setTimeout( () => {
-			client.updatePresence(from, Presence.composing)
-			reply("3detik")
-		}, 2000)
-		setTimeout( () => {
-			client.updatePresence(from, Presence.composing)
-			reply("4detik")
-		}, 1000)
-		setTimeout( () => {
-			client.updatePresence(from, Presence.composing)
-			reply("5detik")
+			reply("Tchau corno(a)👋")
 		}, 0)
 	}
 
