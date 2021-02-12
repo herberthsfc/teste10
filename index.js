@@ -157,6 +157,8 @@ client.on('group-participants-update', async (anu) => {
 			body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
 			budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
 			const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
+			var pes = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''
+			const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
 			const args = body.trim().split(/ +/).slice(1)
 			const isCmd = body.startsWith(prefix)
 
@@ -207,23 +209,82 @@ client.on('group-participants-update', async (anu) => {
 			const mentions = (teks, memberr, id) => {
 				(id == null || id == undefined || id == false) ? client.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": memberr}})
 			}
-			if (messagesLink.includes("://chat.whatsapp.com/")){
-		    if (!isGroup) return
-		    if (!isAntiLink) return
-		    if (isGroupAdmins) return reply(`${pushname2} Adalah Admin Group Kamu Tidak Akan Di kick`)
-		    client.updatePresence(from, Presence.composing)
-		    var Kick = `${sender.split("@")[0]}@s.whatsapp.net`
-		    setTimeout( () => {
-		    reply('byee👋')
-		    }, 1100)
-		    setTimeout( () => {
-		    client.groupRemove(from, [Kick]).catch((e) => {reply(`*ERROR:* ${e}`)}) 
-					}, 1000)
-		    setTimeout( () => {
-		    reply(`Link Group Terdeteksi maaf *${pushname2}* anda akan di kick`)
-		    }, 0)
-		    
-		    }
+            const addATM = (sender) => {
+                const obj = {id: sender, uang : 0}
+            uang.push(obj)
+            fs.writeFileSync('./database/json/uang.json', JSON.stringify(uang))
+        }
+
+        const addKoinUser = (sender, amount) => {
+            let position = false
+            Object.keys(uang).forEach((i) => {
+                if (uang[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                uang[position].uang += amount
+                fs.writeFileSync('./database/json/uang.json', JSON.stringify(uang))
+            }
+        }
+
+        const checkATMuser = (sender) => {
+                let position = false
+            Object.keys(uang).forEach((i) => {
+                if (uang[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                return uang[position].uang
+            }
+        }
+
+        const confirmATM = (sender, amount) => {
+                let position = false
+            Object.keys(uang).forEach((i) => {
+                if (uang[i].id === sender) {
+                    position = i
+                }
+            })
+            if (position !== false) {
+                uang[position].uang -= amount
+                fs.writeFileSync('./database/json/uang.json', JSON.stringify(uang))
+            }
+        }
+        if (messagesC.includes("://chat.whatsapp.com/")){
+		if (!isGroup) return
+		if (!isAntiLink) return
+		if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
+		client.updatePresence(from, Presence.composing)
+		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		reply(`Link Group Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+		setTimeout( () => {
+			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+		}, 5000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+			reply("1detik")
+		}, 4000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+			reply("2detik")
+		}, 3000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+			reply("3detik")
+		}, 2000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+			reply("4detik")
+		}, 1000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+			reply("5detik")
+		}, 0)
+	}
+
 			colors = ['red','white','black','blue','yellow','green']
 			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
 			const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
@@ -238,28 +299,9 @@ client.on('group-participants-update', async (anu) => {
 				case 'menjfdh':
 					client.sendMessage(from, help(prefix), text)
 					break
-					case 'antilink':
-				if (!isGroup) return reply(mess.only.group)
-					if (!isGroupAdmins) return reply(mess.only.admin)
-					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (args.length < 1) return reply('ketik !antilink on untuk mengaktifkan')
-					if ((args[0]) === 'on') {
-						if (isAntiLink) return reply('anti link sudah on')
-						antilink.push(from)
-						fs.writeFileSync('./database/json/antilink.json', JSON.stringify(antilink))
-						reply(`\`\`\`✓Sukses mengaktifkan fitur anti link di group\`\`\` *${groupMetadata.subject}*`)
-					} else if ((args[0]) === 'off') {
-						if (!isAntiLink) return reply('anti link sudah off')
-						antilink.splice(from, 1)
-						fs.writeFileSync('./database/json/antilink.json', JSON.stringify(antilink))
-						reply(`\`\`\`✓Sukses menonaktifkan fitur anti link di group\`\`\` *${groupMetadata.subject}*`)
-					} else {
-						reply('on untuk mengaktifkan, off untuk menonaktifkan')
-					}
-					break
 					case 'menupremium':
-					if (!isGroup) return reply(mess.only.group)
-					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
+		      if (!isGroupAdmins) return reply(mess.only.admin)
+		      client.sendMessage(from, menupremium(prefix, sender), text, {quoted: mek})
 				  break
 					case 'menu':
 					if (!isGroup) return reply(mess.only.group)
@@ -568,6 +610,27 @@ case 'lofi':
                 buffer = await getBuffer(anu.gambar)
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: `${body.slice(5)}`})
 				break
+				case 'antilinkgroup':
+                    if (!isGroup) return reply(mess.only.group)
+					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+					if (args.length < 1) return reply('ketik 1 untuk mengaktifkan')
+					if (Number(args[0]) === 1) {
+						if (isAntiLink) return reply('anti link group sudah aktif')
+						antilink.push(from)
+						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
+						reply('Sukses mengaktifkan anti link group di group ini ✔️')
+						client.sendMessage(from,`Perhatian kepada seluruh member anti link group aktif apabila anda mengirim link group anda akan di kick dari group`, text)
+					} else if (Number(args[0]) === 0) {
+						if (!isantilink) return reply('Mode anti link group sudah disable')
+						var ini = anti.indexOf(from)
+						antilink.splice(ini, 1)
+						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
+						reply('Sukes menonaktifkan anti link group di group ini ✔️')
+					} else {
+						reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
+					}
+					break
 				case 'ocr': 
 				case 'txtdafoto':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
@@ -795,14 +858,6 @@ case 'lofi':
 					})
 					await limitAdd(sender)
 					break
-					case 'ping':    
-			   	    if (!isGroup) return reply(mess.only.group)
-                    const timestamp = speed();
-                    const latensi = speed() - timestamp
-                    client.updatePresence(from, Presence.composing) 
-				    uptime = process.uptime()
-                    client.sendMessage(from, `Rapidez: *${latensi.toFixed(4)} _Segundo_*\nDispositivo: *Black Shark 3*\nRAM: *8/128*\nData: *Smartphone*\nRede: *4G*\nStatus: *No Carregador*`, text, { quoted: mek})
-                    break
 					case 'wa.me':
 				  case 'wame':
 				  if (!isGroup) return reply(mess.only.group)
