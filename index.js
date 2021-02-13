@@ -31,6 +31,7 @@ const kagApi = require('@kagchi/kag-api')
 const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
 const tiktod = require('tiktok-scraper')
 const ffmpeg = require('fluent-ffmpeg')
+const speed = require('performance-now')
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./src/nsfw.json'))
@@ -423,10 +424,14 @@ client.on('group-participants-update', async (anu) => {
 			client.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
 			await limitAdd(sender)
 			break
-			case 'ping':
-            if (!isGroup) return reply(mess.only.group)
-           	await client.sendMessage(from, `Pong!!!!\nSpeed: ${processTime(time, moment())} _Second_`)
-			break
+			case 'ping':    
+			if (!isGroup) return reply(mess.only.group)
+            const timestamp = speed();
+            const latensi = speed() - timestamp
+            client.updatePresence(from, Presence.composing) 
+		    uptime = process.uptime()
+            client.sendMessage(from, `Rapidez: *${latensi.toFixed(4)} _Segundo_*\nDispositivo: *Black Shark 3*\nRAM: *8/128*\nData: *Smartphone*\nRede: *4G*\nStatus: *No Carregador*`, text, { quoted: mek})
+            break
 			case 'darkjokes':
 		    client.updatePresence(from, Presence.composing) 
 		    if (!isGroup) return reply(mess.only.group)
