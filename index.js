@@ -393,17 +393,17 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*DDD 90,91,92,93,94,95,96,97,98,99*'})
 					break
 					case 'meme':
-		            client.updatePresence(from, Presence.composing) 
-		            if (!isGroup) return reply(mess.only.group)
-			        reply(mess.wait)
-			        data = fs.readFileSync('./lib/meme.js');
-                    jsonData = JSON.parse(data);
-                    randIndex = Math.floor(Math.random() * jsonData.length);
-                    randKey = jsonData[randIndex];
-                    meme = await getBuffer(randKey.result)
-                    client.sendMessage(from, meme, image, {quoted: mek, caption: '\`\`\`DARK JOKES\`\`\`'})
-			        await limitAdd(sender) 
-			        break
+		    client.updatePresence(from, Presence.composing) 
+		    if (!isGroup) return reply(mess.only.group)
+			reply(mess.wait)
+			data = fs.readFileSync('./lib/meme.js');
+            jsonData = JSON.parse(data);
+            randIndex = Math.floor(Math.random() * jsonData.length);
+            randKey = jsonData[randIndex];
+            meme = await getBuffer(randKey.result)
+            client.sendMessage(from, meme, image, {quoted: mek, caption: '\`\`\`MEME\`\`\`'})
+			await limitAdd(sender) 
+			break
 					case 'gado':
           if (args.length < 1) return reply('*Um gado foi detectado! Cuidado, ele não pode ver uma mulher!* 🐂')
           break
