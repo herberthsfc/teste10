@@ -625,16 +625,16 @@ client.on('group-participants-update', async (anu) => {
 						if (isAntiLink) return reply('*O Antilink ja está ativado!*')
 						antilink.push(from)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('*「 Antilink ativado com sucesso ✓ 」*️')
+						reply('*Antilink ativado com sucesso ✓*')
 						client.sendMessage(from,`*Quem divulgar link de grupo, será removido!*`, text)
 					} else if (Number(args[0]) === 0) {
-						if (!isantilink) return reply('*「 Antilink desativado com sucesso ✘ 」*')
+						if (!isantilink) return reply('*Antilink desativado com sucesso ✘*')
 						var ini = anti.indexOf(from)
 						antilink.splice(ini, 1)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('*「 Antilink desativado com sucesso ✘ 」*️')
+						reply('*Antilink desativado com sucesso ✘*️')
 					} else {
-						reply('*「 1 para ativar, 0 para desativar! 」*')
+						reply('*1 para ativar, 0 para desativar!*')
 					}
 					break
 				case 'ocr': 
