@@ -44,7 +44,9 @@ const vcard = 'BEGIN:VCARD\n'
             + 'END:VCARD' 
 prefix = '/'
 blocked = []          
-premium = ["5511996237647@s.whatsapp.net"]
+premium = [
+			"5511996237647@s.whatsapp.net"
+			]
 
 /********** LOAD FILE **************/
 
@@ -322,30 +324,19 @@ client.on('group-participants-update', async (anu) => {
 						if (!isGroupAdmins)return reply(mess.only.admin)
 						client.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
 						break
-						case 'premiumlist':
-					client.updatePresence(from, Presence.composing) 
-					if (!isGroup)return reply(mess.only.group)
-					teks = `╭─「 *TOTAL USER PREMIUM ${name}* 」\n`
-					no = 0
-					for (let prem of premium) {
-						no += 1
-						teks += `[${no.toString()}] @${prem.split('@')[0]}\n`
-					}
-					teks += `│+ Total User Premium : ${premium.length}\n╰──────⎿ *${name}* ⏋────`
-					client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": premium}})
-					break
 				case 'addprem':
 					client.updatePresence(from, Presence.composing)
 					if (args.length < 1) return
 					if (!isOwner) return reply(mess.only.ownerB)
-					addpremium = mek.message.extendedTextMessage.contextInfo.mentionedJid
-					premium = addpremium
-					reply(`*Berhasil Menambahkan ${premium} Ke database User Premium*`)
+					addpremi = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					addpremium = addpremi
+					reply(`*ʙᴇʀʜᴀꜱɪʟ ᴍᴇɴᴀᴍʙᴀʜᴋᴀɴ ${addpremium} ᴋᴇ ᴜꜱᴇʀ ᴩʀᴇᴍɪᴜᴍ*\n\nꜱᴇʟᴀᴍᴀᴛ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ꜰɪᴛᴜʀ ᴩʀᴇᴍɪᴜᴍ:)`)
 					break
 				case 'removeprem':
 					if (!isOwner) return reply(mess.only.ownerB)
 					rprem = body.slice(13)
 					premium.splice(`${rprem}@s.whatsapp.net`, 1)
+					fs.writeFileSync('./database/json/premium.json', JSON.stringify(premium))
 					reply(`Berhasil Remove wa.me/${rprem} Dari User Premium`)
 					break
                 case 'hidetag':
@@ -365,7 +356,7 @@ client.on('group-participants-update', async (anu) => {
 					}
 					client.sendMessage(from, options, text)
 					break
-case 'lofi':
+                    case 'lofi':
 					memein = await kagApi.memeindo()
 					buffer = await getBuffer(`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL9hZBPRo16fIhsIus3t1je2oAU23pQqBpfw&usqp=CAU`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '️amoo lofi'})
@@ -431,6 +422,22 @@ case 'lofi':
 			buffer = await getBuffer(hupo.image)
 			client.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
 			await limitAdd(sender)
+			break
+			case 'ping':
+            if (!isGroup) return reply(mess.only.group)
+           	await client.sendMessage(from, `Pong!!!!\nSpeed: ${processTime(time, moment())} _Second_`)
+			break
+			case 'darkjokes':
+		    client.updatePresence(from, Presence.composing) 
+		    if (!isGroup) return reply(mess.only.group)
+			reply(mess.wait)
+			data = fs.readFileSync('./lib/drak.js');
+            jsonData = JSON.parse(data);
+            randIndex = Math.floor(Math.random() * jsonData.length);
+            randKey = jsonData[randIndex];
+            darkjokes = await getBuffer(randKey.result)
+            client.sendMessage(from, darkjokes, image, {quoted: mek, caption: '\`\`\`DARK JOKES\`\`\`'})
+			await limitAdd(sender) 
 			break
 			case 'gay':
 		  if (!isGroup) return reply(mess.only.group)
@@ -824,14 +831,15 @@ case 'lofi':
 					await limitAdd(sender)
 					break 
 					case 'pinterest':
-                                        tels = body.slice(11)
+					if (!isGroup) return reply(mess.only.group)
 					client.updatePresence(from, Presence.composing) 
-					data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${tels}`, {method: 'get'})
-					reply(mess.wait)
+					data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${body.slice(11)}`, {method: 'get'})
+					reply(ind.wait())
 					n = JSON.parse(JSON.stringify(data));
 					nimek =  n[Math.floor(Math.random() * n.length)];
 					pok = await getBuffer(nimek)
-					client.sendMessage(from, pok, image, { quoted: mek, caption: `*PINTEREST*\n\*Hasil Pencarian* : *${tels}*`})
+					client.sendMessage(from, pok, image, { quoted: mek, caption: `*𝐏𝐈𝐍𝐓𝐄𝐑𝐄𝐒𝐓*`})
+					await limitAdd(sender)
 					break
 					case 'blowjob':
 					if (!isPrem) return reply(mess.only.premium)
@@ -1054,7 +1062,6 @@ case 'lofi':
 					} else {
 						reply('*「 ❗ 」 Use 1 para ativar ou 0 para desativar!* \n *exemplo: ${prefix}bemvindo 1*')
 					}
-				break
 				case 'clone':
 				case 'clonar':
 					if (!isGroup) return reply(mess.only.group)
