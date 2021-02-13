@@ -837,14 +837,13 @@ client.on('group-participants-update', async (anu) => {
 					break 
 					case 'pinterest':
                                         tels = body.slice(11)
-					client.updatePresence(from, Presence.composing) 
-					data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${tels}`, {method: 'get'})
-					reply(mess.wait)
-					n = JSON.parse(JSON.stringify(data));
-					nimek =  n[Math.floor(Math.random() * n.length)];
-					pok = await getBuffer(nimek)
-					client.sendMessage(from, pok, image, { quoted: mek, caption: `*PINTEREST*\n\*Hasil Pencarian* : *${tels}*`})
-					break
+                                        client.updatePresence(from, Presence.composing)
+                                        data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${tels}`, {method: 'get'})
+                                        n = JSON.parse(JSON.stringify(data));
+                                        nimek =  n[Math.floor(Math.random() * n.length)];
+                                        pok = await getBuffer(nimek)
+                                        client.sendMessage(from, pok, image, { quoted: mek, caption: `PINTEREST : ${tels}`})
+                                        break
 					case 'blowjob':
 					if (!isPrem) return reply(mess.only.premium)
 					ranp = getRandom('.gif')
