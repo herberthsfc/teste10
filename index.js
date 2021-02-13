@@ -44,9 +44,7 @@ const vcard = 'BEGIN:VCARD\n'
             + 'END:VCARD' 
 prefix = '/'
 blocked = []          
-premium = [
-			"5511996237647@s.whatsapp.net"
-			]
+premium = ["5511996237647@s.whatsapp.net"]
 
 /********** LOAD FILE **************/
 
@@ -324,19 +322,30 @@ client.on('group-participants-update', async (anu) => {
 						if (!isGroupAdmins)return reply(mess.only.admin)
 						client.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
 						break
+						case 'premiumlist':
+					client.updatePresence(from, Presence.composing) 
+					if (!isGroup)return reply(mess.only.group)
+					teks = `╭─「 *TOTAL USER PREMIUM ${name}* 」\n`
+					no = 0
+					for (let prem of premium) {
+						no += 1
+						teks += `[${no.toString()}] @${prem.split('@')[0]}\n`
+					}
+					teks += `│+ Total User Premium : ${premium.length}\n╰──────⎿ *${name}* ⏋────`
+					client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": premium}})
+					break
 				case 'addprem':
 					client.updatePresence(from, Presence.composing)
 					if (args.length < 1) return
 					if (!isOwner) return reply(mess.only.ownerB)
-					addpremi = mek.message.extendedTextMessage.contextInfo.mentionedJid
-					addpremium = addpremi
-					reply(`*ʙᴇʀʜᴀꜱɪʟ ᴍᴇɴᴀᴍʙᴀʜᴋᴀɴ ${addpremium} ᴋᴇ ᴜꜱᴇʀ ᴩʀᴇᴍɪᴜᴍ*\n\nꜱᴇʟᴀᴍᴀᴛ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ꜰɪᴛᴜʀ ᴩʀᴇᴍɪᴜᴍ:)`)
+					addpremium = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					premium = addpremium
+					reply(`*Berhasil Menambahkan ${premium} Ke database User Premium*`)
 					break
 				case 'removeprem':
 					if (!isOwner) return reply(mess.only.ownerB)
 					rprem = body.slice(13)
 					premium.splice(`${rprem}@s.whatsapp.net`, 1)
-					fs.writeFileSync('./database/json/premium.json', JSON.stringify(premium))
 					reply(`Berhasil Remove wa.me/${rprem} Dari User Premium`)
 					break
                 case 'hidetag':
@@ -818,14 +827,11 @@ case 'lofi':
                                         tels = body.slice(11)
 					client.updatePresence(from, Presence.composing) 
 					data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${tels}`, {method: 'get'})
-                                        if (!isRegister) return reply(mess.only.daftarB)
-                                        if (isLimit(sender)) return reply(ind.limitend(pusname))
 					reply(mess.wait)
 					n = JSON.parse(JSON.stringify(data));
 					nimek =  n[Math.floor(Math.random() * n.length)];
 					pok = await getBuffer(nimek)
 					client.sendMessage(from, pok, image, { quoted: mek, caption: `*PINTEREST*\n\*Hasil Pencarian* : *${tels}*`})
-                                        await limitAdd(sender)
 					break
 					case 'blowjob':
 					if (!isPrem) return reply(mess.only.premium)
@@ -1048,6 +1054,7 @@ case 'lofi':
 					} else {
 						reply('*「 ❗ 」 Use 1 para ativar ou 0 para desativar!* \n *exemplo: ${prefix}bemvindo 1*')
 					}
+				break
 				case 'clone':
 				case 'clonar':
 					if (!isGroup) return reply(mess.only.group)
