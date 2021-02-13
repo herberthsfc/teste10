@@ -256,17 +256,18 @@ client.on('group-participants-update', async (anu) => {
         if (messagesC.includes("://chat.whatsapp.com/")){
 		if (!isGroup) return
 		if (!isAntiLink) return
-		if (isGroupAdmins) return reply('karena kamu adalah admin group, bot tidak akan kick kamu')
+		if (isGroupAdmins) return reply('*Por voce ser Admnistrador(a) do grupo, não irei te remover!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-		reply(`Link Group Terdeteksi maaf ${sender.split("@")[0]} anda akan di kick dari group 5detik lagi`)
+		reply(`*「 Olá, ${sender.split("@")[0]} é proibido divulgação de links nesse grupo ✘ 」*
+`)
 		setTimeout( () => {
 			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
 		}, 1000)
 		setTimeout( () => {
 			client.updatePresence(from, Presence.composing)
-			reply("5detik")
+			reply("*「 Removido(a) com sucesso ✓ 」*")
 		}, 0)
 	}
 
@@ -430,7 +431,7 @@ client.on('group-participants-update', async (anu) => {
             const latensi = speed() - timestamp
             client.updatePresence(from, Presence.composing) 
 		    uptime = process.uptime()
-            client.sendMessage(from, `Rapidez: *${latensi.toFixed(4)} _Segundo_*\nDispositivo: *Black Shark 3*\nRAM: *8/128*\nData: *Smartphone*\nRede: *4G*\nStatus: *No Carregador*`, text, { quoted: mek})
+            client.sendMessage(from, `*「 Teste de velocidade: *${latensi.toFixed(4)} segundos ✓ 」*`, text, { quoted: mek})
             break
 			case 'darkjokes':
 		    client.updatePresence(from, Presence.composing) 
@@ -615,25 +616,25 @@ client.on('group-participants-update', async (anu) => {
                 buffer = await getBuffer(anu.gambar)
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: `${body.slice(5)}`})
 				break
-				case 'antilinkgroup':
+				case 'antilink':
                     if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (args.length < 1) return reply('ketik 1 untuk mengaktifkan')
+					if (args.length < 1) return reply('*Digite 1 para ativar*')
 					if (Number(args[0]) === 1) {
-						if (isAntiLink) return reply('anti link group sudah aktif')
+						if (isAntiLink) return reply('*O Antilink ja está ativado!*')
 						antilink.push(from)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('Sukses mengaktifkan anti link group di group ini ✔️')
-						client.sendMessage(from,`Perhatian kepada seluruh member anti link group aktif apabila anda mengirim link group anda akan di kick dari group`, text)
+						reply('*「 Antilink ativado com sucesso ✓ 」*️')
+						client.sendMessage(from,`*Quem divulgar link de grupo, será removido!*`, text)
 					} else if (Number(args[0]) === 0) {
-						if (!isantilink) return reply('Mode anti link group sudah disable')
+						if (!isantilink) return reply('*「 Antilink desativado com sucesso ✘ 」*')
 						var ini = anti.indexOf(from)
 						antilink.splice(ini, 1)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('Sukes menonaktifkan anti link group di group ini ✔️')
+						reply('*「 Antilink desativado com sucesso ✘ 」*️')
 					} else {
-						reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
+						reply('*「 1 para ativar, 0 para desativar! 」*')
 					}
 					break
 				case 'ocr': 
@@ -1065,6 +1066,7 @@ client.on('group-participants-update', async (anu) => {
 					} else {
 						reply('*「 ❗ 」 Use 1 para ativar ou 0 para desativar!* \n *exemplo: ${prefix}bemvindo 1*')
 					}
+					break
 				case 'clone':
 				case 'clonar':
 					if (!isGroup) return reply(mess.only.group)
