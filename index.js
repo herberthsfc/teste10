@@ -405,8 +405,11 @@ client.on('group-participants-update', async (anu) => {
 					case 'gado':
           if (args.length < 1) return reply('*Um gado foi detectado! Cuidado, ele não pode ver uma mulher!* 🐂')
           break
+          case 'gada':
+          if (args.length < 1) return reply('*Uma gada foi detectada! Cuidado, ela não pode ver um homem!* 🐂')
+          break
           case 'donate':
-          if (args.length < 1) return reply('*Ajude a fortalecer o bot, doando qualquer valor para o meu picpay!*\n\nhttps://picpay.me/herberth.duarte')
+          if (args.length < 1) return reply('*Ajude a comprar o alimento do bot, doando qualquer valor para o meu picpay!*\n\nhttps://picpay.me/herberth.duarte')
           break
           case 'botcorno':
           if (args.length < 1) return reply('Um homem sem chifres, é um animal indefeso!')
@@ -455,6 +458,21 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, darkjokes, image, {quoted: mek, caption: '\`\`\`DARK JOKES\`\`\`'})
 			await limitAdd(sender) 
 			break
+			case 'igstalk':
+                      hmm = await fetchJson(`https://freerestapi.herokuapp.com/api/v1/igs?u=${body.slice(9)}`)
+                     buffer = await getBuffer(hmm.data.profilehd)
+                     hasil = `Fullname : ${hmm.data.fullname}\npengikut : ${hmm.data.follower}\nMengikuti : ${hmm.data.following}\nPrivate : ${hmm.data.private}\nVerified : ${hmm.data.verified}\nbio : ${hmm.data.bio}`
+                    client.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
+                    break
+                    case 'ownergrup':
+				  case 'ownergroup':
+               client.updatePresence(from, Presence.composing) 
+              options = {
+          text: `*Este foi quem criou essa merda de grupo* : @${from.split("-")[0]}`,
+          contextInfo: { mentionedJid: [from] }
+           }
+           client.sendMessage(from, options, text, { quoted: mek } )
+				break
 			case 'gay':
 		  if (!isGroup) return reply(mess.only.group)
 					cantik = body.slice(1)
