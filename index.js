@@ -856,7 +856,7 @@ client.on('group-participants-update', async (anu) => {
                                         client.sendMessage(from, pok, image, { quoted: mek, caption: `PINTEREST : ${tels}`})
                                         break
 					case 'blowjob':
-					if (!isPrem) return reply(mess.only.premium)
+					if (!isGroupAdmins) return reply(mess.only.admin)
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson('https://tobz-api.herokuapp.com/api/nsfwblowjob?apikey=BotWeA', {method: 'get'})
