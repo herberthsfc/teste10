@@ -304,7 +304,7 @@ client.on('group-participants-update', async (anu) => {
 		      client.sendMessage(from, herberth(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'apoiadores':
-		      if (!isGroupAdmins) return reply(mess.only.admin)
+		      if (!isGroup) return reply(mess.only.group)
 		      client.sendMessage(from, apoiadores(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'donate':
@@ -419,8 +419,8 @@ client.on('group-participants-update', async (anu) => {
             meme = await getBuffer(randKey.result)
             client.sendMessage(from, meme, image, {quoted: mek, caption: '\`\`\`MEME\`\`\`'})
 			break
-          case 'botcorno':
-          if (args.length < 1) return reply('Um homem sem chifres, é um animal indefeso!')
+          case 'gado':
+          if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
           break
           case 'siri':
 					hobby = body.slice(1)
@@ -429,7 +429,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, 'Pergunta : *'+hobby+'*\n\nResposta : '+ by, text, { quoted: mek })
 					break
 					case 'moddroid':
-				  if (!isGroup) return reply(mess.only.group)
+				  if (!isGroupAdmins) return reply(mess.only.admin)
 			data = await fetchJson(`https://tobz-api.herokuapp.com/api/moddroid?q=${body.slice(10)}&apikey=BotWeA`)
 			hepi = data.result[0] 
 			teks = `*• Título*: ${data.result[0].title}\n\n*• Criador*: ${hepi.publisher}\n\n*• Mod:* ${hepi.mod_info}\n\n*• Peso*: ${hepi.size}\n\n*• Última versão*: ${hepi.latest_version}\n\n*• Gênero*: ${hepi.genre}\n\n*Link:* ${hepi.link}\n\n*Download*: ${hepi.download}`
@@ -487,12 +487,6 @@ client.on('group-participants-update', async (anu) => {
 					const can =['5','15','67','45','50','60','70','62','74','83','97','101','29','94','75','82','41','39']
 					const tik = can[Math.floor(Math.random() * can.length)]
 					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem gay🏳️‍🌈 : '+ tik+'%', text, { quoted: mek })
-					break
-					case 'gado':
-					hobby = body.slice(1)
-					const hob =['Gado mestre','Gado corno','Não pode ver uma mulher','Virgem de 40 anos','Nunca perdeu o bvkkkk','Gado aprendiz','Gado intermediário','Gado supremo']
-					const by = hob[Math.floor(Math.random() * hob.length)]
-					client.sendMessage(from, 'Gado localizado: *'+hobby+'*\n\n Nível de gadisse🐂 : '+ by, text, { quoted: mek })
 					break
 			case 'nulis': 
 				case 'tulis':
