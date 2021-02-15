@@ -1093,11 +1093,11 @@ client.on('group-participants-update', async (anu) => {
 						if (isWelkom) return reply('*✓ | As boas vindas no grupo *${groupName}* foram ativadas com sucesso!')
 						welkom.push(from)
 						fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
-						reply('*✓ | As boas vindas no grupo *${groupName}* foram ativadas com sucesso!*')
+						reply('*✓ | As boas vindas neste grupo foram ativadas com sucesso!*')
 					} else if (Number(args[0]) === 0) {
 						welkom.splice(from, 1)
 						fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
-						reply('*⊘ | As boas vindas no grupo *${groupName}* foram desativadas com sucesso!* ')
+						reply('*⊘ | As boas vindas neste grupo foram desativadas com sucesso!* ')
 					} else {
 						reply('*Use 1 para ativar ou 0 para desativar!*')
 					}
