@@ -178,7 +178,7 @@ client.on('group-participants-update', async (anu) => {
 					ownerG: '*⊘ | Comando disponível apenas para o grupo proprietário!*',
 					ownerB: '*⊘ | Comando disponível apenas para o proprietário do hdbot!*',
 					premium: '*💎 | Comando disponível apenas para membros premium!*',
-					admin: '*💎 | Comando disponível apenas para membros premium ou admnistradores!*',
+					admin: '*💎 | Comando disponível apenas para membros vip ou admnistradores!*',
 					Badmin: '*⊘ | O hdbot precisa de adm para cumprir as funções!*'
 				}
 			}
@@ -311,13 +311,6 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, donate(prefix, sender), text, {quoted: mek})
 				  break
-				  case 'info':
-					me = client.user
-					uptime = process.uptime()
-					teks = `*➸ Nome do bot* : ${me.name}\n*➸ OWNER* : Herberth\n*➸ AUTOR* : ${ownerName}\n*➸ Numero do Bot* : @${me.jid.split('@')[0]}\n*➸ Prefixo* : ${prefix}\n*➸ Bloqueados* : ${blocked.length}\n*➸ Bot ativo desde* : ${kyun(uptime)}`
-					buffer = await getBuffer(me.imgUrl)
-					baby.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
-					break
 				  case 'idiomas':
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, idiomas(prefix, sender), text, {quoted: mek})
@@ -537,7 +530,7 @@ client.on('group-participants-update', async (anu) => {
 						teks += `╠➥ ${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					client.sendMessage(from, '╔══✪〘 Olá, Membros do grupo! 〙✪══\n╠➥'+teks+'╚═〘 HDBot.exe 〙', text, {quoted: mek})
+					client.sendMessage(from, '╔══✪〘 OLÁ 〙✪══\n╠➥'+teks+'╚═〘 HDBot.exe 〙', text, {quoted: mek})
 					break
                   case 'membros':
 				client.updatePresence(from, Presence.composing) 
@@ -658,17 +651,17 @@ client.on('group-participants-update', async (anu) => {
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args.length < 1) return reply('*Digite 1 para ativar*')
 					if (Number(args[0]) === 1) {
-						if (isAntiLink) return reply('*O Antilink ja está ativado ✓*')
+						if (isAntiLink) return reply('*✓ | O Antilink ja está ativado!*')
 						antilink.push(from)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('*Antilink ativado com sucesso ✓*')
+						reply('*✓ | Antilink ativado com sucesso!*')
 						client.sendMessage(from,`Atenção a todos os membros ativos deste grupo. A partir de agora, se você enviar um link de grupo, voce sera removido(a)!`, text)
 					} else if (Number(args[0]) === 0) {
-						if (!isantilink) return reply('*Antilink desativado com sucesso ⊘*')
+						if (!isantilink) return reply('*⊘ | Antilink desativado com sucesso!*')
 						var ini = anti.indexOf(from)
 						antilink.splice(ini, 1)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('*Antilink desativado com sucesso ⊘*️')
+						reply('*⊘ | Antilink desativado com sucesso!*️')
 					} else {
 						reply('*1 para ativar, 0 para desativar!*')
 					}
@@ -753,14 +746,14 @@ client.on('group-participants-update', async (anu) => {
 				case 'gtts':	
 				case 'tts':
 				case 'audio':
-					if (args.length < 1) return client.sendMessage(from, '*「 ❗ 」 Informe o idioma! exemplo: pt,it,ja,es*', text, {quoted: mek})
+					if (args.length < 1) return client.sendMessage(from, '*⊘ | Informe o idioma! exemplo: pt,it,ja,es*', text, {quoted: mek})
 					const gtts = require('./lib/gtts')(args[0])
-					if (args.length < 2) return client.sendMessage(from, '*「 ❗ 」 Informe o texto deseja que eu diga!*', text, {quoted: mek})
+					if (args.length < 2) return client.sendMessage(from, '*⊘ | Informe o texto deseja que eu diga!*', text, {quoted: mek})
 					dtt = body.slice(9)
 					ranm = getRandom('.mp3')
 					rano = getRandom('.ogg')
 					dtt.length > 300
-					? reply('*Seu texto é muito longo, por favor diminua, e tente novamente ⊘*')
+					? reply('*⊘ | Seu texto é muito longo, por favor diminua, e tente novamente!*')
 					: gtts.save(ranm, dtt, function() {
 						exec(`ffmpeg -i ${ranm} -ar 48000 -vn -c:a libopus ${rano}`, (err) => {
 							fs.unlinkSync(ranm)
@@ -776,7 +769,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return
 					if (!isOwner) return reply(mess.only.ownerB)
 					prefix = args[0]
-					reply(`O prefixo foi alterado com sucesso, para : ${prefix} ✓`)
+					reply(`✓ | O prefixo foi alterado com sucesso, para : ${prefix} `)
 					break 	
 				case 'hilih': 
 					if (args.length < 1) return reply('qual txt deseja lindx?')
@@ -799,13 +792,13 @@ client.on('group-participants-update', async (anu) => {
 					break
 				case 'clearall':
 				case 'limpar':
-					if (!isOwner) return reply('*Comando disponível apenas para o proprietário do hdbot 💎*')
+					if (!isOwner) return reply('*💎 | Comando disponível apenas para o proprietário do hdbot!*')
 					anu = await client.chats.all()
 					client.setMaxListeners(25)
 					for (let _ of anu) {
 						client.deleteChat(_.jid)
 					}
-					reply('*Os chats foram limpos com sucesso ✓*')
+					reply('*✓ | Os chats foram limpos com sucesso!*')
 					break
 			       case 'bloquear':
 					if (!isGroup) return reply(mess.only.group)
@@ -831,21 +824,21 @@ client.on('group-participants-update', async (anu) => {
 					}, 0)
                      break
 				case 'ts': 
-					if (!isOwner) return reply('*Comando disponível apenas para o proprietário do hdbot 💎*') 
+					if (!isOwner) return reply('*💎 | Comando disponível apenas para o proprietário do hdbot!*') 
 					if (args.length < 1) return reply('.......')
 					anu = await client.chats.all()
 					if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						buff = await client.downloadMediaMessage(encmedia)
 						for (let _ of anu) {
-							client.sendMessage(_.jid, buff, image, {caption: `*「 ❗ 」𝙃𝘿𝘽𝙊𝙏.𝙚𝙭𝙚,  diz:*\n\n${body.slice(4)}`})
+							client.sendMessage(_.jid, buff, image, {caption: `*💎 | 𝙃𝘿𝘽𝙊𝙏.𝙚𝙭𝙚,  diz:*\n\n${body.slice(4)}`})
 						}
-						reply('*A transmissão foi concluída com sucesso ✓*')
+						reply('*✓ | A transmissão foi concluída com sucesso!*')
 					} else {
 						for (let _ of anu) {
-							sendMess(_.jid, `*「 ❗ 」𝙃𝘿𝘽𝙊𝙏.𝙚𝙭𝙚,  diz:*\n\n${body.slice(4)}`)
+							sendMess(_.jid, `*💎 | 𝙃𝘿𝘽𝙊𝙏.𝙚𝙭𝙚,  diz:*\n\n${body.slice(4)}`)
 						}
-						reply('*A transmissão foi concluída com sucesso ✓*')
+						reply('*✓ | A transmissão foi concluída com sucesso!*')
 					}
 					break
 					case 'play':   
@@ -875,7 +868,6 @@ client.on('group-participants-update', async (anu) => {
 					case 'pinterest':
 					client.updatePresence(from, Presence.composing) 
 					data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${body.slice(11)}`, {method: 'get'})
-					reply(ind.wait())
 					n = JSON.parse(JSON.stringify(data));
 					nimek =  n[Math.floor(Math.random() * n.length)];
 					pok = await getBuffer(nimek)
@@ -911,21 +903,21 @@ client.on('group-participants-update', async (anu) => {
                         if (!isBotGroupAdmins) return reply(mess.only.Badmin)
                        media = await client.downloadAndSaveMediaMessage(mek)
                          await client.updateProfilePicture (from, media)
-                        reply('*「 ✔️ 」 Perfil alterado com sucesso!*')
+                        reply('*✓ | Perfil alterado com sucesso!*')
                 break						
 				case 'add':
 				case 'adicionar':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (args.length < 1) return reply('*Por favor, informe o número do contato que deseja adicionar! ⊘*')
-					if (args[0].startsWith('08')) return reply('*Informe o código do país! ⊘*')
+					if (args.length < 1) return reply('*⊘ | Por favor, informe o número do contato que dedeja adicionar, não tenho bola de cristal!*')
+					if (args[0].startsWith('08')) return reply('*⊘ | Informe o código do país!*')
 					try {
 						num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
 						client.groupAdd(from, [num])
 					} catch (e) {
 						console.log('Error :', e)
-						reply('*Não foi possível adicionar o contato, talvez o contato seja privado! ⊘*')
+						reply('*⊘ | Não foi possível adicionar o contato, talvez o contato seja privado!*')
 					}
 					break
 					case 'gp':
@@ -957,7 +949,7 @@ client.on('group-participants-update', async (anu) => {
 			    if (!isGroupAdmins) return reply(mess.only.admin)
 				if (!isBotGroupAdmins) return reply(mess.only.Badmin)
                 client.groupUpdateSubject(from, `${body.slice(9)}`)
-                client.sendMessage(from, '*O nome do grupo foi alterado com sucesso ✓*', text, {quoted: mek})
+                client.sendMessage(from, '*✓ | O nome do grupo foi alterado com sucesso!*', text, {quoted: mek})
                 break
                 case 'setdesc':
                 case 'desc':
@@ -965,19 +957,19 @@ client.on('group-participants-update', async (anu) => {
 			    if (!isGroupAdmins) return reply(mess.only.admin)
 				if (!isBotGroupAdmins) return reply(mess.only.Badmin)
                 client.groupUpdateDescription(from, `${body.slice(9)}`)
-                client.sendMessage(from, '*A descrição do grupo foi alterada com sucesso ✓*', text, {quoted: mek})
+                client.sendMessage(from, '*✓ | A descrição do grupo foi alterada com sucesso!*', text, {quoted: mek})
                 break
            case 'demote':
            case 'rebaixar':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('*「 ❗ 」 Marque o adm que voce deseja rebaixar para membro comum!*')
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('*⊘ | Marque o adm que deseja rebaixar para membro comum!*')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
 						teks = ''
 						for (let _ of mentioned) {
-							teks += `*「 ✔️ 」 Sucesso!* :\n`
+							teks += `*✓ | Sucesso!* :\n`
 							teks += `@_.split('@')[0]`
 						}
 						mentions(teks, mentioned, true)
@@ -992,12 +984,12 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('*「 ❗ 」 Marque o membro que voce deseja promover para Admnistrador(a)!*')
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('*⊘ | Marque o membro que voce deseja promover para adm!*')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
 						teks = ''
 						for (let _ of mentioned) {
-							teks += `*「 ✔️ 」 Sucesso!* :\n`
+							teks += `*✓ | Sucesso!* :\n`
 							teks += `@_.split('@')[0]`
 						}
 						mentions(teks, mentioned, true)
@@ -1013,12 +1005,12 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('*「 ❗ 」 Marque o membro que voce deseja remover!*')
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('*⊘ | Marque o membro que voce deseja remover!*')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 					if (mentioned.length > 1) {
 						teks = ''
 						for (let _ of mentioned) {
-							teks += `*Removido(a) com sucesso ✓* :\n`
+							teks += `*✓ | Removido(a) do grupo com sucesso!* :\n`
 							teks += `@_.split('@')[0]`
 						}
 						mentions(teks, mentioned, true)
@@ -1052,14 +1044,14 @@ client.on('group-participants-update', async (anu) => {
 					break
 				case 'toimg':
 				case 'converter':
-					if (!isQuotedSticker) return reply('*「 ❗ 」 Marque uma figurinha!*')
+					if (!isQuotedSticker) return reply('*✓ | Marque uma figurinha!*')
 					reply(mess.wait)
 					encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 					media = await client.downloadAndSaveMediaMessage(encmedia)
 					ran = getRandom('.png')
 					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 						fs.unlinkSync(media)
-						if (err) return reply('*「 ❗ 」 ERRO! Tente novamente outra hora!')
+						if (err) return reply('*⊘ | Tente novamente outra hora!')
 						buffer = fs.readFileSync(ran)
 						client.sendMessage(from, buffer, image, {quoted: mek, caption: '*「 ✔️ 」*'})
 						fs.unlinkSync(ran)
@@ -1105,18 +1097,18 @@ client.on('group-participants-update', async (anu) => {
 				case 'clone':
 				case 'clonar':
 					if (!isGroup) return reply(mess.only.group)
-					if (!isOwner) return reply('*Comando disponível apenas para o proprietário do hdbot 💎*') 
-					if (args.length < 1) return reply('*O perfil foi clonado com sucesso ✓*')
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('*「 💎 」*')
+					if (!isOwner) return reply('*💎 | Comando disponível apenas para o proprietário do hdbot!*') 
+					if (args.length < 1) return reply('*✓ | O perfil foi clonado com sucesso!*')
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('*✓*')
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
 					let { jid, id, notify } = groupMembers.find(x => x.jid === mentioned)
 					try {
 						pp = await client.getProfilePicture(id)
 						buffer = await getBuffer(pp)
 						client.updateProfilePicture(botNumber, buffer)
-						mentions(`*O perfil foi clonado com sucesso ✓* @${id.split('@')[0]}`, [jid], true)
+						mentions(`*✓ | O perfil foi clonado com sucesso! * @${id.split('@')[0]}`, [jid], true)
 					} catch (e) {
-						reply('*Infelizmente aconteceu um erro!*')
+						reply('*⊘ | Infelizmente aconteceu um erro!*')
 					}
 					break
 				case 'wait':
