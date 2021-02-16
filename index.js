@@ -465,7 +465,7 @@ client.on('group-participants-update', async (anu) => {
                      hasil = `Fullname : ${hmm.data.fullname}\npengikut : ${hmm.data.follower}\nMengikuti : ${hmm.data.following}\nPrivate : ${hmm.data.private}\nVerified : ${hmm.data.verified}\nbio : ${hmm.data.bio}`
                     client.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
                     break
-                    case 'ownergrup':
+                    case 'ownergp':
 				  case 'ownergroup':
                client.updatePresence(from, Presence.composing) 
               options = {
@@ -871,7 +871,7 @@ client.on('group-participants-update', async (anu) => {
 					n = JSON.parse(JSON.stringify(data));
 					nimek =  n[Math.floor(Math.random() * n.length)];
 					pok = await getBuffer(nimek)
-					client.sendMessage(from, pok, image, { quoted: mek, caption: `*𝐏𝐈𝐍𝐓𝐄𝐑𝐄𝐒𝐓*`})
+					client.sendMessage(from, pok, image, { quoted: mek, caption: `*🔍 | Resultado da pesquisa!*`})
 					break
 					case 'blowjob':
 					if (!isGroupAdmins) return reply(mess.only.admin)
