@@ -910,7 +910,7 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (args.length < 1) return reply('*⊘ | Por favor, informe o número do contato que dedeja adicionar, não tenho bola de cristal!*')
+					if (args.length < 1) return reply('*⊘ | Por favor, informe o número do contato que deseja adicionar, não tenho bola de cristal!*')
 					if (args[0].startsWith('08')) return reply('*⊘ | Informe o código do país!*')
 					try {
 						num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
