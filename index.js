@@ -165,6 +165,53 @@ client.on('group-participants-update', async (anu) => {
 			const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
 			const args = body.trim().split(/ +/).slice(1)
 			const isCmd = body.startsWith(prefix)
+           }
+
+      if (chats == 'Assalamualaikum'){
+          client.reply(from, 'Waalaikumsalam wr wb.', id)
+      }
+      if (chats == 'assalamualaikum'){
+          client.reply(from, 'Waalaikumsalam wr wb.', id)
+      }
+      if (chats == 'P'){
+          client.sendPtt(from, './media/nani-kore.mp3', id)
+      }
+      if (chats == 'p'){
+          client.sendPtt(from, './media/nani-kore.mp3', id)
+      }
+      if (chats == 'removeu'){
+          client.sendPtt(from, './media/removeu.mp3', id)
+      }
+      if (chats == 'Removeu'){
+          client.sendPtt(from, './media/removeu.mp3', id)
+      }
+      if (chats == 'kontol'){
+          client.sendPtt(from, './media/astg.mp3', id)
+      }
+      if (chats == 'Kontol') {
+          client.sendPtt(from, './media/astg.mp3', id)
+      }
+      if (chats == 'song') {
+          client.sendPtt(from, './media/song.mp3', id)
+      }
+      if (chats == 'kntl') {
+          client.sendPtt(from, './media/astg.mp3', id)
+      }
+      if (chats == 'ajg'){
+          client.sendPtt(from, './media/astg.mp3', id)
+      }
+      if (chats == 'Ajg'){
+          client.sendPtt(from, './media/astg.mp3', id)
+      }
+      if (chats == 'AJG'){
+          client.sendPtt(from, './media/astg.mp3', id)
+      }
+      if (chats == 'pepek'){
+          client.sendPtt(from, './media/astg.mp3', id)
+      }
+      if (chats == 'Pepek'){
+          client.sendPtt(from, './media/astg.mp3', id)
+      }
 
 			mess = {
 				wait: '*⏰ | Carregando, por favor, aguarde um momento...*',
