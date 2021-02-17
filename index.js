@@ -165,53 +165,6 @@ client.on('group-participants-update', async (anu) => {
 			const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
 			const args = body.trim().split(/ +/).slice(1)
 			const isCmd = body.startsWith(prefix)
-           }
-
-      if (chats == 'Assalamualaikum'){
-          client.reply(from, 'Waalaikumsalam wr wb.', id)
-      }
-      if (chats == 'assalamualaikum'){
-          client.reply(from, 'Waalaikumsalam wr wb.', id)
-      }
-      if (chats == 'P'){
-          client.sendPtt(from, './media/nani-kore.mp3', id)
-      }
-      if (chats == 'p'){
-          client.sendPtt(from, './media/nani-kore.mp3', id)
-      }
-      if (chats == 'removeu'){
-          client.sendPtt(from, './media/removeu.mp3', id)
-      }
-      if (chats == 'Removeu'){
-          client.sendPtt(from, './media/removeu.mp3', id)
-      }
-      if (chats == 'kontol'){
-          client.sendPtt(from, './media/astg.mp3', id)
-      }
-      if (chats == 'Kontol') {
-          client.sendPtt(from, './media/astg.mp3', id)
-      }
-      if (chats == 'song') {
-          client.sendPtt(from, './media/song.mp3', id)
-      }
-      if (chats == 'kntl') {
-          client.sendPtt(from, './media/astg.mp3', id)
-      }
-      if (chats == 'ajg'){
-          client.sendPtt(from, './media/astg.mp3', id)
-      }
-      if (chats == 'Ajg'){
-          client.sendPtt(from, './media/astg.mp3', id)
-      }
-      if (chats == 'AJG'){
-          client.sendPtt(from, './media/astg.mp3', id)
-      }
-      if (chats == 'pepek'){
-          client.sendPtt(from, './media/astg.mp3', id)
-      }
-      if (chats == 'Pepek'){
-          client.sendPtt(from, './media/astg.mp3', id)
-      }
 
 			mess = {
 				wait: '*⏰ | Carregando, por favor, aguarde um momento...*',
@@ -426,6 +379,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'mia':
 					if (!isGroupAdmins) return reply(mess.only.admin)
+					reply(mess.wait)
 					memein = await kagApi.memeindo()
 					buffer = await getBuffer(`https://i.imgur.com/Sy9K8m6.jpg`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*VIDEOS MIA KHALIFA:*\n(o adm liberou taok)\n\nxvideos.com/pornstar-channels/mia-khalifa '})
@@ -439,6 +393,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'porno':
 					if (!isGroupAdmins) return reply(mess.only.admin)
+					reply(mess.wait)
 					memein = await kagApi.memeindo()
 					buffer = await getBuffer(`https://i.imgur.com/5U2V0yW.jpg`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*o adm liberou porno no gp*😳 \naproveite com moderação! hihi\n\n1- www.xvideos.com\n2- www.xhamster.com\n3- www.xnxx.com\n4- www.pornhub.com\n5- www.redtube.com\n6- www.youporn.com\n7- www.snapdo.com\n8- www.livejasmin.com\n9- www.youjizz.com\n10- www.tube8.com\n11- www.dmm.co.jp\n12- www.hardsextube.com\n13- www.e-hentai.org\n14- www.beeg.com'})
@@ -913,6 +868,8 @@ client.on('group-participants-update', async (anu) => {
 					await limitAdd(sender)
 					break 
 					case 'pinterest':
+					if (!isGroup) return reply(mess.only.group)
+					reply(mess.wait)
 					client.updatePresence(from, Presence.composing) 
 					data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${body.slice(11)}`, {method: 'get'})
 					n = JSON.parse(JSON.stringify(data));
@@ -922,6 +879,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'blowjob':
 					if (!isGroupAdmins) return reply(mess.only.admin)
+					reply(mess.wait)
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson('https://tobz-api.herokuapp.com/api/nsfwblowjob?apikey=BotWeA', {method: 'get'})
@@ -1074,14 +1032,14 @@ client.on('group-participants-update', async (anu) => {
 				    if (!isGroup) return reply(mess.only.group)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					linkgc = await client.groupInviteCode (from)
-					yeh = `https://chat.whatsapp.com/${linkgc}\n\nLink do grupo *${groupName}*`
+					yeh = `https://chat.whatsapp.com/${linkgc}`
 					client.sendMessage(from, yeh, text, {quoted: mek, detectLinks: false})
 					break
 				   case 'listadmins':
 				   case 'adms':
 					 client.updatePresence(from, Presence.composing) 
 					if (!isGroup) return reply(mess.only.group)
-					teks = `*Admnistradores do grupo *${groupMetadata.subject}*\nTotal : ${groupAdmins.length}\n\n`
+					teks = `Admnistradores do grupo *${groupMetadata.subject}* \nTotal : ${groupAdmins.length}\n\n`
 					no = 0
 					for (let admon of groupAdmins) {
 						no += 1
