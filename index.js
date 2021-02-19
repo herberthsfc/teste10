@@ -40,6 +40,7 @@ const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./src/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
+const bucinrandom = JSON.parse(fs.readFileSync('./database/json/bucin.json'))
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
             + 'FN:Herberth\n' 
@@ -460,6 +461,12 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, darkjokes, image, {quoted: mek, caption: '\`\`\`DARK JOKES\`\`\`'})
 			await limitAdd(sender) 
 			break
+			case 'bucin':
+            case 'cpf':
+            if (!isGroup) return reply(mess.only.group)
+            hasil = bucinrandom[Math.floor(Math.random() * (bucinrandom.length))]
+            client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
+            break
 			case 'igstalk':
                       hmm = await fetchJson(`https://freerestapi.herokuapp.com/api/v1/igs?u=${body.slice(9)}`)
                      buffer = await getBuffer(hmm.data.profilehd)
@@ -482,6 +489,15 @@ client.on('group-participants-update', async (anu) => {
 					const tik = can[Math.floor(Math.random() * can.length)]
 					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem gay🏳️‍🌈 : '+ tik+'%', text, { quoted: mek })
 					break
+					case 'persengay':
+			case 'gaypersen':
+				if (!isGroup) return reply(mess.only.group)
+				if (args.length < 1) return reply('tag temanmu!')
+				rate = body.slice(11)
+				persengayy = ["*4%*\n\n*Tobat Ngegay Gan:v*","*9%*\n\n*OTW Tobat Gan:v*","*17%*\n\n*Kang Coli*","*28%*\n\n*Buset Dah Gay🤦*","*34%*\n\n *Korban Tusbol*","*48%*\n\n*Kang Hunter Bool:v*","*59%*\n\n *Bahaya Ni Orang Gan*","*62%*\n\n*Hati² Sama Ni Orang Beneran Dah*","*74%*\n\n*Astagfirullah Kabur Gan🏃🌬️*","83%\n\n Yaallah Nak🤦","97%\n\nAstagfirullah🤦","100%\n\nKabur ae Gan Daripada Ditusbol Bool lu🏃","29%\n\n amann:v","94%\n\n Yaallah🏃","75%\n\nHadehh Gay🤦","82%\n\nMending Lu Tobat Dah🏃","41%\n\nSering Cari Bool Diperempatan","39%\n\nSering Tusbol Bool Topan🏃"]
+				const kl = persengayy[Math.floor(Math.random() * persengayy.length)]
+				client.sendMessage(from, 'Persen Gay: *'+rate+'*\n\nJawaban : '+kl+'', text, { quoted: mek })
+				break
 			case 'nulis': 
 				case 'tulis':
 					if (args.length < 1) return reply('Hmmmm?')
@@ -1086,7 +1102,7 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (args.length < 1) return reply('1 ou 0')
 					if (Number(args[0]) === 1) {
-						if (isWelkom) return reply('*✓ | As boas vindas neste grupo foram ativadas com sucesso!')
+						if (isWelkom) return reply('*✓ | As boas vindas neste grupo ja estão ativadas!*')
 						welkom.push(from)
 						fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
 						reply('*✓ | As boas vindas neste grupo foram ativadas com sucesso!*')
