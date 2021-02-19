@@ -422,7 +422,7 @@ client.on('group-participants-update', async (anu) => {
             randIndex = Math.floor(Math.random() * jsonData.length);
             randKey = jsonData[randIndex];
             mia = await getBuffer(randKey.result)
-            client.sendMessage(from, mia, image, {quoted: mek, caption: '\`\`\`MEME\`\`\`'})
+            client.sendMessage(from, mia, image, {quoted: mek, caption: '*🔍 | Mia Khalifa*'})
 			break
           case 'gado':
           if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
