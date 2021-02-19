@@ -495,16 +495,16 @@ client.on('group-participants-update', async (anu) => {
 				if (args.length < 1) return reply('*⊘ | Por favor, marque o Algo!*')
 				rate = body.slice(11)
 				persengayy = ["*4% Gay🏳️‍🌈*","*9% Gay🏳️‍🌈*","*30% Gay🏳️‍🌈*","*82% Gay🏳️‍🌈*","*97% Gay🏳️‍🌈*","*48% Gay🏳️‍🌈*","*59% Gay🏳️‍🌈*","*99% Gay🏳️‍🌈*","*15% Gay🏳️‍🌈️*","*83% Gay🏳️‍🌈*","*10% Gay🏳️‍🌈*","*100% Gay🏳️‍🌈*","*23% Gay🏳️‍🌈*","*101% Gay🏳️‍🌈*\n\n*Gay d+, bugou o sistema!"]
-				const kl = persengayy[Math.floor(Math.random() * persengayy.length)]
-				client.sendMessage(from, 'Alvo Gay : *'+rate+'*\nNível : '+kl+'', text, { quoted: mek })
+				const tik = persengayy[Math.floor(Math.random() * persengayy.length)]
+				client.sendMessage(from, 'Alvo Gay : *'+rate+'*\nNível : '+tik+'', text, { quoted: mek })
 				break
 			case 'gado':
 				if (!isGroup) return reply(mess.only.group)
 				if (args.length < 1) return reply('*⊘ | Por favor, marque o Gado!*')
 				rate = body.slice(11)
 				persengayy = ["*5% Gado🐂*\nPatente: *Gado Iniciante*","*15% Gado🐂*\nPatente: *Gado Iniciante*","*50% Gado🐂*\nPatente: *Gado Mediano*","*82% Gado🐂*\nPatente: *Gado Mestre*","*92% Gado🐂*\nPatente: *Gado Corno*","*21% Gado🐂*\nPatente: *Gado Iniciante*","*100% Gado🐂*\nPatente: *Gado Supremo*"]
-				const kl = persengayy[Math.floor(Math.random() * persengayy.length)]
-				client.sendMessage(from, 'Alvo Gado : *'+rate+'*\nNível : '+kl+'', text, { quoted: mek })
+				const tik = persengayy[Math.floor(Math.random() * persengayy.length)]
+				client.sendMessage(from, 'Alvo Gado : *'+rate+'*\nNível : '+tik+'', text, { quoted: mek })
 				break
 			case 'nulis': 
 				case 'tulis':
