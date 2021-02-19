@@ -413,7 +413,7 @@ client.on('group-participants-update', async (anu) => {
             meme = await getBuffer(randKey.result)
             client.sendMessage(from, meme, image, {quoted: mek, caption: '\`\`\`MEME\`\`\`'})
 			break
-          case 'textedthahshs':
+          case 'gado':
           if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
           break
           case 'siri':
@@ -481,12 +481,6 @@ client.on('group-participants-update', async (anu) => {
 					const can =['5','15','67','45','50','60','70','62','74','83','97','101','29','94','75','82','41','39']
 					const tik = can[Math.floor(Math.random() * can.length)]
 					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem gay🏳️‍🌈 : '+ tik+'%', text, { quoted: mek })
-					break
-					case 'gado':
-					hobby = body.slice(1)
-					const hob =['Gado Médio','Gado Aprendiz','Gado Supremo','Gado Mestre']
-					const by = hob[Math.floor(Math.random() * hob.length)]
-					client.sendMessage(from, 'Calculando... *'+hobby+'*\n\nNível🐂 : '+ by, text, { quoted: mek })
 					break
 			case 'nulis': 
 				case 'tulis':
