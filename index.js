@@ -414,7 +414,7 @@ client.on('group-participants-update', async (anu) => {
             meme = await getBuffer(randKey.result)
             client.sendMessage(from, meme, image, {quoted: mek, caption: '\`\`\`MEME\`\`\`'})
 			break
-          case 'gado':
+          case 'gadjsjso':
           if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
           break
           case 'siri':
@@ -463,7 +463,7 @@ client.on('group-participants-update', async (anu) => {
 			break
 			case 'bucin':
             case 'cpf':
-            if (!isGroup) return reply(mess.only.group)
+            if (!isGroupAdmins) return reply(mess.only.admin)
             hasil = bucinrandom[Math.floor(Math.random() * (bucinrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
@@ -482,7 +482,7 @@ client.on('group-participants-update', async (anu) => {
            }
            client.sendMessage(from, options, text, { quoted: mek } )
 				break
-			case 'gay':
+			case 'gajsjwy':
 		  if (!isGroup) return reply(mess.only.group)
 					cantik = body.slice(1)
 					const can =['5','15','67','45','50','60','70','62','74','83','97','101','29','94','75','82','41','39']
@@ -490,13 +490,21 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem gay🏳️‍🌈 : '+ tik+'%', text, { quoted: mek })
 					break
 					case 'persengay':
-			case 'gaypersen':
+			case 'gay':
 				if (!isGroup) return reply(mess.only.group)
-				if (args.length < 1) return reply('tag temanmu!')
+				if (args.length < 1) return reply('*⊘ | Por favor, marque o Algo!*')
 				rate = body.slice(11)
-				persengayy = ["*4%*\n\n*Tobat Ngegay Gan:v*","*9%*\n\n*OTW Tobat Gan:v*","*17%*\n\n*Kang Coli*","*28%*\n\n*Buset Dah Gay🤦*","*34%*\n\n *Korban Tusbol*","*48%*\n\n*Kang Hunter Bool:v*","*59%*\n\n *Bahaya Ni Orang Gan*","*62%*\n\n*Hati² Sama Ni Orang Beneran Dah*","*74%*\n\n*Astagfirullah Kabur Gan🏃🌬️*","83%\n\n Yaallah Nak🤦","97%\n\nAstagfirullah🤦","100%\n\nKabur ae Gan Daripada Ditusbol Bool lu🏃","29%\n\n amann:v","94%\n\n Yaallah🏃","75%\n\nHadehh Gay🤦","82%\n\nMending Lu Tobat Dah🏃","41%\n\nSering Cari Bool Diperempatan","39%\n\nSering Tusbol Bool Topan🏃"]
+				persengayy = ["*4% Gay🏳️‍🌈*","*9% Gay🏳️‍🌈*","*30% Gay🏳️‍🌈*","*82% Gay🏳️‍🌈*","*97% Gay🏳️‍🌈*","*48% Gay🏳️‍🌈*","*59% Gay🏳️‍🌈*","*99% Gay🏳️‍🌈*","*15% Gay🏳️‍🌈️*","*83% Gay🏳️‍🌈*","*10% Gay🏳️‍🌈*","*100% Gay🏳️‍🌈*","*23% Gay🏳️‍🌈*","*101% Gay🏳️‍🌈*\n\n*Gay d+, bugou o sistema!"]
 				const kl = persengayy[Math.floor(Math.random() * persengayy.length)]
-				client.sendMessage(from, 'Persen Gay: *'+rate+'*\n\nJawaban : '+kl+'', text, { quoted: mek })
+				client.sendMessage(from, 'Alvo Gay : *'+rate+'*\nNível : '+kl+'', text, { quoted: mek })
+				break
+			case 'gado':
+				if (!isGroup) return reply(mess.only.group)
+				if (args.length < 1) return reply('*⊘ | Por favor, marque o Gado!*')
+				rate = body.slice(11)
+				persengayy = ["*5% Gado🐂*\nPatente: *Gado Iniciante*","*15% Gado🐂*\nPatente: *Gado Iniciante*","*50% Gado🐂*\nPatente: *Gado Mediano*","*82% Gado🐂*\nPatente: *Gado Mestre*","*92% Gado🐂*\nPatente: *Gado Corno*","*21% Gado🐂*\nPatente: *Gado Iniciante*","*100% Gado🐂*\nPatente: *Gado Supremo*"]
+				const kl = persengayy[Math.floor(Math.random() * persengayy.length)]
+				client.sendMessage(from, 'Alvo Gado : *'+rate+'*\nNível : '+kl+'', text, { quoted: mek })
 				break
 			case 'nulis': 
 				case 'tulis':
