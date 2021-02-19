@@ -414,7 +414,7 @@ client.on('group-participants-update', async (anu) => {
             meme = await getBuffer(randKey.result)
             client.sendMessage(from, meme, image, {quoted: mek, caption: '\`\`\`MEME\`\`\`'})
 			break
-          case 'gadjsjso':
+          case 'gado':
           if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
           break
           case 'siri':
@@ -488,13 +488,6 @@ client.on('group-participants-update', async (anu) => {
 					const can =['5','15','67','45','50','60','70','62','74','83','97','101','29','94','75','82','41','39']
 					const tik = can[Math.floor(Math.random() * can.length)]
 					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem gay🏳️‍🌈 : '+ tik+'%', text, { quoted: mek })
-					break
-					case 'gado':
-		  if (!isGroup) return reply(mess.only.group)
-					cantik = body.slice(1)
-					const can =['5','15','67','45','50','60','70','62','74','83','97','99','29','94','75','82','41','39']
-					const tik = can[Math.floor(Math.random() * can.length)]
-					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem Gado🐂 : '+ tik+'%', text, { quoted: mek })
 					break
 			case 'nulis': 
 				case 'tulis':
