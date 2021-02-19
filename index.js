@@ -406,7 +406,6 @@ client.on('group-participants-update', async (anu) => {
 					case 'meme':
 		    client.updatePresence(from, Presence.composing) 
 		    if (!isGroup) return reply(mess.only.group)
-			reply(mess.wait)
 			data = fs.readFileSync('./lib/meme.js');
             jsonData = JSON.parse(data);
             randIndex = Math.floor(Math.random() * jsonData.length);
@@ -414,7 +413,7 @@ client.on('group-participants-update', async (anu) => {
             meme = await getBuffer(randKey.result)
             client.sendMessage(from, meme, image, {quoted: mek, caption: '\`\`\`MEME\`\`\`'})
 			break
-          case 'gado':
+          case 'textedthahshs':
           if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
           break
           case 'siri':
@@ -482,6 +481,13 @@ client.on('group-participants-update', async (anu) => {
 					const can =['5','15','67','45','50','60','70','62','74','83','97','101','29','94','75','82','41','39']
 					const tik = can[Math.floor(Math.random() * can.length)]
 					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem gay🏳️‍🌈 : '+ tik+'%', text, { quoted: mek })
+					break
+					case 'gado':
+		  if (!isGroup) return reply(mess.only.group)
+					cantik = body.slice(1)
+					const can =['5','20','34','47','50','68','70','62','74','83','97','100','29','94','75','82','41','39']
+					const tik = can[Math.floor(Math.random() * can.length)]
+					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem : '+ tik+'% gado🐂', text, { quoted: mek })
 					break
 			case 'nulis': 
 				case 'tulis':
