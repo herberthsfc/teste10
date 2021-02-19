@@ -378,7 +378,7 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL9hZBPRo16fIhsIus3t1je2oAU23pQqBpfw&usqp=CAU`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '️amoo lofi'})
 					break
-					case 'mia':
+					case 'mjsia':
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					reply(mess.wait)
 					memein = await kagApi.memeindo()
@@ -413,6 +413,16 @@ client.on('group-participants-update', async (anu) => {
             randKey = jsonData[randIndex];
             meme = await getBuffer(randKey.result)
             client.sendMessage(from, meme, image, {quoted: mek, caption: '\`\`\`MEME\`\`\`'})
+			break
+			case 'mia':
+		    client.updatePresence(from, Presence.composing) 
+		    if (!isGroup) return reply(mess.only.group)
+			data = fs.readFileSync('./lib/mia.js');
+            jsonData = JSON.parse(data);
+            randIndex = Math.floor(Math.random() * jsonData.length);
+            randKey = jsonData[randIndex];
+            mia = await getBuffer(randKey.result)
+            client.sendMessage(from, mia, image, {quoted: mek, caption: '\`\`\`MEME\`\`\`'})
 			break
           case 'gado':
           if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
