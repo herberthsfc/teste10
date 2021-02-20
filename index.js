@@ -20,12 +20,12 @@ const fs = require("fs")
 const { color, bgcolor } = require('./lib/color')
 const { help } = require('./lib/help')
 const { menu } = require('./lib/menu')
+const { regras } = require('./lib/regras')
 const { menuvip } = require('./lib/menuvip')
 const { registrarvip } = require('./lib/registrarvip')
 const { herberth } = require('./lib/herberth')
 const { apoiadores } = require('./lib/apoiadores')
 const { donate } = require('./lib/donate')
-const { gcpf } = require('./src/gcpf')
 const { idiomas } = require('./lib/idiomas')
 const { donasi } = require('./lib/donasi')
 const { fetchJson } = require('./lib/fetcher')
@@ -121,7 +121,7 @@ client.on('group-participants-update', async (anu) => {
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
-				teks = `𝙊𝙡𝙖 @${num.split('@')[0]}\n𝙎𝙚𝙟𝙖 𝙗𝙚𝙢 𝙫𝙞𝙣𝙙𝙤(𝙖) 𝙖𝙤 𝙜𝙧𝙪𝙥𝙤 *${mdata.subject}* \n\n• Proibido links de grupos\n• Proibido pornografia\n• Proibido ser inativo(a)\n• Divirta-se e faça novas amizades`
+				teks = `𝐎𝐋𝐀 @${num.split('@')[0]} ,\n𝐒𝐄𝐉𝐀 𝐁𝐄𝐌 𝐕𝐈𝐍𝐃𝐎(𝐀) 𝐀𝐎 𝐆𝐑𝐔𝐏𝐎 *${mdata.subject}* \n\n💎᪘ᬽ𝐀𝐏𝐑𝐄𝐒𝐄𝐍𝐓𝐄-𝐒𝐄:᪘ᬽ💎\n(𝐒𝐄 𝐐𝐔𝐈𝐒𝐄𝐑)\n\n➽ 𝑵𝑶𝑴𝑬\n➽ 𝑭𝑶𝑻𝑶\n➽ 𝑰𝑫𝑨𝑫𝑬\n\n𝐃𝐢𝐠𝐢𝐭𝐞👉 ${prefix}𝐫𝐞𝐠𝐫𝐚𝐬\n𝐏𝐚𝐫𝐚 𝐨 𝐛𝐨𝐭 𝐞𝐧𝐯𝐢𝐚𝐫 𝐚𝐬 𝐫𝐞𝐠𝐫𝐚𝐬 𝐝𝐨 𝐆𝐫𝐮𝐩𝐨!\n\n𝐃𝐞𝐬𝐢𝐠𝐧 𝐁𝐲: 𝐇𝐃𝐁𝐎𝐓.𝐞𝐱𝐞 ✨\n▬▬ι══════ ❖ ═══════ι▬▬`
 				let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
@@ -131,7 +131,7 @@ client.on('group-participants-update', async (anu) => {
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
-				teks = `𝙏𝙘𝙝𝙖𝙪 𝘾𝙤𝙧𝙣𝙤(𝙖) @${num.split('@')[0]} 🐂👋`
+				teks = `𝐓𝐜𝐡𝐚𝐮 𝐂𝐨𝐫𝐧𝐨(𝐚) @${num.split('@')[0]} 🐂👋`
 				let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			}
@@ -179,7 +179,7 @@ client.on('group-participants-update', async (anu) => {
 					ownerG: '*⊘ | Comando disponível apenas para o grupo proprietário!*',
 					ownerB: '*⊘ | Comando disponível apenas para o proprietário do hdbot!*',
 					premium: '*💎 | Comando disponível apenas para membros premium!*',
-					admin: '*💎 | Comando disponível apenas para membros vip ou admnistradores!*',
+					admin: '*💎 | Comando disponível apenas para membros vip ou administradores!*',
 					Badmin: '*⊘ | O hdbot precisa de adm para cumprir as funções!*'
 				}
 			}
@@ -260,7 +260,7 @@ client.on('group-participants-update', async (anu) => {
         if (messagesC.includes("://chat.whatsapp.com/")){
 		if (!isGroup) return
 		if (!isAntiLink) return
-		if (isGroupAdmins) return reply('*💎 | Por voce ser admnistrador(a) do grupo, não irei te remover!*')
+		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
@@ -291,6 +291,10 @@ client.on('group-participants-update', async (anu) => {
 					case 'menu':
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
+				  break
+				  case 'regras':
+					if (!isGroup) return reply(mess.only.group)
+					client.sendMessage(from, regras(prefix, sender), text, {quoted: mek})
 				  break
 					case 'menuvip':
 		      if (!isGroupAdmins) return reply(mess.only.admin)
@@ -378,15 +382,6 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL9hZBPRo16fIhsIus3t1je2oAU23pQqBpfw&usqp=CAU`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '️amoo lofi'})
 					break
-					case 'mjsia':
-					if (!isGroupAdmins) return reply(mess.only.admin)
-					reply(mess.wait)
-					memein = await kagApi.memeindo()
-					buffer = await getBuffer(`https://i.imgur.com/Sy9K8m6.jpg`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*VIDEOS MIA KHALIFA:*\n(o adm liberou taok)\n\nxvideos.com/pornstar-channels/mia-khalifa '})
-					break
-					case 'gcpf':                                 client.sendMessage(from, gcpf(prefix), text, { quoted: mek })
-                    break
 					case 'baianor':
 					memein = await kagApi.memeindo()
 					buffer = await getBuffer(`https://i.imgur.com/oaJFGaX.jpg`)
@@ -412,11 +407,11 @@ client.on('group-participants-update', async (anu) => {
             randIndex = Math.floor(Math.random() * jsonData.length);
             randKey = jsonData[randIndex];
             meme = await getBuffer(randKey.result)
-            client.sendMessage(from, meme, image, {quoted: mek, caption: '\`\`\`MEME\`\`\`'})
+            client.sendMessage(from, meme, image, {quoted: mek, caption: '🔍 | 𝘔𝘦𝘮𝘦 𝘙𝘦𝘨𝘦𝘥𝘪𝘵'})
 			break
 			case 'mia':
 		    client.updatePresence(from, Presence.composing) 
-		    if (!isGroup) return reply(mess.only.group)
+		    if (!isGroupAdmins) return reply(mess.only.admin)
 			data = fs.readFileSync('./lib/mia.js');
             jsonData = JSON.parse(data);
             randIndex = Math.floor(Math.random() * jsonData.length);
@@ -472,7 +467,7 @@ client.on('group-participants-update', async (anu) => {
 			await limitAdd(sender) 
 			break
 			case 'bucin':
-            case 'cpf':
+            case 'gerarcpf':
             if (!isGroupAdmins) return reply(mess.only.admin)
             hasil = bucinrandom[Math.floor(Math.random() * (bucinrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
@@ -1016,7 +1011,7 @@ client.on('group-participants-update', async (anu) => {
 						mentions(teks, mentioned, true)
 						client.groupMakeAdmin(from, mentioned)
 					} else {
-						mentions(` @${mentioned[0].split('@')[0]} foi promovido(a) a admnistrador(a) ✓`, mentioned, true)
+						mentions(` @${mentioned[0].split('@')[0]} foi promovido(a) a administrador(a) ✓`, mentioned, true)
 						client.groupMakeAdmin(from, mentioned)
 					}
 					break	
@@ -1055,7 +1050,7 @@ client.on('group-participants-update', async (anu) => {
 				   case 'adms':
 					 client.updatePresence(from, Presence.composing) 
 					if (!isGroup) return reply(mess.only.group)
-					teks = `Admnistradores do grupo *${groupMetadata.subject}* \nTotal : ${groupAdmins.length}\n\n`
+					teks = `Administradores do grupo *${groupMetadata.subject}* \nTotal : ${groupAdmins.length}\n\n`
 					no = 0
 					for (let admon of groupAdmins) {
 						no += 1
