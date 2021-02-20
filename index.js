@@ -121,7 +121,7 @@ client.on('group-participants-update', async (anu) => {
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
-				teks = `𝐎𝐋𝐀 @${num.split('@')[0]} ,\n𝐒𝐄𝐉𝐀 𝐁𝐄𝐌 𝐕𝐈𝐍𝐃𝐎(𝐀) 𝐀𝐎 𝐆𝐑𝐔𝐏𝐎 *${mdata.subject}* \n\n💎᪘ᬽ𝐀𝐏𝐑𝐄𝐒𝐄𝐍𝐓𝐄-𝐒𝐄:᪘ᬽ💎\n(𝐒𝐄 𝐐𝐔𝐈𝐒𝐄𝐑)\n\n➽ 𝑵𝑶𝑴𝑬\n➽ 𝑭𝑶𝑻𝑶\n➽ 𝑰𝑫𝑨𝑫𝑬\n\n𝐃𝐢𝐠𝐢𝐭𝐞👉 ${prefix}𝐫𝐞𝐠𝐫𝐚𝐬\n𝐏𝐚𝐫𝐚 𝐨 𝐛𝐨𝐭 𝐞𝐧𝐯𝐢𝐚𝐫 𝐚𝐬 𝐫𝐞𝐠𝐫𝐚𝐬 𝐝𝐨 𝐆𝐫𝐮𝐩𝐨!\n\n𝐃𝐞𝐬𝐢𝐠𝐧 𝐁𝐲: 𝐇𝐃𝐁𝐎𝐓.𝐞𝐱𝐞 ✨\n▬▬ι══════ ❖ ═══════ι▬▬`
+				teks = `𝐎𝐋𝐀 @${num.split('@')[0]} ,\n𝐒𝐄𝐉𝐀 𝐁𝐄𝐌 𝐕𝐈𝐍𝐃𝐎(𝐀) 𝐀𝐎 𝐆𝐑𝐔𝐏𝐎 *${mdata.subject}* \n\n✨𝐀𝐏𝐑𝐄𝐒𝐄𝐍𝐓𝐄-𝐒𝐄:\n(𝐒𝐄 𝐐𝐔𝐈𝐒𝐄𝐑)\n\n➽ 𝑵𝑶𝑴𝑬\n➽ 𝑭𝑶𝑻𝑶\n➽ 𝑰𝑫𝑨𝑫𝑬\n\n𝐃𝐢𝐠𝐢𝐭𝐞👉 ${prefix}𝐫𝐞𝐠𝐫𝐚𝐬\n𝐏𝐚𝐫𝐚 𝐨 𝐛𝐨𝐭 𝐞𝐧𝐯𝐢𝐚𝐫 𝐚𝐬 𝐫𝐞𝐠𝐫𝐚𝐬 𝐝𝐨 𝐆𝐫𝐮𝐩𝐨!\n\n𝐃𝐞𝐬𝐢𝐠𝐧 𝐁𝐲: 𝐇𝐃𝐁𝐎𝐓.𝐞𝐱𝐞 ✨\n▬ι═══ ❖ ═══ι▬`
 				let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
@@ -753,7 +753,7 @@ client.on('group-participants-update', async (anu) => {
 							.toFormat('webp')
 							.save(ran)
 					} else {
-						reply(`*Olá, para criar uma figurinha, envie uma foto, gif ou video de até 5 segundos, com a legenda ${prefix}fig`)
+						reply(`Para criar uma figurinha, envie uma foto, gif ou video de até 5 segundos, com a legenda ${prefix}fig`)
 					}
 					break
 				case 'gtts':	
