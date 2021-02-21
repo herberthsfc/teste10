@@ -49,9 +49,6 @@ const vcard = 'BEGIN:VCARD\n'
             + 'END:VCARD' 
 prefix = '/'
 blocked = []          
-premium = [
-			"5511996237647@s.whatsapp.net"
-			]
 
 /********** LOAD FILE **************/
 
@@ -178,7 +175,7 @@ client.on('group-participants-update', async (anu) => {
 					group: '*⊘ | Comando disponível apenas em grupos!*',
 					ownerG: '*⊘ | Comando disponível apenas para o grupo proprietário!*',
 					ownerB: '*⊘ | Comando disponível apenas para o proprietário do hdbot!*',
-					premium: '*💎 | Comando disponível apenas para membros premium!*',
+					premium: '*💎 ESTE PEDIDO É SO PARA USUÁRIOS PREMIUMS*',
 					admin: '*💎 | Comando disponível apenas para membros vip ou administradores!*',
 					Badmin: '*⊘ | O hdbot precisa de adm para cumprir as funções!*'
 				}
@@ -186,6 +183,7 @@ client.on('group-participants-update', async (anu) => {
 
 			const botNumber = client.user.jid
 			const ownerNumber = ["5511996237647@s.whatsapp.net"] 
+			const premium = ["5511996237647@s.whatsapp.net","5585999612065@s.whatsapp.net","557599941062@s.whatsapp.net","5511949051934@s.whatsapp.net","554792091566@s.whatsapp.net","558699541889@s.whatsapp.net","559294313229@s.whatsapp.net","554298653614@s.whatsapp.net","12267740582@s.whatsapp.net"]
 			const isGroup = from.endsWith('@g.us')
 			const sender = isGroup ? mek.participant : mek.key.remoteJid
 			const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
@@ -889,7 +887,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, pok, image, { quoted: mek, caption: `*🔍 | Resultado da pesquisa!*`})
 					break
 					case 'blowjob':
-					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isPremium) return reply('Você não é um Membro Premium, entre em contato com o proprietário ou digite */registrarvip* para comprar acesso Premium!' ,text, { quoted: mek })
 					reply(mess.wait)
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
