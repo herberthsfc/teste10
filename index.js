@@ -887,7 +887,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, pok, image, { quoted: mek, caption: `*🔍 | Resultado da pesquisa!*`})
 					break
 					case 'blowjob':
-					if (!isPremium) return reply('Você não é um Membro Premium, entre em contato com o proprietário ou digite */registrarvip* para comprar acesso Premium!' ,text, { quoted: mek })
+					if (!isPremium) return reply(mess.only.premium)
 					reply(mess.wait)
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
