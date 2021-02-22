@@ -199,6 +199,7 @@ client.on('group-participants-update', async (anu) => {
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isAntiLink = isGroup ? antilink.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
+			pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
 			const isPrem = premium.includes(sender)
 			const isUrl = (url) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
@@ -334,14 +335,22 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, idiomas(prefix, sender), text, {quoted: mek})
 				  break
+				  case 'on':
+                  case 'ativo':
+                const timestamp = speed();
+                    const latensi = speed() - timestamp
+                    client.updatePresence(from, Presence.composing) 
+				uptime = process.uptime()
+                    client.sendMessage(from, `*O bot está ativo por*\n*${kyun(uptime)}* ✓`, text, { quoted: mek})
+                    break
 				case 'donhj':
 				case 'djjh':
 					client.sendMessage(from, donasi(), text)
 				break
-				case 'infhfrg':
+				case 'info':
 					me = client.user
 					uptime = process.uptime()
-					teks = `nome do bot : ${me.name}\n*numero do bot* : @${me.jid.split('@')[0]}\n*sigla dos comandos* : ${prefix}\nnumeros bloqueados : ${blocked.length}\no bot esta ativo desde : ${kyun(uptime)}\n`
+					teks = `*Nome* : ${me.name}\n*Número* : @${me.jid.split('@')[0]}\n*SIGLA:* : ${prefix}\nBloqueados : ${blocked.length}`
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
