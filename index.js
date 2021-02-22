@@ -76,7 +76,7 @@ function kyun(seconds){
   var seconds = Math.floor(seconds % 60);
 
   //return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds)
-  return `${pad(hours)} Horas ${pad(minutes)} Minutos ${pad(seconds)} Segundos`
+  return `${pad(hours)} Hora(s) ${pad(minutes)} Minuto(s) ${pad(seconds)} Segundo(s)`
 }
 
 
@@ -339,7 +339,7 @@ client.on('group-participants-update', async (anu) => {
                   case 'ativo':
                   client.updatePresence(from, Presence.composing) 
 				  uptime = process.uptime()
-                    client.sendMessage(from, `O bot está ativo há *${kyun(uptime)}* ✓`, text, { quoted: mek})
+                    client.sendMessage(from, `*O bot está ativo há* *${kyun(uptime)}* ✓`, text, { quoted: mek})
                     break
 				case 'donhj':
 				case 'djjh':
@@ -348,7 +348,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'info':
 					me = client.user
 					uptime = process.uptime()
-					teks = `*Nome* : ${me.name}\n*Número* : @${me.jid.split('@')[0]}\n*SIGLA:* : ${prefix}\nBloqueados : ${blocked.length}`
+					teks = `*Nome* : ${me.name}\n*Número* : @${me.jid.split('@')[0]}\n*Sigla:* : ${prefix}\n*Insta:* @herberthsfc*\nBloqueados* : ${blocked.length} \n\n Respeita ou peita 🤠👍🏿`
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
