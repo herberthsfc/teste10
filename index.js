@@ -273,55 +273,20 @@ client.on('group-participants-update', async (anu) => {
 			reply("*3,2,1... 👋*")
 		}, 0)
 	}
-	
-            if (messagesC.includes("preto")){
+	if (messagesC.includes("macaco")){
 		if (!isGroup) return
 		if (!isAntiRacismo) return
-		if (isGroupAdmins) return reply('cara, nao fale essas coisas, é errado, mas vc e admin n irei te banir')
+		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-		reply(`tchau racista ${sender.split("@")[0]} voce sera expulso deste grupo em 5 segundos`)
+		reply(`*⊘ | RACISMO DETECTADO!* \n*Número:* ${sender.split("@")[0]} \n*Ação:* removido(a) com sucesso!`)
 		setTimeout( () => {
 			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
-		}, 5000)
-			client.updatePresence(from, Presence.composing)
-			reply(" KKKKKKKK tchau otário 😔🤙")
-		}, 0)
-	}
-	
-	        if (messagesC.includes("macaca")){
-		if (!isGroup) return
-		if (!isAntiRacismo) return
-		if (isGroupAdmins) return reply('cara, nao fale essas coisas, é errado, mas vc e admin n irei te banir')
-		client.updatePresence(from, Presence.composing)
-		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
-		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-		reply(`tchau racista ${sender.split("@")[0]} voce sera expulso deste grupo em 5 segundos`)
-		setTimeout( () => {
-			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
-		}, 5000)
+		}, 1000)
 		setTimeout( () => {
 			client.updatePresence(from, Presence.composing)
-			reply("1 segundo")
-			client.updatePresence(from, Presence.composing)
-			reply("KKKKKKKK tchau otário 😔🤙")
-		}, 0)
-	}
-	
-	        if (messagesC.includes("macaco")){
-		if (!isGroup) return
-		if (!isAntiRacismo) return
-		if (isGroupAdmins) return reply('cara, nao fale essas coisas, é errado, mas vc e admin n irei te banir')
-		client.updatePresence(from, Presence.composing)
-		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
-		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-		reply(`tchau racista ${sender.split("@")[0]} voce sera expulso deste grupo em 5 segundos`)
-		setTimeout( () => {
-			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
-		}, 5000)
-			client.updatePresence(from, Presence.composing)
-			reply("KKKKKKKK tchau otário 😔🤙")
+			reply("*3,2,1... 👋*")
 		}, 0)
 	}
 	

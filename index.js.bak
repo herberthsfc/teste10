@@ -273,22 +273,24 @@ client.on('group-participants-update', async (anu) => {
 			reply("*3,2,1... 👋*")
 		}, 0)
 	}
-	
-            if (messagesC.includes("preto")){
+	if (messagesC.includes("macaco")){
 		if (!isGroup) return
 		if (!isAntiRacismo) return
-		if (isGroupAdmins) return reply('cara, nao fale essas coisas, é errado, mas vc e admin n irei te banir')
+		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-		reply(`tchau racista ${sender.split("@")[0]} voce sera expulso deste grupo em 5 segundos`)
+		reply(`*⊘ | RACISMO DETECTADO!* \n*Número:* ${sender.split("@")[0]} \n*Ação:* removido(a) com sucesso!`)
 		setTimeout( () => {
 			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
-		}, 5000)
+		}, 1000)
+		setTimeout( () => {
 			client.updatePresence(from, Presence.composing)
-			reply(" KKKKKKKK tchau otário 😔🤙")
+			reply("*3,2,1... 👋*")
 		}, 0)
 	}
+	
+	
 	
 	        if (messagesC.includes("macaca")){
 		if (!isGroup) return
@@ -520,6 +522,7 @@ client.on('group-participants-update', async (anu) => {
 			await limitAdd(sender)
 			break
 			case 'geradorcpf':
+			if (!isGroupAdmins) return reply(mess.only.admin)
             const aris = text.replace(/!geradorcpf/, "")
             axios.get(`http://geradorapp.com/api/v1/cpf/generate?token=40849779ec68f8351995def08ff1e2fa`).then((res) => {
 	        client.sendMessage(id, '[❗] ESPERE ESTA PROCESSANDO', MessageType.text)
