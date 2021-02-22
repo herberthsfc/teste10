@@ -337,11 +337,9 @@ client.on('group-participants-update', async (anu) => {
 				  break
 				  case 'on':
                   case 'ativo':
-                const timestamp = speed();
-                    const latensi = speed() - timestamp
-                    client.updatePresence(from, Presence.composing) 
-				uptime = process.uptime()
-                    client.sendMessage(from, `*O bot está ativo por*\n*${kyun(uptime)}* ✓`, text, { quoted: mek})
+                  client.updatePresence(from, Presence.composing) 
+				  uptime = process.uptime()
+                    client.sendMessage(from, `O bot está ativo há *${kyun(uptime)}* ✓`, text, { quoted: mek})
                     break
 				case 'donhj':
 				case 'djjh':
