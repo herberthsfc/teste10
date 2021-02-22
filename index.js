@@ -40,6 +40,7 @@ const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./src/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
+const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
 const bucinrandom = JSON.parse(fs.readFileSync('./database/json/bucin.json'))
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
@@ -198,6 +199,7 @@ client.on('group-participants-update', async (anu) => {
 			const isNsfw = isGroup ? nsfw.includes(from) : false
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isAntiLink = isGroup ? antilink.includes(from) : false
+			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
 			const isPrem = premium.includes(sender)
 			const isUrl = (url) => {
@@ -269,6 +271,57 @@ client.on('group-participants-update', async (anu) => {
 		setTimeout( () => {
 			client.updatePresence(from, Presence.composing)
 			reply("*3,2,1... 👋*")
+		}, 0)
+	}
+	
+            if (messagesC.includes("preto")){
+		if (!isGroup) return
+		if (!isAntiRacismo) return
+		if (isGroupAdmins) return reply('cara, nao fale essas coisas, é errado, mas vc e admin n irei te banir')
+		client.updatePresence(from, Presence.composing)
+		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		reply(`tchau racista ${sender.split("@")[0]} voce sera expulso deste grupo em 5 segundos`)
+		setTimeout( () => {
+			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+		}, 5000)
+			client.updatePresence(from, Presence.composing)
+			reply(" KKKKKKKK tchau otário 😔🤙")
+		}, 0)
+	}
+	
+	        if (messagesC.includes("macaca")){
+		if (!isGroup) return
+		if (!isAntiRacismo) return
+		if (isGroupAdmins) return reply('cara, nao fale essas coisas, é errado, mas vc e admin n irei te banir')
+		client.updatePresence(from, Presence.composing)
+		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		reply(`tchau racista ${sender.split("@")[0]} voce sera expulso deste grupo em 5 segundos`)
+		setTimeout( () => {
+			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+		}, 5000)
+		setTimeout( () => {
+			client.updatePresence(from, Presence.composing)
+			reply("1 segundo")
+			client.updatePresence(from, Presence.composing)
+			reply("KKKKKKKK tchau otário 😔🤙")
+		}, 0)
+	}
+	
+	        if (messagesC.includes("macaco")){
+		if (!isGroup) return
+		if (!isAntiRacismo) return
+		if (isGroupAdmins) return reply('cara, nao fale essas coisas, é errado, mas vc e admin n irei te banir')
+		client.updatePresence(from, Presence.composing)
+		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		reply(`tchau racista ${sender.split("@")[0]} voce sera expulso deste grupo em 5 segundos`)
+		setTimeout( () => {
+			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+		}, 5000)
+			client.updatePresence(from, Presence.composing)
+			reply("KKKKKKKK tchau otário 😔🤙")
 		}, 0)
 	}
 	
@@ -347,7 +400,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'info':
 					me = client.user
 					uptime = process.uptime()
-					teks = `*Nome* : ${me.name}\n*Número* : @${me.jid.split('@')[0]}\n*Sigla:* : ${prefix} \n*Insta:* @herberthsfc \nBloqueados* : ${blocked.length} \n\n Respeita ou peita 🤠👍🏿`
+					teks = `*Nome* : ${me.name}\n*Número* : @${me.jid.split('@')[0]}\n*Sigla:* : ${prefix} \n*Insta:* @herberthsfc \n*Bloqueados* : ${blocked.length} \n\n Respeita ou peita 🤠👍🏿`
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
@@ -466,6 +519,13 @@ client.on('group-participants-update', async (anu) => {
 			client.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
 			await limitAdd(sender)
 			break
+			case 'geradorcpf':
+            const aris = text.replace(/!geradorcpf/, "")
+            axios.get(`http://geradorapp.com/api/v1/cpf/generate?token=40849779ec68f8351995def08ff1e2fa`).then((res) => {
+	        client.sendMessage(id, '[❗] ESPERE ESTA PROCESSANDO', MessageType.text)
+            let cpf = `*🔍CPF GERADOS🔍* \n\n ➸ *CPF:* ${res.data.data.number}  \n\n *📌BY:May Bot*`;
+            client.sendMessage(id, cpf ,MessageType.text);
+            break
 			case 'ping':    
 			if (!isGroup) return reply(mess.only.group)
             const timestamp = speed();
@@ -681,7 +741,6 @@ client.on('group-participants-update', async (anu) => {
 				case 'antilink':
                     if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
-					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args.length < 1) return reply('*Digite 1 para ativar*')
 					if (Number(args[0]) === 1) {
 						if (isAntiLink) return reply('*✓ | O Antilink ja está ativado!*')
@@ -697,6 +756,23 @@ client.on('group-participants-update', async (anu) => {
 						reply('*⊘ | Antilink desativado com sucesso!*️')
 					} else {
 						reply('*1 para ativar, 0 para desativar!*')
+					}
+					break
+					case 'antiracismo':
+					if (!isGroup) return reply(mess.only.group)
+					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (args.length < 1) return reply('Hmmmm')
+					if ((args[0]) === 'on') {
+						if (isAntiRacismo) return reply('O modo antiracismo já está ativo')
+						antiracismo.push(from)
+						fs.writeFileSync('./database/json/antiracismo.json', JSON.stringify(antiracismo))
+						reply(`\`\`\`✓Ativado com sucesso o modo antiracismo no grupo\`\`\` *${groupMetadata.subject}*`)
+					} else if ((args[0]) === 'off') {
+						antiracismo.splice(from, 1)
+						fs.writeFileSync('./database/json/antiracismo.json', JSON.stringify(antiracismo))
+						reply(`\`\`\`✓Modo antiracismo desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
+					} else {
+						reply('On para ativar, Off para desligar')
 					}
 					break
 				case 'ocr': 
