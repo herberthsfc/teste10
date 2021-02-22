@@ -299,11 +299,11 @@ client.on('group-participants-update', async (anu) => {
 			if (isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;32mEXEC\x1b[1;37m]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
 			if (!isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mRECV\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
 			switch(command) {
-				case 'helrygf': 
-				case 'menjfdh':
-					client.sendMessage(from, help(prefix), text)
+				case 'help': 
+				case 'menu':
+					client.sendMessage(from, help(prefix, pushname), text)
 					break
-					case 'menu':
+					case 'men1':
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
 				  break
