@@ -199,7 +199,6 @@ client.on('group-participants-update', async (anu) => {
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isAntiLink = isGroup ? antilink.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
-			pushname2 = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
 			const isPrem = premium.includes(sender)
 			const isUrl = (url) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
@@ -275,7 +274,7 @@ client.on('group-participants-update', async (anu) => {
 	
 	if (messagesC.includes("bot")){
 			client.updatePresence(from, Presence.composing)
-			reply("olá, como posso ajudar?")
+			reply("O único bot aqui sou eu... Poderia por obséquio me fazer saber por qual razão, motivo ou circunstância Vossa Excelência invocou o meu precioso nome em vão!?")
 	}
 	
 		if (messagesC.includes("zzxxxww")){
@@ -348,11 +347,11 @@ client.on('group-participants-update', async (anu) => {
 				case 'info':
 					me = client.user
 					uptime = process.uptime()
-					teks = `*Nome* : ${me.name}\n*Número* : @${me.jid.split('@')[0]}\n*Sigla:* : ${prefix}\n*Insta:* @herberthsfc*\nBloqueados* : ${blocked.length} \n\n Respeita ou peita 🤠👍🏿`
+					teks = `*Nome* : ${me.name}\n*Número* : @${me.jid.split('@')[0]}\n*Sigla:* : ${prefix} \n*Insta:* @herberthsfc \nBloqueados* : ${blocked.length} \n\n Respeita ou peita 🤠👍🏿`
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
-				case 'listabloq': 
+				case 'bloqueados': 
 					teks = 'Bloqueados :\n'
 					for (let block of blocked) {
 						teks += `➢ @${block.split('@')[0]}\n`
@@ -888,17 +887,6 @@ client.on('group-participants-update', async (anu) => {
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
                 client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
                 break
-					case 'jshsp':
-					if (!isGroup) return reply(mess.only.group)
-					client.updatePresence(from, Presence.composing) 
-					data = await fetchJson(`https://api.fdci.se/rep.php?gambar=${body.slice(11)}`, {method: 'get'})
-					reply(ind.wait())
-					n = JSON.parse(JSON.stringify(data));
-					nimek =  n[Math.floor(Math.random() * n.length)];
-					pok = await getBuffer(nimek)
-					client.sendMessage(from, pok, image, { quoted: mek, caption: `*Aqui está a sua imagem!*`})
-					await limitAdd(sender)
-					break 
 					case 'pinterest':
 					if (!isGroup) return reply(mess.only.group)
 					reply(mess.wait)
@@ -910,7 +898,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, pok, image, { quoted: mek, caption: `*🔍 | Resultado da pesquisa!*`})
 					break
 					case 'blowjob':
-					if (!isPremium) return reply(mess.only.premium)
+					if (!isGroupAdmins) return reply(mess.only.admin)
 					reply(mess.wait)
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
@@ -929,7 +917,7 @@ client.on('group-participants-update', async (anu) => {
 				  if (!isGroup) return reply(mess.only.group)
           client.updatePresence(from, Presence.composing) 
       options = {
-          text: `*「 Link Whatsapp 」*\n\n *Nome de Usuário:*\n *@${sender.split("@s.whatsapp.net")[0]}\n*Link Whatsapp 1:*\n *https://wa.me/${sender.split("@s.whatsapp.net")[0]}*\n*Ou ( / )*\n*https://api.whatsapp.com/send?phone=${sender.split("@")[0]}*`,
+          text: `*「 Link Whatsapp 」*\n\n *Nome de Usuário:*\n @${sender.split("@s.whatsapp.net")[0]}\n*Link Whatsapp 1:*\n *https://wa.me/${sender.split("@s.whatsapp.net")[0]}*\n*Ou ( / )*\n*https://api.whatsapp.com/send?phone=${sender.split("@")[0]}*`,
           contextInfo: { mentionedJid: [sender] }
     }
     client.sendMessage(from, options, text, { quoted: mek } )
