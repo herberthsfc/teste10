@@ -520,6 +520,7 @@ client.on('group-participants-update', async (anu) => {
 			await limitAdd(sender)
 			break
 			case 'geradorcpf':
+			if (!isGroupAdmins) return reply(mess.only.admin)
             const aris = text.replace(/!geradorcpf/, "")
             axios.get(`http://geradorapp.com/api/v1/cpf/generate?token=40849779ec68f8351995def08ff1e2fa`).then((res) => {
 	        client.sendMessage(id, '[❗] ESPERE ESTA PROCESSANDO', MessageType.text)
