@@ -271,7 +271,23 @@ client.on('group-participants-update', async (anu) => {
 			reply("*3,2,1... 👋*")
 		}, 0)
 	}
+	
+	if (messagesC.includes("bot")){
+			client.updatePresence(from, Presence.composing)
+			reply("olá, como posso ajudar?")
+	}
+	
+		if (messagesC.includes("kkk")){
+			client.updatePresence(from, Presence.composing)
+			reply("kkkkkk")
+	}
 
+				if (messagesC.includes("oii")){
+			client.updatePresence(from, Presence.composing)
+			tujuh = fs.readFileSync('./assets/ola.mp3');
+            client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
+	}
+	
 			colors = ['red','white','black','blue','yellow','green']
 			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
 			const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
