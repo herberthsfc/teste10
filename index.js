@@ -20,10 +20,12 @@ const fs = require("fs")
 const { color, bgcolor } = require('./lib/color')
 const { help } = require('./lib/help')
 const { menu } = require('./lib/menu')
+const { menupv } = require('./lib/menupv')
+const { menuhd } = require('./lib/menuhd')
+const { menupremium } = require('./lib/menupremium')
+const { serpremium } = require('./lib/serpremium')
 const { regras } = require('./lib/regras')
-const { menuvip } = require('./lib/menuvip')
 const { registrarvip } = require('./lib/registrarvip')
-const { herberth } = require('./lib/herberth')
 const { apoiadores } = require('./lib/apoiadores')
 const { donate } = require('./lib/donate')
 const { idiomas } = require('./lib/idiomas')
@@ -335,21 +337,25 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
 				  break
+				  case 'menupv':
+				  if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do hdbot!*')
+		      client.sendMessage(from, menupv(prefix, sender), text, {quoted: mek})
+				  break
+				  case 'menuhd':
+		      if (!isOwner) return reply(mess.only.ownerB)
+		      client.sendMessage(from, menuhd(prefix, sender), text, {quoted: mek})
+				  break
 				  case 'regras':
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, regras(prefix, sender), text, {quoted: mek})
 				  break
-					case 'menuvip':
+					case 'menupremium':
 		      if (!isGroupAdmins) return reply(mess.only.admin)
-		      client.sendMessage(from, menuvip(prefix, sender), text, {quoted: mek})
+		      client.sendMessage(from, menupremium(prefix, sender), text, {quoted: mek})
 				  break
-				  case 'registrarvip':
+				  case 'serpremium':
 				  if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do hdbot!*')
-		      client.sendMessage(from, registrarvip(prefix, sender), text, {quoted: mek})
-				  break
-				  case 'herberth':
-		      if (!isOwner) return reply(mess.only.ownerB)
-		      client.sendMessage(from, herberth(prefix, sender), text, {quoted: mek})
+		      client.sendMessage(from, serpremium(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'apoiadores':
 		      if (!isGroup) return reply(mess.only.group)
@@ -394,6 +400,10 @@ client.on('group-participants-update', async (anu) => {
 						if (!isGroupAdmins)return reply(mess.only.admin)
 						client.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
 						break
+				case 'cantar':
+                    tujuh = fs.readFileSync('./assets/cantar.mp3');
+                    client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
+                    break
 				case 'addprem':
 					client.updatePresence(from, Presence.composing)
 					if (args.length < 1) return
@@ -503,7 +513,7 @@ client.on('group-participants-update', async (anu) => {
 		    uptime = process.uptime()
             client.sendMessage(from, `_Velocidade: ${latensi.toFixed(4)} milissegundos_ ✓`, text, { quoted: mek})
             break
-			case 'darkjokes':
+			case 'darjkjokes':
 		    client.updatePresence(from, Presence.composing) 
 		    if (!isGroup) return reply(mess.only.group)
 			reply(mess.wait)
@@ -956,6 +966,36 @@ client.on('group-participants-update', async (anu) => {
 						fs.unlinkSync(rano)
 					})
 					break
+					case 'hentaifig':
+					reply(mess.wait)
+				   if (!isGroupAdmins) return reply(mess.only.admin)
+					cry = getRandom('.gif')
+					rano = getRandom('.webp')
+					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai?apikey=${TobzApi}`, {method: 'get'})
+                   if (!isGroup) return reply(mess.only.group)
+					reply (mess.wait)
+					exec(`wget ${anu.result} -O ${cry} && ffmpeg -i ${cry} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+						fs.unlinkSync(cry)
+						buffer = fs.readFileSync(rano)
+						client.sendMessage(from, buffer, sticker, {quoted: mek})
+						fs.unlinkSync(rano)
+					})
+					break
+				    case 'nekofig':
+					reply(mess.wait)
+				    if (!isGroupAdmins) return reply(mess.only.admin)
+					cry = getRandom('.gif')
+					rano = getRandom('.webp')
+					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwneko?apikey=${TobzApi}`, {method: 'get'})
+                   if (!isGroup) return reply(mess.only.group)
+					reply (mess.wait)
+					exec(`wget ${anu.result} -O ${cry} && ffmpeg -i ${cry} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+						fs.unlinkSync(cry)
+						buffer = fs.readFileSync(rano)
+						client.sendMessage(from, buffer, sticker, {quoted: mek})
+						fs.unlinkSync(rano)
+					})
+					break
 					case 'wa.me':
 				  case 'wame':
 				  if (!isGroup) return reply(mess.only.group)
@@ -1003,7 +1043,6 @@ client.on('group-participants-update', async (anu) => {
 						client.groupSettingChange(from, GroupSettingChange.messageSend, true)
 					}
 					break
-                    
             case 'admin':
             case 'owner':
             case 'creator':
