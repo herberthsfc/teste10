@@ -539,7 +539,7 @@ axios.get(`http://geradorapp.com/api/v1/cpf/generate?token=40849779ec68f8351995d
 	client.sendMessage(id, '[❗] ESPERE ESTA PROCESSANDO', MessageType.text)
          let cpf = `*🔍CPF GERADOS🔍* \n\n ➸ *CPF:* ${res.data.data.number}  \n\n *📌BY:May Bot*`;
     client.sendMessage(id, cpf ,MessageType.text);
-break
+                    break
 			case 'nulis': 
 				case 'tulis':
 					if (args.length < 1) return reply('Hmmmm?')
