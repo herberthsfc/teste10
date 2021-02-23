@@ -284,10 +284,6 @@ client.on('group-participants-update', async (anu) => {
 		setTimeout( () => {
 			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
 		}, 1000)
-		setTimeout( () => {
-			client.updatePresence(from, Presence.composing)
-			reply("*3,2,1... 👋*")
-		}, 0)
 	}
 	
 	if (messagesC.includes("bot")){
@@ -532,14 +528,6 @@ client.on('group-participants-update', async (anu) => {
 					const tik = can[Math.floor(Math.random() * can.length)]
 					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem gay🏳️‍🌈 : '+ tik+'%', text, { quoted: mek })
 					break
-					case 'geradorcpf':
-					if (!isGroupAdmins) return reply(mess.only.admin)
-const aris = text.replace(/!geradorcpf/, "")
-axios.get(`http://geradorapp.com/api/v1/cpf/generate?token=40849779ec68f8351995def08ff1e2fa`).then((res) => {
-	client.sendMessage(id, '[❗] ESPERE ESTA PROCESSANDO', MessageType.text)
-         let cpf = `*🔍CPF GERADOS🔍* \n\n ➸ *CPF:* ${res.data.data.number}  \n\n *📌BY:May Bot*`;
-    client.sendMessage(id, cpf ,MessageType.text);
-                    break
 			case 'nulis': 
 				case 'tulis':
 					if (args.length < 1) return reply('Hmmmm?')
@@ -727,18 +715,18 @@ axios.get(`http://geradorapp.com/api/v1/cpf/generate?token=40849779ec68f8351995d
 					case 'antiracismo':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
-					if (args.length < 1) return reply('Hmmmm')
-					if ((args[0]) === 'on') {
+					if (args.length < 1) return reply('1?')
+					if ((args[0]) === '1') {
 						if (isAntiRacismo) return reply('O modo antiracismo já está ativo')
 						antiracismo.push(from)
 						fs.writeFileSync('./database/json/antiracismo.json', JSON.stringify(antiracismo))
 						reply(`\`\`\`✓Ativado com sucesso o modo antiracismo no grupo\`\`\` *${groupMetadata.subject}*`)
-					} else if ((args[0]) === 'off') {
+					} else if ((args[0]) === '2') {
 						antiracismo.splice(from, 1)
 						fs.writeFileSync('./database/json/antiracismo.json', JSON.stringify(antiracismo))
 						reply(`\`\`\`✓Modo antiracismo desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
 					} else {
-						reply('On para ativar, Off para desligar')
+						reply('1 para ativar, 2 para desligar')
 					}
 					break
 				case 'ocr': 
