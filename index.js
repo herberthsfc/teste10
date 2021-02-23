@@ -302,6 +302,13 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
 	}
 	
+			if (messagesC.includes("video")){
+			client.updatePresence(from, Presence.composing)
+			tujuh = fs.readFileSync('./assets/laranjinha.mp4');
+            client.sendMessage(from, tujuh, video, {quoted: mek, mimetype: 'video/mp4', ptt:true})
+
+	}
+	
 			colors = ['red','white','black','blue','yellow','green']
 			const isMedia = (type === 'imageMessage' || type === 'videoMessage')
 			const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
