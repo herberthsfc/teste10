@@ -482,7 +482,7 @@ client.on('group-participants-update', async (anu) => {
           case 'gado':
           if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
           break
-          case 'siri':
+          case 'iris':
 					hobby = body.slice(1)
 					const hob =['Oi rsrs','Sim, Eu acho','Não sei dizer','Sefodê mlkkkkk','Por quê?','Sei lá','Eu não quero falar sobre isso','Foda-se','Voce é uma gostosa','kkkkkk','Não fala comigo','Pesquisa no google','Lixo','Meu pau','Eu acho que voce tentou ser engraçado(a)','Eu quero comer uma bolacha','Fdp','Corno','A verdade é que voce é corno','Vai se foder','Cala a boca vadia','Linda só verdades','Voce só me faz pergunta bosta','Estou triste, manda audio pelada','Não entendi o que você quis dizer']
 					const by = hob[Math.floor(Math.random() * hob.length)]
@@ -968,7 +968,6 @@ client.on('group-participants-update', async (anu) => {
 					})
 					break
 					case 'hentaifig':
-					reply(mess.wait)
 				   if (!isGroupAdmins) return reply(mess.only.admin)
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
@@ -983,7 +982,6 @@ client.on('group-participants-update', async (anu) => {
 					})
 					break
 				    case 'nekofig':
-					reply(mess.wait)
 				    if (!isGroupAdmins) return reply(mess.only.admin)
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
