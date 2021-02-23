@@ -715,13 +715,13 @@ client.on('group-participants-update', async (anu) => {
 						if (isAntiLink) return reply('*✓ | O Antilink ja está ativado!*')
 						antilink.push(from)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('\`\`\`✓Ativado com sucesso o modo antilink no grupo\`\`\` *${groupMetadata.subject}*')
+						reply('\`\`\`✓Ativado com sucesso o modo antilink neste grupo!\`\`\`')
 					} else if (Number(args[0]) === 0) {
 						if (!isantilink) return reply('*⊘ | Antilink desativado com sucesso!*')
 						var ini = anti.indexOf(from)
 						antilink.splice(ini, 1)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
-						reply('\`\`\`⊘Modo antilink desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*️')
+						reply('\`\`\`⊘Modo antilink desativado com sucesso neste grupo!\`\`\`️')
 					} else {
 						reply('*1 para ativar, 0 para desativar!*')
 					}
