@@ -510,7 +510,8 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'xvideos':
 					if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
-              	    if (args.length < 1) return reply('Cadê o texto, mano?')
+					if (!isGroup) return reply(mess.only.group)
+              	    if (args.length < 1) return reply('*Digite o que você quer ver no Xvideos!*')
                     anu = await fetchJson(`https://api.arugaz.my.id/api/media/xvideo/search?query=${body.slice(9)}`, {method: 'get'})
                     teks = `===============\n`
                     for (let b of anu.result) {
