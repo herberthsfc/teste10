@@ -999,7 +999,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, pok, image, { quoted: mek, caption: `*🔍 | Resultado da pesquisa!*`})
 					break
 					case 'blowjob':
-					if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar o Comando!* ')
+					if (!isGroupAdmins) return reply(mess.only.admin)
 					reply(mess.wait)
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
@@ -1014,7 +1014,7 @@ client.on('group-participants-update', async (anu) => {
 					})
 					break
 					case 'hentaifig':
-				   if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar o Comando!* ')
+				   if (!isGroupAdmins) return reply(mess.only.admin)
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai?apikey=${TobzApi}`, {method: 'get'})
@@ -1028,7 +1028,7 @@ client.on('group-participants-update', async (anu) => {
 					})
 					break
 				    case 'nekofig':
-				    if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar o Comando!* ')
+				    if (!isGroupAdmins) return reply(mess.only.admin)
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwneko?apikey=${TobzApi}`, {method: 'get'})
