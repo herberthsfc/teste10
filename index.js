@@ -124,7 +124,7 @@ client.on('group-participants-update', async (anu) => {
 				}
 				teks = `𝐎𝐋𝐀 @${num.split('@')[0]} ,\n𝐒𝐄𝐉𝐀 𝐁𝐄𝐌 𝐕𝐈𝐍𝐃𝐎(𝐀) 𝐀𝐎 𝐆𝐑𝐔𝐏𝐎 *${mdata.subject}* \n\n✨𝐀𝐏𝐑𝐄𝐒𝐄𝐍𝐓𝐄-𝐒𝐄:\n(𝐒𝐄 𝐐𝐔𝐈𝐒𝐄𝐑)\n\n➽ 𝑵𝑶𝑴𝑬\n➽ 𝑭𝑶𝑻𝑶\n➽ 𝑰𝑫𝑨𝑫𝑬\n\n𝐃𝐢𝐠𝐢𝐭𝐞👉 ${prefix}𝐫𝐞𝐠𝐫𝐚𝐬\n𝐏𝐚𝐫𝐚 𝐨 𝐛𝐨𝐭 𝐞𝐧𝐯𝐢𝐚𝐫 𝐚𝐬 𝐫𝐞𝐠𝐫𝐚𝐬 𝐝𝐨 𝐆𝐫𝐮𝐩𝐨!\n\n𝐃𝐞𝐬𝐢𝐠𝐧 𝐁𝐲: 𝐇𝐃𝐁𝐎𝐓.𝐞𝐱𝐞 ✨\n▬ι═══ ❖ ═══ι▬`
 				let buff = await getBuffer(ppimg)
-				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+				client.sendMessage(mdata.id, MessageType.extendedText, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
 				num = anu.participants[0]
 				try {
@@ -134,7 +134,7 @@ client.on('group-participants-update', async (anu) => {
 				}
 				teks = `𝐓𝐜𝐡𝐚𝐮 𝐂𝐨𝐫𝐧𝐨(𝐚) @${num.split('@')[0]} 🐂👋`
 				let buff = await getBuffer(ppimg)
-				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+				client.sendMessage(mdata.id, MessageType.extendedText, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			}
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
