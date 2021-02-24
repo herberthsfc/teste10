@@ -453,13 +453,14 @@ client.on('group-participants-update', async (anu) => {
                     tujuh = fs.readFileSync('./assets/cantar.mp3');
                     client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
                     break
-                case 'daddycep':
+                case 'ebot':
                     dadd = body.slice(6)
                     data = await
-                    fetchJson(`https://viacep.com.br/ws/${brno}/json/`, {method: 'get'})
+                    fetchJson(`https://st4rz.herokuapp.com/api/simsimi?kata=${brno}`, {method: 'get'})
                     If (data.error) return reply(data.error)
-                    brno = `*🔎PUXADA CONCLUÍDA📌*\n\n*CEP* ${data.cep}\n\n*ENDEREÇO* ${data.logradouro}\n\n*BAIRRO* ${data.bairro}`
+                    brno = `${data.result}`
                     client.sendMessage(from, brno, text, {quoted: mek})
+                    await limitAdd(sender)
                     break
 				case 'addprem':
 					client.updatePresence(from, Presence.composing)
