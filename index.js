@@ -423,6 +423,17 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
+					case 'perfil':
+					client.updatePresence(from, Presence.composing)
+				    try {
+					ppimg = await client.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)
+					} catch {
+					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+					}
+					captionnya = `╭─「 *SEU PERFIL* 」\n│• *Usuário :* *${pushname}*\n│• *Membro:* ✓\n│• *Seu Link :*\n│• *Wa.me//${sender.split("@")[0]}*\n│• *Outro Link :*\n│ *https://api.whatsapp.com/send?phone=${sender.split("@")[0]}*\n╰────────────────\n\n*Respeita ou Peita🤠👍🏿`
+					daftarimg = await getBuffer(ppimg)
+					client.sendMessage(from, daftarimg, image, {quoted: mek, caption: captionnya})
+					break
 				case 'bloqueados': 
 					teks = 'Bloqueados :\n'
 					for (let block of blocked) {
@@ -458,7 +469,7 @@ client.on('group-participants-update', async (anu) => {
 					break
                 case 'hidetag':
 					if (!isGroup) return reply(mess.only.group)
-					if (!isOwner) return reply('quem e vc?')
+					if (!isOwner) return reply('quem é vc?')
 					var value = body.slice(9)
 					var group = await client.groupMetadata(from)
 					var member = group['participants']
