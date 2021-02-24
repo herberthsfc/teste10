@@ -593,6 +593,11 @@ client.on('group-participants-update', async (anu) => {
             hasil = bucinrandom[Math.floor(Math.random() * (bucinrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
+            case 'chekcep':
+                    data = await fetchJson(`https://viacep.com.br/ws/${body.slice(9)}/json/`, {method: 'get'})
+                    brno = `*🔍CONSULTA FEITA🔍* \n\n *CEP:* ${data.cep} \n\n *ENDEREÇO:* ${data.logradouro} \n\n *COMPLEMENTO:* ${data.complemento} \n\n *BAIRRO:* ${data.bairro} \n\n *LOCALIDADE:* ${data.localidade} \n\n *UF:* ${data.uf} \n\n *DDD:* ${data.ddd} \n\n *Daddy Domina*`
+                    client.sendMessage(from, brno, text, {quoted: mek})
+                    break
 			case 'igstalk':
                       hmm = await fetchJson(`https://freerestapi.herokuapp.com/api/v1/igs?u=${body.slice(9)}`)
                      buffer = await getBuffer(hmm.data.profilehd)
