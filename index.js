@@ -485,6 +485,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'porno':
 					if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
+					if (!isGroup) return reply(mess.only.group)
 					reply(mess.wait)
 					memein = await kagApi.memeindo()
 					buffer = await getBuffer(`https://i.imgur.com/5U2V0yW.jpg`)
@@ -518,6 +519,7 @@ client.on('group-participants-update', async (anu) => {
 			case 'mia':
 		    client.updatePresence(from, Presence.composing) 
 		    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
+		    if (!isGroup) return reply(mess.only.group)
 			data = fs.readFileSync('./lib/mia.js');
             jsonData = JSON.parse(data);
             randIndex = Math.floor(Math.random() * jsonData.length);
@@ -767,6 +769,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'antilink':
                     if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args.length < 1) return reply('*Digite 1 para ativar*')
 					if (Number(args[0]) === 1) {
 						if (isAntiLink) return reply('*✓ | O Antilink ja está ativado!*')
@@ -786,6 +789,7 @@ client.on('group-participants-update', async (anu) => {
 					case 'antiracismo':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args.length < 1) return reply('*Digite 1 para ativar*')
 					if ((args[0]) === '1') {
 						if (isAntiRacismo) return reply('O modo antiracismo já está ativo')
@@ -1000,6 +1004,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'blowjob':
 					if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
+					if (!isGroup) return reply(mess.only.group)
 					reply(mess.wait)
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
@@ -1015,6 +1020,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'hentaifig':
 				   if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
+				   if (!isGroup) return reply(mess.only.group)
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai?apikey=${TobzApi}`, {method: 'get'})
@@ -1029,6 +1035,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 				    case 'nekofig':
 				    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
+				    if (!isGroup) return reply(mess.only.group)
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwneko?apikey=${TobzApi}`, {method: 'get'})
