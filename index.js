@@ -199,7 +199,7 @@ client.on('group-participants-update', async (anu) => {
 			const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
 			const isGroupAdmins = groupAdmins.includes(sender) || false
 			const isWelkom = isGroup ? welkom.includes(from) : false
-			const isNsfw = isGroup ? nsfw.includes(from) : false
+			const isNsfw = isGroup ? nsfw.includes(from) : true
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isAntiLink = isGroup ? antilink.includes(from) : false
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
@@ -600,12 +600,6 @@ client.on('group-participants-update', async (anu) => {
 					const tik = can[Math.floor(Math.random() * can.length)]
 					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem gay🏳️‍🌈 : '+ tik+'%', text, { quoted: mek })
 					break
-					case 'gay1':
-           gay = body.slice(13)
-		   anu = await fetchJson(`https://arugaz.herokuapp.com/api/howgay`, {method: 'get'})
-		   hasil = `Veja os dados do Gay ${gay}\n\n\nPercentagem Gay : ${anu.persen}%\nAlerta!!! : gay, mas não cego`
-		   reply(hasil)
-					break
 			case 'nulis': 
 				case 'tulis':
 					if (args.length < 1) return reply('Hmmmm?')
@@ -1005,7 +999,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, pok, image, { quoted: mek, caption: `*🔍 | Resultado da pesquisa!*`})
 					break
 					case 'blowjob':
-					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar o Comando!* ')
 					reply(mess.wait)
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
@@ -1020,7 +1014,7 @@ client.on('group-participants-update', async (anu) => {
 					})
 					break
 					case 'hentaifig':
-				   if (!isGroupAdmins) return reply(mess.only.admin)
+				   if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar o Comando!* ')
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai?apikey=${TobzApi}`, {method: 'get'})
@@ -1034,7 +1028,7 @@ client.on('group-participants-update', async (anu) => {
 					})
 					break
 				    case 'nekofig':
-				    if (!isGroupAdmins) return reply(mess.only.admin)
+				    if (!isNsfw) return reply(' *Ative o modo nsfw, para ativar o Comando!* ')
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwneko?apikey=${TobzApi}`, {method: 'get'})
@@ -1219,18 +1213,18 @@ client.on('group-participants-update', async (anu) => {
 				case 'nsfw':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
-					if (args.length < 1) return reply('0 ou 1?')
-					if (Number(args[0]) === 1) {
-						if (isNsfw) return reply('ativado !!')
+					if (args.length < 1) return reply('Hmmmm')
+					if ((args[0]) === 'on') {
+						if (isNsfw) return reply('O modo nsfw já está ativo')
 						nsfw.push(from)
-						fs.writeFileSync('./src/nsfw.json', JSON.stringify(nsfw))
-						reply('❬ sucesso ❭')
-					} else if (Number(args[0]) === 0) {
+						fs.writeFileSync('./database/json/nsfw.json', JSON.stringify(nsfw))
+						reply(`\`\`\`✓Ativado com sucesso o modo nsfw no grupo\`\`\` *${groupMetadata.subject}*`)
+					} else if ((args[0]) === 'off') {
 						nsfw.splice(from, 1)
-						fs.writeFileSync('./src/nsfw.json', JSON.stringify(nsfw))
-						reply('❬ sucesso❭')
+						fs.writeFileSync('./database/json/nsfw.json', JSON.stringify(nsfw))
+						reply(`\`\`\`✓Modo nsfw desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
 					} else {
-						reply(' *use o 0 para desativar e o 1 para ativar* \nexemplo: nsfw 1')
+						reply('On para ativar, Off para desligar')
 					}
 					break
 				case 'welcome':
