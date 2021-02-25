@@ -45,6 +45,7 @@ const { TobzApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
 const bucinrandom = JSON.parse(fs.readFileSync('./database/json/bucin.json'))
+const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
             + 'FN:Herberth\n' 
@@ -425,6 +426,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
 					case 'perfil':
+					if (!isGroup)return reply(mess.only.group)
 					client.updatePresence(from, Presence.composing)
 				    try {
 					ppimg = await client.getProfilePicture(`${sender.split('@')[0]}@s.whatsapp.net`)
@@ -532,7 +534,7 @@ client.on('group-participants-update', async (anu) => {
             mia = await getBuffer(randKey.result)
             client.sendMessage(from, mia, image, {quoted: mek, caption: '*🔍 | Mia Khalifa*'})
 			break
-          case 'gado':
+          case 'gado000':
           if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
           break
           case 'iris':
@@ -583,6 +585,12 @@ client.on('group-participants-update', async (anu) => {
             case 'gerarcpf':
             if (!isGroupAdmins) return reply(mess.only.admin)
             hasil = bucinrandom[Math.floor(Math.random() * (bucinrandom.length))]
+            client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
+            break
+            case 'bucin1':
+            case 'gado':
+            if (!isGroupAdmins) return reply(mess.only.admin)
+            hasil = bucinrandom[Math.floor(Math.random() * (gadorandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'chekcep':
@@ -895,6 +903,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'gtts':	
 				case 'tts':
 				case 'audio':
+					if (!isGroup)return reply(mess.only.group)
 					if (args.length < 1) return client.sendMessage(from, '*⊘ | Informe o idioma! exemplo: pt,it,ja,es*', text, {quoted: mek})
 					const gtts = require('./lib/gtts')(args[0])
 					if (args.length < 2) return client.sendMessage(from, '*⊘ | Informe o texto deseja que eu diga!*', text, {quoted: mek})
