@@ -456,6 +456,10 @@ client.on('group-participants-update', async (anu) => {
                     tujuh = fs.readFileSync('./assets/cantar.mp3');
                     client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
                     break
+                    case 'teste':
+                    tujuh = fs.readFileSync('./assets/teste.webp');
+                    client.sendMessage(from, tujuh, sticker, {quoted: mek})
+                    break
                 case 'dado':    
 					if (!isGroup) return reply(mess.only.group)
 					kapankah = body.slice(1)
