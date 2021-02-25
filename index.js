@@ -453,20 +453,12 @@ client.on('group-participants-update', async (anu) => {
                     tujuh = fs.readFileSync('./assets/cantar.mp3');
                     client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
                     break
-				case 'addprem':
-					client.updatePresence(from, Presence.composing)
-					if (args.length < 1) return
-					if (!isOwner) return reply(mess.only.ownerB)
-					addpremi = mek.message.extendedTextMessage.contextInfo.mentionedJid
-					addpremium = addpremi
-					reply(`*ʙᴇʀʜᴀꜱɪʟ ᴍᴇɴᴀᴍʙᴀʜᴋᴀɴ ${addpremium} ᴋᴇ ᴜꜱᴇʀ ᴩʀᴇᴍɪᴜᴍ*\n\nꜱᴇʟᴀᴍᴀᴛ ᴍᴇɴɢɢᴜɴᴀᴋᴀɴ ꜰɪᴛᴜʀ ᴩʀᴇᴍɪᴜᴍ:)`)
-					break
-				case 'removeprem':
-					if (!isOwner) return reply(mess.only.ownerB)
-					rprem = body.slice(13)
-					premium.splice(`${rprem}@s.whatsapp.net`, 1)
-					fs.writeFileSync('./database/json/premium.json', JSON.stringify(premium))
-					reply(`Berhasil Remove wa.me/${rprem} Dari User Premium`)
+                case 'dado':    
+					if (!isGroup) return reply(mess.only.group)
+					kapankah = body.slice(1)
+					const elu =['1','2','3','4','5','6']
+					const ule = elu[Math.floor(Math.random() * elu.length)]
+					client.sendMessage(from, ule, text, { quoted: mek })
 					break
                 case 'hidetag':
 					if (!isGroup) return reply(mess.only.group)
