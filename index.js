@@ -593,10 +593,10 @@ client.on('group-participants-update', async (anu) => {
             hasil = bucinrandom[Math.floor(Math.random() * (bucinrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
-            case 'cep':
+            case 'chekcep':
                     if (!isGroupAdmins) return reply(mess.only.admin)
                     data = await fetchJson(`https://viacep.com.br/ws/${body.slice(9)}/json/`, {method: 'get'})
-                    brno = `*🔍CONSULTA FEITA🔍* \n\n *CEP:* ${data.cep} \n\n *ENDEREÇO:* ${data.logradouro} \n\n *COMPLEMENTO:* ${data.complemento} \n\n *BAIRRO:* ${data.bairro} \n\n *LOCALIDADE:* ${data.localidade} \n\n *UF:* ${data.uf} \n\n *DDD:* ${data.ddd} \n\n *Respeita ou peita⚡*`
+                    brno = `*🔍CONSULTA FEITA🔍* \n\n *CEP:* ${data.cep} \n\n *ENDEREÇO:* ${data.logradouro} \n\n *COMPLEMENTO:* ${data.complemento} \n\n *BAIRRO:* ${data.bairro} \n\n *LOCALIDADE:* ${data.localidade} \n\n *UF:* ${data.uf} \n\n *DDD:* ${data.ddd} \n\n *Respeita ou peita*`
                     client.sendMessage(from, brno, text, {quoted: mek})
                     break
 			case 'igstalk':
