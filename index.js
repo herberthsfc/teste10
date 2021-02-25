@@ -590,7 +590,7 @@ client.on('group-participants-update', async (anu) => {
             case 'bucin1':
             case 'gado':
             if (!isGroupAdmins) return reply(mess.only.admin)
-            hasil = bucinrandom[Math.floor(Math.random() * (gadorandom.length))]
+            hasil = gadorandom[Math.floor(Math.random() * (gadorandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'chekcep':
