@@ -460,13 +460,6 @@ client.on('group-participants-update', async (anu) => {
 					const ule = elu[Math.floor(Math.random() * elu.length)]
 					client.sendMessage(from, ule, text, { quoted: mek })
 					break
-					case 'gay1':    
-					if (!isGroup) return reply(mess.only.group)
-					kapankah = body.slice(1)
-					const elu =['30% gay🏳️‍🌈','2','3','4','5','6']
-					const ule = elu[Math.floor(Math.random() * elu.length)]
-					client.sendMessage(from, ule, text, { quoted: mek })
-					break
                 case 'hidetag':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isOwner) return reply('quem é vc?')
