@@ -595,7 +595,7 @@ client.on('group-participants-update', async (anu) => {
             case 'gay':
             if (!isGroup) return reply(mess.only.group)
             hasil = gayrandom[Math.floor(Math.random() * (gayrandom.length))]
-            client.sendMessage(from, +hasil+, text, {quoted: mek})
+            client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'chekcep':
                     if (!isGroupAdmins) return reply(mess.only.admin)
