@@ -46,6 +46,7 @@ const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
 const bucinrandom = JSON.parse(fs.readFileSync('./database/json/bucin.json'))
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
+const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
             + 'FN:Herberth\n' 
@@ -581,17 +582,20 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, darkjokes, image, {quoted: mek, caption: '\`\`\`DARK JOKES\`\`\`'})
 			await limitAdd(sender) 
 			break
-			case 'bucin':
             case 'gerarcpf':
             if (!isGroupAdmins) return reply(mess.only.admin)
             hasil = bucinrandom[Math.floor(Math.random() * (bucinrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
-            case 'bucin1':
             case 'gado':
-            if (!isGroupAdmins) return reply(mess.only.admin)
+            if (!isGroup) return reply(mess.only.group)
             hasil = gadorandom[Math.floor(Math.random() * (gadorandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
+            break
+            case 'gay':
+            if (!isGroup) return reply(mess.only.group)
+            hasil = gayrandom[Math.floor(Math.random() * (gayrandom.length))]
+            client.sendMessage(from, +hasil+, text, {quoted: mek})
             break
             case 'chekcep':
                     if (!isGroupAdmins) return reply(mess.only.admin)
@@ -614,7 +618,7 @@ client.on('group-participants-update', async (anu) => {
            }
            client.sendMessage(from, options, text, { quoted: mek } )
 				break
-			case 'gay':
+			case 'gay000':
 		  if (!isGroup) return reply(mess.only.group)
 					cantik = body.slice(1)
 					const can =['5','15','67','45','50','60','70','62','74','83','97','101','29','94','75','82','41','39']
