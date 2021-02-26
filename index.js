@@ -181,7 +181,7 @@ client.on('group-participants-update', async (anu) => {
 					group: '*⊘ | Comando disponível apenas em grupos!*',
 					ownerG: '*⊘ | Comando disponível apenas para o grupo proprietário!*',
 					ownerB: '*⊘ | Comando disponível apenas para o proprietário do hdbot!*',
-					premium: '*💎 ESTE PEDIDO É SO PARA USUÁRIOS PREMIUMS*',
+					ownerC: '*💎 ESTE PEDIDO É SO PARA USUÁRIOS PREMIUMS*',
 					admin: '*💎 | Comando disponível apenas para membros vip ou administradores!*',
 					Badmin: '*⊘ | O hdbot precisa de adm para cumprir as funções!*'
 				}
@@ -189,7 +189,7 @@ client.on('group-participants-update', async (anu) => {
 
 			const botNumber = client.user.jid
 			const ownerNumber = ["5511996237647@s.whatsapp.net"] 
-			const premium = ["5511996237647@s.whatsapp.net","5585999612065@s.whatsapp.net","553484364207@s.whatsapp.net","5511949051934@s.whatsapp.net","554792091566@s.whatsapp.net","558699541889@s.whatsapp.net","559294313229@s.whatsapp.net","554298653614@s.whatsapp.net","12267740582@s.whatsapp.net"]
+			const ownerPremium = ["5511996237647@s.whatsapp.net","5585999612065@s.whatsapp.net"] 
 			const isGroup = from.endsWith('@g.us')
 			const sender = isGroup ? mek.participant : mek.key.remoteJid
 			const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
@@ -202,11 +202,11 @@ client.on('group-participants-update', async (anu) => {
 			const isGroupAdmins = groupAdmins.includes(sender) || false
 			const isWelkom = isGroup ? welkom.includes(from) : false
 			const isNsfw = isGroup ? nsfw.includes(from) : true
-			const VhtearKey = 'ISI DI SINI' // YANG DI YOUTUBE
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
+			const isOwnerPremium = ownerpremium.includes(sender)
 			pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
 			const isPrem = premium.includes(sender)
 			const isUrl = (url) => {
@@ -391,7 +391,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, regras(prefix, sender), text, {quoted: mek})
 				  break
 					case 'menupremium':
-		      if (!isGroupAdmins) return reply(mess.only.admin)
+		      if (!isOwnerPremium) return reply(mess.only.ownerC)
 		      client.sendMessage(from, menupremium(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'serpremium':
