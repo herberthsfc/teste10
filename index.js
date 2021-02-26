@@ -375,7 +375,7 @@ client.on('group-participants-update', async (anu) => {
 				if (!packname) packname = 'herberthsfc'; if (!author) author = 'herberthsfc';	
 				author = author.replace(/[^a-zA-Z0-9]/g, '');	
 				let name = `${author}_${packname}`
-				if (fs.existsSync(`./src/stickers/${name}.exif`)) return `./src/stickers/${name}.exif`
+				if (fs.existsSync(`./src/stickers/${herberthsfc}.exif`)) return `./src/stickers/${herberthsfc}.exif`
 				const json = {	
 					"sticker-pack-name": packname,
 					"sticker-pack-publisher": author,
