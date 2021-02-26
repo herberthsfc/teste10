@@ -184,7 +184,7 @@ client.on('group-participants-update', async (anu) => {
 					group: '*⊘ | Comando disponível apenas em grupos!*',
 					ownerG: '*⊘ | Comando disponível apenas para o grupo proprietário!*',
 					ownerB: '*⊘ | Comando disponível apenas para o proprietário do hdbot!*',
-					admin: '*💎 | Comando disponível apenas para membros vip ou administradores!*',
+					admin: '*⊘ | Comando disponível apenas para admins, seu membro comum!*',
 					Badmin: '*⊘ | O hdbot precisa de adm para cumprir as funções!*'
 				}
 			}
