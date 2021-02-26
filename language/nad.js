@@ -27,7 +27,7 @@ exports.noregis = () => {
 }
 
 exports.baned = () => {
-	return`*「🐊」B-A-N-I-D-O*`
+	return`*Seu acesso foi retirado, voce não pode usar o menu do bot!*`
 }
 
 exports.premium = () => {
