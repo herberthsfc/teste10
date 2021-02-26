@@ -1236,7 +1236,7 @@ client.on('group-participants-update', async (anu) => {
 					}
 					break	
 			     	case 'kick':
-			case 'ban':
+			case 'banir':
 			case 'remover':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
