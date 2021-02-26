@@ -31,7 +31,7 @@ exports.baned = () => {
 }
 
 exports.premium = () => {
-	return`*「🐊」Só usuários Premium mande ${prefix}owner e fale com o Gabriel🐊*`
+	return`*💎 | Comando disponível apenas para membros Premium, para mais informações, digite ${prefix}serpremium*`
 }
 
 exports.rediregis = () => {
