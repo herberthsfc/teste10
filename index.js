@@ -44,6 +44,7 @@ const nsfw = JSON.parse(fs.readFileSync('./src/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
 const { VthearApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
 const { TobzApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
+const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
 const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
@@ -127,7 +128,7 @@ client.on('group-participants-update', async (anu) => {
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
-				teks = `𝐎𝐋𝐀 @${num.split('@')[0]} ,\n𝐒𝐄𝐉𝐀 𝐁𝐄𝐌 𝐕𝐈𝐍𝐃𝐎(𝐀) 𝐀𝐎 𝐆𝐑𝐔𝐏𝐎 *${mdata.subject}* \n\n✨𝐀𝐏𝐑𝐄𝐒𝐄𝐍𝐓𝐄-𝐒𝐄:\n(𝐒𝐄 𝐐𝐔𝐈𝐒𝐄𝐑)\n\n➽ 𝑵𝑶𝑴𝑬\n➽ 𝑭𝑶𝑻𝑶\n➽ 𝑰𝑫𝑨𝑫𝑬\n\n𝐃𝐢𝐠𝐢𝐭𝐞👉 ${prefix}𝐫𝐞𝐠𝐫𝐚𝐬\n𝐏𝐚𝐫𝐚 𝐨 𝐛𝐨𝐭 𝐞𝐧𝐯𝐢𝐚𝐫 𝐚𝐬 𝐫𝐞𝐠𝐫𝐚𝐬 𝐝𝐨 𝐆𝐫𝐮𝐩𝐨!\n\n𝐃𝐞𝐬𝐢𝐠𝐧 𝐁𝐲: 𝐇𝐃𝐁𝐎𝐓.𝐞𝐱𝐞 ✨\n▬ι═══ ❖ ═══ι▬`
+				teks = `*OLÁ* @${num.split('@')[0]} ,\n*SEJA BEM VINDO(A) AO GRUPO* *${mdata.subject}* \n\n✨*APRESENTE-SE*:\n(SE QUISER)\n\n➽ _NOME_\n➽ _FOTO_\n➽ _IDADE_\n\n*DIGITE* 👉 *${prefix}regras*\nPara o Bot enviar as regras do Grupo!\n\ndesign by: HDBOT.exe ✨\n▬ι═══ ❖ ═══ι▬`
 				let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
@@ -137,7 +138,7 @@ client.on('group-participants-update', async (anu) => {
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
-				teks = `𝐓𝐜𝐡𝐚𝐮 𝐂𝐨𝐫𝐧𝐨(𝐚) @${num.split('@')[0]} 🐂👋`
+				teks = `*Tchau Corno(a)* @${num.split('@')[0]} 🐂👋`
 				let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			}
@@ -208,6 +209,7 @@ client.on('group-participants-update', async (anu) => {
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
 			const isPrem = premium.includes(sender)
+			const isBanned = ban.includes(sender)
 			pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
 			const isUrl = (url) => {
 			    return url.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/, 'gi'))
@@ -375,9 +377,25 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, help(prefix), text)
 					break
 					case 'menu':
+					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
 				  break
+				  case 'ban':
+					if (!isOwner) return reply(nad.ownerb())
+					bnnd = body.slice(6)
+					ban.push(`${bnnd}@s.whatsapp.net`)
+					fs.writeFileSync('./database/user/banned.json', JSON.stringify(ban))
+					reply(`Número ${bnnd} banido`)
+					break
+				case 'unban':
+					if (!isOwner) return reply(nad.ownerb())
+					ya = body.slice(8)
+					unb = ban.indexOf(ya)
+					ban.splice(unb, 1)
+					fs.writeFileSync('./database/user/banned.json', JSON.stringify(ban))
+					reply(`Número ${ya} desabanido!`)
+					break
 				  case 'menupv':
 				  if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do hdbot!*')
 		      client.sendMessage(from, menupv(prefix, sender), text, {quoted: mek})
@@ -634,14 +652,13 @@ client.on('group-participants-update', async (anu) => {
                     brno = `*🔍CONSULTA FEITA🔍* \n\n *CEP:* ${data.cep} \n\n *ENDEREÇO:* ${data.logradouro} \n\n *COMPLEMENTO:* ${data.complemento} \n\n *BAIRRO:* ${data.bairro} \n\n *LOCALIDADE:* ${data.localidade} \n\n *UF:* ${data.uf} \n\n *DDD:* ${data.ddd} \n\n *Respeita ou peita*`
                     client.sendMessage(from, brno, text, {quoted: mek})
                     break
-			case 'stalkig':
-                     teks = body.slice(9)
-                     anu = await fetchJson(`https://api.vhtear.com/igprofile?query=${teks}&apikey=${VhtearKey}`, {method: 'get'})
-                     reply('「❗」Sabar Lagi Stalking IG nya kak')
-                     buffer = await getBuffer(anu.result.picture)
-                     hasil = `YAHAHA TELAH DI STALK BOS KU UNTUK USERNAME ${teks} \n\n *Username?* : _${anu.result.username}_ \n *Nama??* : _${anu.result.full_name}_ \n *Jumlah Follower??﹦?* : _${anu.result.follower}_ \n *Jumlah Following?* : _${anu.result.follow}_ \n *Jumlah Post?* : _${anu.result.post_count}_ \n *Biografi?? :* _${anu.result.biography}`
+			case 'igstalk':
+                    vide = body.slice(9)
+                    hmm = await fetchJson(`https://videfikri.com/api/igstalk/?username=${vide}`)
+                    buffer = await getBuffer(hmm.result.profile_hd)
+                    hasil = `Nome de usuário : ${hmm.result.username}\nNome completo : ${hmm.result.full_name}\nSeguidores : ${hmm.result.followers}\nSeguindo : ${hmm.result.following}\nPrivado : ${hmm.result.is_private}\nUsuario Verificado? : ${hmm.result.is_verified}\nbio : ${hmm.result.bio}\nContagem de publicações : ${hmm.result.post_count}\nUrl Externo : ${hmm.result.external_url}\nFbId : ${hmm.result.fbid}\nMostrar perfil sugerido : ${hmm.result.show_suggested_profile}`
                     client.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
-			       break
+                    break
                     case 'ownergp':
 				  case 'ownergroup':
                client.updatePresence(from, Presence.composing) 
@@ -883,6 +900,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'sticker':
 				case 'fig':
 				case 'figurinha':
+					if (isBanned) return reply(nad.baned())
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
@@ -940,6 +958,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'gtts':	
 				case 'tts':
 				case 'audio':
+					if (isBanned) return reply(nad.baned())
 					if (!isGroup)return reply(mess.only.group)
 					if (args.length < 1) return client.sendMessage(from, '*⊘ | Informe o idioma! exemplo: pt,it,ja,es*', text, {quoted: mek})
 					const gtts = require('./lib/gtts')(args[0])
