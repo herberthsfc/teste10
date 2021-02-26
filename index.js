@@ -494,7 +494,7 @@ client.on('group-participants-update', async (anu) => {
 						no += 1
 						teks += `│「${no.toString()}」 @${prem.split('@')[0]}\n`
 					}
-					teks += `│ Número de Usuarios Premium: ${premium.length}\n╰──────「 *${botName}* 」`
+					teks += `│ Número de Usuarios Premium: ${premium.length}\n╰──────「 *HDBOT* 」`
 					client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": premium}})
 					break
                 case 'hidetag':
