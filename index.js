@@ -43,6 +43,7 @@ const nsfw = JSON.parse(fs.readFileSync('./src/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
 const { VthearApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
 const { TobzApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
+const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
 const bucinrandom = JSON.parse(fs.readFileSync('./database/json/bucin.json'))
@@ -469,23 +470,32 @@ client.on('group-participants-update', async (anu) => {
 					const ule = elu[Math.floor(Math.random() * elu.length)]
 					client.sendMessage(from, ule, text, { quoted: mek })
 					break
-					case 'addvip':  
-					if (!isOwner) return reply(mess.only.ownerB)
-					if (!isPremium) return reply('Você não é um Membro Premium, entre em contato com o proprietário ou digite * # Daftarvip * para adquirir o acesso Premium!' ,text, { quoted: mek })
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('A marca-alvo que você quer chutar!')
-					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
-					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
-					if (mentioned.length > 1) {
-						teks = '╭────「 *PREMIUM👑* 」──*\n│+ *Número* : \n│+ *Expirado*: *30 Days*\n│+ *Status*: *ATIVO*\n│ Thx para atualizar para premium🥰\n*╰──────「 *posição* 」────'
-						for (let _ of mentioned) {
-							teks += `@${_.split('@')[0]}\n`
-						}
-						mentions(teks, mentioned, true)
-						client.sendMessage(from, mentioned)
-					} else {
-						mentions(`╭────「 *PREMIUM👑* 」──*\n│+ *Número* : @${mentioned[0].split('@')[0]}\n│+ *Expirado*: *30 Days*\n│+ *Status*: *ATIVO*\n│ Thx para atualizar para premium🥰\n*╰──────「 *posição* 」────`, mentioned, true)
-					client.sendMessage(from, mentioned)
-				    }
+					case 'addprem':
+					if (!isOwner) return reply(nad.ownerb())
+					addp = body.slice(10)
+					premium.push(`${addp}@s.whatsapp.net`)
+					fs.writeFileSync('./database/user/premium.json', JSON.stringify(premium))
+					reply(`Sucesso adicionado ${addp} Premium`)
+					break
+				case 'dellprem':
+					if (!isOwner) return reply(nad.ownerb())
+					oh = body.slice(11)
+					delp = premium.indexOf(oh)
+					premium.splice(delp, 1)
+					fs.writeFileSync('./database/user/premium.json', JSON.stringify(premium))
+					reply(`Excluido com sucesso ${oh} da Lista Premium`)
+					break
+					case 'premiumlist':
+					baby.updatePresence(from, Presence.composing) 
+                    if (!isRegistered) return reply(nad.noregis())
+					teks = `╭─「 *J USER PREMIUM* 」\n`
+					no = 0
+					for (let prem of premium) {
+						no += 1
+						teks += `│「${no.toString()}」 @${prem.split('@')[0]}\n`
+					}
+					teks += `│ Número de Usuarios Premium: ${premium.length}\n╰──────「 *${botName}* 」`
+					baby.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": premium}})
 					break
                 case 'hidetag':
 					if (!isGroup) return reply(mess.only.group)
