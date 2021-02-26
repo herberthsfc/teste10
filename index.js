@@ -462,9 +462,8 @@ client.on('group-participants-update', async (anu) => {
                     tujuh = fs.readFileSync('./assets/teste.webp');
                     client.sendMessage(from, tujuh, sticker, {quoted: mek})
                     break
-                case 'dado':
-                    if (!isPremium) return reply(mess.only.premium)
-					if (!isGroup) return reply(mess.only.group)
+                case 'dado':    
+					if (!isPremium) return reply('Você não é um Membro Premium, entre em contato com o proprietário ou digite *.Daftarvip* para adquirir o acesso Premium!' ,text, { quoted: mek })
 					kapankah = body.slice(1)
 					const elu =['1','2','3','4','5','6']
 					const ule = elu[Math.floor(Math.random() * elu.length)]
