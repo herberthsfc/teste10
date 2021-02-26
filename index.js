@@ -450,7 +450,7 @@ client.on('group-participants-update', async (anu) => {
 					case 'delete':
 				case 'del':
 						if (!isGroup)return reply(mess.only.group)
-						if (!isGroupAdmins)return reply(mess.only.admin)
+						if (!isPrem) return reply(nad.premium())
 						client.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
 						break
 				case 'cantar':
@@ -614,7 +614,7 @@ client.on('group-participants-update', async (anu) => {
 			await limitAdd(sender) 
 			break
             case 'gerarcpf':
-            if (!isGroupAdmins) return reply(mess.only.admin)
+            if (!isPrem) return reply(nad.premium())
             hasil = bucinrandom[Math.floor(Math.random() * (bucinrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
