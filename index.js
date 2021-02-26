@@ -41,6 +41,7 @@ const { removeBackgroundFromImageFile } = require('remove.bg')
 const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./src/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
+const { VthearApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
 const { TobzApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
@@ -181,7 +182,7 @@ client.on('group-participants-update', async (anu) => {
 					group: '*⊘ | Comando disponível apenas em grupos!*',
 					ownerG: '*⊘ | Comando disponível apenas para o grupo proprietário!*',
 					ownerB: '*⊘ | Comando disponível apenas para o proprietário do hdbot!*',
-					ownerC: '*💎 ESTE PEDIDO É SO PARA USUÁRIOS PREMIUMS*',
+					premium: '[❗] ESTE PEDIDO É SO PARA *USUÁRIOS PREMIUMS*',
 					admin: '*💎 | Comando disponível apenas para membros vip ou administradores!*',
 					Badmin: '*⊘ | O hdbot precisa de adm para cumprir as funções!*'
 				}
@@ -189,7 +190,7 @@ client.on('group-participants-update', async (anu) => {
 
 			const botNumber = client.user.jid
 			const ownerNumber = ["5511996237647@s.whatsapp.net"] 
-			const ownerPremium = ["5511996237647@s.whatsapp.net","5585999612065@s.whatsapp.net"] 
+			const premium = ["5511996237647@s.whatsapp.net","5585999612065@s.whatsapp.net","553484364207@s.whatsapp.net","5511949051934@s.whatsapp.net","554792091566@s.whatsapp.net","558699541889@s.whatsapp.net","559294313229@s.whatsapp.net","554298653614@s.whatsapp.net","12267740582@s.whatsapp.net"]
 			const isGroup = from.endsWith('@g.us')
 			const sender = isGroup ? mek.participant : mek.key.remoteJid
 			const groupMetadata = isGroup ? await client.groupMetadata(from) : ''
@@ -206,7 +207,7 @@ client.on('group-participants-update', async (anu) => {
 			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
-			const isOwnerPremium = ownerpremium.includes(sender)
+			const isPremium = premium.includes(sender)
 			pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
 			const isPrem = premium.includes(sender)
 			const isUrl = (url) => {
@@ -391,7 +392,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, regras(prefix, sender), text, {quoted: mek})
 				  break
 					case 'menupremium':
-		      if (!isOwnerPremium) return reply(mess.only.ownerC)
+		      if (!isGroupAdmins) return reply(mess.only.admin)
 		      client.sendMessage(from, menupremium(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'serpremium':
@@ -461,12 +462,31 @@ client.on('group-participants-update', async (anu) => {
                     tujuh = fs.readFileSync('./assets/teste.webp');
                     client.sendMessage(from, tujuh, sticker, {quoted: mek})
                     break
-                case 'dado':    
+                case 'dado':
+                    if (!isPremium) return reply(mess.only.premium)
 					if (!isGroup) return reply(mess.only.group)
 					kapankah = body.slice(1)
 					const elu =['1','2','3','4','5','6']
 					const ule = elu[Math.floor(Math.random() * elu.length)]
 					client.sendMessage(from, ule, text, { quoted: mek })
+					break
+					case 'addvip':  
+					if (!isOwner) return reply(mess.only.ownerB)
+					if (!isPremium) return reply('Você não é um Membro Premium, entre em contato com o proprietário ou digite * # Daftarvip * para adquirir o acesso Premium!' ,text, { quoted: mek })
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('A marca-alvo que você quer chutar!')
+					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+					if (mentioned.length > 1) {
+						teks = '╭────「 *PREMIUM👑* 」──*\n│+ *Número* : \n│+ *Expirado*: *30 Days*\n│+ *Status*: *ATIVO*\n│ Thx para atualizar para premium🥰\n*╰──────「 *posição* 」────'
+						for (let _ of mentioned) {
+							teks += `@${_.split('@')[0]}\n`
+						}
+						mentions(teks, mentioned, true)
+						client.sendMessage(from, mentioned)
+					} else {
+						mentions(`╭────「 *PREMIUM👑* 」──*\n│+ *Número* : @${mentioned[0].split('@')[0]}\n│+ *Expirado*: *30 Days*\n│+ *Status*: *ATIVO*\n│ Thx para atualizar para premium🥰\n*╰──────「 *posição* 」────`, mentioned, true)
+					client.sendMessage(from, mentioned)
+				    }
 					break
                 case 'hidetag':
 					if (!isGroup) return reply(mess.only.group)
@@ -609,7 +629,6 @@ client.on('group-participants-update', async (anu) => {
                     client.sendMessage(from, brno, text, {quoted: mek})
                     break
 			case 'stalkig':
-                   if (!isGroup) return reply(mess.only.group)
                      teks = body.slice(9)
                      anu = await fetchJson(`https://api.vhtear.com/igprofile?query=${teks}&apikey=${VhtearKey}`, {method: 'get'})
                      reply('「❗」Sabar Lagi Stalking IG nya kak')
