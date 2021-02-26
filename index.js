@@ -209,7 +209,7 @@ client.on('group-participants-update', async (anu) => {
 			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
-			const isPremium = premium.includes(sender)
+			const isPrem = premium.includes(sender)
 			pushname = client.contacts[sender] != undefined ? client.contacts[sender].vname || client.contacts[sender].notify : undefined
 			const isPrem = premium.includes(sender)
 			const isUrl = (url) => {
