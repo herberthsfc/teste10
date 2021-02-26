@@ -32,6 +32,7 @@ const { idiomas } = require('./lib/idiomas')
 const { donasi } = require('./lib/donasi')
 const { fetchJson } = require('./lib/fetcher')
 const { recognize } = require('./lib/ocr')
+const { nad } = require('./language')
 const kagApi = require('@kagchi/kag-api')
 const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
 const tiktod = require('tiktok-scraper')
@@ -486,7 +487,7 @@ client.on('group-participants-update', async (anu) => {
 					reply(`Excluido com sucesso ${oh} da Lista Premium`)
 					break
 					case 'premiumlist':
-					baby.updatePresence(from, Presence.composing) 
+					client.updatePresence(from, Presence.composing) 
 					teks = `╭─「 *J USER PREMIUM* 」\n`
 					no = 0
 					for (let prem of premium) {
@@ -494,7 +495,7 @@ client.on('group-participants-update', async (anu) => {
 						teks += `│「${no.toString()}」 @${prem.split('@')[0]}\n`
 					}
 					teks += `│ Número de Usuarios Premium: ${premium.length}\n╰──────「 *${botName}* 」`
-					baby.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": premium}})
+					client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": premium}})
 					break
                 case 'hidetag':
 					if (!isGroup) return reply(mess.only.group)
