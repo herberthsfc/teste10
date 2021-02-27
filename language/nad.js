@@ -51,7 +51,7 @@ exports.groupo = () => {
 }
 
 exports.ownerb = () => {
-	return`*「🐊」Só o Gabriel🐊 pode usar*`
+	return`⊘ | Comando disponível apenas para o proprietário do hdbot!*`
 }
 
 exports.ownerg = () => {
