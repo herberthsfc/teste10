@@ -443,7 +443,7 @@ client.on('group-participants-update', async (anu) => {
 				}
 					let buf = await getBuffer(ppimg)
 					teks = (args.length > 1) ? body.slice(8).trim() : ''
-					teks += `*Nome do grupo :* ${groupName}\n*Descrição :* ${groupDesc}\n*Número de Administradores :* ${groupAdmins.length}\n*Número de membros :* ${groupMembers.length}`
+					teks += `*Grupo :* ${groupName} \n *Admins:* ${groupAdmins.length} \n *Membros:* ${groupMembers.length} \n *Descrição:* ${groupDesc}`
 					no = 0
 					for (let admon of groupAdmins) {
 						no += 1
@@ -546,7 +546,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'porno':
 					if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
-					if (!isGroup) return reply(mess.only.group)
+					if (!isPrem) return reply(nad.premium())
 					reply(mess.wait)
 					memein = await kagApi.memeindo()
 					buffer = await getBuffer(`https://i.imgur.com/5U2V0yW.jpg`)
@@ -559,7 +559,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'xvideos':
 					if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
-					if (!isGroup) return reply(mess.only.group)
+					if (!isPrem) return reply(nad.premium())
               	    if (args.length < 1) return reply('*Digite o que você quer ver no Xvideos!*')
                     anu = await fetchJson(`https://api.arugaz.my.id/api/media/xvideo/search?query=${body.slice(9)}`, {method: 'get'})
                     teks = `===============\n`
@@ -581,7 +581,7 @@ client.on('group-participants-update', async (anu) => {
 			case 'mia':
 		    client.updatePresence(from, Presence.composing) 
 		    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
-		    if (!isGroup) return reply(mess.only.group)
+		    if (!isPrem) return reply(nad.premium())
 			data = fs.readFileSync('./lib/mia.js');
             jsonData = JSON.parse(data);
             randIndex = Math.floor(Math.random() * jsonData.length);
@@ -599,7 +599,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, 'Pergunta : *'+hobby+'*\n\nResposta : '+ by, text, { quoted: mek })
 					break
 					case 'moddroid':
-				  if (!isGroupAdmins) return reply(mess.only.admin)
+				  if (!isPrem) return reply(nad.premium())
 			data = await fetchJson(`https://tobz-api.herokuapp.com/api/moddroid?q=${body.slice(10)}&apikey=BotWeA`)
 			hepi = data.result[0] 
 			teks = `*• Título*: ${data.result[0].title}\n\n*• Criador*: ${hepi.publisher}\n\n*• Mod:* ${hepi.mod_info}\n\n*• Peso*: ${hepi.size}\n\n*• Última versão*: ${hepi.latest_version}\n\n*• Gênero*: ${hepi.genre}\n\n*Link:* ${hepi.link}\n\n*Download*: ${hepi.download}`
@@ -1061,8 +1061,7 @@ client.on('group-participants-update', async (anu) => {
 					}
 					break
 					case 'play':   
-	          if (!isGroup) return reply(mess.only.group)
-	          if (!isGroupAdmins) return reply(mess.only.admin)
+	          if (!isPrem) return reply(nad.premium())
                 reply(mess.wait)
                 play = body.slice(5)
                 anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
@@ -1085,7 +1084,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'blowjob':
 					if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
-					if (!isGroup) return reply(mess.only.group)
+					if (!isPrem) return reply(nad.premium())
 					reply(mess.wait)
 					ranp = getRandom('.gif')
 					rano = getRandom('.webp')
@@ -1101,7 +1100,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'hentaifig':
 				   if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
-				   if (!isGroup) return reply(mess.only.group)
+				   if (!isPrem) return reply(nad.premium())
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/hentai?apikey=${TobzApi}`, {method: 'get'})
@@ -1116,7 +1115,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 				    case 'nekofig':
 				    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
-				    if (!isGroup) return reply(mess.only.group)
+				    if (!isPrem) return reply(nad.premium())
 					cry = getRandom('.gif')
 					rano = getRandom('.webp')
 					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nsfwneko?apikey=${TobzApi}`, {method: 'get'})
