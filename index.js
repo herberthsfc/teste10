@@ -637,7 +637,7 @@ client.on('group-participants-update', async (anu) => {
 			await limitAdd(sender) 
 			break
             case 'gerarcpf':
-            if (!isGroup) return reply(mess.only.group)
+            if (!isPrem) return reply(nad.premium())
             hasil = gerarcpfrandom[Math.floor(Math.random() * (gadorandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
@@ -652,12 +652,13 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'chekcep':
-                    if (!isGroupAdmins) return reply(mess.only.admin)
+                    if (!isPrem) return reply(nad.premium())
                     data = await fetchJson(`https://viacep.com.br/ws/${body.slice(9)}/json/`, {method: 'get'})
                     brno = `*🔍CONSULTA FEITA🔍* \n\n *CEP:* ${data.cep} \n\n *ENDEREÇO:* ${data.logradouro} \n\n *COMPLEMENTO:* ${data.complemento} \n\n *BAIRRO:* ${data.bairro} \n\n *LOCALIDADE:* ${data.localidade} \n\n *UF:* ${data.uf} \n\n *DDD:* ${data.ddd} \n\n *Respeita ou peita*`
                     client.sendMessage(from, brno, text, {quoted: mek})
                     break
 			case 'igstalk':
+                    if (!isPrem) return reply(nad.premium())
                     vide = body.slice(9)
                     hmm = await fetchJson(`https://videfikri.com/api/igstalk/?username=${vide}`)
                     buffer = await getBuffer(hmm.result.profile_hd)
@@ -1260,16 +1261,14 @@ client.on('group-participants-update', async (anu) => {
 						client.groupRemove(from, mentioned)
 					}
 					break
-					case 'linkgroup':
-				case 'linkgp':
-				case 'linkgc':
-				    client.updatePresence(from, Presence.composing) 
-				    if (!isGroup) return reply(mess.only.group)
-					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					linkgc = await client.groupInviteCode (from)
-					yeh = `https://chat.whatsapp.com/${linkgc}`
-					client.sendMessage(from, yeh, text, {quoted: mek, detectLinks: false})
-					break
+				   case 'linkgroup':
+				   case 'linkgp':
+                      if (!isGroup) return reply(mess.only.group)
+                      if (!isGroupAdmins) return reply(mess.only.admin)
+                      if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+                      linkgc = await client.groupInviteCode(from)
+                      reply('https://chat.whatsapp.com/'+linkgc)
+                      break
 				   case 'listadmins':
 				   case 'adms':
 					 client.updatePresence(from, Presence.composing) 
