@@ -20,16 +20,12 @@ const fs = require("fs")
 const { color, bgcolor } = require('./lib/color')
 const { help } = require('./lib/help')
 const { menu } = require('./lib/menu')
-const { menupv } = require('./lib/menupv')
-const { menuhd } = require('./lib/menuhd')
+const { menuadmin } = require('./lib/menuadmin')
 const { menupremium } = require('./lib/menupremium')
-const { serpremium } = require('./lib/serpremium')
-const { regras } = require('./lib/regras')
 const { registrarvip } = require('./lib/registrarvip')
-const { apoiadores } = require('./lib/apoiadores')
+const { regras } = require('./lib/regras')
 const { donate } = require('./lib/donate')
 const { idiomas } = require('./lib/idiomas')
-const { donasi } = require('./lib/donasi')
 const { fetchJson } = require('./lib/fetcher')
 const { recognize } = require('./lib/ocr')
 const { nad } = require('./language')
@@ -48,7 +44,7 @@ const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
 const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
-const bucinrandom = JSON.parse(fs.readFileSync('./database/json/bucin.json'))
+const gerarcpfrandom = JSON.parse(fs.readFileSync('./database/json/gerarcpf.json'))
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
 const vcard = 'BEGIN:VCARD\n' 
@@ -374,13 +370,9 @@ client.on('group-participants-update', async (anu) => {
 			switch(command) {
 				case 'helrygf': 
 				case 'menjfdh':
+					if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do hdbot!*')
 					client.sendMessage(from, help(prefix), text)
 					break
-					case 'menu':
-					if (isBanned) return reply(nad.baned())
-					if (!isGroup) return reply(mess.only.group)
-					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
-				  break
 				  case 'ban':
 					if (!isOwner) return reply(nad.ownerb())
 					bnnd = body.slice(6)
@@ -394,34 +386,30 @@ client.on('group-participants-update', async (anu) => {
 					unb = ban.indexOf(ya)
 					ban.splice(unb, 1)
 					fs.writeFileSync('./database/user/banned.json', JSON.stringify(ban))
-					reply(`Número ${ya} desabanido!`)
+					reply(`Número ${ya} desbanido!`)
 					break
-				  case 'menupv':
-				  if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do hdbot!*')
-		      client.sendMessage(from, menupv(prefix, sender), text, {quoted: mek})
+					case 'menu':
+					if (isBanned) return reply(nad.baned())
+					if (!isGroup) return reply(mess.only.group)
+					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
 				  break
-				  case 'menuhd':
-		      if (!isOwner) return reply(mess.only.ownerB)
-		      client.sendMessage(from, menuhd(prefix, sender), text, {quoted: mek})
+				  case 'menuadmin':
+				  if (!isGroupAdmins) return reply(mess.only.admin)
+				  if (!isGroup) return reply(mess.only.group)
+		      client.sendMessage(from, menuadmin(prefix, sender), text, {quoted: mek})
+				  break
+				  case 'menupremium':
+		      if (!isPrem) return reply(nad.premium())
+		      client.sendMessage(from, menupremium(prefix, sender), text, {quoted: mek})
+				  break
+				  case 'registrarvip':
+		      client.sendMessage(from, registrarvip(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'regras':
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, regras(prefix, sender), text, {quoted: mek})
 				  break
-					case 'menupremium':
-		      if (!isGroupAdmins) return reply(mess.only.admin)
-		      client.sendMessage(from, menupremium(prefix, sender), text, {quoted: mek})
-				  break
-				  case 'serpremium':
-				  if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do hdbot!*')
-		      client.sendMessage(from, serpremium(prefix, sender), text, {quoted: mek})
-				  break
-				  case 'apoiadores':
-		      if (!isGroup) return reply(mess.only.group)
-		      client.sendMessage(from, apoiadores(prefix, sender), text, {quoted: mek})
-				  break
 				  case 'donate':
-					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, donate(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'idiomas':
@@ -445,6 +433,24 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
+					case 'infogrupo':
+				client.updatePresence(from, Presence.composing)
+				if (!isGroup) return reply(mess.only.group)
+					try {
+					ppimg = await client.getProfilePicture(from)
+				} catch {
+					ppimg = 'https://i.ibb.co/NthF8ds/IMG-20201223-WA0740.jpg'
+				}
+					let buf = await getBuffer(ppimg)
+					teks = (args.length > 1) ? body.slice(8).trim() : ''
+					teks += `*Nome do grupo :* ${groupName}\n*Descrição :* ${groupDesc}\n*Número de Administradores :* ${groupAdmins.length}\n*Número de membros :* ${groupMembers.length}`
+					no = 0
+					for (let admon of groupAdmins) {
+						no += 1
+						teks += `[${no.toString()}]`
+					}
+					client.sendMessage(from, buf, image, {quoted: mek, caption: teks})
+					break
 					case 'perfil':
 					if (!isGroup)return reply(mess.only.group)
 					client.updatePresence(from, Presence.composing)
@@ -465,9 +471,8 @@ client.on('group-participants-update', async (anu) => {
 					teks += `total : ${blocked.length}`
 					client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": blocked}})
 					break
-					case 'delete':
+				case 'delete':
 				case 'del':
-						if (!isGroup)return reply(mess.only.group)
 						if (!isPrem) return reply(nad.premium())
 						client.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
 						break
@@ -491,7 +496,7 @@ client.on('group-participants-update', async (anu) => {
 					addp = body.slice(10)
 					premium.push(`${addp}@s.whatsapp.net`)
 					fs.writeFileSync('./database/user/premium.json', JSON.stringify(premium))
-					reply(`Sucesso adicionado ${addp} Premium`)
+					reply(`Sucesso adicionado ${addp} ao Premium`)
 					break
 				case 'dellprem':
 					if (!isOwner) return reply(nad.ownerb())
@@ -503,7 +508,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'premiumlist':
 					client.updatePresence(from, Presence.composing) 
-					teks = `╭─「 *J USER PREMIUM* 」\n`
+					teks = `╭─「 *USUÁRIOS PREMIUM* 」\n`
 					no = 0
 					for (let prem of premium) {
 						no += 1
@@ -632,8 +637,8 @@ client.on('group-participants-update', async (anu) => {
 			await limitAdd(sender) 
 			break
             case 'gerarcpf':
-            if (!isPrem) return reply(nad.premium())
-            hasil = bucinrandom[Math.floor(Math.random() * (bucinrandom.length))]
+            if (!isGroup) return reply(mess.only.group)
+            hasil = gerarcpfrandom[Math.floor(Math.random() * (gadorandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'gado':
