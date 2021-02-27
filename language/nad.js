@@ -31,7 +31,7 @@ exports.baned = () => {
 }
 
 exports.premium = () => {
-	return`*💎 | Comando disponível apenas para membros Premium, para mais informações, digite ${prefix}serpremium*`
+	return`💎 | Você não é um Membro Premium, entre em contato com o proprietário ou digite *${prefix}registrarvip* para comprar acesso Premium!`
 }
 
 exports.rediregis = () => {
