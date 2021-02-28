@@ -34,7 +34,6 @@ const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRando
 const tiktod = require('tiktok-scraper')
 const ffmpeg = require('fluent-ffmpeg')
 const speed = require('performance-now')
-const emojiUnicode = require('emoji-unicode')
 const fetch = require('node-fetch')
 const { removeBackgroundFromImageFile } = require('remove.bg')
 const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
@@ -1164,21 +1163,6 @@ client.on('group-participants-update', async (anu) => {
 					reply(mess.error.bug)
 					}
 					break 
-				case 'semoji':
-				if (args.length < 1) return reply('emoji??')
-				reply(mess.wait)
-					teks = `${body.slice(8)}`
-					emoji = emojiUnicode(teks).trim()
-					buff = `https://api.zeks.xyz/api/emoji-image?apikey=${ZeksApi}&emoji=${args[0]}`
-					voss = await fetch(buff)
-					ftype = require('file-type')
-					vuss = await ftype.fromStream(voss.body)
-					if (vuss !== undefined) {
-					costum(await getBuffer(buff), image, FarhanGans, `~ Emoji Maker`)
-					} else {
-					reply(mess.error.bug)
-					}
-					break
 					case 'wa.me':
 				  case 'wame':
 				  if (!isGroup) return reply(mess.only.group)
