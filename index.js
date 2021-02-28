@@ -46,7 +46,6 @@ const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
 const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
-const gerarcpfrandom = JSON.parse(fs.readFileSync('./database/json/gerarcpf.json'))
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
 const vcard = 'BEGIN:VCARD\n' 
@@ -646,11 +645,6 @@ client.on('group-participants-update', async (anu) => {
             boxx = await fetchJson(`http://geradorapp.com/api/v1/cpf/generate?token=0b858b5f15ae2e7eecad6aa3973d4db3`)
             box =  `*🔎 CPF GERADO!*\n➽ *CPF*: *${boxx.data.number}*\n➽ *FORMATO*: *${boxx.data.number_formatted}*\n➽ *MENSAGEM*: *${boxx.data.message}*\n           *𝑯𝑫𝑩𝑶𝑻.𝒆𝒙𝒆*`
             client.sendMessage(from, box, text, {quoted: mek})
-            break
-            case 'gerarcpf':
-            if (!isPrem) return reply(nad.premium())
-            hasil = gerarcpfrandom[Math.floor(Math.random() * (gadorandom.length))]
-            client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'gado':
             if (!isGroup) return reply(mess.only.group)
