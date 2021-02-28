@@ -125,7 +125,7 @@ client.on('group-participants-update', async (anu) => {
 				} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 				}
-				teks = `*OLÁ* @${num.split('@')[0]} ,\n*SEJA BEM VINDO(A) AO GRUPO* *${mdata.subject}* \n\n✨*APRESENTE-SE*:\n(SE QUISER)\n\n➽ _NOME_\n➽ _FOTO_\n➽ _IDADE_\n\n*DIGITE* 👉 *${prefix}regras*\nPara o Bot enviar as regras do Grupo!\n\ndesign by: HDBOT.exe ✨\n▬ι═══ ❖ ═══ι▬`
+				teks = `*OLÁ* @${num.split('@')[0]} ,\n*SEJA BEM VINDO(A) AO GRUPO* *${mdata.subject}* \n\n✨ *APRESENTE-SE:* 🤠\n(SE QUISER)\n\n➽ _NOME_\n➽ _FOTO_\n➽ _IDADE_\n\nDigite 👉 *${prefix}regras*\nPara o Bot enviar as regras do Grupo!\n\n𝑯𝑫𝑩𝑶𝑻.𝐸𝑋𝐸✨\n──━━━━━━━━━━━━━──`
 				let buff = await getBuffer(ppimg)
 				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
 			} else if (anu.action == 'remove') {
@@ -1124,45 +1124,6 @@ client.on('group-participants-update', async (anu) => {
 						fs.unlinkSync(rano)
 					})
 					break
-					case 'nulis':
-				client.updatePresence(from, Presence.composing)
-				if (!isPrem) return reply(nad.premium())
-				if (args.length < 1) return reply(`${name} Harus Nulis Apa Kak??`)
-				reply(mess.wait)
-				teks = `${body.slice(7)}`
-			const	nama = teks.split("/")[0];
-			const	kelas = teks.split("/")[1];
-			const	textnya = teks.split("/")[2];
-					buff = `https://api.zeks.xyz/api/magernulis?nama=${nama}&kelas=${kelas}&text=${textnya}&tinta=4`
-					voss = await fetch(buff)	
-					ftype = require('file-type')	
-					vuss = await ftype.fromStream(voss.body)
-					if (vuss !== undefined) {
-					costum(await getBuffer(buff), image, FarhanGans, mess.success)
-					} else {
-					reply(mess.error.bug)
-					}
-					break
-					case 'ttp':
-				if (isBanned) return reply(nad.baned())
-				if (args.length < 1) return reply('yang mau dijadiin text sticker apa?')
-				reply(mess.wait)
-				try {
-					ranp = getRandom('.png')
-					rano = getRandom('.webp')
-					teks = body.slice(4).trim()
-					anu = await fetchFxc7(`https://mhankbarbar.tech/api/text2image?text=${teks}&apiKey=${BarBarApi}`, {method: 'get'})
-					if (anu.error) return reply(anu.error)
-					exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-						fs.unlinkSync(ranp)
-						if (err) return reply(mess.stick)
-						client.sendMessage(from, fs.readFileSync(rano), sticker, {quoted: mek})
-						fs.unlinkSync(rano)
-					})
-					} catch {
-					reply(mess.error.bug)
-					}
-					break 
 					case 'wa.me':
 				  case 'wame':
 				  if (!isGroup) return reply(mess.only.group)
