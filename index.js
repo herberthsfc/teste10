@@ -636,6 +636,12 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, darkjokes, image, {quoted: mek, caption: '\`\`\`DARK JOKES\`\`\`'})
 			await limitAdd(sender) 
 			break
+			case 'geradorcpf':
+            if (!isPrem) return reply(nad.premium())
+            boxx = await fetchJson(`http://geradorapp.com/api/v1/cpf/generate?token=0b858b5f15ae2e7eecad6aa3973d4db3`)
+            box =  `*🔎 CPF GERADO!*\n➽ *CPF*: *${boxx.data.number}*\n➽ *FORMATO*: *${boxx.data.number_formatted}*\n➽ *MENSAGEM*: *${boxx.data.message}*\n           *𝑯𝑫𝑩𝑶𝑻.𝒆𝒙𝒆*`
+            client.sendMessage(from, box, text, {quoted: mek})
+            break
             case 'gerarcpf':
             if (!isPrem) return reply(nad.premium())
             hasil = gerarcpfrandom[Math.floor(Math.random() * (gadorandom.length))]
@@ -680,17 +686,6 @@ client.on('group-participants-update', async (anu) => {
 					const can =['5','15','67','45','50','60','70','62','74','83','97','101','29','94','75','82','41','39']
 					const tik = can[Math.floor(Math.random() * can.length)]
 					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem gay🏳️‍🌈 : '+ tik+'%', text, { quoted: mek })
-					break
-			case 'nulis': 
-				case 'tulis':
-					if (args.length < 1) return reply('Hmmmm?')
-                                        if (!isUser) return reply(mess.only.daftarB)
-					teks = body.slice(7)
-					reply(mess.wait)
-					anu = await fetchJson(`https://tobz-api.herokuapp.com/api/nulis?text=${teks}&apikey=BotWeA`, {method: 'get'})
-					if (anu.error) return reply(anu.error)
-					buff = await getBuffer(anu.result)
-					client.sendMessage(from, buff, image, {quoted: mek, caption: mess.success})
 					break
                 case 'bug':
                 case 'reportar':
@@ -1074,6 +1069,7 @@ client.on('group-participants-update', async (anu) => {
                 client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
                 break
 					case 'pinterest':
+					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
 					reply(mess.wait)
 					client.updatePresence(from, Presence.composing) 
@@ -1126,6 +1122,60 @@ client.on('group-participants-update', async (anu) => {
 						client.sendMessage(from, buffer, sticker, {quoted: mek})
 						fs.unlinkSync(rano)
 					})
+					break
+					case 'nulis':
+				client.updatePresence(from, Presence.composing)
+				if (!isPrem) return reply(nad.premium())
+				if (args.length < 1) return reply(`${name} Harus Nulis Apa Kak??`)
+				reply(mess.wait)
+				teks = `${body.slice(7)}`
+			const	nama = teks.split("/")[0];
+			const	kelas = teks.split("/")[1];
+			const	textnya = teks.split("/")[2];
+					buff = `https://api.zeks.xyz/api/magernulis?nama=${nama}&kelas=${kelas}&text=${textnya}&tinta=4`
+					voss = await fetch(buff)	
+					ftype = require('file-type')	
+					vuss = await ftype.fromStream(voss.body)
+					if (vuss !== undefined) {
+					costum(await getBuffer(buff), image, FarhanGans, mess.success)
+					} else {
+					reply(mess.error.bug)
+					}
+					break
+					case 'ttp':
+				if (isBanned) return reply(nad.baned())
+				if (args.length < 1) return reply('yang mau dijadiin text sticker apa?')
+				reply(mess.wait)
+				try {
+					ranp = getRandom('.png')
+					rano = getRandom('.webp')
+					teks = body.slice(4).trim()
+					anu = await fetchFxc7(`https://mhankbarbar.tech/api/text2image?text=${teks}&apiKey=${BarBarApi}`, {method: 'get'})
+					if (anu.error) return reply(anu.error)
+					exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+						fs.unlinkSync(ranp)
+						if (err) return reply(mess.stick)
+						client.sendMessage(from, fs.readFileSync(rano), sticker, {quoted: mek})
+						fs.unlinkSync(rano)
+					})
+					} catch {
+					reply(mess.error.bug)
+					}
+					break 
+				case 'semoji':
+				if (args.length < 1) return reply('emoji??')
+				reply(mess.wait)
+					teks = `${body.slice(8)}`
+					emoji = emojiUnicode(teks).trim()
+					buff = `https://api.zeks.xyz/api/emoji-image?apikey=${ZeksApi}&emoji=${args[0]}`
+					voss = await fetch(buff)
+					ftype = require('file-type')
+					vuss = await ftype.fromStream(voss.body)
+					if (vuss !== undefined) {
+					costum(await getBuffer(buff), image, FarhanGans, `~ Emoji Maker`)
+					} else {
+					reply(mess.error.bug)
+					}
 					break
 					case 'wa.me':
 				  case 'wame':
