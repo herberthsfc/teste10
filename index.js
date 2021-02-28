@@ -23,6 +23,7 @@ const { menu } = require('./lib/menu')
 const { menuadmin } = require('./lib/menuadmin')
 const { menupremium } = require('./lib/menupremium')
 const { registrarvip } = require('./lib/registrarvip')
+const { termosvip } = require('./lib/termosvip')
 const { regras } = require('./lib/regras')
 const { donate } = require('./lib/donate')
 const { idiomas } = require('./lib/idiomas')
@@ -405,6 +406,9 @@ client.on('group-participants-update', async (anu) => {
 				  break
 				  case 'registrarvip':
 		      client.sendMessage(from, registrarvip(prefix, sender), text, {quoted: mek})
+				  break
+				  case 'termosvip':
+		      client.sendMessage(from, termosvip(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'regras':
 					if (!isGroup) return reply(mess.only.group)
