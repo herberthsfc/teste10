@@ -22,7 +22,7 @@ const { help } = require('./lib/help')
 const { menu } = require('./lib/menu')
 const { menuadmin } = require('./lib/menuadmin')
 const { menupremium } = require('./lib/menupremium')
-const { registrarvip } = require('./lib/registrarvip')
+const { serpremium } = require('./lib/serpremium')
 const { termosvip } = require('./lib/termosvip')
 const { regras } = require('./lib/regras')
 const { donate } = require('./lib/donate')
@@ -403,8 +403,10 @@ client.on('group-participants-update', async (anu) => {
 		      if (!isPrem) return reply(nad.premium())
 		      client.sendMessage(from, menupremium(prefix, sender), text, {quoted: mek})
 				  break
-				  case 'registrarvip':
-		      client.sendMessage(from, registrarvip(prefix, sender), text, {quoted: mek})
+				  case 'serpremium':
+				  case 'ser.premium':
+		      if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do hdbot!*')
+		      client.sendMessage(from, serpremium(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'termosvip':
 		      client.sendMessage(from, termosvip(prefix, sender), text, {quoted: mek})
