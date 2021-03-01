@@ -27,11 +27,11 @@ exports.noregis = () => {
 }
 
 exports.baned = () => {
-	return`*Seu acesso foi retirado, voce não pode usar o menu do bot!*`
+	return`⊘ | *Voce floodou comandos ou excedeu os limtes, Seu acesso foi retirado, e voce não pode usar o Bot no momento!*`
 }
 
 exports.premium = () => {
-	return`💎 | Você não é um Membro Premium, entre em contato com o proprietário ou digite *${prefix}registrarvip* para comprar acesso Premium!`
+	return`💎 | Você não é um Membro Premium, entre em contato com o proprietário ou digite *${prefix}ser.premium* para comprar acesso Premium!`
 }
 
 exports.rediregis = () => {
