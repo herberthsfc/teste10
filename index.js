@@ -486,6 +486,34 @@ client.on('group-participants-update', async (anu) => {
                     tujuh = fs.readFileSync('./assets/cantar.mp3');
                     client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
                     break
+                    case 'plogo':
+                    if (!isPrem) return reply(nad.premium())
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(7)
+					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
+					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					buffer = await getBuffer(`https://clutamac.sirv.com/1011b781-bab1-49e3-89db-ee2c064868fa%20(1).jpg?text.0.text=${teks}&text.0.position.gravity=northwest&text.0.position.x=22%25&text.0.position.y=60%25&text.0.size=18&text.0.color=000000&text.0.opacity=47&text.0.font.family=Roboto%20Mono&text.0.font.style=italic`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
+					break
+					case 'iplog':
+                    teks = body.slice(7)
+                    anu = await fetchJson(`https://mnazria.herokuapp.com/api/check?ip=${teks}`)
+			        ipl = `INFORMAÇÕS IP 🐊🚩
+
+➸ *CIDADE:* ${anu.city}
+➸ *Latitude*: ${anu.latitude}
+➸ *Longtitude*: ${anu.longitude}
+➸ *REGIÃO*: ${anu.region_name}
+➸ *UF*: ${anu.region_code}
+➸ *IP*: ${anu.ip}
+➸ *TIPO*: ${anu.type}
+➸ *CEP*: ${anu.zip}
+➸ *LOCALIDADE*: ${anu.location.geoname_id}
+➸ *CAPITAL*: ${anu.location.capital}
+➸ *DDD*: ${anu.location.calling_code}
+➸ *PAÍS*: ${anu.location.country_flag_emoji} `
+			        reply(ipl)
+					break
                 case 'teste':
                     tujuh = fs.readFileSync('./assets/teste.webp');
                     client.sendMessage(from, tujuh, sticker, {quoted: mek})
