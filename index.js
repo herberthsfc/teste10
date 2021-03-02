@@ -486,7 +486,6 @@ client.on('group-participants-update', async (anu) => {
                     tujuh = fs.readFileSync('./assets/cantar.mp3');
                     client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
                     break
-                    case 'plaquinha':
                     case 'plogo':
                     if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
@@ -496,7 +495,6 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://clutamac.sirv.com/1011b781-bab1-49e3-89db-ee2c064868fa%20(1).jpg?text.0.text=${teks}&text.0.position.gravity=northwest&text.0.position.x=22%25&text.0.position.y=60%25&text.0.size=18&text.0.color=000000&text.0.opacity=47&text.0.font.family=Roboto%20Mono&text.0.font.style=italic`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
-				case 'leaotxt':
                 case 'letxt':
 					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
@@ -516,7 +514,6 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/images%20-%202021-02-22T014719.920.jpeg?text.0.text=${teks}&text.0.position.gravity=north&text.0.position.y=50%25&text.0.size=15&text.0.color=000000&text.0.font.family=Ek%20Mukta&text.0.font.weight=600&text.0.font.style=italic&text.0.background.opacity=29`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
-                case 'cadernotxt':
                 case 'dnulis':
 					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
@@ -663,7 +660,7 @@ client.on('group-participants-update', async (anu) => {
 			ri = JSON.parse(JSON.stringify(anu));
 			ze =  ri[Math.floor(Math.random() * ri.length)];
 			nye = await getBuffer(ze)
-			client.sendMessage(from, nye, image, { caption: 'hoje eu tou comédiante️', quoted: mek })
+			client.sendMessage(from, nye, image, { caption: '🔎 | _Meme Regedit_️', quoted: mek })
 			break 
 			case 'mia':
 		    client.updatePresence(from, Presence.composing) 
@@ -754,7 +751,8 @@ client.on('group-participants-update', async (anu) => {
                     hasil = `Nome de usuário : ${hmm.result.username}\nNome completo : ${hmm.result.full_name}\nSeguidores : ${hmm.result.followers}\nSeguindo : ${hmm.result.following}\nPrivado : ${hmm.result.is_private}\nUsuario Verificado? : ${hmm.result.is_verified}\nbio : ${hmm.result.bio}\nContagem de publicações : ${hmm.result.post_count}\nUrl Externo : ${hmm.result.external_url}\nFbId : ${hmm.result.fbid}\nMostrar perfil sugerido : ${hmm.result.show_suggested_profile}`
                     client.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
                     break
-                    case 'ownergp':
+                  case 'criadorgp':
+                  case 'ownergp':
 				  case 'ownergroup':
                client.updatePresence(from, Presence.composing) 
               options = {
