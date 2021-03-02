@@ -643,6 +643,19 @@ client.on('group-participants-update', async (anu) => {
                     }
                     reply(teks.trim())
 			     	break
+			     	case 'pornhub':
+			   if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
+			   if (!isPrem) return reply(nad.premium())
+			   reply(mess.wait)
+              	    if (args.length < 1) return reply('onde esta o texto mano?')
+                    teks = body.slice(9)
+                    anu = await fetchJson(`https://api.arugaz.my.id/api/media/pornhub/search?query=${teks}`, {method: 'get'})
+                    teks = `===============\n`
+                    for (let bokep of anu.result) {
+                    teks += `Titulo: ${bokep.title}\nAtor: ${bokep.author}\nVisualizadores: *${bokep.views}*\nDuracao: ${bokep.duration}\nLink: ${bokep.link}\n===============\n`
+                    }
+                    reply(teks.trim())
+			     	break
 					case '0mem3':
 		    client.updatePresence(from, Presence.composing) 
 		    if (!isGroup) return reply(mess.only.group)
