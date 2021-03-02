@@ -405,7 +405,7 @@ client.on('group-participants-update', async (anu) => {
 				  break
 				  case 'serpremium':
 				  case 'ser.premium':
-		      if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do hdbot!*')
+		      if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do Bot!*')
 		      client.sendMessage(from, serpremium(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'termosvip':
@@ -486,211 +486,76 @@ client.on('group-participants-update', async (anu) => {
                     tujuh = fs.readFileSync('./assets/cantar.mp3');
                     client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
                     break
+                    case 'plaquinha':
                     case 'plogo':
                     if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
 					buffer = await getBuffer(`https://clutamac.sirv.com/1011b781-bab1-49e3-89db-ee2c064868fa%20(1).jpg?text.0.text=${teks}&text.0.position.gravity=northwest&text.0.position.x=22%25&text.0.position.y=60%25&text.0.size=18&text.0.color=000000&text.0.opacity=47&text.0.font.family=Roboto%20Mono&text.0.font.style=italic`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
-					case 'bfig':
-					if (args.length < 1) return reply(' envie um texto!✨')
-					reply(mess.wait)	
-					teks = body.slice(10)
-					ranp = getRandom('.png')
-					rano = getRandom('.webp')		
-					anu = await fetchJson(`https://api.xteam.xyz/ttp?file&text=${teks}`, {method: 'get'})
-					exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
-						fs.unlinkSync(ranp)
-						if (err) return reply(mess.error.stick)
-						client.sendMessage(from, fs.readFileSync(rano), sticker, {quoted: mek})
-						fs.unlinkSync(rano)
-					})
-					break
-			    case 'glogo':
-			    dark = `${body.slice(7)}`
-			    da = dark.split("/")[0];
-			    rk = dark.split("/")[1];
-			    reply('*Estou fazendo, se der erro tente novamente ✓*')
-			    buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/0d1dc54c127cf3f8a53afe515a1efb8f.jpg?text.0.text=${rk}&text.0.position.gravity=center&text.0.position.y=45%25&text.0.size=30&text.0.color=ffffff&text.0.font.weight=700&text.0.font.style=italic&text.0.background.opacity=79&text.0.outline.opacity=37&text.1.text=${da}&text.1.position.gravity=north&text.1.size=30&text.1.color=ff0000&text.1.font.weight=600&text.1.font.style=italic`, {method: 'get'})
-			    client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-			    await limitAdd(sender) 
-			    break  
-			    case 'dnobg2':
-			    nobg = `${body.slice(7)}`
-			    no = nobg.split("/")[0];
-			    bg = nobg.split("/")[1];
-			    reply('*Estou fazendo, se der erro tente novamente ✓*')
-			    buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_052102.png?text.0.text=${no}&text.0.position.gravity=north&text.0.color=ff0000&text.0.opacity=99&text.0.font.family=Droid%20Serif&text.0.font.weight=600&text.0.background.opacity=74&text.0.outline.opacity=0&text.1.text=${bg}&text.1.position.gravity=center&text.1.position.y=25%25&text.1.color=4f00ff&text.1.opacity=83&text.1.font.family=Marck%20Script&text.1.outline.blur=82`, {method: 'get'})
-			    client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-			    await limitAdd(sender) 
-			    break
-			    case 'frase':
-			    nobg = `${body.slice(7)}`
-			    no = nobg.split("/")[0];
-			    bg = nobg.split("/")[1];
-			    reply('*Estou fazendo, se der erro tente novamente ✓*')
-			    buffer = await getBuffer(`https://api.ritekit.com/v2/image/quote?text=${no}&author=${bg}&textFont=Lora&textColor=%23000000&textFontWeight=400&authorFont=Lato&authorColor=%23e5e5e5&authorFontWeight=400&highlightColor=transparent&backgroundColor1=%238686bd&backgroundColor2=%231ddad6&width=400&height=400&client_id=52ad7438afd2baa8779f9266a8a997cd92771f1eb625`, {method: 'get'})
-			    client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-			    await limitAdd(sender) 
-			    break
-			    case 'amor':
-			    love = `${body.slice(7)}`
-			    lo = love.split("/")[0];
-			    ve = love.split("/")[1];
-			    reply('*Estou fazendo, se der erro tente novamente ✓*')
-			    buffer = await getBuffer(`https://assets.imgix.net/examples/couple.jpg?txt64=VEUgQU1PIOKdpO-4jw&txt-font=bold&txt-align=middle%20center&txt-size=${lo}&blur=${ve}&txt-color=FF0000`, {method: 'get'})
-			    client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-			    await limitAdd(sender) 
-			    break  
-			    case 'aguia2':
-			    agia = `${body.slice(7)}`
-			    ag = agia.split("/")[0];
-			    ia = agia.split("/")[1];
-			    reply('*Estou fazendo, se der erro tente novamente ✓*')
-			    buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_024526.jpg?text.0.text=${ia}&text.0.position.gravity=center&text.0.position.y=45%25&text.0.size=24&text.0.color=ffffff&text.0.font.weight=700&text.0.font.style=italic&text.0.background.opacity=79&text.0.outline.opacity=37&text.1.text=${ag}&text.1.position.gravity=north&text.1.size=24&text.1.color=0040f2&text.1.font.family=Noticia%20Text&text.1.font.style=italic`, {method: 'get'})
-			    client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-			    await limitAdd(sender) 
-			    break  
-                case 'black':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/images%20-%202021-02-22T225108.251.jpeg?text.0.text=${teks}&text.0.color=ffffff&text.0.font.family=Tangerine&text.0.font.weight=800&text.0.background.opacity=18&text.0.outline.blur=82`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break
-                case 'attp2':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://api.xteam.xyz/attp?file&text=${teks}`)
-					client.sendMessage(from, buffer, video, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break
-                case 'clogo':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 9) return reply('O texto é longo, até 9 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_230542.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.y=2%25&text.0.size=23&text.0.color=000000&text.0.opacity=58&text.0.font.weight=600&text.0.font.style=italic&text.0.outline.opacity=24`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break	
+				case 'leaotxt':
                 case 'letxt':
+					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 9) return reply('O texto é longo, até 9 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
 					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/images%20-%202021-02-23T231504.507.jpeg?text.0.text=${teks}&text.0.position.gravity=northwest&text.0.position.x=8%25&text.0.position.y=30%25&text.0.size=30&text.0.color=0800ff&text.0.font.weight=600&text.1.text=${teks}&text.1.position.gravity=northwest&text.1.position.x=7%25&text.1.position.y=30%25&text.1.size=30&text.1.color=ffffff&text.1.font.weight=600&text.1.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break		
-                case 'text3d':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 9) return reply('O texto é longo, até 9 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210223_235608.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.x=2%25&text.0.size=30&text.0.color=ff0000&text.0.font.weight=600&text.1.text=${teks}&text.1.position.gravity=center&text.1.position.x=1%25&text.1.size=30&text.1.color=ffffff&text.1.font.weight=600&text.1.outline.blur=57`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break			
+                case 'miatxt':
                 case 'milogo':
+					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
 					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/images%20-%202021-02-22T014719.920.jpeg?text.0.text=${teks}&text.0.position.gravity=north&text.0.position.y=50%25&text.0.size=15&text.0.color=000000&text.0.font.family=Ek%20Mukta&text.0.font.weight=600&text.0.font.style=italic&text.0.background.opacity=29`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
-                case 'aguia':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 20) return reply('O texto é longo, até 20 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_024526.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.y=30%25&text.0.size=25&text.0.color=ffffff&text.0.font.family=Philosopher&text.0.font.style=italic&text.0.background.color=ffffff`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break
-                case 'randlogo':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 20) return reply('O texto é longo, até 20 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://darkkkw.herokuapp.com/`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break
-                case 'monkey':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_030251.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.y=39%25&text.0.size=25&text.0.color=ffffff&text.0.font.family=Source%20Sans%20Pro&text.0.font.weight=600`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break
-                case 'dlg':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://mhankbarbar.tech/api/ephoto?text=${teks}`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break
+                case 'cadernotxt':
                 case 'dnulis':
+					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 200) return reply('O texto é longo, até 200 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
 					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_040232.png?text.0.text=${teks}&text.0.position.gravity=northwest&text.0.position.x=10%25&text.0.position.y=8%25&text.0.align=right&text.0.size=55&text.0.color=000000&text.0.opacity=72&text.0.font.family=Bitter&text.0.font.style=italic`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
-                case 'tlogo':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 20) return reply('O texto é longo, até 20 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_164542.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.y=40%25&text.0.size=50&text.0.color=ffffff&text.0.font.family=Lobster%20Two&text.0.font.weight=800&text.0.font.style=italic`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break
-                case 'nlogo':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 20) return reply('O texto é longo, até 20 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_165159.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.y=38%25&text.0.size=24&text.0.color=ff0000&text.0.font.family=Signika&text.0.font.weight=600&text.0.background.opacity=34&text.0.outline.opacity=16`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break
-                case 'dmeme':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 9) return reply('O texto é longo, até 9 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
-					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_050527.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.x=10%25&text.0.position.y=22%25&text.0.size=18&text.0.color=000000&text.0.font.family=Vollkorn&text.0.font.style=italic`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break
+                case 'pngtxt':
                 case 'dnobg':
+					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
 					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_052102.png?text.0.text=${teks}&text.0.position.gravity=center&text.0.color=ff0000&text.0.opacity=99&text.0.font.family=Droid%20Serif&text.0.font.weight=600&text.0.background.opacity=74&text.0.outline.opacity=0`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
 					case 'iplog':
+                    if (!isPrem) return reply(nad.premium())
                     teks = body.slice(7)
                     anu = await fetchJson(`https://mnazria.herokuapp.com/api/check?ip=${teks}`)
-			        ipl = `INFORMAÇÕS IP 🐊🚩
+			        ipl = `🔎 CONSULTA IP
 
-➸ *CIDADE:* ${anu.city}
-➸ *Latitude*: ${anu.latitude}
-➸ *Longtitude*: ${anu.longitude}
-➸ *REGIÃO*: ${anu.region_name}
-➸ *UF*: ${anu.region_code}
-➸ *IP*: ${anu.ip}
-➸ *TIPO*: ${anu.type}
-➸ *CEP*: ${anu.zip}
-➸ *LOCALIDADE*: ${anu.location.geoname_id}
-➸ *CAPITAL*: ${anu.location.capital}
-➸ *DDD*: ${anu.location.calling_code}
-➸ *PAÍS*: ${anu.location.country_flag_emoji} `
+➽ *CIDADE:* ${anu.city}
+➽ *Latitude*: ${anu.latitude}
+➽ *Longtitude*: ${anu.longitude}
+➽ *REGIÃO*: ${anu.region_name}
+➽ *UF*: ${anu.region_code}
+➽ *IP*: ${anu.ip}
+➽ *TIPO*: ${anu.type}
+➽ *CEP*: ${anu.zip}
+➽ *LOCALIDADE*: ${anu.location.geoname_id}
+➽ *CAPITAL*: ${anu.location.capital}
+➽ *DDD*: ${anu.location.calling_code}
+➽ *PAÍS*: ${anu.location.country_flag_emoji} 
+
+𝑯𝑫𝑩𝑶𝑻.𝒆𝒙𝒆`
 			        reply(ipl)
 					break
                 case 'teste':
@@ -698,7 +563,6 @@ client.on('group-participants-update', async (anu) => {
                     client.sendMessage(from, tujuh, sticker, {quoted: mek})
                     break
                 case 'dado':    
-					if (!isPrem) return reply(nad.premium())
 					kapankah = body.slice(1)
 					const elu =['1','2','3','4','5','6']
 					const ule = elu[Math.floor(Math.random() * elu.length)]
@@ -719,6 +583,7 @@ client.on('group-participants-update', async (anu) => {
 					fs.writeFileSync('./database/user/premium.json', JSON.stringify(premium))
 					reply(`Excluido com sucesso ${oh} da Lista Premium`)
 					break
+					case 'listapremium':
 					case 'premiumlist':
 					client.updatePresence(from, Presence.composing) 
 					teks = `╭─「 *USUÁRIOS PREMIUM* 」\n`
@@ -858,6 +723,7 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, darkjokes, image, {quoted: mek, caption: '\`\`\`DARK JOKES\`\`\`'})
 			await limitAdd(sender) 
 			break
+			case 'gerarcpf':
 			case 'geradorcpf':
             if (!isPrem) return reply(nad.premium())
             boxx = await fetchJson(`http://geradorapp.com/api/v1/cpf/generate?token=0b858b5f15ae2e7eecad6aa3973d4db3`)
