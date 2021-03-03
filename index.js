@@ -758,14 +758,14 @@ client.on('group-participants-update', async (anu) => {
             case 'eusou':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
-            reply('*🤔 | Pelos meus cálculos, voce é...*')
+            reply('*Pelos meus cálculos, voce é...*')
             hasil = eusourandom[Math.floor(Math.random() * (eusourandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'dado':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
-            reply('*🎲 | Carregando o número do Dado...*')
+            reply('*Carregando o número do Dado...*')
             hasil = dadorandom[Math.floor(Math.random() * (dadorandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
