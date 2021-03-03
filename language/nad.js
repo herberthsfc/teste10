@@ -27,7 +27,7 @@ exports.noregis = () => {
 }
 
 exports.baned = () => {
-	return`⊘ | *Voce floodou comandos ou excedeu os limtes, Seu acesso foi retirado, e voce não pode usar o Bot no momento!*`
+	return`⊘ | *Por floodar, ou descumprir alguma regra, voce não pode usar o Bot no momento!*`
 }
 
 exports.premium = () => {
