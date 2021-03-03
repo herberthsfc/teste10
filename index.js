@@ -765,7 +765,6 @@ client.on('group-participants-update', async (anu) => {
             case 'dado':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
-            reply('*Carregando o número do Dado...*')
             hasil = dadorandom[Math.floor(Math.random() * (dadorandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
