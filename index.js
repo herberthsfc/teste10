@@ -47,6 +47,8 @@ const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
+const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
+const dadorandom = JSON.parse(fs.readFileSync('./database/json/dado.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
@@ -412,18 +414,22 @@ client.on('group-participants-update', async (anu) => {
 		      client.sendMessage(from, termosvip(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'regras':
+					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, regras(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'donate':
+					if (isBanned) return reply(nad.baned())
 					client.sendMessage(from, donate(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'idiomas':
+					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, idiomas(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'on':
                   case 'ativo':
+                  if (isBanned) return reply(nad.baned())
                   client.updatePresence(from, Presence.composing) 
 				  uptime = process.uptime()
                     client.sendMessage(from, `*O bot está ativo há* *${kyun(uptime)}* ✓`, text, { quoted: mek})
@@ -433,6 +439,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, donasi(), text)
 				break
 				case 'info':
+					if (isBanned) return reply(nad.baned())
 					me = client.user
 					uptime = process.uptime()
 					teks = `*Nome* : ${me.name}\n*Número* : @${me.jid.split('@')[0]}\n*Sigla:* : ${prefix} \n*Insta:* @herberthsfc \n*Bloqueados* : ${blocked.length} \n\n Respeita ou peita 🤠👍🏿`
@@ -440,6 +447,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
 					case 'infogrupo':
+				if (isBanned) return reply(nad.baned())
 				client.updatePresence(from, Presence.composing)
 				if (!isGroup) return reply(mess.only.group)
 					try {
@@ -458,6 +466,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buf, image, {quoted: mek, caption: teks})
 					break
 					case 'perfil':
+					if (isBanned) return reply(nad.baned())
 					if (!isGroup)return reply(mess.only.group)
 					client.updatePresence(from, Presence.composing)
 				    try {
@@ -483,6 +492,7 @@ client.on('group-participants-update', async (anu) => {
 						client.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
 						break
 				case 'cantar':
+                    if (isBanned) return reply(nad.baned())
                     tujuh = fs.readFileSync('./assets/cantar.mp3');
                     client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
                     break
@@ -559,12 +569,6 @@ client.on('group-participants-update', async (anu) => {
                     tujuh = fs.readFileSync('./assets/teste.webp');
                     client.sendMessage(from, tujuh, sticker, {quoted: mek})
                     break
-                case 'dado':    
-					kapankah = body.slice(1)
-					const elu =['1','2','3','4','5','6']
-					const ule = elu[Math.floor(Math.random() * elu.length)]
-					client.sendMessage(from, ule, text, { quoted: mek })
-					break
 					case 'addprem':
 					if (!isOwner) return reply(nad.ownerb())
 					addp = body.slice(10)
@@ -582,6 +586,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'listapremium':
 					case 'premiumlist':
+					if (isBanned) return reply(nad.baned())
 					client.updatePresence(from, Presence.composing) 
 					teks = `╭─「 *USUÁRIOS PREMIUM* 」\n`
 					no = 0
@@ -667,6 +672,7 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, meme, image, {quoted: mek, caption: '🔍 | 𝘔𝘦𝘮𝘦 𝘙𝘦𝘨𝘦𝘥𝘪𝘵'})
 			break
 			case 'meme':
+			if (isBanned) return reply(nad.baned())
 			if (!isGroup) return reply(mess.only.group)
 			reply(mess.wait)
 			anu = await fetchJson(`https://api.fdci.se/rep.php?gambar=MEMESBRASIL`, {method: 'get'})
@@ -687,9 +693,11 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, mia, image, {quoted: mek, caption: '*🔍 | Mia Khalifa*'})
 			break
           case 'gado000':
+          reply('*⏰ | Carregando, por favor, aguarde um momento...*')
           if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
           break
           case 'iris':
+					if (isBanned) return reply(nad.baned())
 					hobby = body.slice(1)
 					const hob =['Oi rsrs','Sim, Eu acho','Não sei dizer','Sefodê mlkkkkk','Por quê?','Sei lá','Eu não quero falar sobre isso','Foda-se','Voce é uma gostosa','kkkkkk','Não fala comigo','Pesquisa no google','Lixo','Meu pau','Eu acho que voce tentou ser engraçado(a)','Eu quero comer uma bolacha','Fdp','Corno','A verdade é que voce é corno','Vai se foder','Cala a boca vadia','Linda só verdades','Voce só me faz pergunta bosta','Estou triste, manda audio pelada','Não entendi o que você quis dizer']
 					const by = hob[Math.floor(Math.random() * hob.length)]
@@ -714,6 +722,7 @@ client.on('group-participants-update', async (anu) => {
 			await limitAdd(sender)
 			break
 			case 'ping':    
+			if (isBanned) return reply(nad.baned())
 			if (!isGroup) return reply(mess.only.group)
             const timestamp = speed();
             const latensi = speed() - timestamp
@@ -741,11 +750,27 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, box, text, {quoted: mek})
             break
             case 'gado':
+            if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
             hasil = gadorandom[Math.floor(Math.random() * (gadorandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
+            case 'eusou':
+            if (isBanned) return reply(nad.baned())
+            if (!isGroup) return reply(mess.only.group)
+            reply('*🤔 | Pelos meus cálculos, voce é...*')
+            hasil = eusourandom[Math.floor(Math.random() * (eusourandom.length))]
+            client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
+            break
+            case 'dado':
+            if (isBanned) return reply(nad.baned())
+            if (!isGroup) return reply(mess.only.group)
+            reply('*🎲 | Carregando o número do Dado...*')
+            hasil = dadorandom[Math.floor(Math.random() * (dadorandom.length))]
+            client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
+            break
             case 'gay':
+            if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
             hasil = gayrandom[Math.floor(Math.random() * (gayrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
@@ -767,6 +792,7 @@ client.on('group-participants-update', async (anu) => {
                   case 'criadorgp':
                   case 'ownergp':
 				  case 'ownergroup':
+               if (isBanned) return reply(nad.baned())
                client.updatePresence(from, Presence.composing) 
               options = {
           text: `*Este foi quem criou essa merda de grupo* : @${from.split("-")[0]}`,
@@ -784,6 +810,7 @@ client.on('group-participants-update', async (anu) => {
                 case 'bug':
                 case 'reportar':
                 case 'reportarbug':
+                     if (isBanned) return reply(nad.baned())
                      const pesan = body.slice(5)
                       if (pesan.length > 300) return client.sendMessage(from, '*「 ❗ 」 Texto muito longo!*', msgType.text, {quoted: mek})
                         var nomor = mek.participant
@@ -930,6 +957,7 @@ client.on('group-participants-update', async (anu) => {
 			        break
 			    case 'map':
 			case 'mapa': 
+                if (isBanned) return reply(nad.baned())
                 anu = await fetchJson(`https://mnazria.herokuapp.com/api/maps?search=${body.slice(5)}`, {method: 'get'})
                 buffer = await getBuffer(anu.gambar)
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: `${body.slice(5)}`})
@@ -1219,6 +1247,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'wa.me':
 				  case 'wame':
+				  if (isBanned) return reply(nad.baned())
 				  if (!isGroup) return reply(mess.only.group)
           client.updatePresence(from, Presence.composing) 
       options = {
@@ -1269,6 +1298,7 @@ client.on('group-participants-update', async (anu) => {
             case 'creator':
             case 'criador':
             case 'dono':
+                  if (isBanned) return reply(nad.baned())
                   client.sendMessage(from, {displayname: "Herberth", vcard: vcard}, MessageType.contact, { quoted: mek})
        client.sendMessage(from, '*✓ | Este é o contato do meu criador!*',MessageType.text, { quoted: mek} )
            break    
@@ -1359,6 +1389,7 @@ client.on('group-participants-update', async (anu) => {
                       break
 				   case 'listadmins':
 				   case 'adms':
+					 if (isBanned) return reply(nad.baned())
 					 client.updatePresence(from, Presence.composing) 
 					if (!isGroup) return reply(mess.only.group)
 					teks = `Administradores do grupo *${groupMetadata.subject}* \nTotal : ${groupAdmins.length}\n\n`
