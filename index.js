@@ -515,15 +515,6 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/images%20-%202021-02-23T231504.507.jpeg?text.0.text=${teks}&text.0.position.gravity=northwest&text.0.position.x=8%25&text.0.position.y=30%25&text.0.size=30&text.0.color=0800ff&text.0.font.weight=600&text.1.text=${teks}&text.1.position.gravity=northwest&text.1.position.x=7%25&text.1.position.y=30%25&text.1.size=30&text.1.color=ffffff&text.1.font.weight=600&text.1.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
-					case 'aatxt':
-					if (!isPrem) return reply(nad.premium())
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 9) return reply('O texto é longo, até 9 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
-					buffer = await getBuffer(`https://i.imgur.com/dRcfUCI.jpg?text.0.text=${teks}&text.0.position.gravity=northwest&text.0.position.x=8%25&text.0.position.y=30%25&text.0.size=30&text.0.color=0800ff&text.0.font.weight=600&text.1.text=${teks}&text.1.position.gravity=northwest&text.1.position.x=7%25&text.1.position.y=30%25&text.1.size=30&text.1.color=ffffff&text.1.font.weight=600&text.1.background.opacity=96`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break	
                 case 'miatxt':
                 case 'milogo':
 					if (!isPrem) return reply(nad.premium())
@@ -532,6 +523,15 @@ client.on('group-participants-update', async (anu) => {
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
 					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
 					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/images%20-%202021-02-22T014719.920.jpeg?text.0.text=${teks}&text.0.position.gravity=north&text.0.position.y=50%25&text.0.size=15&text.0.color=000000&text.0.font.family=Ek%20Mukta&text.0.font.weight=600&text.0.font.style=italic&text.0.background.opacity=29`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
+					break
+					case 'aaatxt':
+					if (!isPrem) return reply(nad.premium())
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(6)
+					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					buffer = await getBuffer(`https://1.bp.blogspot.com/-MLTHcsJ0iJg/YC-cVJ2FgKI/AAAAAAAAAoo/S-_oHHqMmMERhCxCqzekRORpVhcQHFP3QCNcBGAsYHQ/s1080/PicsArt_02-17-07.00.37.jpg?text.0.text=${teks}&text.0.position.gravity=north&text.0.position.y=50%25&text.0.size=15&text.0.color=000000&text.0.font.family=Ek%20Mukta&text.0.font.weight=600&text.0.font.style=italic&text.0.background.opacity=29`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
                 case 'dnulis':
