@@ -536,7 +536,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'plaquinhas3':
 					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(11)
+					teks = body.slice(12)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
 					reply('*Aguarde...*')
 					buffer = await getBuffer(`https://budenter.sirv.com/Images/plaquinha3.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.x=2%25&text.0.position.y=11%25&text.0.size=30&text.0.color=000000&text.0.opacity=84&text.0.font.style=italic&text.0.background.opacity=94&text.0.outline.blur=10`)
