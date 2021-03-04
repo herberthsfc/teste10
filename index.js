@@ -50,6 +50,7 @@ const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
 const dadorandom = JSON.parse(fs.readFileSync('./database/json/dado.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
+const amorrandom = JSON.parse(fs.readFileSync('./database/json/amor.json'))
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
             + 'FN:Herberth\n' 
@@ -752,6 +753,7 @@ client.on('group-participants-update', async (anu) => {
             case 'gado':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
+            reply('*Gado Localizado!*')
             hasil = gadorandom[Math.floor(Math.random() * (gadorandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
@@ -772,6 +774,12 @@ client.on('group-participants-update', async (anu) => {
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
             hasil = gayrandom[Math.floor(Math.random() * (gayrandom.length))]
+            client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
+            break
+            case 'amor':
+            if (isBanned) return reply(nad.baned())
+            if (!isGroup) return reply(mess.only.group)
+            hasil = amorrandom[Math.floor(Math.random() * (amorrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'chekcep':
