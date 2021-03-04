@@ -753,7 +753,7 @@ client.on('group-participants-update', async (anu) => {
             case 'gado':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
-            reply('*Gado Localizado!*')
+            reply('*🔍 | Gado Localizado!*')
             hasil = gadorandom[Math.floor(Math.random() * (gadorandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
