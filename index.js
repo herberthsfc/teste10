@@ -534,6 +534,14 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://1.bp.blogspot.com/-MLTHcsJ0iJg/YC-cVJ2FgKI/AAAAAAAAAoo/S-_oHHqMmMERhCxCqzekRORpVhcQHFP3QCNcBGAsYHQ/s1080/PicsArt_02-17-07.00.37.jpeg?text.0.text=${teks}&text.0.position.gravity=north&text.0.position.y=50%25&text.0.size=15&text.0.color=000000&text.0.font.family=Ek%20Mukta&text.0.font.weight=600&text.0.font.style=italic&text.0.background.opacity=29`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
+					case 'plaquinhas3':
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(10)
+					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
+					reply('*Aguarde...*')
+					buffer = await getBuffer(`https://budenter.sirv.com/Images/plaquinha3.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.x=2%25&text.0.position.y=11%25&text.0.size=30&text.0.color=000000&text.0.opacity=84&text.0.font.style=italic&text.0.background.opacity=94&text.0.outline.blur=10`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Aqui está Amigão*'})
+					break
                 case 'dnulis':
 					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
