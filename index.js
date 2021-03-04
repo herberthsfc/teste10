@@ -531,7 +531,7 @@ client.on('group-participants-update', async (anu) => {
 					teks = body.slice(6)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
 					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
-					buffer = await getBuffer(`https://1.bp.blogspot.com/-MLTHcsJ0iJg/YC-cVJ2FgKI/AAAAAAAAAoo/S-_oHHqMmMERhCxCqzekRORpVhcQHFP3QCNcBGAsYHQ/s1080/PicsArt_02-17-07.00.37.jpg?text.0.text=${teks}&text.0.position.gravity=north&text.0.position.y=50%25&text.0.size=15&text.0.color=000000&text.0.font.family=Ek%20Mukta&text.0.font.weight=600&text.0.font.style=italic&text.0.background.opacity=29`)
+					buffer = await getBuffer(`https://1.bp.blogspot.com/-MLTHcsJ0iJg/YC-cVJ2FgKI/AAAAAAAAAoo/S-_oHHqMmMERhCxCqzekRORpVhcQHFP3QCNcBGAsYHQ/s1080/PicsArt_02-17-07.00.37.jpeg?text.0.text=${teks}&text.0.position.gravity=north&text.0.position.y=50%25&text.0.size=15&text.0.color=000000&text.0.font.family=Ek%20Mukta&text.0.font.weight=600&text.0.font.style=italic&text.0.background.opacity=29`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
                 case 'dnulis':
