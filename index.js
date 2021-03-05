@@ -534,13 +534,13 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://1.bp.blogspot.com/-MLTHcsJ0iJg/YC-cVJ2FgKI/AAAAAAAAAoo/S-_oHHqMmMERhCxCqzekRORpVhcQHFP3QCNcBGAsYHQ/s1080/PicsArt_02-17-07.00.37.jpeg?text.0.text=${teks}&text.0.position.gravity=north&text.0.position.y=50%25&text.0.size=15&text.0.color=000000&text.0.font.family=Ek%20Mukta&text.0.font.weight=600&text.0.font.style=italic&text.0.background.opacity=29`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
-					case 'teste1':
+					case 'blogo':
 					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*Aguarde...*')
-					buffer = await getBuffer(`https://oxigater.sirv.com/Images/teste1.jpg?text.0.text=herberth&text.0.position.gravity=south&text.0.size=54&text.0.color=d4d4d4&text.0.opacity=96&text.0.outline.opacity=8`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Aqui está Amigão*'})
+					teks = body.slice(6)
+					if (teks.length > 15) return reply('*O texto é longo...*)
+					reply('*Aguarde Estou Fazendo...*')
+					buffer = await getBuffer(`https://budenter.sirv.com/Images/blogo.jpg?text.0.text=Daddy&text.0.position.gravity=center&text.0.position.x=13%25&text.0.position.y=22%25&text.0.size=1&text.0.color=000000&text.0.opacity=95&text.0.font.family=PT%20Sans%20Caption&text.0.font.weight=600&text.0.background.opacity=43`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Aqui está a sua Logo*'})
 					break
                 case 'dnulis':
 					if (!isPrem) return reply(nad.premium())
