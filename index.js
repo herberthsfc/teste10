@@ -542,6 +542,14 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://budenter.sirv.com/Images/Bologo.jpg?text.0.text={teks}&text.0.position.gravity=center&text.0.position.y=1%25&text.0.size=40&text.0.color=000000&text.0.opacity=70&text.0.font.family=Patua%20One&text.0.background.opacity=33&text.0.outline.blur=63`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Aqui está parceiro*'})
 					break
+					case 'blogo':
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(6)
+					if (teks.length > 15) return reply('*O texto é longo*')
+					reply('*Aguarde Estou fazendo...*')
+					buffer = await getBuffer(`https://budenter.sirv.com/Images/blogo.jpg?text.0.text={teks}&text.0.position.gravity=center&text.0.position.x=13%25&text.0.position.y=22%25&text.0.size=1&text.0.color=000000&text.0.opacity=95&text.0.font.family=PT%20Sans%20Caption&text.0.font.weight=600&text.0.background.opacity=43`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Aqui está parceiro*'})
+					break
                 case 'dnulis':
 					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
