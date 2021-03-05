@@ -537,7 +537,7 @@ client.on('group-participants-update', async (anu) => {
 					case 'blogo':
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(6)
-					if (teks.length > 15) return reply('*O texto é longo...*)
+					if (teks.length > 15) return reply('*O texto é longo...*')
 					reply('*Aguarde Estou Fazendo...*')
 					buffer = await getBuffer(`https://budenter.sirv.com/Images/blogo.jpg?text.0.text=Daddy&text.0.position.gravity=center&text.0.position.x=13%25&text.0.position.y=22%25&text.0.size=1&text.0.color=000000&text.0.opacity=95&text.0.font.family=PT%20Sans%20Caption&text.0.font.weight=600&text.0.background.opacity=43`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Aqui está a sua Logo*'})
