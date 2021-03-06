@@ -515,47 +515,67 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/images%20-%202021-02-23T231504.507.jpeg?text.0.text=${teks}&text.0.position.gravity=northwest&text.0.position.x=8%25&text.0.position.y=30%25&text.0.size=30&text.0.color=0800ff&text.0.font.weight=600&text.1.text=${teks}&text.1.position.gravity=northwest&text.1.position.x=7%25&text.1.position.y=30%25&text.1.size=30&text.1.color=ffffff&text.1.font.weight=600&text.1.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
-                case 'miatxt':
-                case 'milogo':
-					if (!isPrem) return reply(nad.premium())
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
-					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/images%20-%202021-02-22T014719.920.jpeg?text.0.text=${teks}&text.0.position.gravity=north&text.0.position.y=50%25&text.0.size=15&text.0.color=000000&text.0.font.family=Ek%20Mukta&text.0.font.weight=600&text.0.font.style=italic&text.0.background.opacity=29`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break
-					case 'aaatxt':
-					if (!isPrem) return reply(nad.premium())
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(6)
-					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
-					buffer = await getBuffer(`https://1.bp.blogspot.com/-MLTHcsJ0iJg/YC-cVJ2FgKI/AAAAAAAAAoo/S-_oHHqMmMERhCxCqzekRORpVhcQHFP3QCNcBGAsYHQ/s1080/PicsArt_02-17-07.00.37.jpeg?text.0.text=${teks}&text.0.position.gravity=north&text.0.position.y=50%25&text.0.size=15&text.0.color=000000&text.0.font.family=Ek%20Mukta&text.0.font.weight=600&text.0.font.style=italic&text.0.background.opacity=29`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
-					break
-					case 'blogo':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(6)
-					if (teks.length > 15) return reply('*O texto é longo*')
-					reply('*Aguarde Estou fazendo...*')
-					buffer = await getBuffer(`https://budenter.sirv.com/Images/blogo.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.x=13%25&text.0.position.y=22%25&text.0.size=1&text.0.color=000000&text.0.opacity=95&text.0.font.family=PT%20Sans%20Caption&text.0.font.weight=600&text.0.background.opacity=43`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Aqui está parceiro*'})
-					break
-					case 'bologo':
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 15) return reply('*O texto é longo*')
-					reply('*Aguarde Estou fazendo...*')
-					buffer = await getBuffer(`https://budenter.sirv.com/Images/Bologo.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.y=1%25&text.0.size=40&text.0.color=000000&text.0.opacity=70&text.0.font.family=Patua%20One&text.0.background.opacity=33&text.0.outline.blur=63`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
-					break
 					case 'plaquinha1':
+					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(11)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*Aguarde...*')
-					buffer = await getBuffer(`https://oxigater.sirv.com/Images/plaquinha1.jpg?text.0.text=${teks}&text.0.position.gravity=center&text.0.position.y=10%25&text.0.size=30&text.0.color=272020&text.0.opacity=27&text.0.font.family=Noto%20Serif`)
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					buffer = await getBuffer(`https://oxigater.sirv.com/Images/plaquinha1.jpg?text.0.text=${teks}&text.0.position.x=-35%25&text.0.position.y=-70%25&text.0.size=30&text.0.color=000000&text.0.opacity=29`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
+					break
+					case 'plaquinha2':
+					if (!isPrem) return reply(nad.premium())
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(11)
+					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					buffer = await getBuffer(`https://oxigater.sirv.com/Images/plaquinha2.jpg?text.0.text=${teks}&text.0.position.x=-50%25&text.0.position.y=-20%25&text.0.size=20&text.0.color=000000&text.0.opacity=37`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
+					break
+					case 'googletxt':
+					if (!isPrem) return reply(nad.premium())
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(10)
+					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					buffer = await getBuffer(`https://oxigater.sirv.com/Images/googletxt.jpg?text.0.text=${teks}&text.0.position.x=-50%25&text.0.position.y=-46%25&text.0.size=0&text.0.color=040303" width="1500`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Pesquisa concluída com sucesso ✓*'})
+					break
+					case 'xvideotxt':
+					if (!isPrem) return reply(nad.premium())
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(10)
+					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					buffer = await getBuffer(`https://oxigater.sirv.com/Images/xvideostxt.jpg?text.0.text=${teks}&text.0.position.x=-56%25&text.0.position.y=-68%25&text.0.size=2&text.0.color=070505&text.0.opacity=90&text.0.background.opacity=33`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Pesquisa concluída com sucesso ✓*'})
+					break
+					case 'cadernotxt':
+					if (!isPrem) return reply(nad.premium())
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(11)
+					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					buffer = await getBuffer(`https://oxigater.sirv.com/Images/cadernotxt.jpg?text.0.text=${teks}&text.0.position.x=-35%25&text.0.position.y=-79%25&text.0.size=0&text.0.color=000000&text.0.opacity=83&text.0.outline.blur=14`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Concluída com sucesso ✓*'})
+					break
+					case 'miatxt':
+					if (!isPrem) return reply(nad.premium())
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(7)
+					if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					buffer = await getBuffer(`https://oxigater.sirv.com/Images/miatxt.jpg?text.0.text=${teks}&text.0.position.x=-35%25&text.0.position.y=-33%25&text.0.size=0&text.0.color=000000&text.0.opacity=42&text.0.background.opacity=66`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
+					break
+					case 'pvittartxt':
+					if (!isPrem) return reply(nad.premium())
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(11)
+					if (teks.length > 8) return reply('O texto é longo, até 8 caracteres')
+					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					buffer = await getBuffer(`https://oxigater.sirv.com/Images/pvittartxt.jpg?text.0.text=${teks}&text.0.position.x=-40%25&text.0.position.y=-15%25&text.0.size=0&text.0.color=000000&text.0.opacity=50`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
 					break
                 case 'dnulis':
