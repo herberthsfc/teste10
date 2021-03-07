@@ -46,6 +46,7 @@ const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
 const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
+const antishit = JSON.parse(fs.readFileSync('./database/json/antishit.json'))
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
@@ -206,6 +207,7 @@ client.on('group-participants-update', async (anu) => {
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
+			const isAntiShit = isGroup ? antishit.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
 			const isPrem = premium.includes(sender)
 			const isBanned = ban.includes(sender)
@@ -337,7 +339,18 @@ client.on('group-participants-update', async (anu) => {
 			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
 		}, 1000)
 	}
-	
+	if (messagesC.includes("vsf")){
+		if (!isGroup) return
+		if (!isAntiShit) return
+		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
+		client.updatePresence(from, Presence.composing)
+		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		reply(`*✓ | Palavrão detectado ${sender.split("@")[0]} removido(a) com sucesso!*`)
+		setTimeout( () => {
+			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+		}, 1000)
+	}
 	if (messagesC.includes("bot")){
 			client.updatePresence(from, Presence.composing)
 			reply("O único bot aqui sou eu... Poderia por obséquio me fazer saber por qual razão, motivo ou circunstância Vossa Excelência invocou o meu precioso nome em vão!?")
@@ -1069,6 +1082,24 @@ client.on('group-participants-update', async (anu) => {
 						antiracismo.splice(from, 1)
 						fs.writeFileSync('./database/json/antiracismo.json', JSON.stringify(antiracismo))
 						reply(`\`\`\`✓Modo antiracismo desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
+					} else {
+						reply('1 para ativar, 2 para desligar')
+					}
+					break
+					case 'antishit':
+					if (!isGroup) return reply(mess.only.group)
+					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+					if (args.length < 1) return reply('*Digite 1 para ativar*')
+					if ((args[0]) === '1') {
+						if (isAntiShit) return reply('O modo antishit já está ativo')
+						antishit.push(from)
+						fs.writeFileSync('./database/json/antishit.json', JSON.stringify(antishit))
+						reply(`\`\`\`✓Ativado com sucesso o modo antishit no grupo\`\`\` *${groupMetadata.subject}*`)
+					} else if ((args[0]) === '2') {
+						antishit.splice(from, 1)
+						fs.writeFileSync('./database/json/antishit.json', JSON.stringify(antishit))
+						reply(`\`\`\`✓Modo antishit desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
 					} else {
 						reply('1 para ativar, 2 para desligar')
 					}
