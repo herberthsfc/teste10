@@ -498,6 +498,18 @@ client.on('group-participants-update', async (anu) => {
                     tujuh = fs.readFileSync('./assets/cantar1.mp3');
                     client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
                     break
+                    case 'esquilo':
+					if (!isPrem) return reply(nad.premium())
+					encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+					media = await client.downloadAndSaveMediaMessage(encmedia)
+					ran = getRandom('.mp3')
+					exec(`ffmpeg -i ${media} -filter:a "atempo=0.5,asetrate=65100" ${ran}`, (err, stderr, stdout) => {
+						fs.unlinkSync(media)
+						if (err) return reply('Error!')
+						hah = fs.readFileSync(ran)
+						client.sendMessage(from, hah, audio, {mimetype: 'audio/mp4', ptt:true, quoted: mek})
+						fs.unlinkSync(ran)
+					})
                     case 'plogo':
                     if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
