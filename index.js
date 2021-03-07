@@ -174,7 +174,7 @@ client.on('group-participants-update', async (anu) => {
 			const isCmd = body.startsWith(prefix)
 
 			mess = {
-				wait: '*⏰ | Carregando, por favor, aguarde um momento...*',
+				wait: '*[❕] Carregando...*',
 				success: '️*Concluído com sucesso ✓*',
 				error: {
 					stick: '*Aconteceu um erro, tente novamente outra hora!*',
@@ -856,7 +856,7 @@ client.on('group-participants-update', async (anu) => {
                     vide = body.slice(9)
                     hmm = await fetchJson(`https://videfikri.com/api/igstalk/?username=${vide}`)
                     buffer = await getBuffer(hmm.result.profile_hd)
-                    hasil = `Nome de usuário : ${hmm.result.username}\nNome completo : ${hmm.result.full_name}\nSeguidores : ${hmm.result.followers}\nSeguindo : ${hmm.result.following}\nPrivado : ${hmm.result.is_private}\nUsuario Verificado? : ${hmm.result.is_verified}\nbio : ${hmm.result.bio}\nContagem de publicações : ${hmm.result.post_count}\nUrl Externo : ${hmm.result.external_url}\nFbId : ${hmm.result.fbid}\nMostrar perfil sugerido : ${hmm.result.show_suggested_profile}`
+                    hasil = `*「 User 」* : ${hmm.result.username}\n*「 Nome 」* : ${hmm.result.full_name}\n*「 Seguidores 」* : ${hmm.result.followers}\n*「 Seguindo 」* : ${hmm.result.following}\n*「 Publicações 」* : ${hmm.result.post_count}\n*「 Biografia 」* : ${hmm.result.bio}`
                     client.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
                     break
                   case 'criadorgp':
