@@ -342,27 +342,25 @@ client.on('group-participants-update', async (anu) => {
 	if (messagesC.includes("vsf")){
 		if (!isGroup) return
 		if (!isAntiShit) return
-		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
+		if (isGroupAdmins) return reply('*Você é adm do grupo, por favor, tenha modos!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
 		reply(`*✓ | Palavrão detectado ${sender.split("@")[0]} , por favor, evite falar palavras tóxicas!*`)
 		setTimeout( () => {
         client.updatePresence(from, Presence.composing)
-	    reply("va postar em outro lugar...")
 		}, 0)
 	}
 	if (messagesC.includes("fdp")){
 		if (!isGroup) return
 		if (!isAntiShit) return
-		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
+		if (isGroupAdmins) return reply('*Você é adm do grupo, por favor, tenha modos!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
 		reply(`*✓ | Palavrão detectado ${sender.split("@")[0]} , por favor, evite falar palavras tóxicas!*`)
 		setTimeout( () => {
         client.updatePresence(from, Presence.composing)
-	    reply("va postar em outro lugar...")
 		}, 0)
 	}
 	if (messagesC.includes("bot")){
@@ -434,7 +432,6 @@ client.on('group-participants-update', async (anu) => {
 				  break
 				  case 'serpremium':
 				  case 'ser.premium':
-		      if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do Bot!*')
 		      client.sendMessage(from, serpremium(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'termosvip':
@@ -882,7 +879,7 @@ client.on('group-participants-update', async (anu) => {
                     client.sendMessage(from, brno, text, {quoted: mek})
                     break
 			case 'igstalk':
-                    if (isBanned) return reply(nad.baned())
+                    if (!isPrem) return reply(nad.premium())
                     vide = body.slice(9)
                     hmm = await fetchJson(`https://videfikri.com/api/igstalk/?username=${vide}`)
                     buffer = await getBuffer(hmm.result.profile_hd)
@@ -1067,12 +1064,12 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args.length < 1) return reply('*Digite 1 para ativar*')
-					if (Number(args[0]) === 1) {
+					if (Number(args[0]) === on) {
 						if (isAntiLink) return reply('*✓ | O Antilink ja está ativado!*')
 						antilink.push(from)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
 						reply('\`\`\`✓Ativado com sucesso o modo antilink neste grupo!\`\`\`')
-					} else if (Number(args[0]) === 0) {
+					} else if (Number(args[0]) === off) {
 						if (!isantilink) return reply('*⊘ | Antilink desativado com sucesso!*')
 						var ini = anti.indexOf(from)
 						antilink.splice(ini, 1)
@@ -1087,12 +1084,12 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args.length < 1) return reply('*Digite 1 para ativar*')
-					if ((args[0]) === '1') {
+					if ((args[0]) === 'on') {
 						if (isAntiRacismo) return reply('O modo antiracismo já está ativo')
 						antiracismo.push(from)
 						fs.writeFileSync('./database/json/antiracismo.json', JSON.stringify(antiracismo))
 						reply(`\`\`\`✓Ativado com sucesso o modo antiracismo no grupo\`\`\` *${groupMetadata.subject}*`)
-					} else if ((args[0]) === '2') {
+					} else if ((args[0]) === 'off') {
 						antiracismo.splice(from, 1)
 						fs.writeFileSync('./database/json/antiracismo.json', JSON.stringify(antiracismo))
 						reply(`\`\`\`✓Modo antiracismo desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
@@ -1105,12 +1102,12 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args.length < 1) return reply('*Digite 1 para ativar*')
-					if ((args[0]) === '1') {
+					if ((args[0]) === 'on') {
 						if (isAntiShit) return reply('O modo antishit já está ativo')
 						antishit.push(from)
 						fs.writeFileSync('./database/json/antishit.json', JSON.stringify(antishit))
 						reply(`\`\`\`✓Ativado com sucesso o modo antishit no grupo\`\`\` *${groupMetadata.subject}*`)
-					} else if ((args[0]) === '2') {
+					} else if ((args[0]) === 'off') {
 						antishit.splice(from, 1)
 						fs.writeFileSync('./database/json/antishit.json', JSON.stringify(antishit))
 						reply(`\`\`\`✓Modo antishit desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
