@@ -46,6 +46,7 @@ const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
 const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
+const badword = JSON.parse(fs.readFileSync('./database/json/badword.json'))
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
@@ -206,6 +207,7 @@ client.on('group-participants-update', async (anu) => {
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
+			const isBadWord = isGroup ? badword.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
 			const isPrem = premium.includes(sender)
 			const isBanned = ban.includes(sender)
@@ -337,7 +339,18 @@ client.on('group-participants-update', async (anu) => {
 			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
 		}, 1000)
 	}
-	
+	if (isGroup && isBadWord) {
+    if (bad.includes(messagesC)) {
+    if (!isGroupAdmins) {
+    return reply("Palavra nao permitida prxima vez e remoo!! 😠")
+    .then(() => client.groupRemove(from, sender))
+    .then(() => {
+    client.sendMessage(from, `*「 ANTI BADWORD 」*\nVoce dikick por dizer asperamente!`, text ,{quoted: mek})
+    }).catch(() => client.sendMessage(from, `Infelizmente, nao sou um administrador, kalo admin udah cya kick!`, text , {quoted : mek}))
+    } else {
+    return reply( "Por favor, mantenha Min 😇")
+        }
+    }
 	if (messagesC.includes("bot")){
 			client.updatePresence(from, Presence.composing)
 			reply("O único bot aqui sou eu... Poderia por obséquio me fazer saber por qual razão, motivo ou circunstância Vossa Excelência invocou o meu precioso nome em vão!?")
@@ -1082,6 +1095,48 @@ client.on('group-participants-update', async (anu) => {
 						reply('1 para ativar, 2 para desligar')
 					}
 					break
+					case 'addbadword':
+                    if (!isOwner) return reply(ind.ownerb())
+                    if (!isGroupAdmins) return reply(ind.admin())
+                    if (args.length < 1) return reply( `Kirim perintah ${prefix}addbadword [kata kasar]. contoh ${prefix}addbadword bego`)
+                    const bw = body.slice(12)
+                    bad.push(bw)
+                    fs.writeFileSync('./database/group/bad.json', JSON.stringify(bad))
+                    reply('Sucesso adicionado Bad Word!')
+                    break
+                    case 'delbadword':
+                    if (!isOwner) return reply(ind.ownerb())
+                    if (!isGroupAdmins) return reply(ind.admin())
+                    if (args.length < 1) return reply( `Kirim perintah ${prefix}addbadword [kata kasar]. contoh ${prefix}addbadword bego`)
+                    let dbw = body.slice(12)
+                    bad.splice(dbw)
+                    fs.writeFileSync('./database/group/bad.json', JSON.stringify(bad))
+                    reply('Sucesso na excluso BAD WORD!')
+                    break 
+                case 'listbadword':
+                    let lbw = `Esta e uma lista BAD WORD\nTotal : ${bad.length}\n`
+                    for (let i of bad) {
+                        lbw += `➸ ${i.replace(bad)}\n`
+                    }
+                    await reply(lbw)
+                    break
+                    case 'nobadword':
+					if (!isOwner) return reply(ind.ownerb())
+					if (!isGroupAdmins) return reply(ind.admin())
+                if (args.length < 1) return reply('lel🗿')
+                if (args[0] === 'enable') {
+                if (isBadWord) return reply('*recursos BadWord estava ativo antes!!*')
+                 	   badword.push(from)
+                 	   fs.writeFileSync('./database/group/badword.json', JSON.stringify(badword))
+                  	   reply(`badword is enable`)
+              	  } else if (args[0] === 'disable') {
+                  	  badword.splice(from, 1)
+                 	   fs.writeFileSync('./database/group/badword.json', JSON.stringify(badword))
+                 	    reply(`badword is disable`)
+             	   } else {
+                 	   reply(ind.satukos())
+                	}
+                    break
 				case 'ocr': 
 				case 'txtdafoto':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
