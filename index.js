@@ -1101,7 +1101,7 @@ client.on('group-participants-update', async (anu) => {
                     if (args.length < 1) return reply( `Kirim perintah ${prefix}addbadword [kata kasar]. contoh ${prefix}addbadword bego`)
                     const bw = body.slice(12)
                     bad.push(bw)
-                    fs.writeFileSync('./database/group/bad.json', JSON.stringify(bad))
+                    fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad))
                     reply('Sucesso adicionado Bad Word!')
                     break
                     case 'delbadword':
@@ -1110,7 +1110,7 @@ client.on('group-participants-update', async (anu) => {
                     if (args.length < 1) return reply( `Kirim perintah ${prefix}addbadword [kata kasar]. contoh ${prefix}addbadword bego`)
                     let dbw = body.slice(12)
                     bad.splice(dbw)
-                    fs.writeFileSync('./database/group/bad.json', JSON.stringify(bad))
+                    fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad))
                     reply('Sucesso na excluso BAD WORD!')
                     break 
                 case 'listbadword':
@@ -1127,11 +1127,11 @@ client.on('group-participants-update', async (anu) => {
                 if (args[0] === 'enable') {
                 if (isBadWord) return reply('*recursos BadWord estava ativo antes!!*')
                  	   badword.push(from)
-                 	   fs.writeFileSync('./database/group/badword.json', JSON.stringify(badword))
+                 	   fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword))
                   	   reply(`badword is enable`)
               	  } else if (args[0] === 'disable') {
                   	  badword.splice(from, 1)
-                 	   fs.writeFileSync('./database/group/badword.json', JSON.stringify(badword))
+                 	   fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword))
                  	    reply(`badword is disable`)
              	   } else {
                  	   reply(ind.satukos())
