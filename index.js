@@ -46,7 +46,6 @@ const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
 const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
-const badword = JSON.parse(fs.readFileSync('./database/json/badword.json'))
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
@@ -207,7 +206,6 @@ client.on('group-participants-update', async (anu) => {
 			const isSimi = isGroup ? samih.includes(from) : false
 			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
-			const isBadWord = isGroup ? badword.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
 			const isPrem = premium.includes(sender)
 			const isBanned = ban.includes(sender)
@@ -339,18 +337,7 @@ client.on('group-participants-update', async (anu) => {
 			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
 		}, 1000)
 	}
-	if (isGroup && isBadWord) {
-    if (bad.includes(messagesC)) {
-    if (!isGroupAdmins) {
-    return reply("Palavra nao permitida prxima vez e remoo!! 😠")
-    .then(() => client.groupRemove(from, sender))
-    .then(() => {
-    client.sendMessage(from, `*「 ANTI BADWORD 」*\nVoce dikick por dizer asperamente!`, text ,{quoted: mek})
-    }).catch(() => client.sendMessage(from, `Infelizmente, nao sou um administrador, kalo admin udah cya kick!`, text , {quoted : mek}))
-    } else {
-    return reply( "Por favor, mantenha Min 😇")
-        }
-    }
+	
 	if (messagesC.includes("bot")){
 			client.updatePresence(from, Presence.composing)
 			reply("O único bot aqui sou eu... Poderia por obséquio me fazer saber por qual razão, motivo ou circunstância Vossa Excelência invocou o meu precioso nome em vão!?")
@@ -546,7 +533,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(11)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					reply('*[❕] Carregando...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/plaquinha1.jpg?text.0.text=${teks}&text.0.position.x=-35%25&text.0.position.y=-69%25&text.0.size=30&text.0.color=000000&text.0.opacity=55&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
 					break
@@ -555,7 +542,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(11)
 					if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					reply('*[❕] Carregando...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/plaquinha2.jpg?text.0.text=${teks}&text.0.position.x=-46%25&text.0.position.y=-16%25&text.0.size=30&text.0.color=000000&text.0.opacity=55&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
 					break
@@ -564,7 +551,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(10)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					reply('*[❕] Carregando...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/googletxt.jpg?text.0.text=${teks}&text.0.position.x=-55%25&text.0.position.y=-45%25&text.0.size=24&text.0.color=000000&text.0.opacity=94&text.0.font.family=Oswald&text.0.background.opacity=1`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Pesquisa concluída com sucesso ✓*'})
 					break
@@ -573,7 +560,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(10)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					reply('*[❕] Carregando...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/xvideostxt.jpg?text.0.text=${teks}&text.0.position.x=-46%25&text.0.position.y=-68%25&text.0.size=24&text.0.color=000000&text.0.opacity=90&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Pesquisa concluída com sucesso ✓*'})
 					break
@@ -582,7 +569,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(11)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					reply('*[❕] Carregando...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/cadernotxt.jpg?text.0.text=${teks}&text.0.position.x=-49%25&text.0.position.y=-78%25&text.0.size=24&text.0.color=000000&text.0.opacity=90&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Concluída com sucesso ✓*'})
 					break
@@ -591,7 +578,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					reply('*[❕] Carregando...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/miatxt.jpg?text.0.text=${teks}&text.0.position.x=-35%25&text.0.position.y=-32%25&text.0.size=18&text.0.color=000000&text.0.opacity=60&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
 					break
@@ -600,18 +587,9 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(11)
 					if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					reply('*[❕] Carregando...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/pvittartxt.jpg?text.0.text=${teks}&text.0.position.x=-46%25&text.0.position.y=-35%25&text.0.size=30&text.0.color=000000&text.0.opacity=55&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
-					break
-                case 'dnulis':
-					if (!isPrem) return reply(nad.premium())
-					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(7)
-					if (teks.length > 200) return reply('O texto é longo, até 200 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
-					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_040232.png?text.0.text=${teks}&text.0.position.gravity=northwest&text.0.position.x=10%25&text.0.position.y=8%25&text.0.align=right&text.0.size=55&text.0.color=000000&text.0.opacity=72&text.0.font.family=Bitter&text.0.font.style=italic`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
                 case 'pngtxt':
                 case 'dnobg':
@@ -1095,48 +1073,6 @@ client.on('group-participants-update', async (anu) => {
 						reply('1 para ativar, 2 para desligar')
 					}
 					break
-					case 'addbadword':
-                    if (!isOwner) return reply(ind.ownerb())
-                    if (!isGroupAdmins) return reply(ind.admin())
-                    if (args.length < 1) return reply( `Kirim perintah ${prefix}addbadword [kata kasar]. contoh ${prefix}addbadword bego`)
-                    const bw = body.slice(12)
-                    bad.push(bw)
-                    fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad))
-                    reply('Sucesso adicionado Bad Word!')
-                    break
-                    case 'delbadword':
-                    if (!isOwner) return reply(ind.ownerb())
-                    if (!isGroupAdmins) return reply(ind.admin())
-                    if (args.length < 1) return reply( `Kirim perintah ${prefix}addbadword [kata kasar]. contoh ${prefix}addbadword bego`)
-                    let dbw = body.slice(12)
-                    bad.splice(dbw)
-                    fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad))
-                    reply('Sucesso na excluso BAD WORD!')
-                    break 
-                case 'listbadword':
-                    let lbw = `Esta e uma lista BAD WORD\nTotal : ${bad.length}\n`
-                    for (let i of bad) {
-                        lbw += `➸ ${i.replace(bad)}\n`
-                    }
-                    await reply(lbw)
-                    break
-                    case 'nobadword':
-					if (!isOwner) return reply(ind.ownerb())
-					if (!isGroupAdmins) return reply(ind.admin())
-                if (args.length < 1) return reply('lel🗿')
-                if (args[0] === 'enable') {
-                if (isBadWord) return reply('*recursos BadWord estava ativo antes!!*')
-                 	   badword.push(from)
-                 	   fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword))
-                  	   reply(`badword is enable`)
-              	  } else if (args[0] === 'disable') {
-                  	  badword.splice(from, 1)
-                 	   fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword))
-                 	    reply(`badword is disable`)
-             	   } else {
-                 	   reply(ind.satukos())
-                	}
-                    break
 				case 'ocr': 
 				case 'txtdafoto':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
