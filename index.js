@@ -48,7 +48,6 @@ const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
-const dadorandom = JSON.parse(fs.readFileSync('./database/json/dado.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
 const amorrandom = JSON.parse(fs.readFileSync('./database/json/amor.json'))
 const vcard = 'BEGIN:VCARD\n' 
@@ -414,6 +413,7 @@ client.on('group-participants-update', async (anu) => {
 				  case 'termosvip':
 		      client.sendMessage(from, termosvip(prefix, sender), text, {quoted: mek})
 				  break
+				  case 'regrasgp':
 				  case 'regras':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
@@ -447,6 +447,7 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(me.imgUrl)
 					client.sendMessage(from, buffer, image, {caption: teks, contextInfo:{mentionedJid: [me.jid]}})
 					break
+					case 'infogp':
 					case 'infogrupo':
 				if (isBanned) return reply(nad.baned())
 				client.updatePresence(from, Presence.composing)
@@ -495,16 +496,6 @@ client.on('group-participants-update', async (anu) => {
 				case 'cantar1':
                     if (isBanned) return reply(nad.baned())
                     tujuh = fs.readFileSync('./assets/cantar1.mp3');
-                    client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
-                    break
-                    case 'cantar2':
-                    if (isBanned) return reply(nad.baned())
-                    tujuh = fs.readFileSync('./assets/cantar2.mp3');
-                    client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
-                    break
-                    case 'cantar3':
-                    if (isBanned) return reply(nad.baned())
-                    tujuh = fs.readFileSync('./assets/cantar3.mp3');
                     client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
                     break
                     case 'plogo':
@@ -828,11 +819,20 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'dado':
-            if (isBanned) return reply(nad.baned())
+			if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
-            hasil = dadorandom[Math.floor(Math.random() * (dadorandom.length))]
-            client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
-            break
+			ranp = getRandom('.png')
+			rano = getRandom('.webp')
+		        random = `${Math.floor(Math.random() * 6)}`
+                    hasil = 'https://www.random.org/dice/dice' + random + '.png'
+			exec(`wget ${hasil} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+			fs.unlinkSync(ranp)
+			if (err) return reply(mess.error.stick)
+			buffer = fs.readFileSync(rano)
+			client.sendMessage(from, buffer, sticker, {quoted: mek})
+			fs.unlinkSync(rano)
+			})
+			break
             case 'gay':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
@@ -852,7 +852,7 @@ client.on('group-participants-update', async (anu) => {
                     client.sendMessage(from, brno, text, {quoted: mek})
                     break
 			case 'igstalk':
-                    if (!isPrem) return reply(nad.premium())
+                    if (isBanned) return reply(nad.baned())
                     vide = body.slice(9)
                     hmm = await fetchJson(`https://videfikri.com/api/igstalk/?username=${vide}`)
                     buffer = await getBuffer(hmm.result.profile_hd)
@@ -1459,10 +1459,11 @@ client.on('group-participants-update', async (anu) => {
                       break
 				   case 'listadmins':
 				   case 'adms':
+				   case 'admsgp':
 					 if (isBanned) return reply(nad.baned())
 					 client.updatePresence(from, Presence.composing) 
 					if (!isGroup) return reply(mess.only.group)
-					teks = `Administradores do grupo *${groupMetadata.subject}* \nTotal : ${groupAdmins.length}\n\n`
+					teks = `👮 Administradores do grupo *${groupMetadata.subject}* \nTotal : ${groupAdmins.length}\n\n`
 					no = 0
 					for (let admon of groupAdmins) {
 						no += 1
