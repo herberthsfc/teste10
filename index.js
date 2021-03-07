@@ -346,10 +346,24 @@ client.on('group-participants-update', async (anu) => {
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-		reply(`*✓ | Palavrão detectado ${sender.split("@")[0]} removido(a) com sucesso!*`)
+		reply(`*✓ | Palavrão detectado ${sender.split("@")[0]} , por favor, evite falar palavras tóxicas!*`)
 		setTimeout( () => {
-			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
-		}, 1000)
+        client.updatePresence(from, Presence.composing)
+	    reply("va postar em outro lugar...")
+		}, 0)
+	}
+	if (messagesC.includes("fdp")){
+		if (!isGroup) return
+		if (!isAntiShit) return
+		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
+		client.updatePresence(from, Presence.composing)
+		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		reply(`*✓ | Palavrão detectado ${sender.split("@")[0]} , por favor, evite falar palavras tóxicas!*`)
+		setTimeout( () => {
+        client.updatePresence(from, Presence.composing)
+	    reply("va postar em outro lugar...")
+		}, 0)
 	}
 	if (messagesC.includes("bot")){
 			client.updatePresence(from, Presence.composing)
