@@ -25,6 +25,7 @@ const { menupremium } = require('./lib/menupremium')
 const { serpremium } = require('./lib/serpremium')
 const { termosvip } = require('./lib/termosvip')
 const { regras } = require('./lib/regras')
+const { lshit } = require('./lib/lshit')
 const { donate } = require('./lib/donate')
 const { idiomas } = require('./lib/idiomas')
 const { fetchJson } = require('./lib/fetcher')
@@ -363,6 +364,30 @@ client.on('group-participants-update', async (anu) => {
         client.updatePresence(from, Presence.composing)
 		}, 0)
 	}
+	if (messagesC.includes("vadia")){
+		if (!isGroup) return
+		if (!isAntiShit) return
+		if (isGroupAdmins) return reply('*Você é adm do grupo, por favor, tenha modos!*')
+		client.updatePresence(from, Presence.composing)
+		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		reply(`*✓ | Palavrão detectado ${sender.split("@")[0]} , por favor, evite falar palavras tóxicas!*`)
+		setTimeout( () => {
+        client.updatePresence(from, Presence.composing)
+		}, 0)
+	}
+	if (messagesC.includes("pqp")){
+		if (!isGroup) return
+		if (!isAntiShit) return
+		if (isGroupAdmins) return reply('*Você é adm do grupo, por favor, tenha modos!*')
+		client.updatePresence(from, Presence.composing)
+		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		reply(`*✓ | Palavrão detectado ${sender.split("@")[0]} , por favor, evite falar palavras tóxicas!*`)
+		setTimeout( () => {
+        client.updatePresence(from, Presence.composing)
+		}, 0)
+	}
 	if (messagesC.includes("bot")){
 			client.updatePresence(from, Presence.composing)
 			reply("O único bot aqui sou eu... Poderia por obséquio me fazer saber por qual razão, motivo ou circunstância Vossa Excelência invocou o meu precioso nome em vão!?")
@@ -442,6 +467,10 @@ client.on('group-participants-update', async (anu) => {
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, regras(prefix, sender), text, {quoted: mek})
+				  break
+				  case 'lshit':
+					if (!isGroup) return reply(mess.only.group)
+					client.sendMessage(from, lshit(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'donate':
 					if (isBanned) return reply(nad.baned())
@@ -579,10 +608,10 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/googletxt.jpg?text.0.text=${teks}&text.0.position.x=-55%25&text.0.position.y=-45%25&text.0.size=24&text.0.color=000000&text.0.opacity=94&text.0.font.family=Oswald&text.0.background.opacity=1`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Pesquisa concluída com sucesso ✓*'})
 					break
-					case 'xvideotxt':
+					case 'xvideostxt':
 					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
-					teks = body.slice(10)
+					teks = body.slice(11)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
 					reply('*[❕] Carregando...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/xvideostxt.jpg?text.0.text=${teks}&text.0.position.x=-46%25&text.0.position.y=-68%25&text.0.size=24&text.0.color=000000&text.0.opacity=90&text.0.font.family=Oswald&text.0.background.opacity=96`)
@@ -679,9 +708,11 @@ client.on('group-participants-update', async (anu) => {
 					teks += `│ Número de Usuarios Premium: ${premium.length}\n╰──────「 *HDBOT* 」`
 					client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": premium}})
 					break
+                case 'notify':
+                case 'notifyy':
                 case 'hidetag':
 					if (!isGroup) return reply(mess.only.group)
-					if (!isOwner) return reply('quem é vc?')
+					if (!isGroupAdmins) return reply(mess.only.admin)
 					var value = body.slice(9)
 					var group = await client.groupMetadata(from)
 					var member = group['participants']
@@ -711,8 +742,8 @@ client.on('group-participants-update', async (anu) => {
 					if (!isPrem) return reply(nad.premium())
 					reply(mess.wait)
 					memein = await kagApi.memeindo()
-					buffer = await getBuffer(`https://i.imgur.com/5U2V0yW.jpg`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*o adm liberou porno no gp*😳 \naproveite com moderação! hihi\n\n1- www.xvideos.com\n2- www.xhamster.com\n3- www.xnxx.com\n4- www.pornhub.com\n5- www.redtube.com\n6- www.youporn.com\n7- www.snapdo.com\n8- www.livejasmin.com\n9- www.youjizz.com\n10- www.tube8.com\n11- www.dmm.co.jp\n12- www.hardsextube.com\n13- www.e-hentai.org\n14- www.beeg.com'})
+					buffer = await getBuffer(`https://1.bp.blogspot.com/-hTK6rhpNEIg/YEYhcsOBGEI/AAAAAAAAAuo/TMqLxi3IWqsp1M0XJF3R6V7BQLnCSoAJQCNcBGAsYHQ/s1721/PicsArt_03-08-10.05.56.jpg`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*MELHORES SITES PORN/+18!*😳 \naproveite com moderação! hihi\n\n1- www.xvideos.com\n2- www.xhamster.com\n3- www.xnxx.com\n4- www.pornhub.com\n5- www.redtube.com\n6- www.youporn.com\n7- www.snapdo.com\n8- www.livejasmin.com\n9- www.youjizz.com\n10- www.tube8.com\n11- www.dmm.co.jp\n12- www.hardsextube.com\n13- www.e-hentai.org\n14- www.beeg.com\n15- www.pornodeanaogay.com\n\n    𝑯𝑫𝑩𝑶𝑻.𝒆𝒙𝒆'})
 					break
 					case 'indio':
 					memein = await kagApi.memeindo()
@@ -773,6 +804,17 @@ client.on('group-participants-update', async (anu) => {
             randKey = jsonData[randIndex];
             mia = await getBuffer(randKey.result)
             client.sendMessage(from, mia, image, {quoted: mek, caption: '*🔍 | Mia Khalifa*'})
+			break
+			case 'tigresavip':
+		    client.updatePresence(from, Presence.composing) 
+		    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
+		    if (!isPrem) return reply(nad.premium())
+			data = fs.readFileSync('./lib/tigresavip.js');
+            jsonData = JSON.parse(data);
+            randIndex = Math.floor(Math.random() * jsonData.length);
+            randKey = jsonData[randIndex];
+            tigresavip = await getBuffer(randKey.result)
+            client.sendMessage(from, tigresavip, image, {quoted: mek, caption: '*🔍 | Tigresa Vip*'})
 			break
           case 'gado000':
           reply('*⏰ | Carregando, por favor, aguarde um momento...*')
@@ -1106,11 +1148,11 @@ client.on('group-participants-update', async (anu) => {
 						if (isAntiShit) return reply('O modo antishit já está ativo')
 						antishit.push(from)
 						fs.writeFileSync('./database/json/antishit.json', JSON.stringify(antishit))
-						reply(`\`\`\`✓Ativado com sucesso o modo antishit no grupo\`\`\` *${groupMetadata.subject}*`)
+						reply(`\`\`\`✓Ativado com sucesso o modo anti-palavrões no grupo\`\`\` *${groupMetadata.subject}*`)
 					} else if ((args[0]) === 'off') {
 						antishit.splice(from, 1)
 						fs.writeFileSync('./database/json/antishit.json', JSON.stringify(antishit))
-						reply(`\`\`\`✓Modo antishit desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
+						reply(`\`\`\`✓Modo anti-palavrões desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
 					} else {
 						reply('1 para ativar, 2 para desligar')
 					}
@@ -1305,6 +1347,19 @@ client.on('group-participants-update', async (anu) => {
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
                 client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
                 break
+                case 'mp4':
+                case 'ytmp4':
+					if (!isPrem) return reply(nad.premium())
+					if (args.length < 1) return reply('Por favor, informe o link do video do Youtube!')
+					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
+					anu = await fetchJson(`https://st4rz.herokuapp.com/api/ytv2?url=${args[0]}`, {method: 'get'})
+					if (anu.error) return reply(anu.error)
+					teks = `*Title* : ${anu.title}`
+					thumb = await getBuffer(anu.thumb)
+					client.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
+					buffer = await getBuffer(anu.result)
+					client.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.title}.mp4`, quoted: mek})
+					break
 					case 'pinterest':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
@@ -1539,7 +1594,7 @@ client.on('group-participants-update', async (anu) => {
 						if (isNsfw) return reply('O modo nsfw já está ativo')
 						nsfw.push(from)
 						fs.writeFileSync('./database/json/nsfw.json', JSON.stringify(nsfw))
-						reply(`\`\`\`✓Ativado com sucesso o modo nsfw no grupo\`\`\` *${groupMetadata.subject}*`)
+						reply(`\`\`\`✓Ativado com sucesso o modo +18 no grupo\`\`\` *${groupMetadata.subject}*`)
 					} else if ((args[0]) === 'off') {
 						nsfw.splice(from, 1)
 						fs.writeFileSync('./database/json/nsfw.json', JSON.stringify(nsfw))
