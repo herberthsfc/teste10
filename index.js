@@ -188,8 +188,8 @@ client.on('group-participants-update', async (anu) => {
 					ownerG: '*⊘ | Comando disponível apenas para o grupo proprietário!*',
 					ownerB: '*⊘ | Comando disponível apenas para o proprietário do hdbot!*',
 					admin: '*⊘ | Comando disponível apenas para admins, seu membro comum!*',
-					Badmin: '*⊘ | O hdbot precisa de adm para cumprir as funções!*'
-					publikG: `*ᴍᴀᴀꜰ ʙᴏᴛ ꜱᴇᴋᴀʀᴀɴɢ ꜱᴜᴅᴀʜ ᴅɪᴩʀɪᴠᴀᴛᴇ ᴏʟᴇʜ ᴏᴡɴᴇʀ*\n*ᴜɴᴛᴜᴋ ʟᴇʙɪʜ ᴊᴇʟᴀꜱɴyᴀ ᴋᴇᴛɪᴋ*\n*${prefix}infobot*`
+					Badmin: '*⊘ | O hdbot precisa de adm para cumprir as funções!*',
+					publikG: '*ᴍᴀᴀꜰ ʙᴏᴛ ꜱᴇᴋᴀʀᴀɴɢ ꜱᴜᴅᴀʜ ᴅɪᴩʀɪᴠᴀᴛᴇ ᴏʟᴇʜ ᴏᴡɴᴇʀ*\n*ᴜɴᴛᴜᴋ ʟᴇʙɪʜ ᴊᴇʟᴀꜱɴyᴀ ᴋᴇᴛɪᴋ*\n*${prefix}infobot*'
 				}
 			}
 
