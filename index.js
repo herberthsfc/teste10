@@ -44,6 +44,7 @@ const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
 const { VthearApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
 const { TobzApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
 const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
+const publik = JSON.parse(fs.readFileSync('./database/json/public.json'))
 const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
@@ -188,6 +189,7 @@ client.on('group-participants-update', async (anu) => {
 					ownerB: '*⊘ | Comando disponível apenas para o proprietário do hdbot!*',
 					admin: '*⊘ | Comando disponível apenas para admins, seu membro comum!*',
 					Badmin: '*⊘ | O hdbot precisa de adm para cumprir as funções!*'
+					publikG: `*ᴍᴀᴀꜰ ʙᴏᴛ ꜱᴇᴋᴀʀᴀɴɢ ꜱᴜᴅᴀʜ ᴅɪᴩʀɪᴠᴀᴛᴇ ᴏʟᴇʜ ᴏᴡɴᴇʀ*\n*ᴜɴᴛᴜᴋ ʟᴇʙɪʜ ᴊᴇʟᴀꜱɴyᴀ ᴋᴇᴛɪᴋ*\n*${prefix}infobot*`
 				}
 			}
 
@@ -206,6 +208,7 @@ client.on('group-participants-update', async (anu) => {
 			const isWelkom = isGroup ? welkom.includes(from) : false
 			const isNsfw = isGroup ? nsfw.includes(from) : true
 			const isSimi = isGroup ? samih.includes(from) : false
+			const isPublic = isGroup ? publik.includes(from) : false 
 			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
 			const isAntiShit = isGroup ? antishit.includes(from) : false
@@ -442,10 +445,28 @@ client.on('group-participants-update', async (anu) => {
 					reply(`Número ${ya} desbanido!`)
 					break
 					case 'menu':
+					if (!isPublic) return reply(mess.only.publikG)
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
 				  break
+				  case 'bott':
+					if (!isGroup) return reply(mess.only.group)
+					if (!isOwner) return reply(mess.only.ownerB)
+					if (args.length < 1) return reply('Pilih enable atau disable!')
+					if (args[0] === 'on') {
+						if (isPublic) return reply('Sudah Aktif')
+						publik.push(from)
+						fs.writeFileSync('./database/json/public.json', JSON.stringify(publik))
+						reply(`Sukses Silahkan Ketik ${prefix}menu Untuk Fitur Bot`)
+					} else if (args[0] === 'off') {
+						publik.splice(from, 1)
+						fs.writeFileSync('./database/json/public.json', JSON.stringify(publik))
+						reply(`Sukses Sekarang Member Tidak Bisa Menggunakan Bot`)
+					} else {
+						reply('Pilih aktif / nonaktif')
+					}
+					break
 				  case 'menuadmin':
 				  if (!isGroupAdmins) return reply(mess.only.admin)
 				  if (!isGroup) return reply(mess.only.group)
@@ -708,7 +729,6 @@ client.on('group-participants-update', async (anu) => {
 					teks += `│ Número de Usuarios Premium: ${premium.length}\n╰──────「 *HDBOT* 」`
 					client.sendMessage(from, teks.trim(), extendedText, {quoted: mek, contextInfo: {"mentionedJid": premium}})
 					break
-                case 'notify':
                 case 'notifyy':
                 case 'hidetag':
 					if (!isGroup) return reply(mess.only.group)
