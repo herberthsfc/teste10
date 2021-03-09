@@ -44,7 +44,6 @@ const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
 const { VthearApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
 const { TobzApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
 const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
-const publik = JSON.parse(fs.readFileSync('./database/json/public.json'))
 const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
@@ -208,7 +207,6 @@ client.on('group-participants-update', async (anu) => {
 			const isWelkom = isGroup ? welkom.includes(from) : false
 			const isNsfw = isGroup ? nsfw.includes(from) : true
 			const isSimi = isGroup ? samih.includes(from) : false
-			const isPublic = isGroup ? publik.includes(from) : false 
 			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
 			const isAntiShit = isGroup ? antishit.includes(from) : false
@@ -445,30 +443,11 @@ client.on('group-participants-update', async (anu) => {
 					reply(`Número ${ya} desbanido!`)
 					break
 					case 'menu':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
 				  break
-				  case 'public':
-				  case 'bott':
-					if (!isOwner) return reply(mess.only.ownerB)
-					if (args.length < 1) return reply('*Para ativar o modo público, digite on. para desligar, digite off*')
-					if (args[0] === 'on') {
-						if (isPublic) return reply('*Modo público ativado com sucesso! ✓* \n\n*Todos os membros poderão acessar os comandos!*')
-						publik.push(from)
-						fs.writeFileSync('./database/json/public.json', JSON.stringify(publik))
-						reply(`*Modo público ativado com sucesso! ✓* \n\n*Todos os membros poderão acessar os comandos!*`)
-					} else if (args[0] === 'off') {
-						publik.splice(from, 1)
-						fs.writeFileSync('./database/json/public.json', JSON.stringify(publik))
-						reply(`*Modo público desativado com sucesso! ⊘* \n\n*Nenhum membro poderá acessar os comandos!*`)
-					} else {
-						reply('*Selecione on/off*')
-					}
-					break
 				  case 'menuadmin':
-				  if (!isPublic) return reply(mess.only.publikG)
 				  if (!isGroupAdmins) return reply(mess.only.admin)
 				  if (!isGroup) return reply(mess.only.group)
 		      client.sendMessage(from, menuadmin(prefix, sender), text, {quoted: mek})
@@ -479,11 +458,9 @@ client.on('group-participants-update', async (anu) => {
 				  break
 				  case 'serpremium':
 				  case 'ser.premium':
-		      if (!isPublic) return reply(mess.only.publikG)
 		      client.sendMessage(from, serpremium(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'termosvip':
-		      if (!isPublic) return reply(mess.only.publikG)
 		      client.sendMessage(from, termosvip(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'regrasgp':
@@ -493,24 +470,20 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, regras(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'lshit':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, lshit(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'donate':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (isBanned) return reply(nad.baned())
 					client.sendMessage(from, donate(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'idiomas':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
 					client.sendMessage(from, idiomas(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'on':
                   case 'ativo':
-                  if (!isPublic) return reply(mess.only.publikG)
                   if (isBanned) return reply(nad.baned())
                   client.updatePresence(from, Presence.composing) 
 				  uptime = process.uptime()
@@ -521,7 +494,6 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, donasi(), text)
 				break
 				case 'info':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (isBanned) return reply(nad.baned())
 					me = client.user
 					uptime = process.uptime()
@@ -531,7 +503,6 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'infogp':
 					case 'infogrupo':
-				if (!isPublic) return reply(mess.only.publikG)
 				if (isBanned) return reply(nad.baned())
 				client.updatePresence(from, Presence.composing)
 				if (!isGroup) return reply(mess.only.group)
@@ -551,7 +522,6 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buf, image, {quoted: mek, caption: teks})
 					break
 					case 'perfil':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup)return reply(mess.only.group)
 					client.updatePresence(from, Presence.composing)
@@ -565,7 +535,6 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, daftarimg, image, {quoted: mek, caption: captionnya})
 					break
 				case 'bloqueados': 
-					if (!isPublic) return reply(mess.only.publikG)
 					teks = 'Bloqueados :\n'
 					for (let block of blocked) {
 						teks += `➢ @${block.split('@')[0]}\n`
@@ -579,7 +548,6 @@ client.on('group-participants-update', async (anu) => {
 						client.deleteMessage(from, { id: mek.message.extendedTextMessage.contextInfo.stanzaId, remoteJid: from, fromMe: true })
 						break
 				case 'cantar1':
-                    if (!isPublic) return reply(mess.only.publikG)
                     if (isBanned) return reply(nad.baned())
                     tujuh = fs.readFileSync('./assets/cantar1.mp3');
                     client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
@@ -615,7 +583,6 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
 					case 'ssweb':
-					if (!isPublic) return reply(mess.only.publikG)
                     if (isBanned) return reply(nad.baned())
 					if (!isGroup)return reply(mess.only.group)
 					lxrd = body.slice(6)
@@ -755,7 +722,6 @@ client.on('group-participants-update', async (anu) => {
 					break
                 case 'notifyy':
                 case 'hidetag':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					var value = body.slice(9)
@@ -866,7 +832,6 @@ client.on('group-participants-update', async (anu) => {
           if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
           break
           case 'iris':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (isBanned) return reply(nad.baned())
 					hobby = body.slice(1)
 					const hob =['Oi rsrs','Sim, Eu acho','Não sei dizer','Sefodê mlkkkkk','Por quê?','Sei lá','Eu não quero falar sobre isso','Foda-se','Voce é uma gostosa','kkkkkk','Não fala comigo','Pesquisa no google','Lixo','Meu pau','Eu acho que voce tentou ser engraçado(a)','Eu quero comer uma bolacha','Fdp','Corno','A verdade é que voce é corno','Vai se foder','Cala a boca vadia','Linda só verdades','Voce só me faz pergunta bosta','Estou triste, manda audio pelada','Não entendi o que você quis dizer']
@@ -892,7 +857,6 @@ client.on('group-participants-update', async (anu) => {
 			await limitAdd(sender)
 			break
 			case 'ping':    
-			if (!isPublic) return reply(mess.only.publikG)
 			if (isBanned) return reply(nad.baned())
 			if (!isGroup) return reply(mess.only.group)
             const timestamp = speed();
@@ -921,7 +885,6 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, box, text, {quoted: mek})
             break
             case 'gado':
-            if (!isPublic) return reply(mess.only.publikG)
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
             reply('*🔍 | Gado Localizado!*')
@@ -929,7 +892,6 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'eusou':
-            if (!isPublic) return reply(mess.only.publikG)
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
             reply('*Pelos meus cálculos, voce é...*')
@@ -937,7 +899,6 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'dado':
-			if (!isPublic) return reply(mess.only.publikG)
 			if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
 			ranp = getRandom('.png')
@@ -953,14 +914,12 @@ client.on('group-participants-update', async (anu) => {
 			})
 			break
             case 'gay':
-            if (!isPublic) return reply(mess.only.publikG)
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
             hasil = gayrandom[Math.floor(Math.random() * (gayrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'amor':
-            if (!isPublic) return reply(mess.only.publikG)
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
             hasil = amorrandom[Math.floor(Math.random() * (amorrandom.length))]
@@ -983,7 +942,6 @@ client.on('group-participants-update', async (anu) => {
                   case 'criadorgp':
                   case 'ownergp':
 				  case 'ownergroup':
-               if (!isPublic) return reply(mess.only.publikG)
                if (isBanned) return reply(nad.baned())
                client.updatePresence(from, Presence.composing) 
               options = {
@@ -1002,7 +960,6 @@ client.on('group-participants-update', async (anu) => {
                 case 'bug':
                 case 'reportar':
                 case 'reportarbug':
-                     if (!isPublic) return reply(mess.only.publikG)
                      if (isBanned) return reply(nad.baned())
                      const pesan = body.slice(5)
                       if (pesan.length > 300) return client.sendMessage(from, '*「 ❗ 」 Texto muito longo!*', msgType.text, {quoted: mek})
@@ -1016,7 +973,6 @@ client.on('group-participants-update', async (anu) => {
                     reply('*O bug foi reportado com sucesso ✓*')
                     break
 					case 'membros2':
-				if (!isPublic) return reply(mess.only.publikG)
 				client.updatePresence(from, Presence.composing) 
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
@@ -1030,7 +986,6 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, '╔══✪〘 Olá, Membros do grupo! 〙✪══\n╠➥'+teks+'╚═〘 HDBot.exe 〙', text, {detectLinks: false, quoted: mek})
 					break
                    case 'membros3':
-				if (!isPublic) return reply(mess.only.publikG)
 				client.updatePresence(from, Presence.composing) 
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
@@ -1044,7 +999,6 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, '╔══✪〘 OLÁ 〙✪══\n╠➥'+teks+'╚═〘 HDBot.exe 〙', text, {quoted: mek})
 					break
                   case 'membros':
-				if (!isPublic) return reply(mess.only.publikG)
 				client.updatePresence(from, Presence.composing) 
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
@@ -1139,14 +1093,12 @@ client.on('group-participants-update', async (anu) => {
 			        break
 			    case 'map':
 			case 'mapa': 
-                if (!isPublic) return reply(mess.only.publikG)
                 if (isBanned) return reply(nad.baned())
                 anu = await fetchJson(`https://mnazria.herokuapp.com/api/maps?search=${body.slice(5)}`, {method: 'get'})
                 buffer = await getBuffer(anu.gambar)
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: `${body.slice(5)}`})
 				break
 				case 'antilink':
-                    if (!isPublic) return reply(mess.only.publikG)
                     if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1167,7 +1119,6 @@ client.on('group-participants-update', async (anu) => {
 					}
 					break
 					case 'antiracismo':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1186,7 +1137,6 @@ client.on('group-participants-update', async (anu) => {
 					}
 					break
 					case 'antishit':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1227,7 +1177,6 @@ client.on('group-participants-update', async (anu) => {
 				case 'sticker':
 				case 'fig':
 				case 'figurinha':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (isBanned) return reply(nad.baned())
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
@@ -1286,7 +1235,6 @@ client.on('group-participants-update', async (anu) => {
 				case 'gtts':	
 				case 'tts':
 				case 'audio':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup)return reply(mess.only.group)
 					if (args.length < 1) return client.sendMessage(from, '*⊘ | Informe o idioma! exemplo: pt,it,ja,es*', text, {quoted: mek})
@@ -1356,7 +1304,6 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, `*Desbloqueado com sucesso ✓* ${body.slice(9)}@c.us`, text)
 				break
 				case 'sair':
-                    if (!isPublic) return reply(mess.only.publikG)
                     if (!isGroup) return reply(mess.only.group)
                     if (!isGroupAdmins) return reply(mess.only.admin)
                      setTimeout( () => {
@@ -1411,7 +1358,6 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.title}.mp4`, quoted: mek})
 					break
 					case 'pinterest':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
 					reply(mess.wait)
@@ -1468,7 +1414,6 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'wa.me':
 				  case 'wame':
-				  if (!isPublic) return reply(mess.only.publikG)
 				  if (isBanned) return reply(nad.baned())
 				  if (!isGroup) return reply(mess.only.group)
           client.updatePresence(from, Presence.composing) 
@@ -1479,7 +1424,6 @@ client.on('group-participants-update', async (anu) => {
     client.sendMessage(from, options, text, { quoted: mek } )
 				break
 			   	case 'perfilgp': 
-                        if (!isPublic) return reply(mess.only.publikG)
                         if (!isGroup) return reply(mess.only.group)
                        if (!isGroupAdmins) return reply(mess.only.admin)
                         if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1489,7 +1433,6 @@ client.on('group-participants-update', async (anu) => {
                 break						
 				case 'add':
 				case 'adicionar':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1506,7 +1449,6 @@ client.on('group-participants-update', async (anu) => {
 					case 'gp':
 					case 'group':
 					case 'grupo':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1523,14 +1465,12 @@ client.on('group-participants-update', async (anu) => {
             case 'creator':
             case 'criador':
             case 'dono':
-                  if (!isPublic) return reply(mess.only.publikG)
                   if (isBanned) return reply(nad.baned())
                   client.sendMessage(from, {displayname: "Herberth", vcard: vcard}, MessageType.contact, { quoted: mek})
        client.sendMessage(from, '*✓ | Este é o contato do meu criador!*',MessageType.text, { quoted: mek} )
            break    
            case 'setname':
            case 'nomegp':
-                if (!isPublic) return reply(mess.only.publikG)
                 if (!isGroup) return reply(mess.only.group)
 			    if (!isGroupAdmins) return reply(mess.only.admin)
 				if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1539,7 +1479,6 @@ client.on('group-participants-update', async (anu) => {
                 break
                 case 'setdesc':
                 case 'desc':
-                if (!isPublic) return reply(mess.only.publikG)
                 if (!isGroup) return reply(mess.only.group)
 			    if (!isGroupAdmins) return reply(mess.only.admin)
 				if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1548,7 +1487,6 @@ client.on('group-participants-update', async (anu) => {
                 break
            case 'demote':
            case 'rebaixar':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1569,7 +1507,6 @@ client.on('group-participants-update', async (anu) => {
 					break
 				case 'promote':
 				case 'promover':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1591,7 +1528,6 @@ client.on('group-participants-update', async (anu) => {
 			     	case 'kick':
 			case 'banir':
 			case 'remover':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1612,7 +1548,6 @@ client.on('group-participants-update', async (anu) => {
 					break
 				   case 'linkgroup':
 				   case 'linkgp':
-                      if (!isPublic) return reply(mess.only.publikG)
                       if (!isGroup) return reply(mess.only.group)
                       if (!isGroupAdmins) return reply(mess.only.admin)
                       if (!isBotGroupAdmins) return reply(mess.only.Badmin)
@@ -1622,7 +1557,6 @@ client.on('group-participants-update', async (anu) => {
 				   case 'listadmins':
 				   case 'adms':
 				   case 'admsgp':
-					 if (!isPublic) return reply(mess.only.publikG)
 					 if (isBanned) return reply(nad.baned())
 					 client.updatePresence(from, Presence.composing) 
 					if (!isGroup) return reply(mess.only.group)
@@ -1636,7 +1570,6 @@ client.on('group-participants-update', async (anu) => {
 					break
 				case 'toimg':
 				case 'converter':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isQuotedSticker) return reply('*✓ | Marque uma figurinha!*')
 					reply(mess.wait)
 					encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
@@ -1651,7 +1584,6 @@ client.on('group-participants-update', async (anu) => {
 					})
 					break
 				case 'nsfw':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (args.length < 1) return reply('Hmmmm')
@@ -1672,7 +1604,6 @@ client.on('group-participants-update', async (anu) => {
 				case 'bv':
 				case 'bemvindo':
 				case 'boasvindas':
-					if (!isPublic) return reply(mess.only.publikG)
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (args.length < 1) return reply('1 ou 0')
