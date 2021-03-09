@@ -459,7 +459,7 @@ client.on('group-participants-update', async (anu) => {
 						if (isPublic) return reply('*Modo público ativado com sucesso! ✓* \n\n*Todos os membros poderão acessar os comandos!*')
 						publik.push(from)
 						fs.writeFileSync('./database/json/public.json', JSON.stringify(publik))
-						reply(``)
+						reply(`*Modo público ativado com sucesso! ✓* \n\n*Todos os membros poderão acessar os comandos!*`)
 					} else if (args[0] === 'off') {
 						publik.splice(from, 1)
 						fs.writeFileSync('./database/json/public.json', JSON.stringify(publik))
