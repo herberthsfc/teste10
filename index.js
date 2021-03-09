@@ -452,7 +452,6 @@ client.on('group-participants-update', async (anu) => {
 				  break
 				  case 'public':
 				  case 'bott':
-					if (!isGroup) return reply(mess.only.group)
 					if (!isOwner) return reply(mess.only.ownerB)
 					if (args.length < 1) return reply('*Para ativar o modo público, digite on. para desligar, digite off*')
 					if (args[0] === 'on') {
