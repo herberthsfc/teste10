@@ -48,6 +48,7 @@ const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
 const antishit = JSON.parse(fs.readFileSync('./database/json/antishit.json'))
+const bad = JSON.parse(fs.readFileSync('./database/json/bad.json'));
 const badword = JSON.parse(fs.readFileSync('./database/json/badword.json'));
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
@@ -595,6 +596,24 @@ client.on('group-participants-update', async (anu) => {
                     client.sendMessage(from, buffer, image, {quoted: mek, caption: kiny})
                     await limitAdd(sender)
                     break
+                    case 'google':
+               const googleQuery = body.slice(8);
+               if (isBanned) return reply(nad.baned())
+			   if (!isGroup)return reply(mess.only.group)
+               if (googleQuery == undefined || googleQuery == ' ') return reply(`*Hasil Pencarian : ${googleQuery}* tidak ditemukan`);
+               google({ query: googleQuery })
+                  .then((results) => {
+                     let vars = `_*Hasil Pencarian : ${googleQuery}*_\n`;
+                     for (let i = 0; i < results.length; i++) {
+                        vars += `\n═════════════════\n\n*Judul* : ${results[i].title}\n\n*Deskripsi* : ${results[i].snippet}\n\n*Link* : ${results[i].link}\n\n`;
+                     }
+                     reply(vars);
+                  })
+                  .catch((e) => {
+                     console.log(e);
+                     fahmi.sendMessage(from, 'Google Error : ' + e);
+                  });
+               break;
 					case 'plaquinha1':
 					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
