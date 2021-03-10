@@ -424,9 +424,8 @@ client.on('group-participants-update', async (anu) => {
 			if (!isCmd && isGroup) console.log('\x1b[1;31m~\x1b[1;37m>', '[\x1b[1;31mRECV\x1b[1;37m]', time, color('Message'), 'from', color(sender.split('@')[0]), 'in', color(groupName), 'args :', color(args.length))
 			switch(command) {
 			case 'menuteste':
-               if (!isUser) return reply(mess.only.userB);
-               if (isBanned) return reply(mess.only.benned);
-               me = fahmi.user;
+               if (!isOwner) return reply(nad.ownerb())
+               me = client.user;
                user.push(sender);
                uptime = process.uptime();
                const menuteste = {
@@ -435,7 +434,6 @@ client.on('group-participants-update', async (anu) => {
 » Name: ${pushname}
 » Prefix: ${prefix}
 » Registeed: √
-» Tedaftar: ${user.length} 
 
 
       「 *_Fbot Official_* 」
