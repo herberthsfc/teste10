@@ -916,6 +916,7 @@ client.on('group-participants-update', async (anu) => {
             case 'gay':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
+            if (args.length < 1) return reply('marque seus amigos!')
             hasil = gayrandom[Math.floor(Math.random() * (gayrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
@@ -927,6 +928,43 @@ client.on('group-participants-update', async (anu) => {
 					const kl = ti[Math.floor(Math.random() * ti.length)]
 					client.sendMessage(from, 'Segura esse fato: *'+rate+'*\n\nAqui está: '+ kl+'🤪', text, { quoted: mek })
 					break
+            case 'tapa':
+				case 'slap':
+				try {
+				if (!isGroup) return reply(ind.groupo())
+                var imgbb = require('imgbb-uploader')
+                if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Em quem você quer dar o tapa na cara >:] ?')
+				mentidn = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
+				reply('espera um pokin uai')
+                ghost = mek.participant
+                try {
+                pp = await client.getProfilePicture(ghost)
+                } catch {
+                pp = 'https://i.ibb.co/64dN6bQ/imgbb-20201220-WA0024.jpg'
+                }
+                media = await getBuffer(pp)
+                datae = await imageToBase64(JSON.stringify(pp).replace(/\"/gi, ''))
+                fs.writeFileSync('tapa.jpeg', datae, 'base64')
+                res = await imgbb(`${apikeyG}`, 'tapa.jpeg')
+                userf1 = `${res.display_url}`
+                try {
+				ppp = await client.getProfilePicture(`${mentidn.split('@')[0]}@s.whatsapp.net`)
+				} catch {
+				ppp = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
+				}
+                media = await getBuffer(ppp)
+                data2e = await imageToBase64(JSON.stringify(ppp).replace(/\"/gi, ''))
+                fs.writeFileSync('tapa2.jpeg', data2e, 'base64')
+                res2 = await imgbb(`${apikeyG}`, 'tapa2.jpeg')
+                userf2 = `${res2.display_url}`
+                buffer99 = await getBuffer(`https://api.zeks.xyz/api/slap?apikey=${zeksApi}&img1=${userf1}&img2=${userf2}`)
+                client.sendMessage(from, buffer99, image, {quoted: mek, caption: `Você deu tapa no(a) @${mentidn.split('@')[0]}`, contextInfo: {mentionedJid: [mentidn]}})
+				await limitAdd(sender)
+                } catch (e) {
+                console.log(`Error :`, color(e,'red'))
+                reply("Api está passando por uma análise! Espera ate que ela volte ao normal.")
+                }
+				break
             case 'amor':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
