@@ -48,8 +48,6 @@ const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
 const antishit = JSON.parse(fs.readFileSync('./database/json/antishit.json'))
-const bad = JSON.parse(fs.readFileSync('./database/json/bad.json'));
-const badword = JSON.parse(fs.readFileSync('./database/json/badword.json'));
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
@@ -212,7 +210,6 @@ client.on('group-participants-update', async (anu) => {
 			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
 			const isAntiShit = isGroup ? antishit.includes(from) : false
-			const isBadWord = isGroup ? badword.includes(from) : false;
 			const isOwner = ownerNumber.includes(sender)
 			const isPrem = premium.includes(sender)
 			const isBanned = ban.includes(sender)
@@ -596,24 +593,6 @@ client.on('group-participants-update', async (anu) => {
                     client.sendMessage(from, buffer, image, {quoted: mek, caption: kiny})
                     await limitAdd(sender)
                     break
-                    case 'google':
-               const googleQuery = body.slice(8);
-               if (isBanned) return reply(nad.baned())
-			   if (!isGroup)return reply(mess.only.group)
-               if (googleQuery == undefined || googleQuery == ' ') return reply(`*Hasil Pencarian : ${googleQuery}* tidak ditemukan`);
-               google({ query: googleQuery })
-                  .then((results) => {
-                     let vars = `_*Hasil Pencarian : ${googleQuery}*_\n`;
-                     for (let i = 0; i < results.length; i++) {
-                        vars += `\n═════════════════\n\n*Judul* : ${results[i].title}\n\n*Deskripsi* : ${results[i].snippet}\n\n*Link* : ${results[i].link}\n\n`;
-                     }
-                     reply(vars);
-                  })
-                  .catch((e) => {
-                     console.log(e);
-                     fahmi.sendMessage(from, 'Google Error : ' + e);
-                  });
-               break;
 					case 'plaquinha1':
 					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
@@ -1124,12 +1103,12 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args.length < 1) return reply('*Digite 1 para ativar*')
-					if (Number(args[0]) === on) {
+					if (Number(args[0]) === 1) {
 						if (isAntiLink) return reply('*✓ | O Antilink ja está ativado!*')
 						antilink.push(from)
 						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
 						reply('\`\`\`✓Ativado com sucesso o modo antilink neste grupo!\`\`\`')
-					} else if (Number(args[0]) === off) {
+					} else if (Number(args[0]) === 0) {
 						if (!isantilink) return reply('*⊘ | Antilink desativado com sucesso!*')
 						var ini = anti.indexOf(from)
 						antilink.splice(ini, 1)
@@ -1175,47 +1154,6 @@ client.on('group-participants-update', async (anu) => {
 						reply('1 para ativar, 2 para desligar')
 					}
 					break
-					case 'antibadword':
-               if (!isGroup) return reply(mess.only.group);
-               if (!isGroupAdmins) return reply(mess.only.admin);
-               if (args.length < 1) return reply('on untuk mengaktifkan, off untuk menonaktifkan');
-               if (args[0] === 'on') {
-                  if (isBadWord) return reply('anti badword sudah on');
-                  badword.push(from);
-                  fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword));
-                  reply(`\`\`\`✓“Sukses mengaktifkan fitur anti badword di group\`\`\` *${groupMetadata.subject}*`);
-               } else if (args[0] === 'off') {
-                  if (!isBadWord) return reply('anti badword sudah off');
-                  badword.splice(from, 1);
-                  fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword));
-                  reply(`\`\`\`✓“Sukses menonaktifkan fitur anti badword di group\`\`\` *${groupMetadata.subject}*`);
-               } else {
-                  reply(ind.satukos());
-               }
-               break
-            case 'addbadword':
-               if (!isOwner) return reply(mess.only.ownerB);
-               if (args.length < 1) return reply(`Kirim perintah ${prefix}addbadword [kata kasar]. contoh ${prefix}addbadword bego`);
-               const bw = body.slice(12);
-               bad.push(bw);
-               fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad));
-               reply('Success Menambahkan Bad Word!');
-               break
-            case 'delbadword':
-               if (!isOwner) return reply(mess.only.ownerB);
-               if (args.length < 1) return reply(`Kirim perintah ${prefix}delbadword [kata kasar]. contoh ${prefix}delbadword bego`);
-               let dbw = body.slice(12);
-               bad.splice(dbw);
-               fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad));
-               reply('Success Menghapus BAD WORD!');
-               break
-            case 'listbadword':
-               let lbw = `Ini adalah list BAD WORD\nTotal : ${bad.length}\n`;
-               for (let i of bad) {
-                  lbw += `➸ ${i.replace(bad)}\n`;
-               }
-               await reply(lbw);
-               break
 				case 'ocr': 
 				case 'txtdafoto':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
