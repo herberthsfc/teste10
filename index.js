@@ -48,6 +48,7 @@ const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
 const antishit = JSON.parse(fs.readFileSync('./database/json/antishit.json'))
+const badword = JSON.parse(fs.readFileSync('./database/json/badword.json'));
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
@@ -210,6 +211,7 @@ client.on('group-participants-update', async (anu) => {
 			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
 			const isAntiShit = isGroup ? antishit.includes(from) : false
+			const isBadWord = isGroup ? badword.includes(from) : false;
 			const isOwner = ownerNumber.includes(sender)
 			const isPrem = premium.includes(sender)
 			const isBanned = ban.includes(sender)
@@ -1154,6 +1156,47 @@ client.on('group-participants-update', async (anu) => {
 						reply('1 para ativar, 2 para desligar')
 					}
 					break
+					case 'antibadword':
+               if (!isGroup) return reply(mess.only.group);
+               if (!isGroupAdmins) return reply(mess.only.admin);
+               if (args.length < 1) return reply('on untuk mengaktifkan, off untuk menonaktifkan');
+               if (args[0] === 'on') {
+                  if (isBadWord) return reply('anti badword sudah on');
+                  badword.push(from);
+                  fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword));
+                  reply(`\`\`\`✓“Sukses mengaktifkan fitur anti badword di group\`\`\` *${groupMetadata.subject}*`);
+               } else if (args[0] === 'off') {
+                  if (!isBadWord) return reply('anti badword sudah off');
+                  badword.splice(from, 1);
+                  fs.writeFileSync('./database/json/badword.json', JSON.stringify(badword));
+                  reply(`\`\`\`✓“Sukses menonaktifkan fitur anti badword di group\`\`\` *${groupMetadata.subject}*`);
+               } else {
+                  reply(ind.satukos());
+               }
+               break
+            case 'addbadword':
+               if (!isOwner) return reply(mess.only.ownerB);
+               if (args.length < 1) return reply(`Kirim perintah ${prefix}addbadword [kata kasar]. contoh ${prefix}addbadword bego`);
+               const bw = body.slice(12);
+               bad.push(bw);
+               fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad));
+               reply('Success Menambahkan Bad Word!');
+               break
+            case 'delbadword':
+               if (!isOwner) return reply(mess.only.ownerB);
+               if (args.length < 1) return reply(`Kirim perintah ${prefix}delbadword [kata kasar]. contoh ${prefix}delbadword bego`);
+               let dbw = body.slice(12);
+               bad.splice(dbw);
+               fs.writeFileSync('./database/json/bad.json', JSON.stringify(bad));
+               reply('Success Menghapus BAD WORD!');
+               break
+            case 'listbadword':
+               let lbw = `Ini adalah list BAD WORD\nTotal : ${bad.length}\n`;
+               for (let i of bad) {
+                  lbw += `➸ ${i.replace(bad)}\n`;
+               }
+               await reply(lbw);
+               break
 				case 'ocr': 
 				case 'txtdafoto':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
