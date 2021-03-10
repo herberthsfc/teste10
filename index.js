@@ -923,9 +923,9 @@ client.on('group-participants-update', async (anu) => {
 				    if (isBanned) return reply(nad.baned())
 	            	if (args.length < 1) return reply('marque seus amigos!')
 					rate = body.slice(1)
-					const ti =['${pushname} você é gay.','${pushname} Você é um preto fudido','${pushname} Você é muito Corno']
+					const ti =['@${nom.split("@s.whatsapp.net")[0]} você é gay.','@${nom.split("@s.whatsapp.net")[0]} Você é um preto fudido','@${nom.split("@s.whatsapp.net")[0]} Você é muito Corno']
 					const kl = ti[Math.floor(Math.random() * ti.length)]
-					client.sendMessage(from, 'Segura esse fato: *'+rate+'*\n\nAqui está: '+ kl+'%', text, { quoted: mek })
+					client.sendMessage(from, 'Segura esse fato: *'+rate+'*\n\nAqui está: '+ kl+'🤪', text, { quoted: mek })
 					break
             case 'amor':
             if (isBanned) return reply(nad.baned())
