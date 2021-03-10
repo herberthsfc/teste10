@@ -919,6 +919,14 @@ client.on('group-participants-update', async (anu) => {
             hasil = gayrandom[Math.floor(Math.random() * (gayrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
+            case 'fato':	
+				    if (isBanned) return reply(nad.baned())
+	            	if (args.length < 1) return reply('marque seus amigos!')
+					rate = body.slice(1)
+					const ti =['${pushname} você é gay.','${pushname} Você é um preto fudido','${pushname} Você é muito Corno']
+					const kl = ti[Math.floor(Math.random() * ti.length)]
+					client.sendMessage(from, 'Segura esse fato: *'+rate+'*\n\nAqui está: '+ kl+'%', text, { quoted: mek })
+					break
             case 'amor':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
