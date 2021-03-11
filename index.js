@@ -740,6 +740,23 @@ client.on('group-participants-update', async (anu) => {
 					}
 					client.sendMessage(from, options, text)
 					break
+					case 'marcarr':
+					if (!isGroup) return reply(mess.only.group)
+					if (!isOwner) return reply(mess.only.ownerB)
+					var value = body.slice(9)
+					var group = await client.groupMetadata(from)
+					var member = group['participants']
+					var mem = []
+					member.map( async adm => {
+					mem.push(adm.id.replace('c.us', 's.whatsapp.net'))
+					})
+					var options = {
+					text: value,
+					contextInfo: { mentionedJid: mem },
+					quoted: mek
+					}
+					client.sendMessage(from, options, text)
+					break
                     case 'lofi':
 					memein = await kagApi.memeindo()
 					buffer = await getBuffer(`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL9hZBPRo16fIhsIus3t1je2oAU23pQqBpfw&usqp=CAU`)
@@ -1290,14 +1307,14 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'getsticker':
 				case 'gets':
-					if (!isPrem) return reply(nad.premium())
+					if (!isOwner) return reply(mess.only.ownerB)
 					namastc = body.slice(12)
 					result = fs.readFileSync(`./strg/sticker/${namastc}.webp`)
 					client.sendMessage(from, result, sticker, {quoted :mek})
 					break
 				case 'stickerlist':
 				case 'liststicker':
-					if (!isPrem) return reply(nad.premium())
+					if (!isOwner) return reply(mess.only.ownerB)
 					teks = '*Lista de Figurinhas :*\n\n'
 					for (let awokwkwk of setiker) {
 						teks += `- ${awokwkwk}\n`
@@ -1306,7 +1323,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": setiker } })
 					break
 				case 'addsticker':
-					if (!isPrem) return reply(nad.premium())
+					if (!isOwner) return reply(mess.only.ownerB)
 					if (!isQuotedSticker) return reply('Marque o sticker pfv')
 					svst = body.slice(12)
 					if (!svst) return reply('Qual é o nome do adesivo?')
@@ -1390,7 +1407,7 @@ client.on('group-participants-update', async (anu) => {
 				break
 				case 'sair':
                     if (!isGroup) return reply(mess.only.group)
-                    if (!isGroupAdmins) return reply(mess.only.admin)
+                    if (!isOwner) return reply(nad.ownerb())
                      setTimeout( () => {
 					client.groupLeave (from) 
 					}, 2000)
