@@ -668,6 +668,96 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_052102.png?text.0.text=${teks}&text.0.position.gravity=center&text.0.color=ff0000&text.0.opacity=99&text.0.font.family=Droid%20Serif&text.0.font.weight=600&text.0.background.opacity=74&text.0.outline.opacity=0`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
 					break
+					case 'ninjalogo':
+				var gh = body.slice(11)
+				var nin = gh.split("&")[0];
+				var ja = gh.split("&")[1];
+				if (args.length < 1) return reply(`「❗」Contoh : ${prefix}ninjalogo Ramlan & Gans`)
+				reply(mess.wait)
+				buffer = await getBuffer(`https://api.xteam.xyz/textpro/ninjalogo?text=${nin}&text2=${ja}&APIKEY=${XteamKey}`)
+				baby.sendMessage(from, buffer, image, {quoted: mek})
+				await limitAdd(sender)
+				break				
+		case 'halloweentext':
+		
+				if (args.length < 1) return reply(ind.wrongf())
+				ween = body.slice(15)
+				if (ween.length > 10) return reply('Teksnya kepanjangan, maksimal 9 karakter')
+				reply(mess.wait)
+				buffer = await getBuffer(`https://api.xteam.xyz/textpro/helloweenfire?text=${ween}&APIKEY=${XteamKey}`)
+		    baby.sendMessage(from, buffer, image, {quoted: mek})
+		    await limitAdd(sender)	
+		    break
+				case 'pornhub':
+				var gh = body.slice(9)
+				var porn = gh.split("&")[0];
+				var hub = gh.split("&")[1];
+				if (args.length < 1) return reply('escreve certo irmão')
+				reply(mess.wait)
+				buffer = await getBuffer(`https://api.vhtear.com/pornlogo?text1=${porn}&text2=${hub}&apikey=${VhtearKey}`)
+				client.sendMessage(from, buffer, image, {quoted: mek})
+				break
+               case 'placa':
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(7)
+					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
+					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					buffer = await getBuffer(`https://api.zeks.xyz/api/gplaybutton?text=${teks}&apikey=apivinz`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*\n\n*DONO CASE:* DARK'})
+					break
+               case 'freef':
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(7)
+					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
+					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					buffer = await getBuffer(`https://api.zeks.xyz/api/epep?text=${teks}&apikey=apivinz`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*\n\n*DONO CASE:* DARK'})
+					break
+               case 'emoje':
+					if (args.length < 1) return reply(mess.blank)
+					teks = body.slice(7)
+					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
+					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					buffer = await getBuffer(`https://api.zeks.xyz/api/emoji-image?apikey=apivinz&emoji=${teks}`)
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*\n\n*DONO CASE:* DARK'})
+					break		
+                case 'gltext':
+					var gh = body.slice(12)
+					var gli = gh.split("&")[0];
+					var tch = gh.split("&")[1];
+					if (args.length < 1) return reply('[❗] Contoh : ${prefix}glitchtext IKY & Gans')
+					reply(mess.wait)
+					buffer = await getBuffer(`https://api.vhtear.com/glitchtext?text1=${gli}&text2=${tch}%20&apikey=${VhtearKey}`)
+					client.sendMessage(from, buffer, image, {quoted: mek})
+					break
+                case 'bloodtxt':
+					var gh = body.slice(12)
+					var gem = gh.split("&")[0];
+					var bok = gh.split("&")[1];
+					if (args.length < 1) return reply(`「❗」Contoh : ${prefix}gemboktext NAKANO&MIKU`)
+					reply(mess.wait)
+					buffer = await getBuffer(`https://tobz-api.herokuapp.com/api/textpro?theme=wolflogo1&text1=Tobz&text2=Ganz&apikey=${TobzApi}`)
+					client.sendMessage(from, buffer, image, {quoted: mek})
+					break
+				case 'nuh':
+				case 'tuh':
+				if (args.length < 1) return reply('txt, cade?')
+				IKY = body.slice(8)
+				reply('「❗」fazendo')
+				buff = await getBuffer(`https://api.xteam.xyz/magernulis2?text=${IKY}&APIKEY=${XteamKey}`)
+				client.sendMessage(from, buff, image, {quoted: mek, caption: 'Melhor escrever você mesma, mana :*'})
+				await limitAdd(sender)
+				break				
+                case 'glitchtext':
+					var gh = body.slice(12)
+					var gli = gh.split("&")[0];
+					var tch = gh.split("&")[1];
+					if (args.length < 1) return reply(`「❗」Contoh : ${prefix}glitchtext NAKANO&MIKU`)
+					reply(mess.wait)
+					buffer = await getBuffer(`https://api.xteam.xyz/textpro/glitch?text=${gli}&text2=${tch}&APIKEY=${XteamKey}`)
+					baby.sendMessage(from, buffer, image, {quoted: mek})
+					await limitAdd(sender)
+					break
 					case 'iplog':
                     if (!isPrem) return reply(nad.premium())
                     teks = body.slice(7)
@@ -788,19 +878,6 @@ client.on('group-participants-update', async (anu) => {
                     teks = `===============\n`
                     for (let b of anu.result) {
                     teks += `• Título: ${b.title}\n• Info: ${b.info}\n• Link: ${b.link}\n===============\n`
-                    }
-                    reply(teks.trim())
-			     	break
-			     	case 'pornhub':
-			   if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
-			   if (!isPrem) return reply(nad.premium())
-			   reply(mess.wait)
-              	    if (args.length < 1) return reply('onde esta o texto mano?')
-                    teks = body.slice(9)
-                    anu = await fetchJson(`https://api.arugaz.my.id/api/media/pornhub/search?query=${teks}`, {method: 'get'})
-                    teks = `===============\n`
-                    for (let bokep of anu.result) {
-                    teks += `Titulo: ${bokep.title}\nAtor: ${bokep.author}\nVisualizadores: *${bokep.views}*\nDuracao: ${bokep.duration}\nLink: ${bokep.link}\n===============\n`
                     }
                     reply(teks.trim())
 			     	break
