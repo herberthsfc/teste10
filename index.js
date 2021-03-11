@@ -118,30 +118,31 @@ client.connect();
 // client.on('user-presence-update', json => console.log(json.id + ' presence is => ' + json.type)) || console.log(`${time}: Bot by ig:@affis_saputro123`)
 
 client.on('group-participants-update', async (anu) => {
+
 		if (!welkom.includes(anu.jid)) return
+
 		try {
+
 			const mdata = await client.groupMetadata(anu.jid)
+
 			console.log(anu)
+
 			if (anu.action == 'add') {
+
 				num = anu.participants[0]
-				try {
-					ppimg = await client.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
-				} catch {
-					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-				}
-				teks = `*OLÁ* @${num.split('@')[0]} ,\n*SEJA BEM VINDO(A) AO GRUPO* *${mdata.subject}* \n\n✨ *APRESENTE-SE:* 🤠\n(SE QUISER)\n\n➽ _NOME_\n➽ _FOTO_\n➽ _IDADE_\n\nDigite 👉 *${prefix}regras*\nPara o Bot enviar as regras do Grupo!\n\n𝑯𝑫𝑩𝑶𝑻.𝐸𝑋𝐸✨\n──━━━━━━━━━━━━━──`
-				let buff = await getBuffer(ppimg)
-				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+
+				teks = `Olá, @${num.split('@')[0]} , Bem vindo(a) ao grupo *${mdata.subject}`
+
+				client.sendMessage(mdata.id, teks, MessageType.text, { contextInfo: {"mentionedJid": [num]}})
+
 			} else if (anu.action == 'remove') {
+
 				num = anu.participants[0]
-				try {
-					ppimg = await client.getProfilePicture(`${num.split('@')[0]}@c.us`)
-				} catch {
-					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-				}
-				teks = `*Tchau Corno(a)* @${num.split('@')[0]} 🐂👋`
-				let buff = await getBuffer(ppimg)
-				client.sendMessage(mdata.id, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
+
+				teks = `1 Minuto de silencio para a saída do(a) corno(a) @${num.split('@')[0]} 👋🐂`
+
+				client.sendMessage(mdata.id, teks, MessageType.text, {contextInfo: {"mentionedJid": [num]}})
+
 			}
 		} catch (e) {
 			console.log('Error : %s', color(e, 'red'))
@@ -1655,25 +1656,36 @@ client.on('group-participants-update', async (anu) => {
 					}
 					break
 				case 'welcome':
-				case 'bv':
-				case 'bemvindo':
-				case 'boasvindas':
+
 					if (!isGroup) return reply(mess.only.group)
+
 					if (!isGroupAdmins) return reply(mess.only.admin)
-					if (args.length < 1) return reply('1 ou 0')
+
+					if (args.length < 1) return reply('Hmmmm')
+
 					if (Number(args[0]) === 1) {
-						if (isWelkom) return reply('*✓ | As boas vindas neste grupo ja estão ativadas!*')
+
+						if (isWelkom) return reply('Já ativo.')
+
 						welkom.push(from)
-						fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
-						reply('*✓ | As boas vindas neste grupo foram ativadas com sucesso!*')
+
+						fs.writeFileSync('./data/welkom.json', JSON.stringify(welkom))
+
+						reply('Modo de boas vindas ativo com sucesso!️')
+
 					} else if (Number(args[0]) === 0) {
+
 						welkom.splice(from, 1)
-						fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
-						reply('*⊘ | As boas vindas neste grupo foram desativadas com sucesso!* ')
+
+						fs.writeFileSync('./data/welkom.json', JSON.stringify(welkom))
+
+						reply('Modo de boas vindas desativo com sucesso!️')
+
 					} else {
-						reply('*Use 1 para ativar ou 0 para desativar!*')
+
+						reply('1 para ativar, 0 para desativar')
+
 					}
-					break
 				case 'clone':
 				case 'clonar':
 					if (!isGroup) return reply(mess.only.group)
