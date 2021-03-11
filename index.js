@@ -41,6 +41,7 @@ const { removeBackgroundFromImageFile } = require('remove.bg')
 const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./src/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
+const setiker = JSON.parse(fs.readFileSync('./src/stik.json'))
 const { VthearApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
 const { TobzApi } = JSON.parse(fs.readFileSync('./database/json/apikey.json'))
 const ban = JSON.parse(fs.readFileSync('./database/user/banned.json'))
@@ -1287,6 +1288,35 @@ client.on('group-participants-update', async (anu) => {
 						reply(`Para criar uma figurinha, envie uma foto, gif ou video de até 5 segundos, com a legenda ${prefix}fig`)
 					}
 					break
+					case 'getsticker':
+				case 'gets':
+					if (!isPrem) return reply(nad.premium())
+					namastc = body.slice(12)
+					result = fs.readFileSync(`./strg/sticker/${namastc}.webp`)
+					client.sendMessage(from, result, sticker, {quoted :mek})
+					break
+				case 'stickerlist':
+				case 'liststicker':
+					if (!isPrem) return reply(nad.premium())
+					teks = '*Lista de Figurinhas :*\n\n'
+					for (let awokwkwk of setiker) {
+						teks += `- ${awokwkwk}\n`
+					}
+					teks += `\n*Total : ${setiker.length}*`
+					client.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": setiker } })
+					break
+				case 'addsticker':
+					if (!isPrem) return reply(nad.premium())
+					if (!isQuotedSticker) return reply('Marque o sticker pfv')
+					svst = body.slice(12)
+					if (!svst) return reply('Qual é o nome do adesivo?')
+					boij = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
+					delb = await client.downloadMediaMessage(boij)
+					setiker.push(`${svst}`)
+					fs.writeFileSync(`./strg/sticker/${svst}.webp`, delb)
+					fs.writeFileSync(`./strg/stik.json`, JSON.stringify(setiker))
+					client.sendMessage(from, `Adicionando adesivo com sucesso\nVerificar pelo caminho ${prefix}liststicker`, MessageType.text, { quoted: mek })
+					break
 				case 'gtts':	
 				case 'tts':
 				case 'audio':
@@ -1656,35 +1686,20 @@ client.on('group-participants-update', async (anu) => {
 					}
 					break
 				case 'welcome':
-
 					if (!isGroup) return reply(mess.only.group)
-
 					if (!isGroupAdmins) return reply(mess.only.admin)
-
 					if (args.length < 1) return reply('Hmmmm')
-
 					if (Number(args[0]) === 1) {
-
-						if (isWelkom) return reply('Já ativo.')
-
+				    if (isWelkom) return reply('Já ativo.')
 						welkom.push(from)
-
 						fs.writeFileSync('./data/welkom.json', JSON.stringify(welkom))
-
 						reply('Modo de boas vindas ativo com sucesso!️')
-
 					} else if (Number(args[0]) === 0) {
-
 						welkom.splice(from, 1)
-
 						fs.writeFileSync('./data/welkom.json', JSON.stringify(welkom))
-
 						reply('Modo de boas vindas desativo com sucesso!️')
-
 					} else {
-
 						reply('1 para ativar, 0 para desativar')
-
 					}
 					break
 				case 'clone':
