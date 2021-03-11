@@ -940,14 +940,14 @@ client.on('group-participants-update', async (anu) => {
             case 'gado':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
-            reply('*🔍 | Gado Localizado!*')
+            if (args.length < 1) return reply('Marque um gado!')
+            reply('*[❕] Gado Localizado!*')
             hasil = gadorandom[Math.floor(Math.random() * (gadorandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'eusou':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
-            reply('*Pelos meus cálculos, voce é...*')
             hasil = eusourandom[Math.floor(Math.random() * (eusourandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
@@ -969,7 +969,7 @@ client.on('group-participants-update', async (anu) => {
             case 'gay':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
-            if (args.length < 1) return reply('marque seus amigos!')
+            if (args.length < 1) return reply('Marque um gay!')
             hasil = gayrandom[Math.floor(Math.random() * (gayrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
