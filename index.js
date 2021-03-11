@@ -864,7 +864,6 @@ client.on('group-participants-update', async (anu) => {
 			teks = `*• Título*: ${data.result[0].title}\n\n*• Criador*: ${hepi.publisher}\n\n*• Mod:* ${hepi.mod_info}\n\n*• Peso*: ${hepi.size}\n\n*• Última versão*: ${hepi.latest_version}\n\n*• Gênero*: ${hepi.genre}\n\n*Link:* ${hepi.link}\n\n*Download*: ${hepi.download}`
 			buffer = await getBuffer(hepi.image)
 			client.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
-			await limitAdd(sender)
 			break
 			case 'happymod':
 			if (!isPrem) return reply(nad.premium())
@@ -873,8 +872,43 @@ client.on('group-participants-update', async (anu) => {
 			teks = `*Nama*: ${data.result[0].title}\n*version*: ${hupo.version}\n*size:* ${hupo.size}\n*root*: ${hupo.root}\n*purchase*: ${hupo.price}\n*link*: ${hupo.link}\n*download*: ${hupo.download}`
 			buffer = await getBuffer(hupo.image)
 			client.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
-			await limitAdd(sender)
 			break
+			case 'gplaystore':
+            if (!isPrem) return reply(nad.premium())
+            client.updatePresence(from, Presence.composing)
+            goo = body.slice(12)
+            try {
+            data = await fetchJson(`https://api.zeks.xyz/api/sgplay?apikey=apivinz&q=${goo}`, {
+            method: 'get'
+            })
+            teks = '*Google Play Store*\n\n'
+            for (let i of data.result) {
+            teks += `        ────────────────\n\n‣ *Nome* : ${i.title}\n‣ *Desenvolvedor* : ${i.developer}\n‣ *Avaliação* : ${i.rating}\n‣ *Link* : ${i.url}\n\n`
+            }
+            teks += `        ────────────────`
+            reply(teks.trim())
+            } catch {
+            reply('Parece que o recurso está errado')
+            }
+            break            	
+            case 'apkpure':
+            if (!isPrem) return reply(nad.premium())
+            client.updatePresence(from, Presence.composing)
+            goo = body.slice(12)
+            try {
+            data = await fetchJson(`https://api.zeks.xyz/api/apkpure?q=${goo}&apikey=apivinz`, {
+            method: 'get'
+            })
+            teks = '*Apk Pure*\n\n'
+            for (let i of data.result) {
+            teks += `        ────────────────\n\n‣ *Nome* : ${i.title}\n‣ *Desenvolvedor* : ${i.developer}\n‣ *Avaliação* : ${i.rating}\n‣ *Link* : ${i.url}\n\n`
+            }
+            teks += `        ────────────────`
+            reply(teks.trim())
+            } catch {
+            reply('Parece que o recurso está errado')
+            }
+            break
 			case 'ping':    
 			if (isBanned) return reply(nad.baned())
 			if (!isGroup) return reply(mess.only.group)
