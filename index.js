@@ -53,6 +53,7 @@ const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
 const amorrandom = JSON.parse(fs.readFileSync('./database/json/amor.json'))
+const apivhtear = 'apivhtear'
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
             + 'FN:Herberth\n' 
@@ -679,7 +680,6 @@ client.on('group-participants-update', async (anu) => {
 				await limitAdd(sender)
 				break				
 		case 'halloweentext':
-		
 				if (args.length < 1) return reply(ind.wrongf())
 				ween = body.slice(15)
 				if (ween.length > 10) return reply('Teksnya kepanjangan, maksimal 9 karakter')
@@ -1814,22 +1814,22 @@ client.on('group-participants-update', async (anu) => {
 					}
 					break
 				case 'welcome':
-					if (!isGroup) return reply(mess.only.group)
-					if (!isGroupAdmins) return reply(mess.only.admin)
-					if (args.length < 1) return reply('Hmmmm')
-					if (Number(args[0]) === 1) {
-				    if (isWelkom) return reply('Já ativo.')
-						welkom.push(from)
-						fs.writeFileSync('./data/welkom.json', JSON.stringify(welkom))
-						reply('Modo de boas vindas ativo com sucesso!️')
-					} else if (Number(args[0]) === 0) {
-						welkom.splice(from, 1)
-						fs.writeFileSync('./data/welkom.json', JSON.stringify(welkom))
-						reply('Modo de boas vindas desativo com sucesso!️')
-					} else {
-						reply('1 para ativar, 0 para desativar')
-					}
-					break
+                    if (!isGroup) return reply(mess.only.group)
+                    if (!isGroupAdmins) return reply(mess.only.admin)
+                    if (args.length < 1) return reply('Hmmmm')
+                    if (Number(args[0]) === 1) {
+                    if (isWelkom) return reply('Já ativo.')
+                    welkom.push(from)
+                    fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
+                    reply('Modo de boas vindas ativo com sucesso!️')
+                    } else if (Number(args[0]) === 0) {
+                    welkom.splice(from, 1)
+                    fs.writeFileSync('./src/welkom.json', JSON.stringify(welkom))
+                    reply('Modo de boas vindas desativado com sucesso!️')
+                    } else {
+                    reply('1 para ativar, 0 para desativar')
+                    }
+                    break
 				case 'clone':
 				case 'clonar':
 					if (!isGroup) return reply(mess.only.group)
