@@ -131,7 +131,7 @@ client.on('group-participants-update', async (anu) => {
 
 				num = anu.participants[0]
 
-				teks = `Olá, @${num.split('@')[0]} , Bem vindo(a) ao grupo *${mdata.subject}`
+				teks = `Olá, @${num.split('@')[0]} , Bem vindo(a) ao grupo *${mdata.subject}*`
 
 				client.sendMessage(mdata.id, teks, MessageType.text, { contextInfo: {"mentionedJid": [num]}})
 
@@ -1686,6 +1686,7 @@ client.on('group-participants-update', async (anu) => {
 						reply('1 para ativar, 0 para desativar')
 
 					}
+					break
 				case 'clone':
 				case 'clonar':
 					if (!isGroup) return reply(mess.only.group)
