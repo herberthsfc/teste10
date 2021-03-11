@@ -53,7 +53,6 @@ const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
 const amorrandom = JSON.parse(fs.readFileSync('./database/json/amor.json'))
-const apivhtear = 'apivhtear'
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
             + 'FN:Herberth\n' 
@@ -694,7 +693,7 @@ client.on('group-participants-update', async (anu) => {
 				var hub = gh.split("&")[1];
 				if (args.length < 1) return reply('escreve certo irmão')
 				reply(mess.wait)
-				buffer = await getBuffer(`https://api.vhtear.com/pornlogo?text1=${porn}&text2=${hub}&apikey=${VhtearKey}`)
+				buffer = await getBuffer(`https://api.vhtear.com/pornlogo?text1=${porn}&text2=${hub}&apikey=c1d162b46e634f389efa1ac715f03d03`)
 				client.sendMessage(from, buffer, image, {quoted: mek})
 				break
                case 'placa':
