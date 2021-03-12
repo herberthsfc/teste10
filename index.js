@@ -1181,6 +1181,7 @@ client.on('group-participants-update', async (anu) => {
 				break
 				case 'fatality':
 					if (args.length < 1) return reply ('Em quem você quer dar o chute?.')
+                    mentidn = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
 					client.sendMessage(from, text, {quoted: mek, caption: `Você deu um chute no(a) @${mentidn.split('@')[0]} 👋`, contextInfo: {mentionedJid: [mentidn]}})
 					break
             case 'amor':
