@@ -1033,10 +1033,8 @@ client.on('group-participants-update', async (anu) => {
                 userf2 = `${res2.display_url}`
                 buffer99 = await getBuffer(`https://api.zeks.xyz/api/slap?apikey=${zeksApi}&img1=${userf1}&img2=${userf2}`)
                 client.sendMessage(from, buffer99, image, {quoted: mek, caption: `Você deu tapa no(a) @${mentidn.split('@')[0]}`, contextInfo: {mentionedJid: [mentidn]}})
-				await limitAdd(sender)
                 } catch (e) {
                 console.log(`Error :`, color(e,'red'))
-                reply("Api está passando por uma análise! Espera ate que ela volte ao normal.")
                 }
 				break
             case 'amor':
@@ -1301,31 +1299,36 @@ client.on('group-participants-update', async (anu) => {
 						reply('Escolha a foto para pegar os txt dela ${prefix} >-<')
 					}
 					break
-				case 'stiker': 
-				case 'sticker':
-				case 'fig':
-				case 'figurinha':
-					if (isBanned) return reply(nad.baned())
+				case 's':
+				case 'fig':				
+				case 'f':
+				case 'stiker':	
+				case 'sticker':	
+				case 'figu':										
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
 						ran = getRandom('.webp')
 						await ffmpeg(`./${media}`)
 							.input(media)
-							.on('start', function (cmd) {
-								console.log(`Started : ${cmd}`)
+							.on('começando', function (cmd) {
+								console.log(`Começando : ${cmd}`)
 							})
-							.on('error', function (err) {
-								console.log(`Error : ${err}`)
+							.on('erro', function (err) {
+								console.log(`Erro : ${err}`)
 								fs.unlinkSync(media)
 								reply(mess.error.stick)
 							})
 							.on('end', function () {
-								console.log('Finish')
-								buff = fs.readFileSync(ran)
-								client.sendMessage(from, buff, sticker, {quoted: mek})
+								console.log('Figurinha Feita')
+								exec(`webpmux -set exif ${addMetadata('Sticker', '@herberthsfc')} ${ran} -o ${ran}`, async (error) => {
+									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
+									fs.unlinkSync(media)	
+									fs.unlinkSync(ran)	
+								})
+								/*client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 								fs.unlinkSync(media)
-								fs.unlinkSync(ran)
+								fs.unlinkSync(ran)*/
 							})
 							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(230,iw)':min'(230,ih)':force_original_aspect_ratio=decrease,fps=15, pad=230:230:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
@@ -1337,27 +1340,77 @@ client.on('group-participants-update', async (anu) => {
 						reply(mess.wait)
 						await ffmpeg(`./${media}`)
 							.inputFormat(media.split('.')[1])
-							.on('start', function (cmd) {
-								console.log(`Started : ${cmd}`)
+							.on('começando', function (cmd) {
+								console.log(`Começando : ${cmd}`)
 							})
 							.on('error', function (err) {
 								console.log(`Error : ${err}`)
 								fs.unlinkSync(media)
 								tipe = media.endsWith('.mp4') ? 'video' : 'gif'
-								reply(`Yah gagal ;(, tente dnovo ^_^`)
+								reply(`❌ Falhou, no momento da conversão ${tipe} para o adesivo`)
 							})
 							.on('end', function () {
-								console.log('Finish')
-								buff = fs.readFileSync(ran)
-								client.sendMessage(from, buff, sticker, {quoted: mek})
+								console.log('Figurinha Feita')
+								exec(`webpmux -set exif ${addMetadata('Sticker', '@herberthsfc')} ${ran} -o ${ran}`, async (error) => {
+									if (error) return reply(mess.error.stick)
+									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
+									fs.unlinkSync(media)
+									fs.unlinkSync(ran)
+								})
+								/*client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 								fs.unlinkSync(media)
-								fs.unlinkSync(ran)
+								fs.unlinkSync(ran)*/
 							})
 							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(230,iw)':min'(230,ih)':force_original_aspect_ratio=decrease,fps=15, pad=230:230:-1:-1:color=white@0.0, split [a][b]; [a] palettegen=reserve_transparent=on:transparency_color=ffffff [p]; [b][p] paletteuse`])
 							.toFormat('webp')
 							.save(ran)
+					} else if ((isMedia || isQuotedImage) && args[0] == 'nobg') {
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+						const media = await client.downloadAndSaveMediaMessage(encmedia)
+						ranw = getRandom('.webp')
+						ranp = getRandom('.png')
+						reply(mess.wait)
+						keyrmbg = 'IDxO1TFYnKADlX4pxcHa'
+						await removeBackgroundFromImageFile({path: media, apiKey: keyrmbg, size: 'auto', type: 'auto', ranp}).then(res => {
+							fs.unlinkSync(media)
+							let buffer = Buffer.from(res.base64img, 'base64')
+							fs.writeFileSync(ranp, buffer, (err) => {
+								if (err) return reply('Falha, ocorreu um erro, tente novamente mais tarde✨🍉.')
+							})
+							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
+								fs.unlinkSync(ranp)
+								if (err) return reply(mess.error.stick)
+								exec(`webpmux -set exif ${addMetadata('Sticker', '@herberthsfc')} ${ranw} -o ${ranw}`, async (error) => {
+									if (error) return reply(mess.error.stick)
+									client.sendMessage(from, fs.readFileSync(ranw), sticker, {quoted: mek})
+									fs.unlinkSync(ranw)
+								})
+								//client.sendMessage(from, fs.readFileSync(ranw), sticker, {quoted: mek})
+							})
+						})
+					/*} else if ((isMedia || isQuotedImage) && colors.includes(args[0])) {
+						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+						const media = await client.downloadAndSaveMediaMessage(encmedia)
+						ran = getRandom('.webp')
+						await ffmpeg(`./${media}`)
+							.on('start', function (cmd) {
+								console.log('Started :', cmd)
+							})
+							.on('error', function (err) {
+								fs.unlinkSync(media)
+								console.log('Error :', err)
+							})
+							.on('end', function () {
+								console.log('Finish')
+								fs.unlinkSync(media)
+								client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
+								fs.unlinkSync(ran)
+							})
+							.addOutputOptions([`-vcodec`,`libwebp`,`-vf`,`scale='min(320,iw)':min'(320,ih)':force_original_aspect_ratio=decrease,fps=15, pad=320:320:-1:-1:color=${args[0]}@0.0, split [a][b]; [a] palettegen=reserve_transparent=off; [b][p] paletteuse`])
+							.toFormat('webp')
+							.save(ran)*/
 					} else {
-						reply(`Para criar uma figurinha, envie uma foto, gif ou video de até 5 segundos, com a legenda ${prefix}fig`)
+						reply(`envie na legenda da foto o comando ${prefix}fig \n Atenção! Figurinhas animadas maximo de 10 segundos!`)
 					}
 					break
 					case 'getsticker':
@@ -1389,6 +1442,68 @@ client.on('group-participants-update', async (anu) => {
 					fs.writeFileSync(`./strg/stik.json`, JSON.stringify(setiker))
 					client.sendMessage(from, `Adicionando adesivo com sucesso\nVerificar pelo caminho ${prefix}liststicker`, MessageType.text, { quoted: mek })
 					break
+					case 'trigg':
+					case 'ger':
+                    var imgbb = require('imgbb-uploader')
+                    if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+                    ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+                    reply(mess.wait)
+                    owgi = await client.downloadAndSaveMediaMessage(ger)
+                    anu = await imgbb("08579d070df9a07cb1c2ee565aece767", owgi)
+                    teks = `${anu.display_url}`
+                    ranp = getRandom('.gif')
+                    rano = getRandom('.webp')
+                    anu1 = `https://some-random-api.ml/canvas/triggered?avatar=${teks}`
+                    exec(`wget ${anu1} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+                    fs.unlinkSync(ranp)
+                    if (err) return reply(mess.error.stick)
+                    nobg = fs.readFileSync(rano)
+                    client.sendMessage(from, nobg, sticker, {quoted: mek})
+                    fs.unlinkSync(rano)
+                    })
+                    } else {
+                    reply('Use uma foto!')
+                    }
+                    break	
+                    case 'wasted':
+                    case 'was':
+                    var imgbb = require('imgbb-uploader')
+                    if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+                    ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
+                    reply(mess.wait)
+                    owgi = await client.downloadAndSaveMediaMessage(ger)
+                    anu = await imgbb("08579d070df9a07cb1c2ee565aece767", owgi)
+                    teks = `${anu.display_url}`
+                    ranp = getRandom('.gif')
+                    rano = getRandom('.webp')
+                    anu1 = `https://some-random-api.ml/canvas/wasted?avatar=${teks}`
+                    exec(`wget ${anu1} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+                    fs.unlinkSync(ranp)
+                    if (err) return reply(mess.error.stick)
+                    nobg = fs.readFileSync(rano)
+                    client.sendMessage(from, nobg, sticker, {
+                    quoted: mek
+                    })
+                    fs.unlinkSync(rano)
+                    })
+                    } else {
+                    reply('Use uma foto!')
+                    }
+                    break   
+                    case 'drawing':
+                    var imgbb = require('imgbb-uploader')
+                    if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+                    ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
+                    reply(mess.wait)
+                    owgi = await client.downloadAndSaveMediaMessage(ted)
+                    tels = body.slice(7)
+                    anu = await imgbb("08579d070df9a07cb1c2ee565aece767", owgi)
+                    hehe = await getBuffer(`https://videfikri.com/api/textmaker/pencil/?urlgbr=${anu.display_url}`)
+                    client.sendMessage(from, hehe, image, {quoted:mek})
+                    } else {
+                    reply('Não adicione nada ao comando')
+                    }
+                    break
 				case 'gtts':	
 				case 'tts':
 				case 'audio':
