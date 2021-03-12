@@ -38,6 +38,7 @@ const ffmpeg = require('fluent-ffmpeg')
 const speed = require('performance-now')
 const fetch = require('node-fetch')
 const { removeBackgroundFromImageFile } = require('remove.bg')
+const imgbb = require('imgbb-uploader')
 const welkom = JSON.parse(fs.readFileSync('./src/welkom.json'))
 const nsfw = JSON.parse(fs.readFileSync('./src/nsfw.json'))
 const samih = JSON.parse(fs.readFileSync('./src/simi.json'))
@@ -53,6 +54,11 @@ const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
 const amorrandom = JSON.parse(fs.readFileSync('./database/json/amor.json'))
+const apivhtear = 'apivhtear';
+const apibarbar = 'apibarbar';
+const apikeyG = '8b3591aa6c8d36a033b4d8dd46b68834';
+const ZeksApi = 'apivinz';
+const zeksApi = 'apivinz';
 const vcard = 'BEGIN:VCARD\n' 
             + 'VERSION:3.0\n' 
             + 'FN:Herberth\n' 

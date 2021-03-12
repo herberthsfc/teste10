@@ -18,6 +18,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "got": "^11.8.1",
     "image-to-base64": "^2.1.1",
+    "imgbb-uploader": "^1.1.0",
     "moment-timezone": "^0.5.32",
     "multistream": "^2.1.0",
     "needle": "^2.5.2",
