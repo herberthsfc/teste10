@@ -1564,6 +1564,8 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, result, sticker, {quoted :mek})
 					break
 					case 'hdttp':
+				if (!isGroup) return reply(mess.only.group)
+				if (isBanned) return reply(nad.baned())
 				if (args.length < 1) return reply(`_O texto _\n*Exemplo ${prefix}hdttp herberth*`)
 				attp2 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
 				client.sendMessage(from, attp2, sticker, {quoted: mek})
