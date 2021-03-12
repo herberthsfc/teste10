@@ -1180,9 +1180,7 @@ client.on('group-participants-update', async (anu) => {
                 }
 				break
 				case 'fatality':
-					if (isBanned) return reply(nad.baned())
-					if (!isGroup) return reply(ind.groupo())
-					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Em quem você quer dar o chute na cara >:] ?')
+					if (args.length < 1) return reply ('Em quem você quer dar o chute?.')
 					client.sendMessage(from, text, {quoted: mek, caption: `Você deu um chute no(a) @${mentidn.split('@')[0]} 👋`, contextInfo: {mentionedJid: [mentidn]}})
 					break
             case 'amor':
