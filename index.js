@@ -1040,7 +1040,7 @@ client.on('group-participants-update', async (anu) => {
             break
             case 'gostosa':
             if (isBanned) return reply(nad.baned())
-            if (args.length < 2) return reply('Erro!')
+            if (args.length < 1) return reply('Marque uma gostosa!')
             hasil = gostosarandom[Math.floor(Math.random() * (gostosarandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
