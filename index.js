@@ -664,36 +664,36 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*⏰ | Carregando, por favor, aguarde um momento...*')
+					reply('*[❕] Carregando...*')
 					buffer = await getBuffer(`https://nturshro.sirv.com/Api-dark/20210222_052102.png?text.0.text=${teks}&text.0.position.gravity=center&text.0.color=ff0000&text.0.opacity=99&text.0.font.family=Droid%20Serif&text.0.font.weight=600&text.0.background.opacity=74&text.0.outline.opacity=0`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*'})
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Concluído com sucesso ✓*'})
 					break
                case 'placa':
 					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					reply('*[❕] Carregando...*')
 					buffer = await getBuffer(`https://api.zeks.xyz/api/gplaybutton?text=${teks}&apikey=apivinz`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*\n\n*DONO CASE:* DARK'})
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Concluído com sucesso ✓*'})
 					break
                case 'freef':
 					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*Estou fazendo, se der erro tente novamente ✓*')
+					reply('*[❕] Carregando...*')
 					buffer = await getBuffer(`https://api.zeks.xyz/api/epep?text=${teks}&apikey=apivinz`)
-					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*PRONTINHO ✓*\n\n*DONO CASE:* DARK'})
+					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Concluído com sucesso ✓*'})
 					break
 					case 'logohub':
 		    	    if (!isPrem) return reply(nad.premium())
 		    	    daddy = `${body.slice(8)}`
 		    	    no = daddy.split("/")[0];
 		    	    bg = daddy.split("/")[1];
-		     	    reply('*Estou fazendo aguarde...*')
+		     	    reply('*[❕] Carregando...*')
 		    	    buffer = await getBuffer(`https://api.zeks.xyz/api/phub?apikey=apivinz&img=https://1.bp.blogspot.com/-x8KhcOBG-yw/XiU4pi1yWVI/AAAAAAAADBA/gK8tsLyc1lQ808A348IKzDCjf6fUBKONwCLcBGAsYHQ/s1600/cara%2Bbuat%2Bfoto%2Bprofil%2Bdi%2Bwhatsapp%2Bmenjadi%2Bunik.jpg&username=${no}&msg=${bg}`, {method: 'get'})
-			        client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Aqui Está*\n\n*Feito Com sucesso*'})
+			        client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Concluído com sucesso ✓*'})
 					break
 					case 'iplog':
                     if (!isPrem) return reply(nad.premium())
