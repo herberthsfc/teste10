@@ -54,6 +54,7 @@ const antishit = JSON.parse(fs.readFileSync('./database/json/antishit.json'))
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
+const gostosarandom = JSON.parse(fs.readFileSync('./database/json/gostosa.json'))
 const amorrandom = JSON.parse(fs.readFileSync('./database/json/amor.json'))
 const apivhtear = 'apivhtear';
 const apibarbar = 'apibarbar';
@@ -1037,6 +1038,12 @@ client.on('group-participants-update', async (anu) => {
             hasil = gayrandom[Math.floor(Math.random() * (gayrandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
+            case 'gostosa':
+            if (isBanned) return reply(nad.baned())
+            if (args.length < 2) return reply('Erro!')
+            hasil = gostosarandom[Math.floor(Math.random() * (gostosarandom.length))]
+            client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
+            break
             case 'fato':	
 				    if (isBanned) return reply(nad.baned())
 	            	if (args.length < 1) return reply('marque seus amigos!')
@@ -1052,7 +1059,7 @@ client.on('group-participants-update', async (anu) => {
                 var imgbb = require('imgbb-uploader')
                 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Em quem você quer dar o tapa na cara >:] ?')
 				mentidn = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
-				reply('espera um pokin uai')
+				reply('[❕] Preparando as mãos, Aguarde...')
                 ghost = mek.participant
                 try {
                 pp = await client.getProfilePicture(ghost)
@@ -1075,7 +1082,7 @@ client.on('group-participants-update', async (anu) => {
                 res2 = await imgbb(`${apikeyG}`, 'tapa2.jpeg')
                 userf2 = `${res2.display_url}`
                 buffer99 = await getBuffer(`https://api.zeks.xyz/api/slap?apikey=${zeksApi}&img1=${userf1}&img2=${userf2}`)
-                client.sendMessage(from, buffer99, image, {quoted: mek, caption: `Você deu tapa no(a) @${mentidn.split('@')[0]}`, contextInfo: {mentionedJid: [mentidn]}})
+                client.sendMessage(from, buffer99, image, {quoted: mek, caption: `Você deu um tapa no(a) @${mentidn.split('@')[0]} 👋`, contextInfo: {mentionedJid: [mentidn]}})
                 } catch (e) {
                 console.log(`Error :`, color(e,'red'))
                 }
