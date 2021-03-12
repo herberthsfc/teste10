@@ -1354,6 +1354,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'stiker':	
 				case 'sticker':	
 				case 'figu':										
+					if (isBanned) return reply(nad.baned())
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						const media = await client.downloadAndSaveMediaMessage(encmedia)
@@ -1853,7 +1854,7 @@ client.on('group-participants-update', async (anu) => {
 					}
 					break	
 			     	case 'kick':
-			case 'banir':
+			case 'ban':
 			case 'remover':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
