@@ -1147,6 +1147,7 @@ client.on('group-participants-update', async (anu) => {
 				case 'slap':
 				try {
 				if (!isGroup) return reply(ind.groupo())
+				if (isBanned) return reply(nad.baned())
                 var imgbb = require('imgbb-uploader')
                 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Em quem você quer dar o tapa na cara >:] ?')
 				mentidn = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
@@ -1178,6 +1179,12 @@ client.on('group-participants-update', async (anu) => {
                 console.log(`Error :`, color(e,'red'))
                 }
 				break
+				case 'fatality':
+					if (isBanned) return reply(nad.baned())
+					if (!isGroup) return reply(ind.groupo())
+					if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Em quem você quer dar o chute na cara >:] ?')
+					client.sendMessage(from, buffer99, image, {quoted: mek, caption: `Você deu um chute no(a) @${mentidn.split('@')[0]} 👋`, contextInfo: {mentionedJid: [mentidn]}})
+					break
             case 'amor':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
