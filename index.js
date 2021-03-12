@@ -1179,11 +1179,6 @@ client.on('group-participants-update', async (anu) => {
                 console.log(`Error :`, color(e,'red'))
                 }
 				break
-				case 'fatality':
-					if (args.length < 1) return reply ('Em quem você quer dar o chute?.')
-                    mentidn = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
-					client.sendMessage(from, text, {quoted: mek, caption: `Você deu um chute no(a) @${mentidn.split('@')[0]} 👋`, contextInfo: {mentionedJid: [mentidn]}})
-					break
             case 'amor':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
@@ -1568,6 +1563,11 @@ client.on('group-participants-update', async (anu) => {
 					result = fs.readFileSync(`./strg/sticker/${namastc}.webp`)
 					client.sendMessage(from, result, sticker, {quoted :mek})
 					break
+					case 'hdttp':
+				if (args.length < 1) return reply(`_O texto _\n*Exemplo ${prefix}hdttp herberth*`)
+				attp2 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
+				client.sendMessage(from, attp2, sticker, {quoted: mek})
+				break
 				case 'stickerlist':
 				case 'liststicker':
 					if (!isOwner) return reply(mess.only.ownerB)
