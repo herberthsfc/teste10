@@ -480,14 +480,14 @@ client.on('group-participants-update', async (anu) => {
 					if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do hdbot!*')
 					client.sendMessage(from, help(prefix), text)
 					break
-				  case 'block':
+				  case 'kic':
 					if (!isOwner) return reply(nad.ownerb())
 					bnnd = body.slice(6)
 					ban.push(`${bnnd}@s.whatsapp.net`)
 					fs.writeFileSync('./database/user/banned.json', JSON.stringify(ban))
 					reply(`Número ${bnnd} banido`)
 					break
-				case 'desblock':
+				case 'unkic':
 					if (!isOwner) return reply(nad.ownerb())
 					ya = body.slice(8)
 					unb = ban.indexOf(ya)
