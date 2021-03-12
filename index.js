@@ -434,7 +434,7 @@ client.on('group-participants-update', async (anu) => {
 			if (authorname != undefined) { } else { authorname = groupName }	
 			
 			function addMetadata(packname, author) {	
-				if (!packname) packname = 'Sticker'; if (!author) author = '@herbethsfc';	
+				if (!packname) packname = 'Sticker'; if (!author) author = 'HDBOT';	
 				author = author.replace(/[^a-zA-Z0-9]/g, '');	
 				let name = `${author}_${packname}`
 				if (fs.existsSync(`./src/stickers/${name}.exif`)) return `./src/stickers/${name}.exif`
@@ -1364,7 +1364,7 @@ client.on('group-participants-update', async (anu) => {
 							})
 							.on('end', function () {
 								console.log('Figurinha Feita')
-								exec(`webpmux -set exif ${addMetadata('Sticker', '@herbethsfc')} ${ran} -o ${ran}`, async (error) => {
+								exec(`webpmux -set exif ${addMetadata('Sticker', 'HDBOT')} ${ran} -o ${ran}`, async (error) => {
 									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 									fs.unlinkSync(media)	
 									fs.unlinkSync(ran)	
@@ -1394,7 +1394,7 @@ client.on('group-participants-update', async (anu) => {
 							})
 							.on('end', function () {
 								console.log('Figurinha Feita')
-								exec(`webpmux -set exif ${addMetadata('Sticker', '@herbethsfc')} ${ran} -o ${ran}`, async (error) => {
+								exec(`webpmux -set exif ${addMetadata('Sticker', 'HDBOT')} ${ran} -o ${ran}`, async (error) => {
 									if (error) return reply(mess.error.stick)
 									client.sendMessage(from, fs.readFileSync(ran), sticker, {quoted: mek})
 									fs.unlinkSync(media)
@@ -1423,7 +1423,7 @@ client.on('group-participants-update', async (anu) => {
 							exec(`ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${ranw}`, (err) => {
 								fs.unlinkSync(ranp)
 								if (err) return reply(mess.error.stick)
-								exec(`webpmux -set exif ${addMetadata('Sticker', '@herbethsfc')} ${ranw} -o ${ranw}`, async (error) => {
+								exec(`webpmux -set exif ${addMetadata('Sticker', 'HDBOT')} ${ranw} -o ${ranw}`, async (error) => {
 									if (error) return reply(mess.error.stick)
 									client.sendMessage(from, fs.readFileSync(ranw), sticker, {quoted: mek})
 									fs.unlinkSync(ranw)
@@ -1487,6 +1487,8 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'trigg':
 					case 'ger':
+                    if (isBanned) return reply(nad.baned())
+                    if (!isGroup) return reply(mess.only.group)
                     var imgbb = require('imgbb-uploader')
                     if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
                     ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
@@ -1510,6 +1512,8 @@ client.on('group-participants-update', async (anu) => {
                     break	
                     case 'wasted':
                     case 'was':
+                    if (isBanned) return reply(nad.baned())
+                    if (!isGroup) return reply(mess.only.group)
                     var imgbb = require('imgbb-uploader')
                     if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
                     ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
@@ -1534,6 +1538,8 @@ client.on('group-participants-update', async (anu) => {
                     }
                     break   
                     case 'drawing':
+                    if (isBanned) return reply(nad.baned())
+                    if (!isGroup) return reply(mess.only.group)
                     var imgbb = require('imgbb-uploader')
                     if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
                     ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
