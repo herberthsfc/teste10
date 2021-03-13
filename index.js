@@ -181,7 +181,7 @@ client.on('group-participants-update', async (anu) => {
 			budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
 			const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()
 			var pes = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''
-			const messagesLink = Link.slice(0).trim().split(/ +/).shift().toLowerCase()
+			const messagesC = pes.slice(0).trim().split(/ +/).shift().toLowerCase()
 			const args = body.trim().split(/ +/).slice(1)
 			const isCmd = body.startsWith(prefix)
 
@@ -217,7 +217,7 @@ client.on('group-participants-update', async (anu) => {
 			const isWelkom = isGroup ? welkom.includes(from) : false
 			const isNsfw = isGroup ? nsfw.includes(from) : true
 			const isSimi = isGroup ? samih.includes(from) : false
-			const isAntiLink = isGroup ? antilink.includes(from) : false
+			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
 			const isAntiShit = isGroup ? antishit.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
@@ -280,23 +280,17 @@ client.on('group-participants-update', async (anu) => {
             }
         }
         if (messagesC.includes("://chat.whatsapp.com/")){
-					if (!isGroup) return
-					if (!isAntiLink) return
-					if (isGroupAdmins) return reply(`*${pushname2}* 𝚅𝙾𝙲𝙴 𝙴 𝚄𝙼 𝙰𝙳𝙴𝙼𝙸𝚁 𝙴𝙽𝚃𝙰𝙾 𝙿𝙾𝙳𝙴 𝙿𝙾𝚂𝚃𝙰𝚁 𝙻𝙸𝙽𝙺𝚂`)
-					client.updatePresence(from, Presence.composing)
-					if (messagesLink.includes("#izinadmin")) return reply("#izinadmin *_「 𝚁𝙴𝙲𝙴𝙱𝙸𝙳𝙾 」_*")
-					var kic = `${sender.split("@")[0]}@s.whatsapp.net`
-						reply(`*_「 𝙻𝙸𝙽𝙺 𝙳𝙴 𝙶𝚁𝚄𝙿𝙾 𝙳𝙴𝚃𝙴𝙲𝚃𝙰𝙳𝙾 」_*\n𝙳𝙴𝚂𝙲𝚄𝙻𝙿𝙴 *${pushname2}* 𝐸𝑆𝑇𝐸 𝐺𝑅𝑈𝑃𝑂 𝑁𝐴𝑂 𝑃𝐸𝑅𝑀𝐼𝑇𝐼 𝐿𝐼𝑁𝐾𝑆!, 𝚅𝙾𝚄 𝚃𝙴 𝚁𝙴𝙼𝙾𝚅𝙴𝚁 𝙿𝙾𝚁 𝚀𝚄𝙴𝙱𝚁𝙰𝚁 𝙰𝚂 𝚁𝙴𝙶𝚁𝙰𝚂 *${groupMetadata.subject}*`)
-						setTimeout( () => {
-						client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
-					}, 00000)
+		if (!isGroup) return
+		if (!isAntiLink) return
+		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
+		client.updatePresence(from, Presence.composing)
+		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
+		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
+		reply(`*⊘ | LINK DETECTADO!* \n*Número:* ${sender.split("@")[0]} \n*Ação:* removido(a) com sucesso!`)
 		setTimeout( () => {
-		client.groupRemove(from, [Kick]).catch((e) => {reply(`*ERROR:* ${e}`)}) 
-					}, 00000)
-		setTimeout( () => {
-		reply
-		}, 0)
-		}
+			client.groupRemove(from, [kic]).catch((e)=>{reply(`*ERR:* ${e}`)})
+		}, 1000)
+	}
 	if (messagesC.includes("macaco")){
 		if (!isGroup) return
 		if (!isAntiRacismo) return
@@ -1381,22 +1375,23 @@ client.on('group-participants-update', async (anu) => {
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: `${body.slice(5)}`})
 				break
 				case 'antilink':
-				if (!isGroup) return reply(mess.only.group)
+                    if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
-					if (args.length < 1) return reply('modelo #antilink on ativar')
-					if ((args[0]) === 'on') {
-						if (isAntiLink) return reply('anti-link já on')
+					if (args.length < 1) return reply('*Digite 1 para ativar*')
+					if (Number(args[0]) === 1) {
+						if (isAntiLink) return reply('*✓ | O Antilink ja está ativado!*')
 						antilink.push(from)
-						fs.writeFileSync('./database/json/antilink.json', JSON.stringify(antilink))
-						reply(`\`\`\`✓“Ativou com sucesso o recurso anti-link no grupo\`\`\` *${groupMetadata.subject}*`)
-					} else if ((args[0]) === 'off') {
-						if (!isAntiLink) return reply('anti link já off')
-						antilink.splice(from, 1)
-						fs.writeFileSync('./database/json/antilink.json', JSON.stringify(antilink))
-						reply(`\`\`\`✓“Desativando com sucesso o recurso anti-link no grupo\`\`\` *${groupMetadata.subject}*`)
+						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
+						reply('\`\`\`✓Ativado com sucesso o modo antilink neste grupo!\`\`\`')
+					} else if (Number(args[0]) === 0) {
+						if (!isantilink) return reply('*⊘ | Antilink desativado com sucesso!*')
+						var ini = anti.indexOf(from)
+						antilink.splice(ini, 1)
+						fs.writeFileSync('./src/antilink.json', JSON.stringify(antilink))
+						reply('\`\`\`⊘Modo antilink desativado com sucesso neste grupo!\`\`\`️')
 					} else {
-						reply('on ativar, off para desativar ')
+						reply('*1 para ativar, 0 para desativar!*')
 					}
 					break
 					case 'antiracismo':
