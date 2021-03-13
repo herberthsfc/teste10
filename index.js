@@ -801,6 +801,26 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/pvittartxt.jpg?text.0.text=${teks}&text.0.position.x=-46%25&text.0.position.y=-35%25&text.0.size=30&text.0.color=000000&text.0.opacity=55&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
 					break
+					case 'leaologo':
+					if (!isPrem) return reply(nad.premium())
+					nobg = `${body.slice(9)}`
+					no = nobg.split("/")[0];
+					bg = nobg.split("/")[1];
+					reply('*Estou fazendo Aguarde...*')
+					buffer = await getBuffer(`https://lolhuman.herokuapp.com/api/textprome2/lionlogo?apikey=303317918cbd497b094a7ad6&text1=${no}&text2=${bg}`, { method: 'get' })
+					client.sendMessage(from, buffer, image, { quoted: mek, caption: '*Aqui está*' })
+					await limitAdd(sender)
+					break
+					case 'grafit':
+					if (!isPrem) return reply(nad.premium())
+					nobg = `${body.slice(7)}`
+					no = nobg.split("/")[0];
+					bg = nobg.split("/")[1];
+					reply('*Aguarde Estou Fazendo...*')
+					buffer = await getBuffer(`https://lolhuman.herokuapp.com/api/textprome2/wallgravity?apikey=303317918cbd497b094a7ad6&text1=${no}&text2=${bg}`, { method: 'get' })
+					client.sendMessage(from, buffer, image, { quoted: mek, caption: '*Aqui Está*' })
+					await limitAdd(sender)
+					break
                 case 'pngtxt':
                 case 'dnobg':
 					if (!isPrem) return reply(nad.premium())
@@ -1602,6 +1622,7 @@ client.on('group-participants-update', async (anu) => {
 					case 'hdttp':
 				if (isBanned) return reply(nad.baned())
 				if (args.length < 1) return reply(`_O texto _\n*Exemplo ${prefix}hdttp herberth*`)
+				if (!isGroup) return reply(mess.only.group)
 				attp2 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
 				client.sendMessage(from, attp2, sticker, {quoted: mek})
 				break
@@ -1678,7 +1699,66 @@ client.on('group-participants-update', async (anu) => {
                     } else {
                     reply('Use uma foto!')
                     }
-                    break   
+                    break
+                    case 'lgbt':
+				    if (isBanned) return reply(nad.baned())
+                    if (!isGroup) return reply(mess.only.group)
+                    var imgbb = require('imgbb-uploader')
+                    if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+                    ger = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
+                    reply(mess.wait)
+                    owgi = await client.downloadAndSaveMediaMessage(ger)
+                    anu = await imgbb("08579d070df9a07cb1c2ee565aece767", owgi)
+                    teks = `${anu.display_url}`
+                    ranp = getRandom('.gif')
+                    rano = getRandom('.webp')
+                    anu1 = `https://some-random-api.ml/canvas/gay?avatar=${teks}`
+                    exec(`wget ${anu1} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+                    fs.unlinkSync(ranp)
+                    if (err) return reply(mess.error.stick)
+                    nobg = fs.readFileSync(rano)
+                    client.sendMessage(from, nobg, sticker, {
+                    quoted: mek
+                    })
+                    fs.unlinkSync(rano)
+                    })
+
+                    } else {
+                    reply('Use uma foto!')
+                    }
+                    break
+                    case 'laptop':
+				    if (isBanned) return reply(nad.baned())
+                    if (!isGroup) return reply(mess.only.group)
+                    var imgbb = require('imgbb-uploader')
+                    if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+                    ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
+                    reply(mess.wait)
+                    owgi = await client.downloadAndSaveMediaMessage(ted)
+                    tels = body.slice(7)
+                    anu = await imgbb("08579d070df9a07cb1c2ee565aece767", owgi)
+                    dhehe = await getBuffer(`https://videfikri.com/api/textmaker/customwp/?urlgbr=${anu.display_url}`)
+                    client.sendMessage(from, dhehe, image, {quoted:mek})
+                    } else {
+                    reply('Responda com uma foto jovem!')
+                    }
+                    break
+                    case 'nightbeach':
+				    if (isBanned) return reply(nad.baned())
+                    if (!isGroup) return reply(mess.only.group)
+                    var imgbb = require('imgbb-uploader')
+                    if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+                    ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
+                    reply(mess.wait)
+                    owgi = await client.downloadAndSaveMediaMessage(ted)
+                    tels = body.slice(7)
+                    anu = await imgbb("08579d070df9a07cb1c2ee565aece767", owgi)
+                    hehpe = await getBuffer(`https://videfikri.com/api/textmaker/nightbeach/?urlgbr=${anu.display_url}`)
+                    client.sendMessage(from, hehpe, image, {quoted:mek})
+                    } else {
+                    reply('Responda com uma foto jovem!')
+                    }
+                    break
                     case 'drawing':
                     if (isBanned) return reply(nad.baned())
                     if (!isGroup) return reply(mess.only.group)
@@ -1806,6 +1886,19 @@ client.on('group-participants-update', async (anu) => {
                 lagu = await getBuffer(anu.result.url_audio)
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
                 client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
+                break
+                case 'musica':
+                if(body.length < 6) return reply(from, 'Você precisa dizer a música')
+                res = (await fetchJson(`https://arugaytdl.herokuapp.com/search?q=${body.slice(6)}`, {method: 'get'}))[0]
+                asize = await fetchJson(`https://st4rz.herokuapp.com/api/yta?url=https://youtu.be/${res.id}`, {method: 'get'})
+                if(asize.filesize.replace(' MB', '')>=16||asize.filesize.endsWith('GB')){
+                reply(from, `O limite de tamanho é 16 MB. Esse áudio possui ${asize.filesize}`, mek)
+                } else {
+                thumb = await getBuffer(res.thumbnail)
+                client.sendMessage(from, thumb, image, {quoted: mek, caption: 'ta baixando...'})
+                rest = await fetchJson(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.id}`, {method: 'get'})
+			    buffer = await getBuffer(rest.result)
+			    client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${asize.title}.mp3`, quoted: mek}) }
                 break
                 case 'mp4':
                 case 'ytmp4':
