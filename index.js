@@ -1143,13 +1143,19 @@ client.on('group-participants-update', async (anu) => {
             hasil = gostosarandom[Math.floor(Math.random() * (gostosarandom.length))]
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
-            case 'fato':	
-				    if (isBanned) return reply(nad.baned())
-	            	if (args.length < 1) return reply('marque seus amigos!')
-					rate = body.slice(1)
-					const ti =['@${nom.split("@s.whatsapp.net")[0]} você é gay.','@${nom.split("@s.whatsapp.net")[0]} Você é um preto fudido','@${nom.split("@s.whatsapp.net")[0]} Você é muito Corno']
-					const kl = ti[Math.floor(Math.random() * ti.length)]
-					client.sendMessage(from, 'Segura esse fato: *'+rate+'*\n\nAqui está: '+ kl+'🤪', text, { quoted: mek })
+            case 'casal':
+            case 'jadian':
+					if (isBanned) return reply(nad.baned())
+					if (!isGroup) return reply(ind.groupo())
+					jds = []
+					const jdii = groupMembers
+					const koss = groupMembers
+					const akuu = jdii[Math.floor(Math.random() * jdii.length)]
+					const diaa = koss[Math.floor(Math.random() * koss.length)]
+					teks = `*O futuro casal do grupo:* @${akuu.jid.split('@')[0]} e @${diaa.jid.split('@')[0]} ❤️👩‍❤️‍👨`
+					jds.push(akuu.jid)
+					jds.push(diaa.jid)
+					mentions(teks, jds, true)
 					break
             case 'tapa':
 				case 'slap':
@@ -1572,7 +1578,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, result, sticker, {quoted :mek})
 					break
 					case 'hdttp':
-				if (!isPrem) return reply(nad.premium())
+				if (isBanned) return reply(nad.baned())
 				if (args.length < 1) return reply(`_O texto _\n*Exemplo ${prefix}hdttp herberth*`)
 				attp2 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
 				client.sendMessage(from, attp2, sticker, {quoted: mek})
