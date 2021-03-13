@@ -1158,7 +1158,7 @@ client.on('group-participants-update', async (anu) => {
 					mentions(teks, jds, true)
 					break
 		    case 'gados':
-            case 'jadian':
+            case 'jadiaa':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(ind.groupo())
 					jds = []
