@@ -1152,7 +1152,21 @@ client.on('group-participants-update', async (anu) => {
 					const koss = groupMembers
 					const akuu = jdii[Math.floor(Math.random() * jdii.length)]
 					const diaa = koss[Math.floor(Math.random() * koss.length)]
-					teks = `*O futuro casal do grupo:* @${akuu.jid.split('@')[0]} e @${diaa.jid.split('@')[0]} ❤️👩‍❤️‍👨`
+					teks = `*_Meu Casal_* @${akuu.jid.split('@')[0]} e @${diaa.jid.split('@')[0]} ❤️👩‍❤️‍👨`
+					jds.push(akuu.jid)
+					jds.push(diaa.jid)
+					mentions(teks, jds, true)
+					break
+		    case 'gados':
+            case 'jadian':
+					if (isBanned) return reply(nad.baned())
+					if (!isGroup) return reply(ind.groupo())
+					jds = []
+					const jdii = groupMembers
+					const koss = groupMembers
+					const akuu = jdii[Math.floor(Math.random() * jdii.length)]
+					const diaa = koss[Math.floor(Math.random() * koss.length)]
+					teks = `*Os 5 maiores gados do grupo* 🐂\n\n 🏆- @${akuu.jid.split('@')[0]} \n🥈- @${diaa.jid.split('@')[0] \n🥉- @${diaa.jid.split('@')[0] \n🎖️- @${diaa.jid.split('@')[0] \n🎖️- @${diaa.jid.split('@')[0] \n\n *HDBOT.exe*`
 					jds.push(akuu.jid)
 					jds.push(diaa.jid)
 					mentions(teks, jds, true)
