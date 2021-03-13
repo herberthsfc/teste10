@@ -1760,18 +1760,34 @@ client.on('group-participants-update', async (anu) => {
 						reply('*✓ | A transmissão foi concluída com sucesso!*')
 					}
 					break
-					case 'play':   
-	          if (!isPrem) return reply(nad.premium())
-                reply(mess.wait)
-                play = body.slice(5)
-                anu = await fetchJson(`https://api.zeks.xyz/api/ytplaymp3?q=${play}&apikey=apivinz`)
-               if (anu.error) return reply(anu.error)
-                 infomp3 = `*[ Música encontrada ✓]* \n*「 Título 」*: ${anu.result.title}\n*「 Tamanho 」* : ${anu.result.size}\n\n*Aguarde... caso não seja a musica que procura, tente específicar o título!*`
-                buffer = await getBuffer(anu.result.thumbnail)
-                lagu = await getBuffer(anu.result.url_audio)
-                client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
-                client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
-                break
+					case 'play':
+            if (args.length == 0) return kill.reply(from, 'Você usou incorretamente.', id)
+			try {
+				const ytres = await ytsearch(`${body.slice(6)}`)
+				const pyre = ytres.all[0].ago
+				if (pyre == '' || pyre == 'null' || pyre == null || pyre == undefined || pyre == 'undefined') {
+					var playre = 'Indefinido'
+				} else if (pyre.endsWith('years ago')) {
+					var playre = pyre.replace('years ago', 'Anos atrás')
+				} else if (pyre.endsWith('hours ago')) {
+					var playre = pyre.replace('hours ago', 'Horas atrás')
+				} else if (pyre.endsWith('minutes ago')) {
+					var playre = pyre.replace('minutes ago', 'Minutos atrás')
+				} else if (pyre.endsWith('day ago')) {
+					var playre = pyre.replace('day ago', 'Dias atrás')
+				} else if (pyre.endsWith('months ago')) {
+					var playre = pyre.replace('months ago', 'Meses atrás')
+				} else if (pyre.endsWith('seconds ago')) {
+					var playre = pyre.replace('seconds ago', 'Segundos atrás')
+				}
+				await kill.sendFileFromUrl(from, `${ytres.all[0].image}`, ``, `*Titulo >* ${ytres.all[0].title}\n\n*Descrição >* ${ytres.all[0].description}\n\n*Link >* https://youtu.be/${ytres.all[0].videoId}\n\n*Duração >*  ${ytres.all[0].timestamp} minutos\n\n*Feito a >* ${playre}\n\n*Visualizações >* ${ytres.all[0].views}\n\n*Autor >* ${ytres.all[0].author.name}\n\n*Canal >* ${ytres.all[0].author.url}`, id)
+				const asize = await axios.get(`http://st4rz.herokuapp.com/api/yta2?url=https://www.youtube.com/watch?v=${ytres.all[0].videoId}`)
+				await kill.sendFileFromUrl(from, `${asize.data.result}`, `${asize.data.title}.${asize.data.ext}`, `${asize.data.title}`, id)
+			} catch (error) {
+				kill.reply(from, 'Desculpe, não foi possivel baixar sua música, talvez o servidor tenha caido... :(', id)
+				console.log(error)
+			}
+            break
                 case 'mp4':
                 case 'ytmp4':
 					if (!isPrem) return reply(nad.premium())
