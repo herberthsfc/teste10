@@ -1157,18 +1157,26 @@ client.on('group-participants-update', async (anu) => {
 					jds.push(diaa.jid)
 					mentions(teks, jds, true)
 					break
-		    case 'gados':
-            case 'jadiaa':
+            case 'gados':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(ind.groupo())
 					jds = []
-					const jdii = groupMembers
-					const koss = groupMembers
-					const akuu = jdii[Math.floor(Math.random() * jdii.length)]
-					const diaa = koss[Math.floor(Math.random() * koss.length)]
-					teks = `*Os 5 maiores gados do grupo* 🐂\n\n 🏆- @${akuu.jid.split('@')[0]} \n🥈- @${diaa.jid.split('@')[0] \n🥉- @${diaa.jid.split('@')[0] \n🎖️- @${diaa.jid.split('@')[0] \n🎖️- @${diaa.jid.split('@')[0] \n\n *HDBOT.exe*`
-					jds.push(akuu.jid)
-					jds.push(diaa.jid)
+					const jdiii = groupMembers
+					const kosss = groupMembers
+                    const qua = groupMembers
+					const lindy = groupMembers
+					const cinco = groupMembers
+					const akuuu = jdiii[Math.floor(Math.random() * jdiii.length)]
+					const diaaa = kosss[Math.floor(Math.random() * kosss.length)]
+					const quatro = qua[Math.floor(Math.random() * qua.length)]
+					const troot = lindy[Math.floor(Math.random() * lindy.length)]	
+					const cincor = cinco[Math.floor(Math.random() * cinco.length)]										
+					teks = `*TOP 5 +GADOS DO GRUPO*\n\n🐂├> @${akuuu.jid.split('@')[0]}\n🐂├> @${diaaa.jid.split('@')[0]}\n🐂├> @${quatro.jid.split('@')[0]}\n🐂├> @${troot.jid.split('@')[0]}\n🐂└> @${cincor.jid.split('@')[0]}\n\n *HDBOT.exe*`
+					jds.push(akuuu.jid)
+					jds.push(diaaa.jid)
+					jds.push(quatro.jid)
+					jds.push(troot.jid)		
+					jds.push(cincor.jid)										
 					mentions(teks, jds, true)
 					break
             case 'tapa':
@@ -1179,7 +1187,7 @@ client.on('group-participants-update', async (anu) => {
                 var imgbb = require('imgbb-uploader')
                 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Em quem você quer dar o tapa na cara >:] ?')
 				mentidn = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
-				reply('[❕] Preparando as mãos, Aguarde...')
+				reply('*Preparando o tapa... 💪*')
                 ghost = mek.participant
                 try {
                 pp = await client.getProfilePicture(ghost)
