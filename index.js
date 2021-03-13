@@ -1888,6 +1888,7 @@ client.on('group-participants-update', async (anu) => {
                 client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
                 break
                 case 'musica':
+                if (!isPrem) return reply(nad.premium())
                 if(body.length < 6) return reply(from, 'Você precisa dizer a música')
                 res = (await fetchJson(`https://arugaytdl.herokuapp.com/search?q=${body.slice(6)}`, {method: 'get'}))[0]
                 asize = await fetchJson(`https://st4rz.herokuapp.com/api/yta?url=https://youtu.be/${res.id}`, {method: 'get'})
