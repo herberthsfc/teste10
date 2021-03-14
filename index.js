@@ -1241,7 +1241,8 @@ client.on('group-participants-update', async (anu) => {
                 }
 				break
             case 'fatality':
-            if (isBanned(sender)) return reply(mess.only.benned(pushname))
+            if (!isGroup) return reply(ind.groupo())
+			if (isBanned) return reply(nad.baned())
             reply('*🗿- AGUARDE UM INSTANTE FI*') 
             fs.readdir('./gf/', async (err, files) => {
             let imagens = files.filter(f => f.split('.').pop() == 'mp4')
