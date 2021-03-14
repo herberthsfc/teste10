@@ -23,6 +23,7 @@ const { menu } = require('./lib/menu')
 const { menuadmin } = require('./lib/menuadmin')
 const { menupremium } = require('./lib/menupremium')
 const { serpremium } = require('./lib/serpremium')
+const { pagar } = require('./lib/pagar')
 const { termosvip } = require('./lib/termosvip')
 const { regras } = require('./lib/regras')
 const { lshit } = require('./lib/lshit')
@@ -512,6 +513,10 @@ client.on('group-participants-update', async (anu) => {
 				  case 'serpremium':
 				  case 'ser.premium':
 		      client.sendMessage(from, serpremium(prefix, sender), text, {quoted: mek})
+				  break
+				  case 'pagar':
+					if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do bot!*')
+					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'termosvip':
 		      client.sendMessage(from, termosvip(prefix, sender), text, {quoted: mek})
@@ -1199,21 +1204,6 @@ client.on('group-participants-update', async (anu) => {
 					jds.push(cincor.jid)										
 					mentions(teks, jds, true)
 					break
-            case 'ownergrup':
-				  case 'ownergroup':
-               client.updatePresence(from, Presence.composing) 
-              options = {
-          text: `Owner Group ini adalah : wa.me/${from.split("-")[0]}`,
-          contextInfo: { mentionedJid: [from] }
-           }
-           client.sendMessage(from, options, text, { quoted: mek } )
-				break
-            case 'soco':
-            if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Em quem você quer dar o tapa na cara >:] ?')
-			mentidn = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
-            client.sendMessage(from, text, {quoted: mek, caption: `Você deu um soco no(a) @${mentidn.split('@')[0]} 👋`, contextInfo: {mentionedJid: [mentidn]}})
-            contextInfo: { mentionedJid: [from] }
-            break
             case 'tapa':
 				case 'slap':
 				try {
@@ -1624,7 +1614,7 @@ client.on('group-participants-update', async (anu) => {
 							.toFormat('webp')
 							.save(ran)*/
 					} else {
-						reply(`envie na legenda da foto o comando ${prefix}fig \n Atenção! Figurinhas animadas maximo de 10 segundos!`)
+						reply(`Envie uma foto, gif ou vídeo de até 5 segundos com a legenda *${prefix}fig* para criar uma figurinha!`)
 					}
 					break
 					case 'getsticker':
