@@ -1240,6 +1240,18 @@ client.on('group-participants-update', async (anu) => {
                 console.log(`Error :`, color(e,'red'))
                 }
 				break
+            case 'fatality':
+            if (isBanned(sender)) return reply(mess.only.benned(pushname))
+            reply('*🗿- AGUARDE UM INSTANTE FI*') 
+            fs.readdir('./gf/', async (err, files) => {
+            let imagens = files.filter(f => f.split('.').pop() == 'mp4')
+            let imagem = imagens[Math.floor(Math.random() * imagens.length)]
+            dua = fs.readFileSync(`./gf/${imagem}`)
+            var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+            if(!mentioned||mentioned.length < 1||mentioned.length > 1) return baby.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
+            client.sendMessage(from, dua, video, {mimetype: Mimetype.gif, caption: `${pushname} *_~DEU UM FATALITY EM~_* ${body.split(' ').slice(1).join(' ')}`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
+            })
+            break
             case 'amor':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
