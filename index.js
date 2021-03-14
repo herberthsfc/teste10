@@ -1204,7 +1204,7 @@ client.on('group-participants-update', async (anu) => {
 					jds.push(cincor.jid)										
 					mentions(teks, jds, true)
 					break
-            case 'tapa':
+            case 'tapao1':
 				case 'slap':
 				try {
 				if (!isGroup) return reply(ind.groupo())
@@ -1249,8 +1249,21 @@ client.on('group-participants-update', async (anu) => {
             let imagem = imagens[Math.floor(Math.random() * imagens.length)]
             dua = fs.readFileSync(`./gf/${imagem}`)
             var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
-            if(!mentioned||mentioned.length < 1||mentioned.length > 1) return baby.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
+            if(!mentioned||mentioned.length < 1||mentioned.length > 1) return client.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
             client.sendMessage(from, dua, video, {mimetype: Mimetype.gif, caption: `${pushname} *_~DEU UM FATALITY EM~_* ${body.split(' ').slice(1).join(' ')}`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
+            })
+            break
+            case 'tapa':
+            if (!isGroup) return reply(ind.groupo())
+			if (isBanned) return reply(nad.baned())
+            reply('*🗿- AGUARDE UM INSTANTE FI*') 
+            fs.readdir('./tapa/', async (err, files) => {
+            let imagens = files.filter(f => f.split('.').pop() == 'jpg')
+            let imagem = imagens[Math.floor(Math.random() * imagens.length)]
+            dua = fs.readFileSync(`./tapa/${imagem}`)
+            var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+            if(!mentioned||mentioned.length < 1||mentioned.length > 1) return client.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
+            client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `${pushname} *Deu um tapa no(a)* ${body.split(' ').slice(1).join(' ')}`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
             })
             break
             case 'amor':
