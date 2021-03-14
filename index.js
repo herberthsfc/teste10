@@ -516,7 +516,7 @@ client.on('group-participants-update', async (anu) => {
 				  break
 				  case 'pagar':
 					if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do bot!*')
-					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
+					client.sendMessage(from, pagar(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'termosvip':
 		      client.sendMessage(from, termosvip(prefix, sender), text, {quoted: mek})
