@@ -1199,6 +1199,21 @@ client.on('group-participants-update', async (anu) => {
 					jds.push(cincor.jid)										
 					mentions(teks, jds, true)
 					break
+            case 'ownergrup':
+				  case 'ownergroup':
+               client.updatePresence(from, Presence.composing) 
+              options = {
+          text: `Owner Group ini adalah : wa.me/${from.split("-")[0]}`,
+          contextInfo: { mentionedJid: [from] }
+           }
+           client.sendMessage(from, options, text, { quoted: mek } )
+				break
+            case 'soco':
+            if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Em quem você quer dar o tapa na cara >:] ?')
+			mentidn = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
+            client.sendMessage(from, text, {quoted: mek, caption: `Você deu um soco no(a) @${mentidn.split('@')[0]} 👋`, contextInfo: {mentionedJid: [mentidn]}})
+            contextInfo: { mentionedJid: [from] }
+            break
             case 'tapa':
 				case 'slap':
 				try {
