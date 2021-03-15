@@ -1658,6 +1658,11 @@ client.on('group-participants-update', async (anu) => {
 				attp2 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
 				client.sendMessage(from, attp2, sticker, {quoted: mek})
 				break
+				case 'ttp':
+				if (args.length < 1) return reply(`_Teksnya Mana Boss_\n*Contoh ${prefix}ttp Wajahku Ganteng*`)
+				ttp = await getBuffer(`https://api.xteam.xyz/ttp?file&text=${body.slice(6)}`)
+				client.sendMessage(from, ttp, sticker, {quoted: mek})
+				break
 				case 'stickerlist':
 				case 'liststicker':
 					if (!isOwner) return reply(mess.only.ownerB)
