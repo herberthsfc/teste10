@@ -1148,17 +1148,17 @@ client.on('group-participants-update', async (anu) => {
                     if (isBanned) return reply(nad.baned())   
 					if (!isGroup) return reply(mess.only.group)
                     exeb = body.slice(9)
-                    if (args.length < 1) return reply(`*Qual Estado Você Deseja Consultar??*\n*Cê Você Não Souber*\n*A Sigla Do Estado*\n*Digite* *.ListaBR*\n*Sempre Duas Letras* 🐊🔥\n*Exemplo :*\n*${prefix}CovidBR SP*`)
-                   frhan.updatePresence(from, Presence.composing) 
+                    if (args.length < 1) return reply(`*Qual estado você deseja consultar?*\n*caso não saiba*\n*a sigla do seu estado,*\n*digite* *${prefix}Listabr*\n*OBS: sempre duas letras*\n*Exemplo :*\n*${prefix}Covidbr sp*`)
+                   client.updatePresence(from, Presence.composing) 
                    data = await fetchJson(`https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${exeb}`)
-                   if (data.error) reply('*_Você Errou A Sigla!!_*\n*_Verifique Em ${prefix}ListaBR _*')
-                   hasil = `*Sigla Do Estado* : *${data.uf}*\n*Estado* : *${data.state}*\n*Casos* : *${data.cases}*\n*Mortes* : *${data.deaths}*\n*Suspeitas* : *${data.suspects}*\n*Curados* : *${data.refuses}*\n*Data Atualizada* : \n*${data.datetime}*\n\n*Lucasssメ DOMINA* 🐊🚩`
+                   if (data.error) reply('*_Você errou a sigla!!_*\n*_verifique em ${prefix}listabr _*')
+                   hasil = `*Sigla Do Estado* : *${data.uf}*\n*Estado* : *${data.state}*\n*Casos* : *${data.cases}*\n*Mortes* : *${data.deaths}*\n*Suspeitas* : *${data.suspects}*\n*Curados* : *${data.refuses}*\n*Data Atualizada* : \n*${data.datetime}*\n\n*HDBOT.exe domina 🤠👍🏿`
                    reply(hasil) 
                    break
             case 'listabr':
 		if (isBanned) return reply(nad.baned())   
 		if (!isGroup) return reply(mess.only.group)
-		if (args.length < 1) return reply ('*Lista De Idiomas Para Comando :*\n*.CovidBR 🐊🔥*\n\nSP:  São Paulo\nAC : Acre\nAL : Alagoas\nzh: Chinês\nAP : Amapá\nAM : Amazonas\nBA : Bahia\nCE Ceará\nES Espírito Santo\nGO : Goiás\nMA Maranhão\nMT : Mato Grosso\nMS : Mato Grosso Do Sul\nMG : Minas Gerais\nPA : Pará\nPB Paraíba\nPR Paraná\nPE Pernambuco\nPI : Piauí \nRJ : Rio De Janeiro\nRN : Rio Grande Do Norte\RS : Rio Grande Do Sul\nRO : Rondônia\nRR : Roraima\nSC : Santa Catarina\nSE : Sergipe\nTO : Tocantins\nDF : Distrito Federal\n\n*Lucasssメ DOMINA* 🐊🚩')
+		if (args.length < 1) return reply ('*Lista de Idiomas para o comando :*\n *${prefix}covidbr 🤠👍🏿*\n\nSP:  São Paulo\nAC : Acre\nAL : Alagoas\nzh: Chinês\nAP : Amapá\nAM : Amazonas\nBA : Bahia\nCE Ceará\nES Espírito Santo\nGO : Goiás\nMA Maranhão\nMT : Mato Grosso\nMS : Mato Grosso Do Sul\nMG : Minas Gerais\nPA : Pará\nPB Paraíba\nPR Paraná\nPE Pernambuco\nPI : Piauí \nRJ : Rio De Janeiro\nRN : Rio Grande Do Norte\RS : Rio Grande Do Sul\nRO : Rondônia\nRR : Roraima\nSC : Santa Catarina\nSE : Sergipe\nTO : Tocantins\nDF : Distrito Federal\n\n*HDBOT.exe domina 🤠👍🏿')
 		break
             case 'gado':
             if (isBanned) return reply(nad.baned())
