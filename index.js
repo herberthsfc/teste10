@@ -1126,6 +1126,24 @@ client.on('group-participants-update', async (anu) => {
 		            lucasss2 =  `*Nome :* *${lucasss.first_name}*\n*Nome Do Meio :* *${lucasss.last_name}*\n*Email :* *${lucasss.email}*\n*Gênero :* *${lucasss.gender}*\n*IP :* *${lucasss.ip_address}*`
                     client.sendMessage(from, lucasss2, text, {quoted: mek})
 					break
+            case 'bin':
+					if (!isPrem) return reply(nad.premium())
+					lxrd = body.slice(6)
+                    data = await fetchJson(`https://binlist.io/lookup/${lxrd}`, {method: 'get'})
+                    if (data.error) return reply(data.error)
+                    kinybin = `*🔍CONSULTA REALIZADA🔍* \n\n ➸ *BIN:*  ${data.number.iin}\n ➸ *Bandeira* : ${data.scheme}\n ➸ *TIPO* : ${data.type}\n ➸ *Categoria* : ${data.category}\n ➸ *UF* : ${data.country.alpha2} \n ➸ *Sigla* : ${data.country.alpha3}\n ➸ *País* : ${data.country.name} ${data.country.emoji} \n ➸ *Banco* : ${data.bank.name} \n ➸ *URL* : ${data.bank.url}`
+                    client.sendMessage(from, kinybin, text, {quoted: mek})
+                    await limitAdd(sender)
+                    break
+            case 'cnpj':
+					if (!isPrem) return reply(nad.premium())
+					lxrd = body.slice(6)
+                    data = await fetchJson(`https://www.receitaws.com.br/v1/cnpj/${lxrd}`, {method: 'get'})
+                    if (data.error) return reply(data.error)
+                    kinycnpj = `*🔍CONSULTA REALIZADA🔍* \n\n ➸ *ATIVIDADE PRINCIPAL:* ${data.atividade_principal[0].text} \n\n ➸ *DATA SITUAÇÃO:* ${data.data_situacao}\n\n ➸ *TIPO:* ${data.tipo} \n\n ➸ *NOME:* ${data.nome} \n\n ➸ *UF:* ${data.uf} \n\n ➸ *TELEFONE:* ${data.telefone}\n\n ➸ *SITUAÇÃO:* ${data.situacao} \n\n ➸ *BAIRRO:* ${data.bairro} \n\n ➸ *RUA:* ${data.logradouro} \n\n ➸ *NÚMERO :* ${data.numero} \n\n ➸ *CEP :* ${data.cep} \n\n ➸ *MUNICÍPIO:* ${data.municipio} \n\n ➸ *PORTE:* ${data.porte}\n\n ➸ *ABERTURA:* ${data.abertura}\n\n ➸ *NATUREZA JURÍDICA:* ${data.natureza_juridica} \n\n ➸ *FANTASIA:* ${data.fantasia}\n\n ➸ *CNPJ:* ${data.cnpj}\n\n ➸ *ÚLTIMA ATUALIZAÇÃO:* ${data.ultima_atualizacao}\n\n ➸ *STATUS:* ${data.status}\n\n ➸ *COMPLEMENTO:* ${data.complemento}\n\n ➸ *EMAIL:* ${data.email}`
+                    client.sendMessage(from, kinycnpj, text, {quoted: mek})
+                    await limitAdd(sender)
+                    break
             case 'gado':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
@@ -1256,14 +1274,27 @@ client.on('group-participants-update', async (anu) => {
             case 'tapa':
             if (!isGroup) return reply(ind.groupo())
 			if (isBanned) return reply(nad.baned())
-            reply('*🗿- AGUARDE UM INSTANTE FI*') 
+            reply('*Preparando a mão...*') 
             fs.readdir('./tapa/', async (err, files) => {
             let imagens = files.filter(f => f.split('.').pop() == 'jpg')
             let imagem = imagens[Math.floor(Math.random() * imagens.length)]
             dua = fs.readFileSync(`./tapa/${imagem}`)
             var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
             if(!mentioned||mentioned.length < 1||mentioned.length > 1) return client.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
-            client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `${pushname} *Deu um tapa no(a)* ${body.split(' ').slice(1).join(' ')}`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
+            client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `*${pushname}* deu um tapa no(a) ${body.split(' ').slice(1).join(' ')} 👋`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
+            })
+            break
+            case 'kiss':
+            if (!isGroup) return reply(ind.groupo())
+			if (isBanned) return reply(nad.baned())
+            reply('*Aguarde...*') 
+            fs.readdir('src/kiss/', async (err, files) => {
+            let imagens = files.filter(f => f.split('.').pop() == 'jpg')
+            let imagem = imagens[Math.floor(Math.random() * imagens.length)]
+            dua = fs.readFileSync(`src/kiss/${imagem}`)
+            var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+            if(!mentioned||mentioned.length < 1||mentioned.length > 1) return client.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
+            client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `*${pushname}* deu um beijo no(a) ${body.split(' ').slice(1).join(' ')} 😘`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
             })
             break
             case 'amor':
@@ -1657,11 +1688,6 @@ client.on('group-participants-update', async (anu) => {
 				if (!isGroup) return reply(mess.only.group)
 				attp2 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
 				client.sendMessage(from, attp2, sticker, {quoted: mek})
-				break
-				case 'ttp':
-				if (args.length < 1) return reply(`_Teksnya Mana Boss_\n*Contoh ${prefix}ttp Wajahku Ganteng*`)
-				ttp = await getBuffer(`https://api.xteam.xyz/ttp?file&text=${body.slice(6)}`)
-				client.sendMessage(from, ttp, sticker, {quoted: mek})
 				break
 				case 'stickerlist':
 				case 'liststicker':
