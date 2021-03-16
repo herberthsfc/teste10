@@ -500,7 +500,7 @@ client.on('group-participants-update', async (anu) => {
 					case 'menu':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
-					client.sendMessage(from, menu(prefix, sender), text, {quoted: mek})
+					client.sendMessage(from, menu(prefix, sender), text, quoted: mek, contextInfo: {"mentionedJid": mentioned}})
 				  break
 				  case 'menuadmin':
 				  if (!isGroupAdmins) return reply(mess.only.admin)
@@ -1006,18 +1006,18 @@ client.on('group-participants-update', async (anu) => {
 			nye = await getBuffer(ze)
 			client.sendMessage(from, nye, image, { caption: '🔎 | _Meme Regedit_️', quoted: mek })
 			break 
-			case 'mia':
+			case 'm14a':
 		    client.updatePresence(from, Presence.composing) 
 		    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
 		    if (!isPrem) return reply(nad.premium())
 			data = fs.readFileSync('./lib/mia.js');
-            jsonData = JSON.parse(data);
+            jsonData = JSON.parse:(data);
             randIndex = Math.floor(Math.random() * jsonData.length);
             randKey = jsonData[randIndex];
             mia = await getBuffer(randKey.result)
             client.sendMessage(from, mia, image, {quoted: mek, caption: '*🔍 | Mia Khalifa*'})
 			break
-			case 'tigresavip':
+			case 'tigresauurfvevip':
 		    client.updatePresence(from, Presence.composing) 
 		    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
 		    if (!isPrem) return reply(nad.premium())
@@ -1162,7 +1162,7 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, listcovid(prefix, sender), text, {quoted: mek})
 				  break
             case 'fakemsg':
-		            if (isBanned) return reply(nad.baned())
+		            if (!isPrem) return reply(nad.premium())
 			    	if (args.length < 1) return reply(`Uso :\n${prefix}fakemsg [@membro|mensagem|respostabot]]\n\nEx : \n${prefix}fakemsg @membro|eai|herberth`)
 			    	var gh = body.slice(7)
 			    	mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
@@ -2039,6 +2039,26 @@ client.on('group-participants-update', async (anu) => {
 					pok = await getBuffer(nimek)
 					client.sendMessage(from, pok, image, { quoted: mek, caption: `*🔍 | Resultado da pesquisa!*`})
 					break
+					case 'mia':
+                    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
+					if (!isPrem) return reply(nad.premium())
+                    fs.readdir('src/mia/', async (err, files) => {
+                    let imagens = files.filter(f => f.split('.').pop() == 'jpg')
+                    let imagem = imagens[Math.floor(Math.random() * imagens.length)]
+                    dua = fs.readFileSync(`src/mia/${imagem}`)
+                    client.sendMessage(from, dua, ContentType.gif, {quoted: mek, caption: '*_Mia Khalifa_* 🔍'})
+                    })
+                    break
+					case 'tigresavip':
+                    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
+					if (!isPrem) return reply(nad.premium())
+                    fs.readdir('src/tigresavip/', async (err, files) => {
+                    let imagens = files.filter(f => f.split('.').pop() == 'jpg')
+                    let imagem = imagens[Math.floor(Math.random() * imagens.length)]
+                    dua = fs.readFileSync(`src/tigresavip/${imagem}`)
+                    client.sendMessage(from, dua, ContentType.gif, {quoted: mek, caption: '*_Tigresa Vip_* 🔍'})
+                    })
+                    break
 					case 'blowjob':
 					if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
 					if (!isPrem) return reply(nad.premium())
