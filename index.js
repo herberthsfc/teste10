@@ -2002,7 +2002,7 @@ client.on('group-participants-update', async (anu) => {
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
                 client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
                 break
-                case 'musica':
+                case 'playy':
                 if (!isPrem) return reply(nad.premium())
                 if(body.length < 6) return reply(from, 'Você precisa dizer a música')
                 res = (await fetchJson(`https://arugaytdl.herokuapp.com/search?q=${body.slice(6)}`, {method: 'get'}))[0]
@@ -2011,7 +2011,7 @@ client.on('group-participants-update', async (anu) => {
                 reply(from, `O limite de tamanho é 16 MB. Esse áudio possui ${asize.filesize}`, mek)
                 } else {
                 thumb = await getBuffer(res.thumbnail)
-                client.sendMessage(from, thumb, image, {quoted: mek, caption: '*Fazendo o download, aguarde...* \n\n *_HDBOT.exe_*'})
+                client.sendMessage(from, thumb, image, {quoted: mek, caption: '*Baixando, aguarde...* \n\n *_HDBOT.exe_*'})
                 rest = await fetchJson(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.id}`, {method: 'get'})
 			    buffer = await getBuffer(rest.result)
 			    client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${asize.title}.mp3`, quoted: mek}) }
@@ -2047,7 +2047,7 @@ client.on('group-participants-update', async (anu) => {
                     let imagens = files.filter(f => f.split('.').pop() == 'jpg')
                     let imagem = imagens[Math.floor(Math.random() * imagens.length)]
                     dua = fs.readFileSync(`src/mia/${imagem}`)
-                    client.sendMessage(from, dua, ContentType.gif, {quoted: mek, caption: '*_Mia Khalifa_* 🔍'})
+                    client.sendMessage(from, dua, ContentType.jpg, {quoted: mek, caption: '*_Mia Khalifa_* 🔍'})
                     })
                     break
 					case 'tigresavip':
@@ -2057,7 +2057,7 @@ client.on('group-participants-update', async (anu) => {
                     let imagens = files.filter(f => f.split('.').pop() == 'jpg')
                     let imagem = imagens[Math.floor(Math.random() * imagens.length)]
                     dua = fs.readFileSync(`src/tigresavip/${imagem}`)
-                    client.sendMessage(from, dua, ContentType.gif, {quoted: mek, caption: '*_Tigresa Vip_* 🔍'})
+                    client.sendMessage(from, dua, ContentType.jpg, {quoted: mek, caption: '*_Tigresa Vip_* 🔍'})
                     })
                     break
 					case 'blowjob':
