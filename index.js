@@ -27,7 +27,7 @@ const { pagar } = require('./lib/pagar')
 const { termosvip } = require('./lib/termosvip')
 const { regras } = require('./lib/regras')
 const { lshit } = require('./lib/lshit')
-const { lcovidbr } = require('./lib/lcovidbr')
+const { listcovid } = require('./lib/listcovid')
 const { donate } = require('./lib/donate')
 const { idiomas } = require('./lib/idiomas')
 const { fetchJson } = require('./lib/fetcher')
@@ -589,7 +589,7 @@ client.on('group-participants-update', async (anu) => {
 					} catch {
 					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
 					}
-					captionnya = `*[ SEU PERFIL ]* \n\n *📝|NOME: *${pushname}* \n *🤠|MEMBRO:* Sim! \n *📱|LINK: wa.me//${sender.split("@")[0]}* \n\n *_HDBOT.exe_* ⚡`
+					captionnya = `*[ SEU PERFIL ]* \n\n *📝|NOME: ${pushname}* \n *🤠|MEMBRO:* Sim! \n *📱|LINK: wa.me//${sender.split("@")[0]}* \n\n *_HDBOT.exe_* ⚡`
 					daftarimg = await getBuffer(ppimg)
 					client.sendMessage(from, daftarimg, image, {quoted: mek, caption: captionnya})
 					break
@@ -1149,17 +1149,17 @@ client.on('group-participants-update', async (anu) => {
                     if (isBanned) return reply(nad.baned())   
 					if (!isGroup) return reply(mess.only.group)
                     exeb = body.slice(9)
-                    if (args.length < 1) return reply(`Qual estado você deseja consultar? \n caso não saiba a sigla do seu estado, \n digite *${prefix}lcovidbr*`)
+                    if (args.length < 1) return reply(`Qual estado você deseja consultar?\ninforme a sigla.\n\ncaso não saiba a sigla do seu estado,\ndigite ${prefix}listcovid ⚡🇧🇷`)
                    client.updatePresence(from, Presence.composing) 
                    data = await fetchJson(`https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/${exeb}`)
                    if (data.error) reply('Você errou a sigla, verifique em *${prefix}lcovidbr*')
-                   hasil = `*INFO. COVID BRASIL* 🦠🇧🇷 \n\nSigla do Estado* : *${data.uf}*\n*Estado* : *${data.state}*\n*Casos* : *${data.cases}*\n*Mortes* : *${data.deaths}*\n*Suspeitas* : *${data.suspects}*\n*Curados* : *${data.refuses}*\n*Data Atualizada* : \n*${data.datetime}*\n\n*_HDBOT.exe_ ⚡*`
+                   hasil = `*INFO. COVID BRASIL* 🦠 \n\n*Sigla do Estado* : *${data.uf}*\n*Estado* : *${data.state}*\n*Casos* : *${data.cases}*\n*Mortes* : *${data.deaths}*\n*Suspeitas* : *${data.suspects}*\n*Curados* : *${data.refuses}*\n*Data Atualizada* : \n*${data.datetime}*\n\n*_HDBOT.exe_ ⚡*`
                    reply(hasil) 
                    break
-                   case 'lcovidbr':
+                   case 'listcovid':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
-					client.sendMessage(from, lcovidbr(prefix, sender), text, {quoted: mek})
+					client.sendMessage(from, listcovid(prefix, sender), text, {quoted: mek})
 				  break
             case 'fakemsg':
 		            if (isBanned) return reply(nad.baned())
@@ -2010,7 +2010,7 @@ client.on('group-participants-update', async (anu) => {
                 reply(from, `O limite de tamanho é 16 MB. Esse áudio possui ${asize.filesize}`, mek)
                 } else {
                 thumb = await getBuffer(res.thumbnail)
-                client.sendMessage(from, thumb, image, {quoted: mek, caption: '*Música Encontrada!* \n\n *NOME:* ${asize.result.title} \n\n *[ Baixando, aguarde... ]* \n\n *_HDBOT.exe_*'})
+                client.sendMessage(from, thumb, image, {quoted: mek, caption: '*Fazendo o download, aguarde...* \n\n *_HDBOT.exe_*'})
                 rest = await fetchJson(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.id}`, {method: 'get'})
 			    buffer = await getBuffer(rest.result)
 			    client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${asize.title}.mp3`, quoted: mek}) }
