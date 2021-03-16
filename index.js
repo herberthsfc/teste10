@@ -500,8 +500,9 @@ client.on('group-participants-update', async (anu) => {
 					case 'menu':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
-					client.sendMessage(from, menu(prefix, sender), text, quoted: mek, contextInfo: {"mentionedJid": mentioned}})
-				  break
+					client.sendMessage(from, menu(prefix, pushname, sender), text, {quoted: mek})
+				    contextInfo: { mentionedJid: [sender] }
+				    break
 				  case 'menuadmin':
 				  if (!isGroupAdmins) return reply(mess.only.admin)
 				  if (!isGroup) return reply(mess.only.group)
@@ -1358,7 +1359,7 @@ client.on('group-participants-update', async (anu) => {
                if (isBanned) return reply(nad.baned())
                client.updatePresence(from, Presence.composing) 
               options = {
-          text: `*Criador(a) do grupo: wa.me/@${from.split("-")[0]}* \n\n *_HDBOT.exe_* ⚡`,
+          text: `*Criador(a) do grupo: wa.me/${from.split("-")[0]}* \n\n *_HDBOT.exe_* ⚡`,
           contextInfo: { mentionedJid: [from] }
            }
            client.sendMessage(from, options, text, { quoted: mek } )
