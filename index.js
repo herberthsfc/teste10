@@ -884,7 +884,7 @@ client.on('group-participants-update', async (anu) => {
 ➽ *DDD*: ${anu.location.calling_code}
 ➽ *PAÍS*: ${anu.location.country_flag_emoji} 
 
-𝑯𝑫𝑩𝑶𝑻.𝒆𝒙𝒆`
+*_HDBOT.exe_*`
 			        reply(ipl)
 					break
                 case 'teste':
@@ -898,7 +898,7 @@ client.on('group-participants-update', async (anu) => {
 					fs.writeFileSync('./database/user/premium.json', JSON.stringify(premium))
 					reply(`Sucesso adicionado ${addp} ao Premium`)
 					break
-				case 'dellprem':
+				case 'kickprem':
 					if (!isOwner) return reply(nad.ownerb())
 					oh = body.slice(11)
 					delp = premium.indexOf(oh)
@@ -953,12 +953,6 @@ client.on('group-participants-update', async (anu) => {
 					}
 					client.sendMessage(from, options, text)
 					break
-                    case 'repetir':
-					if (!isOwner) return reply(mess.only.ownerB)
-					var value = body.slice(9)
-					var group = await client.groupMetadata(from)
-					client.sendMessage(from, options, text)
-					break
                     case 'lofi':
 					memein = await kagApi.memeindo()
 					buffer = await getBuffer(`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL9hZBPRo16fIhsIus3t1je2oAU23pQqBpfw&usqp=CAU`)
@@ -977,7 +971,7 @@ client.on('group-participants-update', async (anu) => {
 					buffer = await getBuffer(`https://1.bp.blogspot.com/-hTK6rhpNEIg/YEYhcsOBGEI/AAAAAAAAAuo/TMqLxi3IWqsp1M0XJF3R6V7BQLnCSoAJQCNcBGAsYHQ/s1721/PicsArt_03-08-10.05.56.jpg`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*MELHORES SITES PORN/+18!*😳 \naproveite com moderação! hihi\n\n1- www.xvideos.com\n2- www.xhamster.com\n3- www.xnxx.com\n4- www.pornhub.com\n5- www.redtube.com\n6- www.youporn.com\n7- www.snapdo.com\n8- www.livejasmin.com\n9- www.youjizz.com\n10- www.tube8.com\n11- www.dmm.co.jp\n12- www.hardsextube.com\n13- www.e-hentai.org\n14- www.beeg.com\n15- www.pornodeanaogay.com\n\n    𝑯𝑫𝑩𝑶𝑻.𝒆𝒙𝒆'})
 					break
-					case 'indio':
+					case 'indijjo':
 					memein = await kagApi.memeindo()
 					buffer = await getBuffer(`https://i.imgur.com/5wVbBeh.jpg`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*DDD 90,91,92,93,94,95,96,97,98,99*'})
@@ -1215,6 +1209,29 @@ client.on('group-participants-update', async (anu) => {
 			fs.unlinkSync(rano)
 			})
 			break
+            case 'emoji':
+            if (isBanned) return reply(nad.baned())
+            if (!isGroup) return reply(mess.only.group)
+            if (args.length == 0) return reply(`Uso: ${prefix + comando} A pergunta\nExemplo: ${prefix + command} 😭`)
+            emoji = args[0]
+            try {
+            emoji = encodeURI(emoji[0])
+            } catch {
+            emoji = encodeURI(emoji)
+            }
+            buffer = await getBuffer(`http://api.lolhuman.xyz/api/smoji/${emoji}?apikey=RamlanID`)
+            client.sendMessage(from, buffer, sticker, { quoted: mek })
+            break
+            case 'gerarnick': 
+            client.updatePresence(from, Presence.composing)
+		    client.updatePresence(from, Presence.composing) 
+		    data = await fetchJson(`https://api.zeks.xyz/api/nickepep?apikey=apivinz`, {method: 'get'})
+			teks = '=================\n'
+			for (let i of data.result) {
+			teks += `• Nick : ${i}\n=================\n`
+			}
+		    reply(teks.trim())
+			break
             case 'gay':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
@@ -1229,7 +1246,6 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, '*'+hasil+'*', text, {quoted: mek})
             break
             case 'casal':
-            case 'jadian':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(ind.groupo())
 					jds = []
@@ -1241,6 +1257,13 @@ client.on('group-participants-update', async (anu) => {
 					jds.push(akuu.jid)
 					jds.push(diaa.jid)
 					mentions(teks, jds, true)
+					break
+			case 'cassino':	
+				    if (isBanned) return reply(nad.baned())
+					rate = body.slice(1)
+					const tii =['🍇🥭🍇','🍉🍎🍉','🍊🍉🍊','🍓🍓🍓','🍍🍇🍍']
+					const kll = tii[Math.floor(Math.random() * tii.length)]
+					client.sendMessage(from, 'teste *'+rate+'*\n\nSua teste : '+ kll+'%', text, { quoted: mek })
 					break
             case 'gados':
 					if (isBanned) return reply(nad.baned())
