@@ -2048,8 +2048,7 @@ client.on('group-participants-update', async (anu) => {
                     let imagens = files.filter(f => f.split('.').pop() == 'jpg')
                     let imagem = imagens[Math.floor(Math.random() * imagens.length)]
                    dua = fs.readFileSync(`src/mia/${imagem}`)
-                   var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
-                   client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `Aproveite com moderação *${pushname}* !`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
+                   client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `Aproveite com moderação!`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
                    })
                    break
 				   case 'tigresavip':
@@ -2060,8 +2059,7 @@ client.on('group-participants-update', async (anu) => {
                     let imagens = files.filter(f => f.split('.').pop() == 'jpg')
                     let imagem = imagens[Math.floor(Math.random() * imagens.length)]
                    dua = fs.readFileSync(`src/tigresavip/${imagem}`)
-                   var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
-                   client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `Aproveite com moderação *${pushname}* !`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
+                   client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `Aproveite com moderação!`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
                    })
                    break
 					case 'blowjob':
