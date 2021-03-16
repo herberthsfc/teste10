@@ -1012,7 +1012,7 @@ client.on('group-participants-update', async (anu) => {
 		    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
 		    if (!isPrem) return reply(nad.premium())
 			data = fs.readFileSync('./lib/mia.js');
-            jsonData = JSON.parse:(data);
+            jsonData = JSON.parse(data);
             randIndex = Math.floor(Math.random() * jsonData.length);
             randKey = jsonData[randIndex];
             mia = await getBuffer(randKey.result)
