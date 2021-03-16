@@ -2040,26 +2040,30 @@ client.on('group-participants-update', async (anu) => {
 					pok = await getBuffer(nimek)
 					client.sendMessage(from, pok, image, { quoted: mek, caption: `*🔍 | Resultado da pesquisa!*`})
 					break
-					case 'mia':
+                    case 'mia':
                     if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
 					if (!isPrem) return reply(nad.premium())
+                    reply('*Carregando...*') 
                     fs.readdir('src/mia/', async (err, files) => {
                     let imagens = files.filter(f => f.split('.').pop() == 'jpg')
                     let imagem = imagens[Math.floor(Math.random() * imagens.length)]
-                    dua = fs.readFileSync(`src/mia/${imagem}`)
-                    client.sendMessage(from, dua, ContentType.jpg, {quoted: mek, caption: '*_Mia Khalifa_* 🔍'})
-                    })
-                    break
-					case 'tigresavip':
+                   dua = fs.readFileSync(`src/mia/${imagem}`)
+                   var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+                   client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `Aproveite com moderação *${pushname}* !`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
+                   })
+                   break
+				   case 'tigresavip':
                     if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
 					if (!isPrem) return reply(nad.premium())
+                    reply('*Carregando...*') 
                     fs.readdir('src/tigresavip/', async (err, files) => {
                     let imagens = files.filter(f => f.split('.').pop() == 'jpg')
                     let imagem = imagens[Math.floor(Math.random() * imagens.length)]
-                    dua = fs.readFileSync(`src/tigresavip/${imagem}`)
-                    client.sendMessage(from, dua, ContentType.jpg, {quoted: mek, caption: '*_Tigresa Vip_* 🔍'})
-                    })
-                    break
+                   dua = fs.readFileSync(`src/tigresavip/${imagem}`)
+                   var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+                   client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `Aproveite com moderação *${pushname}* !`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
+                   })
+                   break
 					case 'blowjob':
 					if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
 					if (!isPrem) return reply(nad.premium())
