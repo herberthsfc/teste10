@@ -953,6 +953,12 @@ client.on('group-participants-update', async (anu) => {
 					}
 					client.sendMessage(from, options, text)
 					break
+                    case 'repetir':
+					if (!isOwner) return reply(mess.only.ownerB)
+					var value = body.slice(9)
+					var group = await client.groupMetadata(from)
+					client.sendMessage(from, options, text)
+					break
                     case 'lofi':
 					memein = await kagApi.memeindo()
 					buffer = await getBuffer(`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL9hZBPRo16fIhsIus3t1je2oAU23pQqBpfw&usqp=CAU`)
@@ -2002,19 +2008,21 @@ client.on('group-participants-update', async (anu) => {
                 client.sendMessage(from, buffer, image, {quoted: mek, caption: infomp3})
                 client.sendMessage(from, lagu, audio, {mimetype: 'audio/mp4', filename: `${anu.title}.mp3`, quoted: mek})
                 break
-                case 'playy':
+                case 'musica':
                 if (!isPrem) return reply(nad.premium())
-                if(body.length < 6) return reply(from, 'Você precisa dizer a música')
+                if(body.length < 6) return client.reply(from, 'Você precisa dizer a música', mek)
                 res = (await fetchJson(`https://arugaytdl.herokuapp.com/search?q=${body.slice(6)}`, {method: 'get'}))[0]
                 asize = await fetchJson(`https://st4rz.herokuapp.com/api/yta?url=https://youtu.be/${res.id}`, {method: 'get'})
                 if(asize.filesize.replace(' MB', '')>=16||asize.filesize.endsWith('GB')){
-                reply(from, `O limite de tamanho é 16 MB. Esse áudio possui ${asize.filesize}`, mek)
-                } else {
+                client.reply(from, `O limite de tamanho é 16 MB. Esse áudio possui ${asize.filesize}`, mek)
+                }
+                else{
                 thumb = await getBuffer(res.thumbnail)
-                client.sendMessage(from, thumb, image, {quoted: mek, caption: '*Baixando, aguarde...* \n\n *_HDBOT.exe_*'})
+                client.sendMessage(from, thumb, image, {quoted: mek, caption: 'Baixando Musica...'})
                 rest = await fetchJson(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.id}`, {method: 'get'})
-			    buffer = await getBuffer(rest.result)
-			    client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', filename: `${asize.title}.mp3`, quoted: mek}) }
+                buffer = await getBuffer(rest.result)
+                client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', quoted: mek, ptt: true})
+                }
                 break
                 case 'mp4':
                 case 'ytmp4':
@@ -2028,6 +2036,14 @@ client.on('group-participants-update', async (anu) => {
 					client.sendMessage(from, thumb, image, {quoted: mek, caption: teks})
 					buffer = await getBuffer(anu.result)
 					client.sendMessage(from, buffer, video, {mimetype: 'video/mp4', filename: `${anu.title}.mp4`, quoted: mek})
+					break
+					case 'letra':
+                    if (isBanned) return reply(nad.baned())
+				    if (!isGroup) return reply(mess.only.group)
+                    reply('_[❗] estou enviando a letra pedida_')
+					teks = body.slice(7)
+					anu = await fetchJson(`http://scrap.terhambar.com/lirik?word=${teks}`, {method: 'get'})
+					reply('*Letra da musica* '+teks+' *é* :\n\n'+anu.result.lirik)
 					break
 					case 'pinterest':
 					if (isBanned) return reply(nad.baned())
@@ -2043,23 +2059,23 @@ client.on('group-participants-update', async (anu) => {
                     case 'mia':
                     if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
 					if (!isPrem) return reply(nad.premium())
-                    reply('*Carregando...*') 
+                    reply('*Aguarde...*') 
                     fs.readdir('src/mia/', async (err, files) => {
                     let imagens = files.filter(f => f.split('.').pop() == 'jpg')
                     let imagem = imagens[Math.floor(Math.random() * imagens.length)]
                    dua = fs.readFileSync(`src/mia/${imagem}`)
-                   client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `Aproveite com moderação!`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
+                   client.sendMessage(from, dua, MessageType.image, {quoted: mek, caption: '*Aproveite com moderação!*'})
                    })
                    break
-				   case 'tigresavip':
+                   case 'tigresavip':
                     if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
 					if (!isPrem) return reply(nad.premium())
-                    reply('*Carregando...*') 
+                    reply('*Aguarde...*') 
                     fs.readdir('src/tigresavip/', async (err, files) => {
                     let imagens = files.filter(f => f.split('.').pop() == 'jpg')
                     let imagem = imagens[Math.floor(Math.random() * imagens.length)]
                    dua = fs.readFileSync(`src/tigresavip/${imagem}`)
-                   client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `Aproveite com moderação!`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
+                   client.sendMessage(from, dua, MessageType.image, {quoted: mek, caption: '*Aproveite com moderação!*'})
                    })
                    break
 					case 'blowjob':
