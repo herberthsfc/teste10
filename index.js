@@ -138,6 +138,21 @@ client.on('group-participants-update', async (anu) => {
 
 			console.log(anu)
 
+client.on('group-participants-update', async (anu) => {
+		const mdata = await sabrina.groupMetadata(anu.jid)
+		if(antifake.includes(anu.jid)) {
+			if (anu.action == 'add'){
+				num = anu.participants[0]
+				if(!num.split('@')[0].startsWith(55)) {
+					sabrina.sendMessage(mdata.id, '*NÚMERO FAKE DETECTADO!\nSERÁ BANIDO!*', MessageType.text)
+					setTimeout(async function () {
+						sabrina.groupRemove(mdata.id, [num])
+					}, 1000)
+				}
+			}
+		}
+		if (!welkom.includes(anu.jid)) return
+
 			if (anu.action == 'add') {
 
 				num = anu.participants[0]
@@ -222,6 +237,7 @@ client.on('group-participants-update', async (anu) => {
 			const isAntiLink = isGroup ? antilink.includes(from) : false 
 			const isAntiRacismo = isGroup ? antiracismo.includes(from) : false
 			const isAntiShit = isGroup ? antishit.includes(from) : false
+			const isAntiFake = isGroup ? antifake.includes(from) : false
 			const isOwner = ownerNumber.includes(sender)
 			const isPrem = premium.includes(sender)
 			const isBanned = ban.includes(sender)
@@ -1245,7 +1261,7 @@ client.on('group-participants-update', async (anu) => {
 					mentions(teks, jds, true)
 					break
 			case 'cassino':
-                    let cassinao = ['🍉-', '🍎','-🍇']
+                    let cassinao = ['🍉','🍎','🍇']
                     let resposta1 = cassinao[Math.floor(Math.random() * cassinao.length)]
                     let resposta2 = cassinao[Math.floor(Math.random() * cassinao.length)]
                     let resposta3 = cassinao[Math.floor(Math.random() * cassinao.length)]
@@ -1256,7 +1272,7 @@ client.on('group-participants-update', async (anu) => {
                     client.sendMessage(from, `*CASSINO*:\n\nPuts, ${pushname} Quase...\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
                     }
                     else{
-                    client.sendMessage(from, `CASSINO:\n\n\${pushname} Tente da próxima...\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
+                    client.sendMessage(from, `CASSINO:\n\n ${pushname} Tente da próxima...\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
                     }
                     break
             case 'gados':
@@ -1599,6 +1615,27 @@ client.on('group-participants-update', async (anu) => {
 						reply('1 para ativar, 2 para desligar')
 					}
 					break
+					case 'antifake':
+					try {
+					if (!isGroup) return reply(mess.only.group)
+					if (!isGroupAdmins) return reply(mess.only.admin)
+					if (args.length < 1) return reply('Hmmmm')
+					if (Number(args[0]) === 1) {
+						if (isAntiFake) return reply('Ja esta ativo')
+						antifake.push(from)
+						fs.writeFileSync('./src/antifake.json', JSON.stringify(antifake))
+						reply('Ativou com sucesso o recurso de antifake neste grupo✔️')
+					} else if (Number(args[0]) === 0) {
+						antifake.splice(from, 1)
+						fs.writeFileSync('./src/antifake.json', JSON.stringify(antifake))
+						reply('Desativou com sucesso o recurso de antifake neste grupo✔️')
+					} else {
+						reply('1 para ativar, 0 para desativar')
+					}
+					} catch {
+						reply('Deu erro, tente novamente :/')
+					}
+                break
 				case 'ocr': 
 				case 'txtdafoto':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
