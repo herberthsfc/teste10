@@ -53,6 +53,7 @@ const premium = JSON.parse(fs.readFileSync('./database/user/premium.json'))
 const antilink = JSON.parse(fs.readFileSync('./database/json/antilink.json'))
 const antiracismo = JSON.parse(fs.readFileSync('./database/json/antiracismo.json'))
 const antishit = JSON.parse(fs.readFileSync('./database/json/antishit.json'))
+const antifake = JSON.parse(fs.readFileSync('./src/antifake.json'))
 const gadorandom = JSON.parse(fs.readFileSync('./database/json/gado.json'))
 const eusourandom = JSON.parse(fs.readFileSync('./database/json/eusou.json'))
 const gayrandom = JSON.parse(fs.readFileSync('./database/json/gay.json'))
@@ -1774,13 +1775,13 @@ client.on('group-participants-update', async (anu) => {
 					result = fs.readFileSync(`./strg/sticker/${namastc}.webp`)
 					client.sendMessage(from, result, sticker, {quoted :mek})
 					break
-					case 'hdttp':
-				if (isBanned) return reply(nad.baned())
-				if (args.length < 1) return reply(`_O texto _\n*Exemplo ${prefix}hdttp herberth*`)
-				if (!isGroup) return reply(mess.only.group)
-				attp2 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
-				client.sendMessage(from, attp2, sticker, {quoted: mek})
-				break
+					case 'hdttp':                   
+			     	if (isBanned) return reply(nad.baned())
+			     	if (args.length < 1) return reply(`_Coloque o texto _\n\n*Exemplo ${prefix}stc Daddy*`)
+                    url = encodeURI(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
+		    		attp2 = await getBuffer(url)
+			    	client.sendMessage(from, attp2, sticker, {quoted: mek})
+			     	break
 				case 'stickerlist':
 				case 'liststicker':
 					if (!isOwner) return reply(mess.only.ownerB)
