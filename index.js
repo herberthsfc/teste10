@@ -130,6 +130,29 @@ client.connect();
 
 client.on('group-participants-update', async (anu) => {
 
+	fs.existsSync('./BarBar.json') && client.loadAuthInfo('./BarBar.json')
+	client.on('connecting', () => {
+		start('2', 'Quase la...')
+	})
+	client.on('open', () => {
+		success('2', 'Conectado leke')
+	})
+	await client.connect({timeoutMs: 30*1000})
+        fs.writeFileSync('./BarBar.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
+
+	client.on('group-participants-update', async (anu) => {
+		const mdata = await client.groupMetadata(anu.jid)
+		if(antifake.includes(anu.jid)) {
+			if (anu.action == 'add'){
+				num = anu.participants[0]
+				if(!num.split('@')[0].startsWith(55)) {
+					client.sendMessage(mdata.id, 'Corra numero fake safado seu ban está próximo', MessageType.text)
+					setTimeout(async function () {
+						client.groupRemove(mdata.id, [num])
+					}, 1000)
+				}
+			}
+		}
 		if (!welkom.includes(anu.jid)) return
 
 		try {
@@ -137,21 +160,6 @@ client.on('group-participants-update', async (anu) => {
 			const mdata = await client.groupMetadata(anu.jid)
 
 			console.log(anu)
-
-client.on('group-participants-update', async (anu) => {
-		const mdata = await sabrina.groupMetadata(anu.jid)
-		if(antifake.includes(anu.jid)) {
-			if (anu.action == 'add'){
-				num = anu.participants[0]
-				if(!num.split('@')[0].startsWith(55)) {
-					sabrina.sendMessage(mdata.id, '*NÚMERO FAKE DETECTADO!\nSERÁ BANIDO!*', MessageType.text)
-					setTimeout(async function () {
-						sabrina.groupRemove(mdata.id, [num])
-					}, 1000)
-				}
-			}
-		}
-		if (!welkom.includes(anu.jid)) return
 
 			if (anu.action == 'add') {
 
