@@ -130,13 +130,9 @@ client.connect();
 
 client.on('group-participants-update', async (anu) => {
 
-	fs.existsSync('./BarBar.json') && client.loadAuthInfo('./BarBar.json')
-	client.on('connecting', () => {
-		start('2', 'Quase la...')
-	})
-	client.on('open', () => {
-		success('2', 'Conectado leke')
-	})
+		if (!welkom.includes(anu.jid)) return
+
+		try {
 	await client.connect({timeoutMs: 30*1000})
         fs.writeFileSync('./BarBar.json', JSON.stringify(client.base64EncodedAuthInfo(), null, '\t'))
 
@@ -146,7 +142,7 @@ client.on('group-participants-update', async (anu) => {
 			if (anu.action == 'add'){
 				num = anu.participants[0]
 				if(!num.split('@')[0].startsWith(55)) {
-					client.sendMessage(mdata.id, 'Corra numero fake safado seu ban está próximo', MessageType.text)
+					client.sendMessage(mdata.id, 'Corra numero fake safado seu ban esta próximo', MessageType.text)
 					setTimeout(async function () {
 						client.groupRemove(mdata.id, [num])
 					}, 1000)
@@ -154,9 +150,8 @@ client.on('group-participants-update', async (anu) => {
 			}
 		}
 		if (!welkom.includes(anu.jid)) return
-
 		try {
-
+		
 			const mdata = await client.groupMetadata(anu.jid)
 
 			console.log(anu)
