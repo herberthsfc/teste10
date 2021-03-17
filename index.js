@@ -1007,28 +1007,6 @@ client.on('group-participants-update', async (anu) => {
 			nye = await getBuffer(ze)
 			client.sendMessage(from, nye, image, { caption: '🔎 | _Meme Regedit_️', quoted: mek })
 			break 
-			case 'm14a':
-		    client.updatePresence(from, Presence.composing) 
-		    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
-		    if (!isPrem) return reply(nad.premium())
-			data = fs.readFileSync('./lib/mia.js');
-            jsonData = JSON.parse(data);
-            randIndex = Math.floor(Math.random() * jsonData.length);
-            randKey = jsonData[randIndex];
-            mia = await getBuffer(randKey.result)
-            client.sendMessage(from, mia, image, {quoted: mek, caption: '*🔍 | Mia Khalifa*'})
-			break
-			case 'tigresauurfvevip':
-		    client.updatePresence(from, Presence.composing) 
-		    if (!isNsfw) return reply(' *O modo +18 está desativado neste grupo, se você é um admin e quer ativa-lo, use o nsfw!* ')
-		    if (!isPrem) return reply(nad.premium())
-			data = fs.readFileSync('./lib/tigresavip.js');
-            jsonData = JSON.parse(data);
-            randIndex = Math.floor(Math.random() * jsonData.length);
-            randKey = jsonData[randIndex];
-            tigresavip = await getBuffer(randKey.result)
-            client.sendMessage(from, tigresavip, image, {quoted: mek, caption: '*🔍 | Tigresa Vip*'})
-			break
           case 'gado000':
           reply('*⏰ | Carregando, por favor, aguarde um momento...*')
           if (args.length < 1) return reply('Um gado foi encontrado, cuidado, ele não pode ver uma mulher!')
@@ -1101,7 +1079,7 @@ client.on('group-participants-update', async (anu) => {
 		    uptime = process.uptime()
             client.sendMessage(from, `_Velocidade: ${latensi.toFixed(4)} milissegundos_ ✓`, text, { quoted: mek})
             break
-			case 'darjkjokes':
+			case 'darjkdkjokes':
 		    client.updatePresence(from, Presence.composing) 
 		    if (!isGroup) return reply(mess.only.group)
 			reply(mess.wait)
@@ -1113,6 +1091,14 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, darkjokes, image, {quoted: mek, caption: '\`\`\`DARK JOKES\`\`\`'})
 			await limitAdd(sender) 
 			break
+			case 'repetir':
+			case 'repeat':
+            if (!isPrem) return reply(nad.premium())
+            teks = body.slice(8)
+            if (args.length < 1) return reply('onde está o texto mana?')
+            saying = teks
+            client.sendMessage(from, saying, text)
+            break
 			case 'gerarcpf':
 			case 'geradorcpf':
             if (!isPrem) return reply(nad.premium())
@@ -1258,13 +1244,21 @@ client.on('group-participants-update', async (anu) => {
 					jds.push(diaa.jid)
 					mentions(teks, jds, true)
 					break
-			case 'cassino':	
-				    if (isBanned) return reply(nad.baned())
-					rate = body.slice(1)
-					const tii =['🍇🥭🍇','🍉🍎🍉','🍊🍉🍊','🍓🍓🍓','🍍🍇🍍']
-					const kll = tii[Math.floor(Math.random() * tii.length)]
-					client.sendMessage(from, 'teste *'+rate+'*\n\nSua teste : '+ kll+'%', text, { quoted: mek })
-					break
+			case 'cassino':
+                    let cassinao = ['🍉-', '🍎','-🍇']
+                    let resposta1 = cassinao[Math.floor(Math.random() * cassinao.length)]
+                    let resposta2 = cassinao[Math.floor(Math.random() * cassinao.length)]
+                    let resposta3 = cassinao[Math.floor(Math.random() * cassinao.length)]
+                    if(resposta1==resposta2&&resposta2==resposta3){
+                    client.sendMessage(from, `*CASSINO*:\n\nBoaa, ${pushname} VOCÊ GANHOU! AGORA PODE ME MAMAR!\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
+                    }
+                    else if(resposta1==resposta2||resposta2==resposta3){
+                    client.sendMessage(from, `*CASSINO*:\n\nPuts, ${pushname} Quase...\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
+                    }
+                    else{
+                    client.sendMessage(from, `CASSINO:\n\n\${pushname} Tente da próxima...\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
+                    }
+                    break
             case 'gados':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(ind.groupo())
@@ -1855,6 +1849,19 @@ client.on('group-participants-update', async (anu) => {
                     reply('Use uma foto!')
                     }
                     break
+                    case 'cry':
+					ranp = getRandom('.gif')
+					rano = getRandom('.webp')
+					anu = await fetchJson('https://tobz-api.herokuapp.com/api/cry?apikey=BotWeA', { method: 'get' })
+					if (anu.error) return reply(anu.error)
+					exec(`wget ${anu.result} -O ${ranp} && ffmpeg -i ${ranp} -vcodec libwebp -filter:v fps=fps=15 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${rano}`, (err) => {
+						fs.unlinkSync(ranp)
+						if (err) return reply(mess.error.stick)
+						buffer = fs.readFileSync(rano)
+						client.sendMessage(from, buffer, sticker, { quoted: mek })
+						fs.unlinkSync(rano)
+					})
+					break
                     case 'sfire':
                     if (isBanned) return reply(nad.baned())
                     if (!isGroup) return reply(mess.only.group)
@@ -2047,8 +2054,51 @@ client.on('group-participants-update', async (anu) => {
                 client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', quoted: mek, ptt: true})
                 }
                 break
-                case 'mp4':
+                case 'spotifybuscar':
+                case 'spotifysearch':
+                    if (!isPrem) return reply(nad.premium())
+                    query = args.join(" ")
+                    get_result = await fetchJson(`http://api.lolhuman.xyz/api/spotifysearch?apikey=RamlanID&query=${query}`)
+                    get_result = get_result.result
+                    txt = ""
+                    for (var x in get_result) {
+                        txt += `Título : ${get_result[x].title}\n`
+                        txt += `Artista : ${get_result[x].artists}\n`
+                        txt += `Duração : ${get_result[x].duration}\n`
+                        txt += `Link : ${get_result[x].link}\n`
+                        txt += `Preview : ${get_result[x].preview_url}\n\n\n`
+                    }
+                    reply(txt)
+                    break
                 case 'ytmp4':
+                    if (!isPrem) return reply(nad.premium())
+                    ini_link = args[0]
+                    get_result = await fetchJson(`http://api.lolhuman.xyz/api/ytvideo?apikey=RamlanID&url=${ini_link}`)
+                    get_result = get_result.result
+                    txt = `➩ ❍Titulo : ${get_result.title}\n`
+                    txt += `➩ ❍Uploader : ${get_result.uploader}\n`
+                    txt += `➩ ❍Duração : ${get_result.duration}\n`
+                    txt += `➩ ❍Views : ${get_result.view}\n`
+                    txt += `➩ ❍Like : ${get_result.like}\n`
+                    txt += `➩ ❍Deslike: ${get_result.dislike}\n`
+                    txt += `➩ ❍Descrição :\n ${get_result.description}`
+                    buffer = await getBuffer(get_result.thumbnail)
+                    client.sendMessage(from, buffer, image, { quoted: mek, caption: txt })
+                    get_audio = await getBuffer(get_result.link[0].link)
+                    client.sendMessage(from, get_audio, video, { mimetype: 'video/mp4', filename: `${get_result.title}.mp4`, quoted: mek })
+                    break
+                case 'ytsearch':
+					if (!isPrem) return reply(nad.premium())
+		            query = args.join(" ")
+					anu = await fetchJson(`http://api.lolhuman.xyz/api/ytsearch?apikey=RamlanID&query=${query}`, {method: 'get'})
+					teks = '════════════\n'
+					for (let i of anu.result) {
+						teks += `➩ ❍Titulo: ${i.title}\n➩ ❍ID: https://youtu.be/${i.videoId}\n➩ ❍Publicados: ${i.published}\n➩ ❍Views: ${h2k(i.views)}\n════════════\n`
+					}
+					reply(teks.trim())
+					break
+                case 'mphs4':
+                case 'ytmpshhs4':
 					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply('Por favor, informe o link do video do Youtube!')
 					if(!isUrl(args[0]) && !args[0].includes('youtu')) return reply(mess.error.Iv)
