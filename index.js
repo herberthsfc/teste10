@@ -1252,26 +1252,27 @@ client.on('group-participants-update', async (anu) => {
 					const koss = groupMembers
 					const akuu = jdii[Math.floor(Math.random() * jdii.length)]
 					const diaa = koss[Math.floor(Math.random() * koss.length)]
-					teks = `*_Meu Casal_* @${akuu.jid.split('@')[0]} e @${diaa.jid.split('@')[0]} ❤️👩‍❤️‍👨`
+					teks = `*Meu Casal @${akuu.jid.split('@')[0]} e @${diaa.jid.split('@')[0]} * 😍❤️👩‍❤️‍👨`
 					jds.push(akuu.jid)
 					jds.push(diaa.jid)
 					mentions(teks, jds, true)
 					break
 			case 'cassino':
-                    else if(resposta1==resposta2||resposta2==resposta3){
-                    client.sendMessage(from, `*CASSINO*:\n\nPuts, ${pushname} Quase...\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
-                    }
-                    else{
-                    client.sendMessage(from, `CASSINO:\n\n ${pushname} Tente da próxima...\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
-                    }
-                    let cassinao = ['🍉','🍎','🍇']
+                    let cassinao = ['🍑','🍎','🍉']
                     let resposta1 = cassinao[Math.floor(Math.random() * cassinao.length)]
                     let resposta2 = cassinao[Math.floor(Math.random() * cassinao.length)]
                     let resposta3 = cassinao[Math.floor(Math.random() * cassinao.length)]
                     if(resposta1==resposta2&&resposta2==resposta3){
-                    client.sendMessage(from, `*CASSINO*:\n\nBoaa, ${pushname} VOCÊ GANHOU! AGORA PODE ME MAMAR!\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
+                    client.sendMessage(from, `*_CASSINO HDBOT:_*\n\n${resposta1} - ${resposta2} - ${resposta3} ☜\n\n *BOOA, ${pushname} VOCÊ GANHOU! AGORA PODE ME MAMAR!*`, text, {quoted: mek})
+                    }
+                    else if(resposta1==resposta2||resposta2==resposta3){
+                    client.sendMessage(from, `*_CASSINO HDBOT:_*\n\n${resposta1} - ${resposta2} - ${resposta3} ☜ \n\n *Poxa, ${pushname} Não foi dessa vez...*`, text, {quoted: mek})
+                    }
+                    else{
+                    client.sendMessage(from, `*_CASSINO HDBOT:_*\n\n${resposta1} - ${resposta2} - ${resposta3} ☜ \n\n *Quase, ${pushname} Tente outra vez...*`, text, {quoted: mek})
+                    }
                     break
-            case 'gados':
+		   case 'gados':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(ind.groupo())
 					jds = []
