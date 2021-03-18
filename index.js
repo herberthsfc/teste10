@@ -1633,7 +1633,7 @@ client.on('group-participants-update', async (anu) => {
                     } else {
                     reply('1 para ativar, 0 para desativar')
                     }
-                break
+                    break
 				case 'ocr': 
 				case 'txtdafoto':
 					if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
