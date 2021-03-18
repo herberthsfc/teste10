@@ -1258,19 +1258,18 @@ client.on('group-participants-update', async (anu) => {
 					mentions(teks, jds, true)
 					break
 			case 'cassino':
-                    let cassinao = ['🍉','🍎','🍇']
-                    let resposta1 = cassinao[Math.floor(Math.random() * cassinao.length)]
-                    let resposta2 = cassinao[Math.floor(Math.random() * cassinao.length)]
-                    let resposta3 = cassinao[Math.floor(Math.random() * cassinao.length)]
-                    if(resposta1==resposta2&&resposta2==resposta3){
-                    client.sendMessage(from, `*CASSINO*:\n\nBoaa, ${pushname} VOCÊ GANHOU! AGORA PODE ME MAMAR!\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
-                    }
                     else if(resposta1==resposta2||resposta2==resposta3){
                     client.sendMessage(from, `*CASSINO*:\n\nPuts, ${pushname} Quase...\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
                     }
                     else{
                     client.sendMessage(from, `CASSINO:\n\n ${pushname} Tente da próxima...\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
                     }
+                    let cassinao = ['🍉','🍎','🍇']
+                    let resposta1 = cassinao[Math.floor(Math.random() * cassinao.length)]
+                    let resposta2 = cassinao[Math.floor(Math.random() * cassinao.length)]
+                    let resposta3 = cassinao[Math.floor(Math.random() * cassinao.length)]
+                    if(resposta1==resposta2&&resposta2==resposta3){
+                    client.sendMessage(from, `*CASSINO*:\n\nBoaa, ${pushname} VOCÊ GANHOU! AGORA PODE ME MAMAR!\n${resposta1}${resposta2}${resposta3}`, text, {quoted: mek})
                     break
             case 'gados':
 					if (isBanned) return reply(nad.baned())
@@ -1626,12 +1625,13 @@ client.on('group-participants-update', async (anu) => {
 						antifake.splice(from, 1)
 						fs.writeFileSync('./src/antifake.json', JSON.stringify(antifake))
 						reply('Desativou com sucesso o recurso de antifake neste grupo✔️')
-					} else {
-						reply('1 para ativar, 0 para desativar')
-					}
-					} catch {
-						reply('Deu erro, tente novamente :/')
-					}
+					} else if (Number(args[0]) === 0) {
+                    antifake.splice(from, 1)
+                    fs.writeFileSync('./src/antifake.json', JSON.stringify(antifake))
+                    reply('Modo anti-fake desativado com sucesso!️')
+                    } else {
+                    reply('1 para ativar, 0 para desativar')
+                    }
                 break
 				case 'ocr': 
 				case 'txtdafoto':
@@ -1777,6 +1777,7 @@ client.on('group-participants-update', async (anu) => {
 					break
 					case 'hdttp':                   
 			     	if (isBanned) return reply(nad.baned())
+			     	if (!isGroup) return reply(mess.only.group)
 			     	if (args.length < 1) return reply(`_Coloque o texto _\n\n*Exemplo ${prefix}stc Daddy*`)
                     url = encodeURI(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
 		    		attp2 = await getBuffer(url)
