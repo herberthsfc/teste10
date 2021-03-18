@@ -1623,16 +1623,15 @@ client.on('group-participants-update', async (anu) => {
 						fs.writeFileSync('./src/antifake.json', JSON.stringify(antifake))
 						reply('Ativou com sucesso o recurso de antifake neste grupo✔️')
 					} else if (Number(args[0]) === 0) {
-						antifake.splice(from, 1)
-						fs.writeFileSync('./src/antifake.json', JSON.stringify(antifake))
-						reply('Desativou com sucesso o recurso de antifake neste grupo✔️')
-					} else if (Number(args[0]) === 0) {
-                    antifake.splice(from, 1)
-                    fs.writeFileSync('./src/antifake.json', JSON.stringify(antifake))
-                    reply('Modo anti-fake desativado com sucesso!️')
+                        antifake.splice(from, 1)
+                    fs.writeFileSync('./src/antifake', JSON.stringify(antifake))
+                    reply('Modo antifake desativado com sucesso!️')
                     } else {
                     reply('1 para ativar, 0 para desativar')
                     }
+					} catch {
+				    reply('Deu erro, tente novamente :/')
+					}
                     break
 				case 'ocr': 
 				case 'txtdafoto':
