@@ -1208,7 +1208,7 @@ client.on('group-participants-update', async (anu) => {
 			fs.unlinkSync(rano)
 			})
 			break
-            case 'emoji':
+            case 'emoji000':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
             if (args.length == 0) return reply(`Uso: ${prefix + comando} A pergunta\nExemplo: ${prefix + command} 😭`)
@@ -1221,6 +1221,24 @@ client.on('group-participants-update', async (anu) => {
             buffer = await getBuffer(`http://api.lolhuman.xyz/api/smoji/${emoji}?apikey=RamlanID`)
             client.sendMessage(from, buffer, sticker, { quoted: mek })
             break
+            case 'emoji':
+             case 'emogi2':
+             case 'emogui2':
+             case 'emojui2':
+		     case 'sttc2':
+		            if (isBanned) return reply(mess.only.benned)    
+		            if (!isUser) return reply(mess.only.userB)
+                    if (args.length < 1) return reply('*_Qual O Emoji Da Figurinha??_*\n*_Somente Emojis Padrões🐊🔥_*')
+                    reply(mess.wait)
+                    emoji = args[0]
+                    try {
+                        emoji = encodeURI(emoji[0])
+                    } catch {
+                        emoji = encodeURI(emoji)
+                    }
+                    buffer = await getBuffer(`http://api.lolhuman.xyz/api/smoji/${emoji}?apikey=RiuApikey`)
+                    frhan.sendMessage(from, buffer, sticker, { quoted: mek })
+                    break
             case 'gerarnick': 
             client.updatePresence(from, Presence.composing)
 		    client.updatePresence(from, Presence.composing) 
@@ -1381,7 +1399,7 @@ client.on('group-participants-update', async (anu) => {
                     brno = `*🔍CONSULTA FEITA🔍* \n\n *CEP:* ${data.cep} \n\n *ENDEREÇO:* ${data.logradouro} \n\n *COMPLEMENTO:* ${data.complemento} \n\n *BAIRRO:* ${data.bairro} \n\n *LOCALIDADE:* ${data.localidade} \n\n *UF:* ${data.uf} \n\n *DDD:* ${data.ddd} \n\n *Respeita ou peita*`
                     client.sendMessage(from, brno, text, {quoted: mek})
                     break
-			case 'igstalk':
+			case 'igstalk000':
                     if (!isPrem) return reply(nad.premium())
                     vide = body.slice(9)
                     hmm = await fetchJson(`https://videfikri.com/api/igstalk/?username=${vide}`)
@@ -1389,6 +1407,28 @@ client.on('group-participants-update', async (anu) => {
                     hasil = `*「 User 」* : ${hmm.result.username}\n*「 Nome 」* : ${hmm.result.full_name}\n*「 Seguidores 」* : ${hmm.result.followers}\n*「 Seguindo 」* : ${hmm.result.following}\n*「 Publicações 」* : ${hmm.result.post_count}\n*「 Biografia 」* : ${hmm.result.bio}`
                     client.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
                     break
+            case 'instagram':
+                case 'igstalk':
+                case 'insta':
+              if (!isPrem) return reply(nad.premium())
+			  if (args.length < 1) return reply('*Qual o nome do perfil?*')
+			  lucasss = body.slice(11)
+				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/stalk?username=${lucasss}&apikey=Tobz2k19`)
+				reply(mess.wait)
+				buffer = await getBuffer(anu.Profile_pic)
+				teks = `*➸ Nome Completo :*\n*${anu.Name}*\n*➸ Nome Do Usuário :*\n*${anu.Username}*\n*➸ Seguidores : ${anu.Jumlah_Followers}*\n*➸ Seguindo : ${anu.Jumlah_Following}*\n*➸ Número De Postagens : ${anu.Jumlah_Post}*\n*➸ Biografia :*\n*${anu.Biodata}*\n\n*_HDBOT.exe_*`
+				frhan.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
+				break
+            case 'bitly':
+			if (!isPrem) return reply(nad.premium())
+			if (args.length < 1) return reply('herbetii\n\n*Nem todos os links são camuflados!')
+			reply(mess.wait)
+			client.updatePresence(from, Presence.composing)
+			anu = await fetchJson(`https://tobz-api.herokuapp.com/api/bitly?url=${args[0]}&apikey=BotWeA`, {method: 'get'})
+			if (anu.error) return reply(anu.error)
+			hasil = `*Link Camuflado amigo :\n${anu.result}\n\n*_HDBOT.exe_* ⚡`
+		    reply(hasil) 
+			break
                   case 'criadorgp':
                   case 'ownergp':
 				  case 'ownergroup':
@@ -1400,12 +1440,12 @@ client.on('group-participants-update', async (anu) => {
            }
            client.sendMessage(from, options, text, { quoted: mek } )
 				break
-			case 'gay000':
-		  if (!isGroup) return reply(mess.only.group)
-					cantik = body.slice(1)
-					const can =['5','15','67','45','50','60','70','62','74','83','97','101','29','94','75','82','41','39']
-					const tik = can[Math.floor(Math.random() * can.length)]
-					client.sendMessage(from, 'Calculando... *'+cantik+'*\n\nPorcentagem gay🏳️‍🌈 : '+ tik+'%', text, { quoted: mek })
+			case 'basegay':		
+	            	if (args.length < 1) return reply('marque seus amigos!')
+					rate = body.slice(1)
+					const ti =['4','9','17','28','34','48','59','62','74','83','97','100','29','94','75','82','41','39']
+					const kl = ti[Math.floor(Math.random() * ti.length)]
+					client.sendMessage(from, 'Como você é gay: *'+rate+'*\n\nSua porcentagem gay : '+ kl+'%', text, { quoted: mek })
 					break
                 case 'bug':
                 case 'reportar':
