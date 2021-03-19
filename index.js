@@ -1233,6 +1233,7 @@ client.on('group-participants-update', async (anu) => {
 		     case 'sttc2':
 		            if (isBanned) return reply(nad.baned())
 		            if (!isGroup) return reply(mess.only.group)
+		            reply(mess.wait)
                     if (args.length < 1) return reply('*_Qual o emoji da figurinha??_*\n*_Somente emojis padrões!')
                     emoji = args[0]
                     try {
@@ -1286,13 +1287,13 @@ client.on('group-participants-update', async (anu) => {
                     let resposta2 = cassinao[Math.floor(Math.random() * cassinao.length)]
                     let resposta3 = cassinao[Math.floor(Math.random() * cassinao.length)]
                     if(resposta1==resposta2&&resposta2==resposta3){
-                    client.sendMessage(from, `*💰-❮ _CASSINO HDBOT_ ❯-💰*\n_Bem vindo(a) ${pushname}\n\n┠➠ ${resposta1} • ${resposta2} • ${resposta3} \n\n *BOOA, ${pushname} VOCÊ GANHOU! AGORA PODE ME MAMAR!*`, text, {quoted: mek})
+                    client.sendMessage(from, `*💰-❮ _CASSINO HDBOT_ ❯-💰*\n_Bem vindo(a) Lindo(a)_\n\n┠➠ ${resposta1} - ${resposta2} - ${resposta3} \n\n *BOOA, ${pushname} VOCÊ GANHOU! AGORA PODE ME MAMAR!*`, text, {quoted: mek})
                     }
                     else if(resposta1==resposta2||resposta2==resposta3){
-                    client.sendMessage(from, `*💰-❮ _CASSINO HDBOT_ ❯-💰*\n_Bem vindo(a) ${pushname}\n\n┠➠ ${resposta1} • ${resposta2} • ${resposta3} \n\n *Poxa, ${pushname} Não foi dessa vez...*`, text, {quoted: mek})
+                    client.sendMessage(from, `*💰-❮ _CASSINO HDBOT_ ❯-💰*\n_Bem vindo(a) Lindo(a)_\n\n┠➠ ${resposta1} - ${resposta2} - ${resposta3} \n\n *Poxa, ${pushname} Não foi dessa vez...*`, text, {quoted: mek})
                     }
                     else{
-                    client.sendMessage(from, `*💰-❮ _CASSINO HDBOT_ ❯-💰*\n_Bem vindo(a) ${pushname}\n\n┠➠ ${resposta1} • ${resposta2} • ${resposta3} \n\n *Quase, ${pushname} Tente outra vez...*`, text, {quoted: mek})
+                    client.sendMessage(from, `*💰-❮ _CASSINO HDBOT_ ❯-💰*\n_Bem vindo(a) Lindo(a)_\n\n┠➠ ${resposta1} - ${resposta2} - ${resposta3} \n\n *Quase, ${pushname} Tente outra vez...*`, text, {quoted: mek})
                     }
                     break
 		   case 'gados':
@@ -1309,7 +1310,7 @@ client.on('group-participants-update', async (anu) => {
 					const quatro = qua[Math.floor(Math.random() * qua.length)]
 					const troot = lindy[Math.floor(Math.random() * lindy.length)]	
 					const cincor = cinco[Math.floor(Math.random() * cinco.length)]										
-					teks = `*TOP 5 +GADOS DO GRUPO*\n\n🐂├> @${akuuu.jid.split('@')[0]}\n🐂├> @${diaaa.jid.split('@')[0]}\n🐂├> @${quatro.jid.split('@')[0]}\n🐂├> @${troot.jid.split('@')[0]}\n🐂└> @${cincor.jid.split('@')[0]}\n\n *HDBOT.exe*`
+					teks = `✾❯──❰ *RANKING* ❱──❮✾\n╔════•⊱✦⊰•════╗\n_Os 5 mais gados do grupo_\n╚════•⊱✦⊰•════╝\n┌──────────────\n🥇├ @${akuuu.jid.split('@')[0]}\n🥈├ @${diaaa.jid.split('@')[0]}\n🥉├ @${quatro.jid.split('@')[0]}\n🏅├ @${troot.jid.split('@')[0]}\n🏅├ @${cincor.jid.split('@')[0]}\n└──────────────\n\n *_HDBOT.exe_* ⚡`
 					jds.push(akuuu.jid)
 					jds.push(diaaa.jid)
 					jds.push(quatro.jid)
@@ -1407,7 +1408,7 @@ client.on('group-participants-update', async (anu) => {
                 case 'insta':
               if (!isPrem) return reply(nad.premium())
 			  if (args.length < 1) return reply('*Infome o nome de usuário do perfil!*')
-			  herberth = body.slice(7)
+			  lucasss = body.slice(7)
 				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/stalk?username=${lucasss}&apikey=Tobz2k19`)
 				reply(mess.wait)
 				buffer = await getBuffer(anu.Profile_pic)
