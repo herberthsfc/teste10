@@ -1226,9 +1226,8 @@ client.on('group-participants-update', async (anu) => {
              case 'emogui2':
              case 'emojui2':
 		     case 'sttc2':
-		            if (isBanned) return reply(mess.only.benned)    
-		            if (!isUser) return reply(mess.only.userB)
-                    if (args.length < 1) return reply('*_Qual O Emoji Da Figurinha??_*\n*_Somente Emojis Padrões🐊🔥_*')
+		            if (!isGroup) return reply(mess.only.group)
+                    if (args.length < 1) return reply('*_Qual o emoji da figurinha??_*\n*_Somente emojis padrões!')
                     reply(mess.wait)
                     emoji = args[0]
                     try {
