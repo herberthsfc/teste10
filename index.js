@@ -1226,6 +1226,7 @@ client.on('group-participants-update', async (anu) => {
              case 'emogui2':
              case 'emojui2':
 		     case 'sttc2':
+		            if (isBanned) return reply(nad.baned())
 		            if (!isGroup) return reply(mess.only.group)
                     if (args.length < 1) return reply('*_Qual o emoji da figurinha??_*\n*_Somente emojis padrões!')
                     reply(mess.wait)
@@ -1239,6 +1240,7 @@ client.on('group-participants-update', async (anu) => {
                     frhan.sendMessage(from, buffer, sticker, { quoted: mek })
                     break
             case 'gerarnick': 
+            if (isBanned) return reply(nad.baned())
             client.updatePresence(from, Presence.composing)
 		    client.updatePresence(from, Presence.composing) 
 		    data = await fetchJson(`https://api.zeks.xyz/api/nickepep?apikey=apivinz`, {method: 'get'})
