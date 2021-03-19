@@ -27,11 +27,11 @@ exports.noregis = () => {
 }
 
 exports.baned = () => {
-	return`⊘ | *Por floodar, ou descumprir alguma regra, voce não pode usar o Bot no momento!*`
+	return`*❬❗️❭ Por floodar, ou descumprir alguma regra, voce não pode usar o bot no momento!*`
 }
 
 exports.premium = () => {
-	return`*[💎] Você não é um membro Premium, entre em contato com o proprietário ou digite ${prefix}serpremium para comprar acesso Premium!*`
+	return`*❬💎️❭ Você não é um membro Premium, digite ${prefix}serpremium para comprar acesso Premium!*`
 }
 
 exports.rediregis = () => {
@@ -51,7 +51,7 @@ exports.groupo = () => {
 }
 
 exports.ownerb = () => {
-	return`⊘ | Comando disponível apenas para o proprietário do hdbot!*`
+	return`*❬💂️❭ Este comando só pode ser ultilizado pelo proprietário do bot!*`
 }
 
 exports.ownerg = () => {
