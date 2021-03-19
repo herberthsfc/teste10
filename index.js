@@ -200,18 +200,18 @@ client.on('group-participants-update', async (anu) => {
 			const isCmd = body.startsWith(prefix)
 
 			mess = {
-				wait: '*[❕] Carregando...*',
-				success: '️*Concluído com sucesso ✓*',
+				wait: '*❬❗❭ Aguarde, Carregando...*',
+				success: '️*Concluído com sucesso ❬ ✓ ❭*',
 				error: {
-					stick: '*Aconteceu um erro, tente novamente outra hora!*',
+					stick: '*Aconteceu um erro, tente novamente!*',
 					Iv: 'Desculpe, o link está inválido☹️'
 				},
 				only: {
-					group: '*⊘ | Comando disponível apenas em grupos!*',
-					ownerG: '*⊘ | Comando disponível apenas para o grupo proprietário!*',
-					ownerB: '*⊘ | Comando disponível apenas para o proprietário do hdbot!*',
-					admin: '*⊘ | Comando disponível apenas para admins, seu membro comum!*',
-					Badmin: '*⊘ | O hdbot precisa de adm para cumprir as funções!*',
+					group: '*❬🏠️❭ Este comando só pode ser ultilizado em grupos!',
+					ownerG: '*❬❗❭ Este comando só pode ser ultilizado pelo proprietário do bot!*',
+					ownerB: '*❬💂❭ Este comando só pode ser ultilizado pelo proprietário do bot!*',
+					admin: '*❬👮❭ Este comando só pode ser ultilizado por adms do grupo, seu membro comum! 🖕*',
+					Badmin: '*❬🤖❭ O Bot precisa de adm para cumprir as funções!*',
 					publikG: '*[❕] Desculpe, o Bot está privado no momento. Nenhum membro pode acessar meus comandos!*'
 				}
 			}
@@ -297,7 +297,7 @@ client.on('group-participants-update', async (anu) => {
         if (messagesC.includes("://chat.whatsapp.com/")){
 		if (!isGroup) return
 		if (!isAntiLink) return
-		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
+		if (isGroupAdmins) return reply('*Por você ser adm do grupo, não vou te remover dessa vez, ok?!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
@@ -309,7 +309,7 @@ client.on('group-participants-update', async (anu) => {
 	if (messagesC.includes("macaco")){
 		if (!isGroup) return
 		if (!isAntiRacismo) return
-		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
+		if (isGroupAdmins) return reply('*Por você ser adm do grupo, não vou te remover dessa vez, ok?!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
@@ -321,7 +321,7 @@ client.on('group-participants-update', async (anu) => {
 	if (messagesC.includes("macaca")){
 		if (!isGroup) return
 		if (!isAntiRacismo) return
-		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
+		if (isGroupAdmins) return reply('*Por você ser adm do grupo, não vou te remover dessa vez, ok?!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
@@ -333,7 +333,7 @@ client.on('group-participants-update', async (anu) => {
 	if (messagesC.includes("cala boca macaco")){
 		if (!isGroup) return
 		if (!isAntiRacismo) return
-		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
+		if (isGroupAdmins) return reply('*Por você ser adm do grupo, não vou te remover dessa vez, ok?!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
@@ -345,7 +345,7 @@ client.on('group-participants-update', async (anu) => {
 	if (messagesC.includes("mamaco")){
 		if (!isGroup) return
 		if (!isAntiRacismo) return
-		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
+		if (isGroupAdmins) return reply('*Por você ser adm do grupo, não vou te remover dessa vez, ok?!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
@@ -357,7 +357,7 @@ client.on('group-participants-update', async (anu) => {
 	if (messagesC.includes("preto")){
 		if (!isGroup) return
 		if (!isAntiRacismo) return
-		if (isGroupAdmins) return reply('*💎 | Por voce ser administrador(a) do grupo, não irei te remover!*')
+		if (isGroupAdmins) return reply('*Por você ser adm do grupo, não vou te remover dessa vez, ok?!*')
 		client.updatePresence(from, Presence.composing)
 		if (messagesC.includes("#izinadmin")) return reply("#izinadmin diterima")
 		var kic = `${sender.split("@")[0]}@s.whatsapp.net`
@@ -430,7 +430,7 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, tujuh, MessageType.audio, {quoted: mek, mimetype: 'audio/mp4', ptt:true})
 	}
 	
-			if (messagesC.includes("videoedit")){
+			if (messagesC.includes("videoehddit")){
 			client.updatePresence(from, Presence.composing)
 			tujuh = fs.readFileSync('./assets/laranjinha.mp4');
             client.sendMessage(from, tujuh, video, {quoted: mek, mimetype: 'video/mp4', ptt:true})
@@ -530,7 +530,7 @@ client.on('group-participants-update', async (anu) => {
 		      client.sendMessage(from, serpremium(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'pagar':
-					if (isGroup) return  reply( '*⊘ | Comando disponível apenas no privado do bot!*')
+					if (isGroup) return  reply( '*❬❗❭ Este comando está disponível apenas no privado do bot!*')
 					client.sendMessage(from, pagar(prefix, sender), text, {quoted: mek})
 				  break
 				  case 'termosvip':
@@ -758,12 +758,20 @@ client.on('group-participants-update', async (anu) => {
                     client.sendMessage(from, buffer, image, {quoted: mek, caption: kiny})
                     await limitAdd(sender)
                     break
+                    case 'nulis':			
+				    if (!isPrem) return reply(nad.premium())
+				    if (args.length < 1) return reply(ind.wrongf())
+				    ct = body.slice(6)
+				    reply('*❬❗❭ Carregando, Aguarde...*')
+				    ct = await getBuffer(`https://api.zeks.xyz/api/nulis?text=${ct}&apikey=apivinz`)
+				    client.sendMessage(from, ct, image, { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {}) }, message: { "imageMessage": { "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", "mimetype": "image/jpeg", "caption": "NULIS", "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=", "fileLength": "28777", "height": 1080, "width": 1079, "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=", "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=", "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69", "mediaKeyTimestamp": "1610993486", "jpegThumbnail": fs.readFileSync('lib/logo.jpeg')} } }, {caption: 'Nih kak udah jadi..', quoted: mek})
+				    break
 					case 'plaquinha1':
 					if (!isPrem) return reply(nad.premium())
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(11)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*[❕] Carregando...*')
+					reply('*❬❗❭ Carregando, Aguarde...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/plaquinha1.jpg?text.0.text=${teks}&text.0.position.x=-35%25&text.0.position.y=-69%25&text.0.size=30&text.0.color=000000&text.0.opacity=55&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
 					break
@@ -772,7 +780,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(11)
 					if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
-					reply('*[❕] Carregando...*')
+					reply('*❬❗❭ Carregando, Aguarde...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/plaquinha2.jpg?text.0.text=${teks}&text.0.position.x=-46%25&text.0.position.y=-16%25&text.0.size=30&text.0.color=000000&text.0.opacity=55&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
 					break
@@ -781,7 +789,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(10)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*[❕] Carregando...*')
+					reply('*❬❗❭ Carregando, Aguarde...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/googletxt.jpg?text.0.text=${teks}&text.0.position.x=-55%25&text.0.position.y=-45%25&text.0.size=24&text.0.color=000000&text.0.opacity=94&text.0.font.family=Oswald&text.0.background.opacity=1`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Pesquisa concluída com sucesso ✓*'})
 					break
@@ -790,7 +798,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(11)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*[❕] Carregando...*')
+					reply('*❬❗❭ Carregando, Aguarde...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/xvideostxt.jpg?text.0.text=${teks}&text.0.position.x=-46%25&text.0.position.y=-68%25&text.0.size=24&text.0.color=000000&text.0.opacity=90&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Pesquisa concluída com sucesso ✓*'})
 					break
@@ -799,7 +807,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(11)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*[❕] Carregando...*')
+					reply('*❬❗❭ Carregando, Aguarde...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/cadernotxt.jpg?text.0.text=${teks}&text.0.position.x=-49%25&text.0.position.y=-78%25&text.0.size=24&text.0.color=000000&text.0.opacity=90&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Concluída com sucesso ✓*'})
 					break
@@ -808,7 +816,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
-					reply('*[❕] Carregando...*')
+					reply('*❬❗❭ Carregando, Aguarde...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/miatxt.jpg?text.0.text=${teks}&text.0.position.x=-35%25&text.0.position.y=-32%25&text.0.size=18&text.0.color=000000&text.0.opacity=60&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
 					break
@@ -817,7 +825,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(11)
 					if (teks.length > 10) return reply('O texto é longo, até 10 caracteres')
-					reply('*[❕] Carregando...*')
+					reply('*❬❗❭ Carregando, Aguarde...*')
 					buffer = await getBuffer(`https://oxigater.sirv.com/Images/pvittartxt.jpg?text.0.text=${teks}&text.0.position.x=-46%25&text.0.position.y=-35%25&text.0.size=30&text.0.color=000000&text.0.opacity=55&text.0.font.family=Oswald&text.0.background.opacity=96`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Plaquinha concluída com sucesso ✓*'})
 					break
@@ -836,7 +844,7 @@ client.on('group-participants-update', async (anu) => {
 					nobg = `${body.slice(7)}`
 					no = nobg.split("/")[0];
 					bg = nobg.split("/")[1];
-					reply('*Aguarde Estou Fazendo...*')
+					reply('*❬❗❭ Carregando, Aguarde...*')
 					buffer = await getBuffer(`https://lolhuman.herokuapp.com/api/textprome2/wallgravity?apikey=303317918cbd497b094a7ad6&text1=${no}&text2=${bg}`, { method: 'get' })
 					client.sendMessage(from, buffer, image, { quoted: mek, caption: '*Aqui Está*' })
 					await limitAdd(sender)
@@ -856,7 +864,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*[❕] Carregando...*')
+					reply('*❬❗❭ Carregando, Aguarde...*')
 					buffer = await getBuffer(`https://api.zeks.xyz/api/gplaybutton?text=${teks}&apikey=apivinz`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Concluído com sucesso ✓*'})
 					break
@@ -865,7 +873,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return reply(mess.blank)
 					teks = body.slice(7)
 					if (teks.length > 15) return reply('O texto é longo, até 15 caracteres')
-					reply('*[❕] Carregando...*')
+					reply('*❬❗❭ Carregando, Aguarde...*')
 					buffer = await getBuffer(`https://api.zeks.xyz/api/epep?text=${teks}&apikey=apivinz`)
 					client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Concluído com sucesso ✓*'})
 					break
@@ -874,7 +882,7 @@ client.on('group-participants-update', async (anu) => {
 		    	    daddy = `${body.slice(8)}`
 		    	    no = daddy.split("/")[0];
 		    	    bg = daddy.split("/")[1];
-		     	    reply('*[❕] Carregando...*')
+		     	    reply('*❬❗❭ Carregando, Aguarde...*')
 		    	    buffer = await getBuffer(`https://api.zeks.xyz/api/phub?apikey=apivinz&img=https://1.bp.blogspot.com/-x8KhcOBG-yw/XiU4pi1yWVI/AAAAAAAADBA/gK8tsLyc1lQ808A348IKzDCjf6fUBKONwCLcBGAsYHQ/s1600/cara%2Bbuat%2Bfoto%2Bprofil%2Bdi%2Bwhatsapp%2Bmenjadi%2Bunik.jpg&username=${no}&msg=${bg}`, {method: 'get'})
 			        client.sendMessage(from, buffer, image, {quoted: mek, caption: '*Concluído com sucesso ✓*'})
 					break
@@ -900,7 +908,7 @@ client.on('group-participants-update', async (anu) => {
 *_HDBOT.exe_*`
 			        reply(ipl)
 					break
-                case 'teste':
+                case 'testte':
                     tujuh = fs.readFileSync('./assets/teste.webp');
                     client.sendMessage(from, tujuh, sticker, {quoted: mek})
                     break
@@ -1116,7 +1124,7 @@ client.on('group-participants-update', async (anu) => {
 			case 'geradorcpf':
             if (!isPrem) return reply(nad.premium())
             boxx = await fetchJson(`http://geradorapp.com/api/v1/cpf/generate?token=0b858b5f15ae2e7eecad6aa3973d4db3`)
-            box =  `*🔎 CPF GERADO!*\n➽ *CPF*: *${boxx.data.number}*\n➽ *FORMATO*: *${boxx.data.number_formatted}*\n➽ *MENSAGEM*: *${boxx.data.message}*\n           *𝑯𝑫𝑩𝑶𝑻.𝒆𝒙𝒆*`
+            box =  `*🔎 CPF GERADO!*\n➽ *CPF*: *${boxx.data.number}*\n➽ *FORMATO*: *${boxx.data.number_formatted}*\n➽ *MENSAGEM*: *${boxx.data.message}*\n\n*_HDBOT.exe_*`
             client.sendMessage(from, box, text, {quoted: mek})
             break
             case 'gerarpessoa':
@@ -1267,7 +1275,7 @@ client.on('group-participants-update', async (anu) => {
 					const koss = groupMembers
 					const akuu = jdii[Math.floor(Math.random() * jdii.length)]
 					const diaa = koss[Math.floor(Math.random() * koss.length)]
-					teks = `*Meu Casal* @${akuu.jid.split('@')[0]} *e* @${diaa.jid.split('@')[0]} 😍❤️👩‍❤️‍👨`
+					teks = `*✾─❰ _NOVO CASAL DO GP_ ❱─✾*\n_Pense num casal apaixonado!!😍🤣_\n\n◐❯─┨♡ 👇 👇 ♡┠─❮◑\n@${akuu.jid.split('@')[0]} ❤️ @${diaa.jid.split('@')[0]} \n\n_Felicidades, e usem preservativos!🤰_`
 					jds.push(akuu.jid)
 					jds.push(diaa.jid)
 					mentions(teks, jds, true)
@@ -1396,35 +1404,16 @@ client.on('group-participants-update', async (anu) => {
                     brno = `*🔍CONSULTA FEITA🔍* \n\n *CEP:* ${data.cep} \n\n *ENDEREÇO:* ${data.logradouro} \n\n *COMPLEMENTO:* ${data.complemento} \n\n *BAIRRO:* ${data.bairro} \n\n *LOCALIDADE:* ${data.localidade} \n\n *UF:* ${data.uf} \n\n *DDD:* ${data.ddd} \n\n *Respeita ou peita*`
                     client.sendMessage(from, brno, text, {quoted: mek})
                     break
-			case 'igstalk000':
-                    if (!isPrem) return reply(nad.premium())
-                    vide = body.slice(9)
-                    hmm = await fetchJson(`https://videfikri.com/api/igstalk/?username=${vide}`)
-                    buffer = await getBuffer(hmm.result.profile_hd)
-                    hasil = `*「 User 」* : ${hmm.result.username}\n*「 Nome 」* : ${hmm.result.full_name}\n*「 Seguidores 」* : ${hmm.result.followers}\n*「 Seguindo 」* : ${hmm.result.following}\n*「 Publicações 」* : ${hmm.result.post_count}\n*「 Biografia 」* : ${hmm.result.bio}`
-                    client.sendMessage(from, buffer, image, {quoted: mek, caption: hasil})
-                    break
-            case 'instagram':
-                case 'igstalk':
                 case 'insta':
               if (!isPrem) return reply(nad.premium())
-			  if (args.length < 1) return reply('*Qual o nome do perfil?*')
-			  lucasss = body.slice(11)
+			  if (args.length < 1) return reply('*Infome o nome de usuário do perfil!*')
+			  herberth = body.slice(7)
 				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/stalk?username=${lucasss}&apikey=Tobz2k19`)
+				reply(mess.wait)
 				buffer = await getBuffer(anu.Profile_pic)
-				teks = `*➸ Nome Completo :*\n*${anu.Name}*\n*➸ Nome Do Usuário :*\n*${anu.Username}*\n*➸ Seguidores : ${anu.Jumlah_Followers}*\n*➸ Seguindo : ${anu.Jumlah_Following}*\n*➸ Número De Postagens : ${anu.Jumlah_Post}*\n*➸ Biografia :*\n*${anu.Biodata}*\n\n*_HDBOT.exe_*`
+				teks = `*• Nome: ${anu.Name}*\n*• Usuário: ${anu.Username}*\n*• Seguidores: ${anu.Jumlah_Following}*\n*• Seguindo: ${anu.Jumlah_Followers}*\n*• Postagens: ${anu.Jumlah_Post}*\n*• Biografia: ${anu.Biodata}*\n\n*_HDBOT.exe_* ⚡`
 				client.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
 				break
-            case 'bitly':
-			if (!isPrem) return reply(nad.premium())
-			if (args.length < 1) return reply('herbetii\n\n*Nem todos os links são camuflados!')
-			reply(mess.wait)
-			client.updatePresence(from, Presence.composing)
-			anu = await fetchJson(`https://tobz-api.herokuapp.com/api/bitly?url=${args[0]}&apikey=BotWeA`, {method: 'get'})
-			if (anu.error) return reply(anu.error)
-			hasil = `*Link camuflado com sucesso!* :\n${anu.result}\n\n*_HDBOT.exe_* ⚡`
-		    reply(hasil) 
-			break
                   case 'criadorgp':
                   case 'ownergp':
 				  case 'ownergroup':
@@ -1617,17 +1606,17 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args.length < 1) return reply('*Digite 1 para ativar*')
-					if ((args[0]) === 'on') {
+					if ((args[0]) === '1') {
 						if (isAntiRacismo) return reply('O modo antiracismo já está ativo')
 						antiracismo.push(from)
 						fs.writeFileSync('./database/json/antiracismo.json', JSON.stringify(antiracismo))
 						reply(`\`\`\`✓Ativado com sucesso o modo antiracismo no grupo\`\`\` *${groupMetadata.subject}*`)
-					} else if ((args[0]) === 'off') {
+					} else if ((args[0]) === '0') {
 						antiracismo.splice(from, 1)
 						fs.writeFileSync('./database/json/antiracismo.json', JSON.stringify(antiracismo))
 						reply(`\`\`\`✓Modo antiracismo desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
 					} else {
-						reply('1 para ativar, 2 para desligar')
+						reply('1 para ativar, 0 para desligar')
 					}
 					break
 					case 'antishit':
@@ -1635,17 +1624,17 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args.length < 1) return reply('*Digite 1 para ativar*')
-					if ((args[0]) === 'on') {
+					if ((args[0]) === '1') {
 						if (isAntiShit) return reply('O modo antishit já está ativo')
 						antishit.push(from)
 						fs.writeFileSync('./database/json/antishit.json', JSON.stringify(antishit))
 						reply(`\`\`\`✓Ativado com sucesso o modo anti-palavrões no grupo\`\`\` *${groupMetadata.subject}*`)
-					} else if ((args[0]) === 'off') {
+					} else if ((args[0]) === '0') {
 						antishit.splice(from, 1)
 						fs.writeFileSync('./database/json/antishit.json', JSON.stringify(antishit))
 						reply(`\`\`\`✓Modo anti-palavrões desativado com sucesso no grupo\`\`\` *${groupMetadata.subject}*`)
 					} else {
-						reply('1 para ativar, 2 para desligar')
+						reply('1 para ativar, 0 para desligar')
 					}
 					break
 					case 'antifake':
@@ -1814,7 +1803,7 @@ client.on('group-participants-update', async (anu) => {
 					case 'hdttp':                   
 			     	if (isBanned) return reply(nad.baned())
 			     	if (!isGroup) return reply(mess.only.group)
-			     	if (args.length < 1) return reply(`_Coloque o texto _\n\n*Exemplo ${prefix}stc Daddy*`)
+			     	if (args.length < 1) return reply(`*Digite o texto! \n\nExemplo: *${prefix}hdttp bot lindo*`)
                     url = encodeURI(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
 		    		attp2 = await getBuffer(url)
 			    	client.sendMessage(from, attp2, sticker, {quoted: mek})
@@ -2002,19 +1991,19 @@ client.on('group-participants-update', async (anu) => {
 				case 'audio':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup)return reply(mess.only.group)
-					if (args.length < 1) return client.sendMessage(from, '*⊘ | Informe o idioma! exemplo: pt,it,ja,es*', text, {quoted: mek})
+					if (args.length < 1) return client.sendMessage(from, '*❬❗❭ Informe o idioma!\n\nExemplo: *${prefix}audio pt oi bot*', text, {quoted: mek})
 					const gtts = require('./lib/gtts')(args[0])
-					if (args.length < 2) return client.sendMessage(from, '*⊘ | Informe o texto deseja que eu diga!*', text, {quoted: mek})
+					if (args.length < 2) return client.sendMessage(from, '*❬❗❭ Informe o texto deseja que eu diga!*', text, {quoted: mek})
 					dtt = body.slice(9)
 					ranm = getRandom('.mp3')
 					rano = getRandom('.ogg')
 					dtt.length > 300
-					? reply('*⊘ | Seu texto é muito longo, por favor diminua, e tente novamente!*')
+					? reply('*❬😴❭ Texto muito longo, desculpe mas eu sou baianor!*')
 					: gtts.save(ranm, dtt, function() {
 						exec(`ffmpeg -i ${ranm} -ar 48000 -vn -c:a libopus ${rano}`, (err) => {
 							fs.unlinkSync(ranm)
 							buff = fs.readFileSync(rano)
-							if (err) return reply('*Erro! tente novamente mais tarde ⊘*')
+							if (err) return reply('*Erro! tente novamente mais tarde*')
 							client.sendMessage(from, buff, audio, {quoted: mek, ptt:true})
 							fs.unlinkSync(rano)
 						})
@@ -2025,7 +2014,7 @@ client.on('group-participants-update', async (anu) => {
 					if (args.length < 1) return
 					if (!isOwner) return reply(mess.only.ownerB)
 					prefix = args[0]
-					reply(`✓ | O prefixo foi alterado com sucesso, para : ${prefix} `)
+					reply(`❬✔️❭ O prefixo foi alterado com sucesso, para : ${prefix} `)
 					break 	
 				case 'hilih': 
 					if (args.length < 1) return reply('qual txt deseja lindx?')
@@ -2048,25 +2037,25 @@ client.on('group-participants-update', async (anu) => {
 					break
 				case 'clearall':
 				case 'limpar':
-					if (!isOwner) return reply('*💎 | Comando disponível apenas para o proprietário do hdbot!*')
+				    if (!isOwner) return reply(mess.only.ownerB)
 					anu = await client.chats.all()
 					client.setMaxListeners(25)
 					for (let _ of anu) {
 						client.deleteChat(_.jid)
 					}
-					reply('*✓ | Os chats foram limpos com sucesso!*')
+					reply('*❬✔️❭ Os chats foram limpos com sucesso!*')
 					break
 			       case 'bloquear':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isOwner) return reply(mess.only.ownerB)
 					client.blockUser (`${body.slice(7)}@c.us`, "add")
-					client.sendMessage(from, `*Bloqueado com sucesso ✓* ${body.slice(7)}@c.us`, text)
+					client.sendMessage(from, `*❬✔️❭ Bloqueado com sucesso* ${body.slice(7)}@c.us`, text)
 					break
                     case 'desbloquear':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isOwner) return reply(mess.only.ownerB)
 				    client.blockUser (`${body.slice(9)}@c.us`, "remove")
-					client.sendMessage(from, `*Desbloqueado com sucesso ✓* ${body.slice(9)}@c.us`, text)
+					client.sendMessage(from, `*❬✔️❭ Desbloqueado com sucesso* ${body.slice(9)}@c.us`, text)
 				break
 				case 'sair':
                     if (!isGroup) return reply(mess.only.group)
@@ -2076,25 +2065,25 @@ client.on('group-participants-update', async (anu) => {
 					}, 2000)
                      setTimeout( () => {
 					client.updatePresence(from, Presence.composing) 
-					client.sendMessage(from, 'Vou sair do grupo por ordens do adm, até mais rebanho de cornos! 👋🐂', text) // ur cods
+					client.sendMessage(from, '*Vou sair do grupo, até mais rebanho de cornos! 🐂👋*', text) // ur cods
 					}, 0)
                      break
 				case 'ts': 
-					if (!isOwner) return reply('*💎 | Comando disponível apenas para o proprietário do hdbot!*') 
+					if (!isOwner) return reply(mess.only.ownerB)
 					if (args.length < 1) return reply('.......')
 					anu = await client.chats.all()
 					if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
 						buff = await client.downloadMediaMessage(encmedia)
 						for (let _ of anu) {
-							client.sendMessage(_.jid, buff, image, {caption: `*💎 | 𝙃𝘿𝘽𝙊𝙏.𝙚𝙭𝙚,  diz:*\n\n${body.slice(4)}`})
+							client.sendMessage(_.jid, buff, image, {caption: `*❬🤖❭ _SUPORTE HDBOT.exe:_* ⚡\n\n${body.slice(4)}`})
 						}
-						reply('*✓ | A transmissão foi concluída com sucesso!*')
+						reply('*❬✔️❭ Transmissão concluída com sucesso!*')
 					} else {
 						for (let _ of anu) {
-							sendMess(_.jid, `*💎 | 𝙃𝘿𝘽𝙊𝙏.𝙚𝙭𝙚,  diz:*\n\n${body.slice(4)}`)
+							sendMess(_.jid, `*❬🤖❭ _SUPORTE HDBOT.exe:_* ⚡\n\n${body.slice(4)}`)
 						}
-						reply('*✓ | A transmissão foi concluída com sucesso!*')
+						reply('*❬✔️❭ Transmissão concluída com sucesso!*')
 					}
 					break
 					case 'plaghgy':   
@@ -2119,7 +2108,7 @@ client.on('group-participants-update', async (anu) => {
                 }
                 else{
                 thumb = await getBuffer(res.thumbnail)
-                client.sendMessage(from, thumb, image, {quoted: mek, caption: 'Baixando Musica...'})
+                client.sendMessage(from, thumb, image, {quoted: mek, caption: '❬🎵❭ Baixando Musica...'})
                 rest = await fetchJson(`http://st4rz.herokuapp.com/api/yta2?url=http://youtu.be/${res.id}`, {method: 'get'})
                 buffer = await getBuffer(rest.result)
                 client.sendMessage(from, buffer, audio, {mimetype: 'audio/mp4', quoted: mek, ptt: true})
@@ -2146,13 +2135,13 @@ client.on('group-participants-update', async (anu) => {
                     ini_link = args[0]
                     get_result = await fetchJson(`http://api.lolhuman.xyz/api/ytvideo?apikey=RamlanID&url=${ini_link}`)
                     get_result = get_result.result
-                    txt = `➩ ❍Titulo : ${get_result.title}\n`
-                    txt += `➩ ❍Uploader : ${get_result.uploader}\n`
-                    txt += `➩ ❍Duração : ${get_result.duration}\n`
-                    txt += `➩ ❍Views : ${get_result.view}\n`
-                    txt += `➩ ❍Like : ${get_result.like}\n`
-                    txt += `➩ ❍Deslike: ${get_result.dislike}\n`
-                    txt += `➩ ❍Descrição :\n ${get_result.description}`
+                    txt = `➩ •Titulo : ${get_result.title}\n`
+                    txt += `➩ •Uploader : ${get_result.uploader}\n`
+                    txt += `➩ •Duração : ${get_result.duration}\n`
+                    txt += `➩ •Views : ${get_result.view}\n`
+                    txt += `➩ •Like : ${get_result.like}\n`
+                    txt += `➩ •Deslike: ${get_result.dislike}\n`
+                    txt += `➩ •Descrição :\n ${get_result.description}`
                     buffer = await getBuffer(get_result.thumbnail)
                     client.sendMessage(from, buffer, image, { quoted: mek, caption: txt })
                     get_audio = await getBuffer(get_result.link[0].link)
@@ -2164,7 +2153,7 @@ client.on('group-participants-update', async (anu) => {
 					anu = await fetchJson(`http://api.lolhuman.xyz/api/ytsearch?apikey=RamlanID&query=${query}`, {method: 'get'})
 					teks = '════════════\n'
 					for (let i of anu.result) {
-						teks += `➩ ❍Titulo: ${i.title}\n➩ ❍ID: https://youtu.be/${i.videoId}\n➩ ❍Publicados: ${i.published}\n➩ ❍Views: ${h2k(i.views)}\n════════════\n`
+						teks += `➩ •Titulo: ${i.title}\n➩ •ID: https://youtu.be/${i.videoId}\n➩ •Publicados: ${i.published}\n➩ •Views: ${h2k(i.views)}\n════════════\n`
 					}
 					reply(teks.trim())
 					break
@@ -2184,7 +2173,7 @@ client.on('group-participants-update', async (anu) => {
 					case 'letra':
                     if (isBanned) return reply(nad.baned())
 				    if (!isGroup) return reply(mess.only.group)
-                    reply('_[❗] estou enviando a letra pedida_')
+                    reply('*❬❗❭ Carregando, Aguarde...*')
 					teks = body.slice(7)
 					anu = await fetchJson(`http://scrap.terhambar.com/lirik?word=${teks}`, {method: 'get'})
 					reply('*Letra da musica* '+teks+' *é* :\n\n'+anu.result.lirik)
@@ -2272,7 +2261,7 @@ client.on('group-participants-update', async (anu) => {
 				  if (!isGroup) return reply(mess.only.group)
           client.updatePresence(from, Presence.composing) 
       options = {
-          text: `*「 Link Whatsapp 」*\n\n *Nome de Usuário:*\n @${sender.split("@s.whatsapp.net")[0]}\n*Link Whatsapp 1:*\n *https://wa.me/${sender.split("@s.whatsapp.net")[0]}*\n*Ou ( / )*\n*https://api.whatsapp.com/send?phone=${sender.split("@")[0]}*`,
+          text: `*Olá @${sender.split("@s.whatsapp.net")[0]} , seu link do Whatsapp é https://wa.me/${sender.split("@s.whatsapp.net")[0]}*\n\n*_HDBOT.exe_* ⚡`,
           contextInfo: { mentionedJid: [sender] }
     }
     client.sendMessage(from, options, text, { quoted: mek } )
@@ -2283,7 +2272,7 @@ client.on('group-participants-update', async (anu) => {
                         if (!isBotGroupAdmins) return reply(mess.only.Badmin)
                        media = await client.downloadAndSaveMediaMessage(mek)
                          await client.updateProfilePicture (from, media)
-                        reply('*✓ | Perfil alterado com sucesso!*')
+                        reply('*❬✔️❭ Perfil alterado com sucesso!*')
                 break						
 				case 'add':
 				case 'adicionar':
@@ -2307,10 +2296,10 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 					if (args[0] === 'abrir') {
-					    reply(`*✓ | Grupo aberto para todos os membros!*`)
+					    reply(`*❬✔️❭ Grupo aberto para todos os membros!*`)
 						client.groupSettingChange(from, GroupSettingChange.messageSend, false)
 					} else if (args[0] === 'fechar') {
-						reply(`*🔒 | Grupo fechado para todos os membros comuns!*`)
+						reply(`*❬🔒❭ Grupo fechado para todos os membros comuns!*`)
 						client.groupSettingChange(from, GroupSettingChange.messageSend, true)
 					}
 					break
@@ -2321,7 +2310,7 @@ client.on('group-participants-update', async (anu) => {
             case 'dono':
                   if (isBanned) return reply(nad.baned())
                   client.sendMessage(from, {displayname: "Herberth", vcard: vcard}, MessageType.contact, { quoted: mek})
-       client.sendMessage(from, '*✓ | Este é o contato do meu criador!*',MessageType.text, { quoted: mek} )
+       client.sendMessage(from, '*Este é o contato do meu criador!*',MessageType.text, { quoted: mek} )
            break    
            case 'setname':
            case 'nomegp':
@@ -2329,7 +2318,7 @@ client.on('group-participants-update', async (anu) => {
 			    if (!isGroupAdmins) return reply(mess.only.admin)
 				if (!isBotGroupAdmins) return reply(mess.only.Badmin)
                 client.groupUpdateSubject(from, `${body.slice(9)}`)
-                client.sendMessage(from, '*✓ | O nome do grupo foi alterado com sucesso!*', text, {quoted: mek})
+                client.sendMessage(from, '*❬✔️❭ O nome do grupo foi alterado com sucesso!*', text, {quoted: mek})
                 break
                 case 'setdesc':
                 case 'desc':
@@ -2337,7 +2326,7 @@ client.on('group-participants-update', async (anu) => {
 			    if (!isGroupAdmins) return reply(mess.only.admin)
 				if (!isBotGroupAdmins) return reply(mess.only.Badmin)
                 client.groupUpdateDescription(from, `${body.slice(9)}`)
-                client.sendMessage(from, '*✓ | A descrição do grupo foi alterada com sucesso!*', text, {quoted: mek})
+                client.sendMessage(from, '*❬✔️❭ A descrição do grupo foi alterada com sucesso!*', text, {quoted: mek})
                 break
            case 'demote':
            case 'rebaixar':
