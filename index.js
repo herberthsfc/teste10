@@ -1222,14 +1222,10 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, buffer, sticker, { quoted: mek })
             break
             case 'emoji':
-             case 'emogi2':
-             case 'emogui2':
-             case 'emojui2':
 		     case 'sttc2':
 		            if (isBanned) return reply(nad.baned())
 		            if (!isGroup) return reply(mess.only.group)
                     if (args.length < 1) return reply('*_Qual o emoji da figurinha??_*\n*_Somente emojis padrões!')
-                    reply(mess.wait)
                     emoji = args[0]
                     try {
                         emoji = encodeURI(emoji[0])
@@ -1237,7 +1233,7 @@ client.on('group-participants-update', async (anu) => {
                         emoji = encodeURI(emoji)
                     }
                     buffer = await getBuffer(`http://api.lolhuman.xyz/api/smoji/${emoji}?apikey=RiuApikey`)
-                    frhan.sendMessage(from, buffer, sticker, { quoted: mek })
+                    client.sendMessage(from, buffer, sticker, { quoted: mek })
                     break
             case 'gerarnick': 
             if (isBanned) return reply(nad.baned())
@@ -1271,7 +1267,7 @@ client.on('group-participants-update', async (anu) => {
 					const koss = groupMembers
 					const akuu = jdii[Math.floor(Math.random() * jdii.length)]
 					const diaa = koss[Math.floor(Math.random() * koss.length)]
-					teks = `*Meu Casal @${akuu.jid.split('@')[0]} e @${diaa.jid.split('@')[0]} * 😍❤️👩‍❤️‍👨`
+					teks = `*Meu Casal* @${akuu.jid.split('@')[0]} *e* @${diaa.jid.split('@')[0]} 😍❤️👩‍❤️‍👨`
 					jds.push(akuu.jid)
 					jds.push(diaa.jid)
 					mentions(teks, jds, true)
@@ -1415,10 +1411,9 @@ client.on('group-participants-update', async (anu) => {
 			  if (args.length < 1) return reply('*Qual o nome do perfil?*')
 			  lucasss = body.slice(11)
 				anu = await fetchJson(`https://tobz-api.herokuapp.com/api/stalk?username=${lucasss}&apikey=Tobz2k19`)
-				reply(mess.wait)
 				buffer = await getBuffer(anu.Profile_pic)
 				teks = `*➸ Nome Completo :*\n*${anu.Name}*\n*➸ Nome Do Usuário :*\n*${anu.Username}*\n*➸ Seguidores : ${anu.Jumlah_Followers}*\n*➸ Seguindo : ${anu.Jumlah_Following}*\n*➸ Número De Postagens : ${anu.Jumlah_Post}*\n*➸ Biografia :*\n*${anu.Biodata}*\n\n*_HDBOT.exe_*`
-				frhan.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
+				client.sendMessage(from, buffer, image, {quoted: mek, caption: `${teks}`})
 				break
             case 'bitly':
 			if (!isPrem) return reply(nad.premium())
@@ -1427,7 +1422,7 @@ client.on('group-participants-update', async (anu) => {
 			client.updatePresence(from, Presence.composing)
 			anu = await fetchJson(`https://tobz-api.herokuapp.com/api/bitly?url=${args[0]}&apikey=BotWeA`, {method: 'get'})
 			if (anu.error) return reply(anu.error)
-			hasil = `*Link Camuflado amigo :\n${anu.result}\n\n*_HDBOT.exe_* ⚡`
+			hasil = `*Link camuflado com sucesso!* :\n${anu.result}\n\n*_HDBOT.exe_* ⚡`
 		    reply(hasil) 
 			break
                   case 'criadorgp':
