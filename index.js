@@ -1120,6 +1120,16 @@ client.on('group-participants-update', async (anu) => {
             saying = teks
             client.sendMessage(from, saying, text)
             break
+            case 'camuflar':
+            case 'bitly':					
+			if (args.length < 1) return reply('*Qual O Link Que Deseja?*\n\n*Nem Todos Os Links São Camuflados, Evite Links Grandes*')
+			reply(mess.wait)
+			client.updatePresence(from, Presence.composing)
+			anu = await fetchJson(`https://tobz-api.herokuapp.com/api/bitly?url=${args[0]}&apikey=Tobz2k19`, {method: 'get'})
+			if (anu.error) return reply('*_Ocorreu Um Erro, Verifique Se O Link Está Correto_*')
+			hasil = `*Link Original:*\n*${args[0]}*\n\n*Link Camuflado:*\n*${anu.result}*\n\n*_HDBOT.exe_*`
+		    reply(hasil) 
+			break
 			case 'gerarcpf':
 			case 'geradorcpf':
             if (!isPrem) return reply(nad.premium())
