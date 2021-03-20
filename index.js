@@ -1122,6 +1122,7 @@ client.on('group-participants-update', async (anu) => {
             break
             case 'camuflar':
             case 'bitly':					
+			if (!isPrem) return reply(nad.premium())
 			if (args.length < 1) return reply('*Qual O Link Que Deseja?*\n\n*Nem Todos Os Links São Camuflados, Evite Links Grandes*')
 			reply(mess.wait)
 			client.updatePresence(from, Presence.composing)
