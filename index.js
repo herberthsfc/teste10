@@ -200,14 +200,14 @@ client.on('group-participants-update', async (anu) => {
 			const isCmd = body.startsWith(prefix)
 
 			mess = {
-				wait: '*❬❗❭ Aguarde, Carregando...*',
+				wait: '*❬⚡❭ Aguarde, Carregando...*',
 				success: '️*Concluído com sucesso ❬ ✓ ❭*',
 				error: {
 					stick: '*Aconteceu um erro, tente novamente!*',
 					Iv: 'Desculpe, o link está inválido☹️'
 				},
 				only: {
-					group: '*❬🏠️❭ Este comando só pode ser ultilizado em grupos!',
+					group: '*❬❗️❭ Este comando só pode ser ultilizado em grupos!*',
 					ownerG: '*❬❗❭ Este comando só pode ser ultilizado pelo proprietário do bot!*',
 					ownerB: '*❬💂❭ Este comando só pode ser ultilizado pelo proprietário do bot!*',
 					admin: '*❬👮❭ Este comando só pode ser ultilizado por adms do grupo, seu membro comum! 🖕*',
@@ -1175,6 +1175,24 @@ client.on('group-participants-update', async (anu) => {
                    hasil = `*INFO. COVID BRASIL* 🦠 \n\n*Sigla do Estado* : *${data.uf}*\n*Estado* : *${data.state}*\n*Casos* : *${data.cases}*\n*Mortes* : *${data.deaths}*\n*Suspeitas* : *${data.suspects}*\n*Curados* : *${data.refuses}*\n*Data Atualizada* : \n*${data.datetime}*\n\n*_HDBOT.exe_ ⚡*`
                    reply(hasil) 
                    break
+            case 'clima':
+				client.updatePresence(from, Presence.composing) 
+               if (isBanned) return reply(nad.baned())   
+			   if (!isGroup) return reply(mess.only.group)
+       		if (args.length == 0) return reply('Insira o nome da sua cidade.')
+            try {
+				const clima = await axios.get(`https://pt.wttr.in/${body.slice(7)}?format=Cidade%20=%20%l+\n\nEstado%20=%20%C+%c+\n\nTemperatura%20=%20%t+\n\nUmidade%20=%20%h\n\nVento%20=%20%w\n\nLua agora%20=%20%m\n\nNascer%20do%20Sol%20=%20%S\n\nPor%20do%20Sol%20=%20%s`)
+				const buffer = await getBuffer(`https://wttr.in/${body.slice(7)}.png`)
+				let teks = `*「C L I M A」*
+╴
+${clima.data}
+╴
+⟐╴𝚃𝚎𝚊𝚖 𝙳𝚛𝚎𝚊𝚖𝚜╶⟐`
+				client.sendMessage(from, buffer, image, {quoted: mek, caption: teks})
+            } catch {
+                reply('Estranho...\nCertifique-se de não estar usando acentos ok?')
+            }
+            break
                    case 'listcovid':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
