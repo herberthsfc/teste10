@@ -1404,6 +1404,12 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `*${pushname}* deu um beijo no(a) ${body.split(' ').slice(1).join(' ')} 😘`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
             })
             break
+            case 'nazista':
+            client.updatePresence(from, Presence.composing) 
+            random = `${Math.floor(Math.random() * 101)}`
+            hasil = `O quanto você é nazista\n\nVocê é: *${random}%* ALA O NAZISTA🇩🇪`
+            reply(hasil)
+            break
             case 'amor':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
@@ -1459,7 +1465,7 @@ client.on('group-participants-update', async (anu) => {
                     client.sendMessage('5511996237647@s.whatsapp.net', options, text, {quoted: mek})
                     reply('*O bug foi reportado com sucesso ✓*')
                     break
-                  case 'membros':
+					case 'membros':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					members_id = []
