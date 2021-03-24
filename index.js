@@ -1499,8 +1499,9 @@ client.on('group-participants-update', async (anu) => {
 					teks += '\n\n'
 					teks += `「 *${groupMembers.length} ᴹᵉᵐᵇʳᵒˢ* 」\n`
 					for (let mem of groupMembers) {
-						teks += `*╠➥* @${mem.jid.split('@')[0]}\n`
+						teks += `*💉├* @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
+					teks += '╰╼❥ ❲ *_HDBOT.exe_* ❳'
 					}
 					mentions(teks, members_id, true)
 					break
