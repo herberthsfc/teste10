@@ -1497,8 +1497,8 @@ client.on('group-participants-update', async (anu) => {
 					members_id = []
 					teks = (args.length > 1) ? body.slice(8).trim() : ''
 					teks += '\n\n'
+					teks += `「 *${groupMembers.length} ᴹᵉᵐᵇʳᵒˢ* 」\n`
 					for (let mem of groupMembers) {
-						teks += `「 *${groupMembers.length} ᴹᵉᵐᵇʳᵒˢ* 」\n`
 						teks += `*╠➥* @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
