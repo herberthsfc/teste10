@@ -1406,10 +1406,10 @@ client.on('group-participants-update', async (anu) => {
             break
             case 'nazista':
             client.updatePresence(from, Presence.composing) 
-            random = `${Math.floor(Math.random() * 101)}`
-            const tii =['Nazista safado','teste','vsf pora']
-            const kll = tii[Math.floor(Math.random() * tii.length)]
-            hasil = `O quanto você é nazista\n\nVocê é: *${random}%* ALA O NAZISTA \n\n '+ kll+' teste`
+            var number = Math.floor(Math.random() * 101)
+            var responses = ['Você é um judeu?', 'Talvez você ainda tenha a fimose!', 'Seu sangue é quase azul', 'Você é um sulista..', 'NOVO FUHRER????']
+            var response = responses[number==100?5:number<80?4:number<60?3:number<40?2:number<20?1:0]
+            hasil = `O quanto você é nazista\n\nVocê é: *${number}%* ALA O NAZISTA \n\n '+ response +' ...`
             reply(hasil)
             break
             case 'amor':
