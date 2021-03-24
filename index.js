@@ -1410,6 +1410,12 @@ client.on('group-participants-update', async (anu) => {
             hasil = `O quanto você é nazista\n\nVocê é: *${random}%* ALA O NAZISTA🇩🇪`
             reply(hasil)
             break
+            case 'nazista1':
+            client.updatePresence(from, Presence.composing) 
+            random = `${Math.floor(Math.random() * 101)}`
+            hasil = `O quanto você é nazista\n\nVocê é: *${random}%* ALA O NAZISTA🇩🇪 ${body.split(' ').slice(1).join(' ')} `,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
+            reply(hasil)
+            break
             case 'amor':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
