@@ -1404,12 +1404,6 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `*${pushname}* deu um beijo no(a) ${body.split(' ').slice(1).join(' ')} 😘`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
             })
             break
-            case 'testar':
-            reply('*⏰ | Carregando, por favor, aguarde um momento...*')
-            var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
-            if(!mentioned||mentioned.length < 1||mentioned.length > 1) return client.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
-            client.sendMessage(from, text, {mimetype: text, caption: `*${pushname}* deu um beijo no(a) ${body.split(' ').slice(1).join(' ')} 😘`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
-            break
             case 'nazista':
             client.updatePresence(from, Presence.composing) 
             random = `${Math.floor(Math.random() * 101)}`
@@ -1497,59 +1491,17 @@ client.on('group-participants-update', async (anu) => {
 					}
 					client.sendMessage(from, '╔══✪〘 OLÁ 〙✪══\n╠➥'+teks+'╚═〘 HDBot.exe 〙', text, {quoted: mek})
 					break
-                  case 'membros':
-				client.updatePresence(from, Presence.composing) 
+                  case 'marcar':
 					if (!isGroup) return reply(mess.only.group)
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					members_id = []
 					teks = (args.length > 1) ? body.slice(8).trim() : ''
-					teks += `  Total : ${groupMembers.length}\n`
+					teks += '\n\n'
 					for (let mem of groupMembers) {
-						teks += `╠➥ @${mem.jid.split('@')[0]}\n`
+						teks += `*#* @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					if (text.includes('random')){
-						conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil',MessageType.text, { quoted: m } );
-						}
-						   if (text.includes("random"))
-						   {
-							var items = ["ullzang girl", "cewe cantik", "cewe hijab", "remaja cantik", "cewek jepang"];
-							var cewe = items[Math.floor(Math.random() * items.length)];
-							var url = "https://api.fdci.se/rep.php?gambar=" + cewe;
-							
-							axios.get(url)
-							  .then((result) => {
-								var b = JSON.parse(JSON.stringify(result.data));
-								var cewek =  b[Math.floor(Math.random() * b.length)];
-								imageToBase64(cewek) // Path to the image
-								.then(
-									(response) => {
-							conn.sendMessage(id, 'Jaja eu mando sabosta espera', MessageType.text, { quoted: m } )
-							var buf = Buffer.from(response, 'base64'); // Ta-da	
-							conn.sendMessage(id, buf ,MessageType.image, { caption: `nih gan`, quoted: m } )
-							   
-									}
-								)
-								.catch(
-									(error) => {
-										console.log(error); // Logs an error if there was one
-									}
-								)
-							
-							});
-							}
-							if (text.includes('Bot')){
-								conn.sendMessage(id, 'Silakan ulangi command dengan huruf kecil\n_contoh : .bot apa kabar_',MessageType.text, { quoted: m } );
-								}
-								if (text.includes("bot")){
-								const teks = text.replace(/.bot /, "")
-								axios.get(`https://st4rz.herokuapp.com/api/simsimi?kata=${teks}`).then((res) => {
-									let hasil = `${res.data.result}\n\n*Simsimi chat*`;
-									conn.sendMessage(id, hasil ,MessageType.text, {quoted: m});
-								})
-								}
-						
-					mentions('╔══✪〘 Olá, Membros do grupo! 〙✪══\n╠➥'+teks+'╚═〘 HDBot.exe 〙', members_id, true)
+					mentions(teks, members_id, true)
 					break
 					case 'listonline':
         		if (!isGroupAdmins) return reply(mess.only.admin)
