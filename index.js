@@ -1404,14 +1404,6 @@ client.on('group-participants-update', async (anu) => {
             client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `*${pushname}* deu um beijo no(a) ${body.split(' ').slice(1).join(' ')} 😘`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
             })
             break
-            case 'nazista':
-            client.updatePresence(from, Presence.composing) 
-            var number = Math.floor(Math.random() * 101)
-            var responses = ['Você é um judeu?', 'Talvez você ainda tenha a fimose!', 'Seu sangue é quase azul', 'Você é um sulista..', 'NOVO FUHRER????']
-            var response = responses[number==100?5:number<80?4:number<60?3:number<40?2:number<20?1:0]
-            hasil = `O quanto você é nazista\n\nVocê é: *${number}%* ALA O NAZISTA \n\n '+ response +' ...`
-            reply(hasil)
-            break
             case 'amor':
             if (isBanned) return reply(nad.baned())
             if (!isGroup) return reply(mess.only.group)
