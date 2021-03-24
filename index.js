@@ -1409,7 +1409,6 @@ client.on('group-participants-update', async (anu) => {
             var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
             if(!mentioned||mentioned.length < 1||mentioned.length > 1) return client.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
             client.sendMessage(from, text, {mimetype: text, caption: `*${pushname}* deu um beijo no(a) ${body.split(' ').slice(1).join(' ')} 😘`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
-            })
             break
             case 'nazista':
             client.updatePresence(from, Presence.composing) 
