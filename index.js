@@ -1496,10 +1496,11 @@ client.on('group-participants-update', async (anu) => {
 					if (!isGroupAdmins) return reply(mess.only.admin)
 					members_id = []
 					teks = (args.length > 1) ? body.slice(8).trim() : ''
-					teks += `  Total : ${groupMembers.length}\n`
 					teks += '\n\n'
 					for (let mem of groupMembers) {
+						teks += `*Total:* ${groupMembers.length}\n`
 						teks += `*╠➥* @${mem.jid.split('@')[0]}\n`
+						teks += `*╚═〘 HDBot.exe 〙*`
 						members_id.push(mem.jid)
 					}
 					mentions(teks, members_id, true)
