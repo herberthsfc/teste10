@@ -1413,6 +1413,7 @@ client.on('group-participants-update', async (anu) => {
             case 'nazista1':
             client.updatePresence(from, Presence.composing) 
             random = `${Math.floor(Math.random() * 101)}`
+            var mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
             hasil = `O quanto você é nazista\n\nVocê é: *${random}%* ALA O NAZISTA🇩🇪 ${body.split(' ').slice(1).join(' ')} `,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
             reply(hasil)
             break
