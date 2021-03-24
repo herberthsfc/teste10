@@ -1175,35 +1175,6 @@ client.on('group-participants-update', async (anu) => {
                    hasil = `*INFO. COVID BRASIL* 🦠 \n\n*Sigla do Estado* : *${data.uf}*\n*Estado* : *${data.state}*\n*Casos* : *${data.cases}*\n*Mortes* : *${data.deaths}*\n*Suspeitas* : *${data.suspects}*\n*Curados* : *${data.refuses}*\n*Data Atualizada* : \n*${data.datetime}*\n\n*_HDBOT.exe_ ⚡*`
                    reply(hasil) 
                    break
-            case 'clima':
-       		if (isBanned) return reply(nad.baned())   
-       		if (args.length == 0) return kill.reply(from, 'Insira o nome da sua cidade.', id)
-            try {
-				const clima = await axios.get(`https://pt.wttr.in/${body.slice(7)}?format=Cidade%20=%20%l+\n\nEstado%20=%20%C+%c+\n\nTemperatura%20=%20%t+\n\nUmidade%20=%20%h\n\nVento%20=%20%w\n\nLua agora%20=%20%m\n\nNascer%20do%20Sol%20=%20%S\n\nPor%20do%20Sol%20=%20%s`)
-				await kill.sendFileFromUrl(from, `https://wttr.in/${body.slice(7)}.png`, '', `A foto acima cont茅m uma previs茫o de 2 dias, a mensagem abaixo 茅 o clima agora.\n\n${clima.data}`, id)
-            } catch {
-                await kill.reply(from, 'Estranho...\nCertifique-se de n茫o estar usando acentos ok?', id)
-            }
-            break
-            case 'morte':
-		   case 'death':
-            if (isBanned) return reply(nad.baned())   
-            if (args.length == 0) return kill.reply(from, 'Coloque um nome, apenas um, nada de sobrenome ou nomes inteiros, ainda mais por sua seguran莽a!', id)
-			const predea = await axios.get(`https://api.agify.io/?name=${args[0]}`)
-			await kill.reply(from, `Pessoas com este nome "${predea.data.name}" tendem a morrer aos ${predea.data.age} anos de idade.`, id)
-			break
-			case 'macaco':
-			if (isBanned) return reply(nad.baned())   
-			var item = ["macaco", "gorila", "chimpanz茅", "orangotango", "babuino"]
-    	    var esco = item[Math.floor(Math.random() * item.length)]
-			var maca = "https://api.fdci.se/sosmed/rep.php?gambar=" + esco
-			axios.get(maca)
-			    .then(async (result) => {
-				var mon = JSON.parse(JSON.stringify(result.data))
-				var nkey = mon[Math.floor(Math.random() * mon.length)]
-              	await kill.sendFileFromUrl(from, nkey, "", "Salda莽玫es, sou o Deus macaco e vim aben莽oar voc锚s.", id)
-			})
-			break
                    case 'listcovid':
 					if (isBanned) return reply(nad.baned())
 					if (!isGroup) return reply(mess.only.group)
@@ -1432,6 +1403,12 @@ client.on('group-participants-update', async (anu) => {
             if(!mentioned||mentioned.length < 1||mentioned.length > 1) return client.sendMessage(from, 'Você precisa marcar alguém para esse comando', text, {quoted: mek})
             client.sendMessage(from, dua, image, {mimetype: Mimetype.jpg, caption: `*${pushname}* deu um beijo no(a) ${body.split(' ').slice(1).join(' ')} 😘`,quoted: mek, contextInfo: {"mentionedJid": mentioned}})
             })
+            break
+            case 'nazista':
+            client.updatePresence(from, Presence.composing) 
+            random = `${Math.floor(Math.random() * 101)}`
+            hasil = `O quanto você é nazista\n\nVocê é: *${random}%* ALA O NAZISTA🇩🇪`
+            reply(hasil)
             break
             case 'amor':
             if (isBanned) return reply(nad.baned())
